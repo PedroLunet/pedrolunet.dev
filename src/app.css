@@ -1,3 +1,12 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+  --color-mint-400: oklch(0.72 0.11 178);
+  --color-mint-300: oklch(0.72 0.11 178);
+  --color-mint-200: oklch(0.72 0.11 178);
+  --color-mint-100: oklch(0.72 0.11 178);
+}

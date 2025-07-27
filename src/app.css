@@ -2,6 +2,13 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+	font-family: 'Geist Sans';
+	src: url('/src/lib/fonts/Geist-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
 @theme {
 	/* Light Theme */
 	--color-background: #fffaf3;
@@ -18,4 +25,28 @@
 	--color-accent-dark: #fac898;
 	--color-border-dark: #475569;
 	--color-muted-dark: #94a3b8;
+}
+
+body {
+	background-color: var(--color-background);
+	font-family: 'Geist Sans', sans-serif;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbars while maintaining functionality */
+.hide-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+@variant dark {
+	body {
+		background-color: var(--color-background-dark);
+		color: var(--color-text-dark);
+	}
 }

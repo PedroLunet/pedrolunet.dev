@@ -26,7 +26,7 @@
 	/>
 
 	<div class="mb-4 flex items-center gap-1 text-text dark:text-text-dark">
-		<MapPin size={18} />
+		<MapPin size={18} class="text-accent dark:text-accent-dark" />
 		<Shiny text="Porto, Portugal" className="text-lg md:text-xl" speed={5} />
 	</div>
 
@@ -44,7 +44,7 @@
 		</a>
 		<a
 			href="/about"
-			class="hover:bg-opacity-60 rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-background dark:border-primary-dark dark:text-primary-dark dark:hover:bg-background-dark"
+			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10 dark:border-primary-dark dark:text-primary-dark dark:hover:bg-accent-dark/10"
 		>
 			About Me
 		</a>
@@ -52,14 +52,14 @@
 </section>
 
 <section class="my-5 px-6 py-20">
-	<div class="mx-auto max-w-3xl text-center flex flex-col items-center justify-center">
+	<div class="mx-auto flex max-w-3xl flex-col items-center justify-center text-center">
 		<h2 class="mb-4 text-3xl font-semibold text-text dark:text-text-dark">Let’s Talk</h2>
 		<p class="mb-6 text-lg text-text opacity-90 dark:text-text-dark">
 			Want to work together or just say hi? I’d love to hear from you.
 		</p>
 		<a
 			href="/contact"
-			class="hover:bg-opacity-60 rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-background dark:border-primary-dark dark:text-primary-dark dark:hover:bg-background-dark"
+			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10 dark:border-primary-dark dark:text-primary-dark dark:hover:bg-accent-dark/10"
 		>
 			Contact Me
 		</a>

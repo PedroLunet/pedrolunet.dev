@@ -2,11 +2,20 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
-
 @theme {
-  --color-mint-500: oklch(0.72 0.11 178);
-  --color-mint-400: oklch(0.72 0.11 178);
-  --color-mint-300: oklch(0.72 0.11 178);
-  --color-mint-200: oklch(0.72 0.11 178);
-  --color-mint-100: oklch(0.72 0.11 178);
+	/* Light Theme */
+	--color-background: #fffaf3;
+	--color-text: #1f1f1f;
+	--color-primary: #f97316;
+	--color-accent: #fb923c;
+	--color-border: #f3f4f6;
+	--color-muted: #6b7280;
+
+	/* Dark Theme */
+	--color-background-dark: #323033;
+	--color-text-dark: #f8fafc;
+	--color-primary-dark: #fca97e;
+	--color-accent-dark: #fac898;
+	--color-border-dark: #475569;
+	--color-muted-dark: #94a3b8;
 }

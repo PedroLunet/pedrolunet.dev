@@ -14,7 +14,7 @@
 		className="mb-6 text-3xl font-bold md:text-5xl leading-tight text-text dark:text-text-dark"
 		splitType="words, chars"
 		delay={50}
-		duration={0.8}
+		duration={2}
 		ease="power3.out"
 		from={{ opacity: 0, y: 40 }}
 		to={{ opacity: 1, y: 0 }}
@@ -38,39 +38,28 @@
 	<div class="flex gap-4">
 		<a
 			href="/projects"
-			class="rounded-2xl bg-primary px-6 py-2 text-text shadow transition hover:bg-primary/80 dark:bg-primary-dark dark:text-text-dark dark:hover:bg-primary-dark/80"
+			class="rounded-2xl bg-primary px-6 py-2 text-white shadow transition hover:bg-primary/80 dark:bg-primary-dark dark:text-background-dark dark:hover:bg-primary-dark/80"
 		>
 			View Projects
 		</a>
 		<a
-			href="/contact"
+			href="/about"
 			class="hover:bg-opacity-60 rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-background dark:border-primary-dark dark:text-primary-dark dark:hover:bg-background-dark"
 		>
-			Contact Me
+			About Me
 		</a>
 	</div>
 </section>
 
-<section class="my-5 rounded-3xl bg-border px-6 py-20 dark:bg-border-dark">
-	<div class="mx-auto max-w-4xl text-center">
-		<h2 class="mb-4 text-3xl font-semibold text-text dark:text-text-dark">About Me</h2>
-		<p class="mx-auto max-w-2xl text-lg text-text opacity-80 dark:text-text-dark">
-			I'm currently studying computer engineering and building projects in web and mobile
-			development. I'm passionate about user experience, accessibility, and learning new tools to
-			create meaningful digital products.
-		</p>
-	</div>
-</section>
-
-<section class="my-5 rounded-3xl bg-border px-6 py-20 dark:bg-border-dark">
-	<div class="mx-auto max-w-3xl text-center">
+<section class="my-5 px-6 py-20">
+	<div class="mx-auto max-w-3xl text-center flex flex-col items-center justify-center">
 		<h2 class="mb-4 text-3xl font-semibold text-text dark:text-text-dark">Let’s Talk</h2>
 		<p class="mb-6 text-lg text-text opacity-90 dark:text-text-dark">
 			Want to work together or just say hi? I’d love to hear from you.
 		</p>
 		<a
 			href="/contact"
-			class="inline-block rounded-2xl bg-primary px-8 py-3 text-text shadow transition hover:bg-primary/80 dark:bg-primary-dark dark:text-text-dark dark:hover:bg-primary-dark/80"
+			class="hover:bg-opacity-60 rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-background dark:border-primary-dark dark:text-primary-dark dark:hover:bg-background-dark"
 		>
 			Contact Me
 		</a>

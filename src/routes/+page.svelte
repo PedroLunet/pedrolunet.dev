@@ -6,7 +6,7 @@
 </script>
 
 <section
-	class="flex min-h-screen flex-col items-center justify-center overflow-visible bg-background px-4 py-20 text-center text-text dark:bg-background-dark dark:text-text-dark"
+	class="flex h-[calc(90vh-var(--navbar-height))] flex-col items-center justify-center overflow-visible bg-background px-4 py-20 text-center text-text dark:bg-background-dark dark:text-text-dark"
 >
 	<SplitText
 		bind:this={ref}
@@ -26,7 +26,7 @@
 	/>
 
 	<div class="mb-4 flex items-center gap-1 text-text dark:text-text-dark">
-		<MapPin size={18} class="text-accent dark:text-accent-dark" />
+		<MapPin size={18} weight="bold" class="text-accent dark:text-accent-dark" />
 		<Shiny text="Porto, Portugal" className="text-lg md:text-xl" speed={5} />
 	</div>
 

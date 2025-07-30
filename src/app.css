@@ -25,6 +25,9 @@
 	--color-accent-dark: #fac898;
 	--color-border-dark: #475569;
 	--color-muted-dark: #94a3b8;
+
+	/* Navbar height */
+	--navbar-height: 64px;
 }
 
 body {

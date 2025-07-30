@@ -30,10 +30,7 @@
 			to={{ opacity: 1, y: 0 }}
 			threshold={0.1}
 		/>
-		<svg class="mt-4 h-0.5 w-full rounded-full bg-muted dark:bg-muted-dark">
-			<rect x="0" y="0" width="100%" height="100%" rx="4" />
-		</svg>
-		<div class="mb-4 flex items-center gap-1 text-text dark:text-text-dark">
+		<div class="mt-4 mb-4 flex items-center gap-1 text-text dark:text-text-dark">
 			<MapPin size={18} weight="bold" class="text-accent dark:text-accent-dark" />
 			<Shiny text="Porto, Portugal" className="text-lg md:text-xl" speed={5} />
 		</div>

@@ -7,7 +7,7 @@
 >
 	<div class="flex items-center">
 		<h1 class="text-xl font-semibold text-muted dark:text-muted-dark">[</h1>
-		<h1 class="text-xl font-semibold tracking-tighter text-accent dark:text-accent-dark">
+		<h1 class="text-xl font-bold tracking-tighter text-accent dark:text-accent-dark">
 			Pedro Lunet
 		</h1>
 		<h1 class="text-xl font-semibold text-muted dark:text-muted-dark">]</h1>

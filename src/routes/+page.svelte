@@ -1,67 +1,106 @@
 <script>
 	import SplitText from '../components/SplitText.svelte';
 	import Shiny from '../components/Shiny.svelte';
-	import { MapPin } from 'phosphor-svelte';
-	let ref;
+	import { ArrowRight, MapPin } from 'phosphor-svelte';
 </script>
 
 <section
-	class="flex h-[calc(90vh-var(--navbar-height))] flex-col items-center justify-center overflow-visible bg-background px-4 py-20 text-center text-text dark:bg-background-dark dark:text-text-dark"
+	class="flex h-[calc(100vh-var(--navbar-height))] flex-col items-start bg-background px-4 py-10 text-text dark:bg-background-dark dark:text-text-dark"
 >
-	<SplitText
-		bind:this={ref}
-		text="Hi, I'm [Pedro Lunet]"
-		className="mb-6 text-3xl font-bold md:text-5xl leading-tight text-text dark:text-text-dark"
-		splitType="words, chars"
-		delay={50}
-		duration={2}
-		ease="power3.out"
-		from={{ opacity: 0, y: 40 }}
-		to={{ opacity: 1, y: 0 }}
-		threshold={0.1}
-		rootMargin="-100px"
-		textAlign="center"
-		highlightText="[Pedro Lunet]"
-		highlightClass="text-accent dark:text-accent-dark"
-	/>
-
-	<div class="mb-4 flex items-center gap-1 text-text dark:text-text-dark">
-		<MapPin size={18} weight="bold" class="text-accent dark:text-accent-dark" />
-		<Shiny text="Porto, Portugal" className="text-lg md:text-xl" speed={5} />
-	</div>
-
-	<p class="mb-6 max-w-2xl text-lg text-text md:text-xl dark:text-text-dark">
-		I’m a frontend developer who enjoys building clean and responsive web interfaces using
-		SvelteKit, Tailwind, and modern web tech.
-	</p>
-
-	<div class="flex gap-4">
-		<a
-			href="/projects"
-			class="rounded-2xl bg-primary px-6 py-2 text-white shadow transition hover:bg-primary/80 dark:bg-primary-dark dark:text-background-dark dark:hover:bg-primary-dark/80"
+	<div>
+		<div class="flex h-fit flex-col items-start justify-center">
+			<SplitText
+				text="Pedro Lunet"
+				className=" text-3xl font-bold md:text-5xl leading-tight text-accent dark:text-accent-dark"
+				splitType="words"
+				delay={60}
+				duration={0.8}
+				ease="power3.out"
+				from={{ opacity: 0, y: 40 }}
+				to={{ opacity: 1, y: 0 }}
+				threshold={0.1}
+			/>
+			<SplitText
+				text="Web Developer"
+				className="text-2xl font-bold **:md:text-4xl leading-tight text-text dark:text-text-dark"
+				splitType="words"
+				delay={60}
+				duration={0.8}
+				ease="power3.out"
+				from={{ opacity: 0, y: 40 }}
+				to={{ opacity: 1, y: 0 }}
+				threshold={0.1}
+			/>
+			<div class="mt-4 mb-4 flex items-center gap-1 text-text dark:text-text-dark">
+				<MapPin size={18} weight="bold" class="text-accent dark:text-accent-dark" />
+				<Shiny text="Porto, Portugal" className="text-lg md:text-xl" speed={5} />
+			</div>
+		</div>
+		<p
+			class="mb-6 w-full max-w-[300px] text-base text-muted md:max-w-[350px] md:text-xl lg:max-w-[400px] dark:text-muted-dark"
 		>
-			View Projects
-		</a>
-		<a
-			href="/about"
-			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10 dark:border-primary-dark dark:text-primary-dark dark:hover:bg-accent-dark/10"
+			I like to design clean, responsive interfaces that feel thoughtful and effortless with a focus
+			on clarity and the small details that matter.
+		</p>
+	</div>
+	<div class="mt-5">
+		<h3
+			class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
 		>
 			About Me
+		</h3>
+		<p
+			class="mt-4 max-w-[300px] text-base text-text md:max-w-[350px] lg:max-w-[400px] dark:text-text-dark"
+		>
+			I'm a frontend designer and developer from Porto, currently studying Informatics and Computer
+			Engineering at <a
+				href="https://www.fe.up.pt/"
+				class="font-semibold text-accent transition hover:text-[#8c2d19] dark:text-accent-dark"
+				>FEUP</a
+			>. I’m always learning and enjoy exploring how to make digital experiences feel clear and
+			intentional.
+		</p>
+		<a href="/about" class="group relative inline-flex items-center gap-2 overflow-hidden">
+			<span class="relative z-10 font-extralight text-text dark:text-text-dark"
+				>Get to know me!</span
+			>
+			<ArrowRight
+				size={20}
+				weight="bold"
+				class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
+			/>
+			<span
+				class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
+				style="width:calc(100% - 28px)"
+			></span>
 		</a>
 	</div>
-</section>
-
-<section class="my-5 px-6 py-20">
-	<div class="mx-auto flex max-w-3xl flex-col items-center justify-center text-center">
-		<h2 class="mb-4 text-3xl font-semibold text-text dark:text-text-dark">Let’s Talk</h2>
-		<p class="mb-6 text-lg text-text opacity-90 dark:text-text-dark">
-			Want to work together or just say hi? I’d love to hear from you.
-		</p>
-		<a
-			href="/contact"
-			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10 dark:border-primary-dark dark:text-primary-dark dark:hover:bg-accent-dark/10"
+	<div class="mt-5">
+		<h3
+			class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
 		>
-			Contact Me
+			My Work
+		</h3>
+		<p
+			class="mt-4 max-w-[300px] text-base text-text md:max-w-[350px] lg:max-w-[400px] dark:text-text-dark"
+		>
+			You’ll find most of my work on GitHub. It's mostly university projects, both solo and in
+			groups. It’s where I’ve been learning by doing, experimenting, and trying to get things just
+			right.
+		</p>
+		<a href="/portefolio" class="group relative inline-flex items-center gap-2 overflow-hidden">
+			<span class="relative z-10 font-extralight text-text dark:text-text-dark"
+				>See my projects!</span
+			>
+			<ArrowRight
+				size={20}
+				weight="bold"
+				class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
+			/>
+			<span
+				class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
+				style="width:calc(100% - 28px)"
+			></span>
 		</a>
 	</div>
 </section>

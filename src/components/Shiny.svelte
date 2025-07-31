@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="bg-gradient-to-r from-black via-gray-400 to-black bg-[length:200%_100%] bg-clip-text text-transparent dark:from-text-dark dark:via-stone-600 dark:to-text-dark {disabled
+	class="bg-gradient-to-r from-text via-muted to-text bg-[length:200%_100%] bg-clip-text text-transparent dark:from-text-dark dark:via-muted-dark dark:to-text-dark {disabled
 		? ''
 		: 'animate-shine'} {className}"
 	style="animation-duration: {animationDuration};"

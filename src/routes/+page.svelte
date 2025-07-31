@@ -93,18 +93,19 @@
 				href="/portefolio"
 				class="group relative mt-2 inline-flex items-center gap-2 overflow-hidden"
 			>
-				<span class="relative z-10 font-extralight text-text dark:text-text-dark"
-					>See my projects!</span
-				>
+				<span class="relative">
+					<span class="relative z-10 font-extralight text-text dark:text-text-dark"
+						>See my projects!</span
+					>
+					<span
+						class="absolute right-0 bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
+					></span>
+				</span>
 				<ArrowRight
 					size={20}
 					weight="bold"
 					class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
 				/>
-				<span
-					class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
-					style="width:calc(100% - 28px)"
-				></span>
 			</a>
 		</div>
 	</div>

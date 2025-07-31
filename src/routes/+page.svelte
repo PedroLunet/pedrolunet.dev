@@ -5,7 +5,7 @@
 </script>
 
 <section
-	class="flex h-[calc(100vh-var(--navbar-height))] flex-col bg-background px-4 py-10 text-text md:flex-row md:items-start md:justify-around md:gap-x-8 dark:bg-background-dark dark:text-text-dark"
+	class="flex h-[calc(90vh-var(--navbar-height))] flex-col bg-background px-4 py-10 text-text md:flex-row md:items-start md:justify-around md:gap-x-8 dark:bg-background-dark dark:text-text-dark"
 >
 	<div>
 		<div class="flex h-fit flex-col items-start justify-center">

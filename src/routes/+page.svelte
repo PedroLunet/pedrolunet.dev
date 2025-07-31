@@ -5,7 +5,7 @@
 </script>
 
 <section
-	class="flex h-[calc(100vh-var(--navbar-height))] flex-col items-start bg-background px-4 py-10 text-text dark:bg-background-dark dark:text-text-dark"
+	class="flex h-[calc(100vh-var(--navbar-height))] flex-col bg-background px-4 py-10 text-text md:flex-row md:items-start md:justify-around md:gap-x-8 dark:bg-background-dark dark:text-text-dark"
 >
 	<div>
 		<div class="flex h-fit flex-col items-start justify-center">
@@ -43,64 +43,69 @@
 			on clarity and the small details that matter.
 		</p>
 	</div>
-	<div class="mt-5">
-		<h3
-			class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
-		>
-			About Me
-		</h3>
-		<p
-			class="mt-4 max-w-[300px] text-base text-text md:max-w-[350px] lg:max-w-[400px] dark:text-text-dark"
-		>
-			I'm a frontend designer and developer from Porto, currently studying Informatics and Computer
-			Engineering at <a
-				href="https://www.fe.up.pt/"
-				class="font-semibold text-accent transition hover:text-[#8c2d19] dark:text-accent-dark"
-				>FEUP</a
-			>. I’m always learning and enjoy exploring how to make digital experiences feel clear and
-			intentional.
-		</p>
-		<a href="/about" class="group relative inline-flex items-center gap-2 overflow-hidden">
-			<span class="relative z-10 font-extralight text-text dark:text-text-dark"
-				>Get to know me!</span
+	<div>
+		<div class="mt-5 flex flex-col items-end justify-center">
+			<h3
+				class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
 			>
-			<ArrowRight
-				size={20}
-				weight="bold"
-				class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
-			/>
-			<span
-				class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
-				style="width:calc(100% - 28px)"
-			></span>
-		</a>
-	</div>
-	<div class="mt-5">
-		<h3
-			class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
-		>
-			My Work
-		</h3>
-		<p
-			class="mt-4 max-w-[300px] text-base text-text md:max-w-[350px] lg:max-w-[400px] dark:text-text-dark"
-		>
-			You’ll find most of my work on GitHub. It's mostly university projects, both solo and in
-			groups. It’s where I’ve been learning by doing, experimenting, and trying to get things just
-			right.
-		</p>
-		<a href="/portefolio" class="group relative inline-flex items-center gap-2 overflow-hidden">
-			<span class="relative z-10 font-extralight text-text dark:text-text-dark"
-				>See my projects!</span
+				About Me
+			</h3>
+			<p
+				class="mt-4 max-w-[300px] text-end text-base text-text md:max-w-[350px] lg:max-w-[400px] dark:text-text-dark"
 			>
-			<ArrowRight
-				size={20}
-				weight="bold"
-				class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
-			/>
-			<span
-				class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
-				style="width:calc(100% - 28px)"
-			></span>
-		</a>
+				I'm a frontend designer and developer from Porto, currently studying Informatics and
+				Computer Engineering at <a
+					href="https://www.fe.up.pt/"
+					class="font-semibold text-accent transition hover:text-[#8c2d19] dark:text-accent-dark"
+					>FEUP</a
+				>. I’m always learning and enjoy exploring how to make digital experiences feel clear and
+				intentional.
+			</p>
+			<a href="/about" class="group relative mt-2 inline-flex items-center gap-2 overflow-hidden">
+				<span class="relative z-10 font-extralight text-text dark:text-text-dark"
+					>Get to know me!</span
+				>
+				<ArrowRight
+					size={20}
+					weight="bold"
+					class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
+				/>
+				<span
+					class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
+					style="width:calc(100% - 28px)"
+				></span>
+			</a>
+		</div>
+		<div class="mt-5 flex flex-col justify-center md:items-end">
+			<h3
+				class="w-fit border-b border-muted text-xl font-bold text-accent dark:border-muted-dark dark:text-accent-dark"
+			>
+				My Work
+			</h3>
+			<p
+				class="mt-4 max-w-[300px] text-base text-text md:max-w-[350px] md:text-end lg:max-w-[400px] dark:text-text-dark"
+			>
+				You’ll find most of my work on GitHub. It's mostly university projects, both solo and in
+				groups. It’s where I’ve been learning by doing, experimenting, and trying to get things just
+				right.
+			</p>
+			<a
+				href="/portefolio"
+				class="group relative mt-2 inline-flex items-center gap-2 overflow-hidden"
+			>
+				<span class="relative z-10 font-extralight text-text dark:text-text-dark"
+					>See my projects!</span
+				>
+				<ArrowRight
+					size={20}
+					weight="bold"
+					class="relative z-10 text-accent transition-transform duration-300 group-hover:-translate-x-1 dark:text-accent-dark"
+				/>
+				<span
+					class="absolute bottom-0 left-0 h-[1px] origin-left scale-x-0 bg-muted transition-transform duration-300 group-hover:scale-x-100 dark:bg-muted-dark"
+					style="width:calc(100% - 28px)"
+				></span>
+			</a>
+		</div>
 	</div>
 </section>

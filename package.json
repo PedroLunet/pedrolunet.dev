@@ -44,6 +44,7 @@
 	"dependencies": {
 		"gsap": "^3.13.0",
 		"phosphor-svelte": "^3.0.1",
-		"simple-icons": "^15.7.0"
+		"simple-icons": "^15.7.0",
+		"vaul-svelte": "^0.3.2"
 	}
 }

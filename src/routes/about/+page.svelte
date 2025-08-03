@@ -2,6 +2,7 @@
 	import SplitText from '../../components/SplitText.svelte';
 	import Shiny from '../../components/Shiny.svelte';
 	import { MapPin } from 'phosphor-svelte';
+	import { Button } from '$lib/components/ui/button/index.js';
 	let ref;
 </script>
 
@@ -36,18 +37,8 @@
 	</p>
 
 	<div class="flex gap-4">
-		<a
-			href="/projects"
-			class="rounded-2xl bg-primary px-6 py-2 text-white shadow transition hover:bg-primary/80"
-		>
-			View Projects
-		</a>
-		<a
-			href="/about"
-			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10"
-		>
-			About Me
-		</a>
+		<Button href="/projects">View Projects</Button>
+		<Button variant="outline" href="/about">About Me</Button>
 	</div>
 </section>
 

@@ -5,7 +5,7 @@
 <div
 	class="z-50 flex h-fit w-full flex-col items-center justify-center gap-4 p-4 font-semibold md:flex-row"
 >
-	<p class="text-center text-sm text-muted dark:text-muted-dark">Pedro Lunet</p>
+	<p class="text-center text-sm text-muted">Pedro Lunet</p>
 
 	<svg
 		width="6"
@@ -13,7 +13,7 @@
 		viewBox="0 0 6 6"
 		fill="currentColor"
 		aria-hidden="true"
-		class="mx-2 text-muted dark:text-muted-dark"><circle cx="3" cy="3" r="3" /></svg
+		class="mx-2 text-muted"><circle cx="3" cy="3" r="3" /></svg
 	>
 	<div class="flex items-center gap-3">
 		<a
@@ -22,7 +22,7 @@
 			aria-label="Instagram"
 			class="cursor-pointer hover:opacity-80"
 		>
-			<InstagramLogo size={24} class="text-muted dark:text-muted-dark" />
+			<InstagramLogo size={24} class="text-muted" />
 		</a>
 		<a
 			href="https://www.linkedin.com/in/pedrolunet/"
@@ -30,7 +30,7 @@
 			aria-label="LinkedIn"
 			class="cursor-pointer hover:opacity-80"
 		>
-			<LinkedinLogo size={24} class="text-muted dark:text-muted-dark" />
+			<LinkedinLogo size={24} class="text-muted" />
 		</a>
 		<a
 			href="https://github.com/pedrolunet"
@@ -38,7 +38,7 @@
 			aria-label="GitHub"
 			class="cursor-pointer hover:opacity-80"
 		>
-			<GithubLogo size={24} class="text-muted dark:text-muted-dark" />
+			<GithubLogo size={24} class="text-muted" />
 		</a>
 		<a
 			href="mailto:pedrolunet@gmail.com"
@@ -46,7 +46,7 @@
 			aria-label="Email"
 			class="cursor-pointer hover:opacity-80"
 		>
-			<EnvelopeSimple size={24} class="text-muted dark:text-muted-dark" />
+			<EnvelopeSimple size={24} class="text-muted" />
 		</a>
 	</div>
 </div>

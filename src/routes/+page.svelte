@@ -99,3 +99,17 @@
 		</div>
 	</div>
 </section>
+<section class="my-5 px-6 py-20">
+	<div class="mx-auto flex max-w-3xl flex-col items-center justify-center text-center">
+		<h2 class="text-text mb-4 text-3xl font-semibold">Let’s Talk</h2>
+		<p class="text-text mb-6 text-lg opacity-90">
+			Want to work together or just say hi? I’d love to hear from you.
+		</p>
+		<a
+			href="/contact"
+			class="rounded-2xl border border-primary px-6 py-2 text-primary transition hover:bg-accent/10"
+		>
+			Contact Me
+		</a>
+	</div>
+</section>

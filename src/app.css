@@ -7,6 +7,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
+	font-family: 'Satoshi';
+	src: url('/src/lib/fonts/Satoshi-Variable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+@font-face {
 	font-family: 'Geist Sans';
 	src: url('/src/lib/fonts/Geist-VariableFont_wght.ttf') format('truetype');
 	font-weight: 100 900;
@@ -136,7 +143,7 @@
 	}
 	body {
 		background-color: var(--color-background);
-		font-family: 'Geist Sans', sans-serif;
+		font-family: 'Sotoshi', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		@apply bg-background text-foreground;

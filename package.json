@@ -16,13 +16,15 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
-		"@lucide/svelte": "^0.536.0",
+		"@internationalized/date": "^3.8.2",
+		"@lucide/svelte": "^0.515.0",
 		"@sveltejs/adapter-vercel": "^5.6.3",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.1.11",
+		"bits-ui": "^2.9.1",
 		"clsx": "^2.1.1",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -43,6 +45,7 @@
 	},
 	"dependencies": {
 		"gsap": "^3.13.0",
+		"mode-watcher": "^1.1.0",
 		"phosphor-svelte": "^3.0.1",
 		"simple-icons": "^15.7.0",
 		"vaul-svelte": "^0.3.2"

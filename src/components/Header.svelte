@@ -1,11 +1,12 @@
 <script>
 	import { List, XCircle } from 'phosphor-svelte';
+	import ThemeSwitch from './ThemeSwitch.svelte';
 
 	let menuOpen = false;
 </script>
 
 <header
-	class="flex min-h-fit flex-col items-center justify-around gap-y-2 bg-transparent p-4 md:p-6 lg:p-8"
+	class="relative flex min-h-fit flex-col items-center justify-around gap-y-2 bg-transparent p-4 md:p-6 lg:p-8"
 >
 	<a href="/" class="text-text transition-transform duration-500 hover:scale-110" aria-label="Home">
 		<div class="flex items-center">
@@ -35,6 +36,11 @@
 	>
 		<List size={26} class="text-primary" />
 	</button>
+
+	<!-- Theme switcher always on the right -->
+	<div class="absolute top-4 right-4 md:top-8 md:right-8">
+		<ThemeSwitch />
+	</div>
 
 	<!-- Mobile menu overlay -->
 	{#if menuOpen}

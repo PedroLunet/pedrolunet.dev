@@ -28,7 +28,7 @@
 
 <div class="flex min-h-screen flex-col">
 	<Header />
-	<main class="dark:bg-background-dark flex-1 bg-background p-4 md:p-6 lg:p-8">
+	<main class="flex-1 bg-background p-4 md:p-6 lg:p-8">
 		{@render children()}
 	</main>
 	<Footer />

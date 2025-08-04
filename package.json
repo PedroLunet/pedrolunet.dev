@@ -34,7 +34,7 @@
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwind-merge": "^3.3.1",
-		"tailwind-variants": "^2.1.0",
+		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^4.1.11",
 		"tw-animate-css": "^1.3.6",
 		"typescript": "^5.0.0",
@@ -44,6 +44,7 @@
 	"dependencies": {
 		"gsap": "^3.13.0",
 		"phosphor-svelte": "^3.0.1",
-		"simple-icons": "^15.7.0"
+		"simple-icons": "^15.7.0",
+		"vaul-svelte": "^0.3.2"
 	}
 }

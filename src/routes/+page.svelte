@@ -2,6 +2,7 @@
 	import SplitText from '../components/SplitText.svelte';
 	import Shiny from '../components/Shiny.svelte';
 	import { ArrowRight, MapPin } from 'phosphor-svelte';
+	import ContactForm from '../components/Contact-form.svelte';
 </script>
 
 <section
@@ -113,11 +114,6 @@
 		<p class="text-text mx-auto mb-6 max-w-2xl text-lg opacity-90 sm:text-xl xl:text-2xl">
 			Want to work together or just say hi? I’d love to hear from you.
 		</p>
-		<a
-			href="/contact"
-			class="rounded-2xl border border-primary px-8 py-3 text-lg text-primary shadow-md transition hover:bg-accent/10 xl:text-xl"
-		>
-			Contact Me
-		</a>
+		<ContactForm />
 	</div>
 </section>

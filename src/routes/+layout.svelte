@@ -3,6 +3,7 @@
 	import Footer from '../components/Footer.svelte';
 	import Header from '../components/Header.svelte';
 	import { onMount } from 'svelte';
+	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
 
@@ -26,6 +27,7 @@
 	});
 </script>
 
+<ModeWatcher />
 <div class="flex min-h-screen flex-col">
 	<Header />
 	<main class="flex-1 bg-background p-4 md:p-6 lg:p-8">

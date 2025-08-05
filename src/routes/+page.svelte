@@ -10,6 +10,7 @@
 >
 	<div class="flex flex-1 flex-col items-start justify-center xl:items-center xl:text-center">
 		<SplitText
+		textAlign="left"
 			text="Pedro Lunet"
 			className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 3xl:text-8xl font-bold leading-tight text-primary"
 			splitType="words"

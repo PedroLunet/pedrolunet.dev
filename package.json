@@ -24,6 +24,8 @@
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.1.11",
+		"@types/node": "^24.2.0",
+		"@types/nodemailer": "^6.4.17",
 		"bits-ui": "^2.9.1",
 		"clsx": "^2.1.1",
 		"eslint": "^9.18.0",
@@ -47,6 +49,7 @@
 	"dependencies": {
 		"gsap": "^3.13.0",
 		"mode-watcher": "^1.1.0",
+		"nodemailer": "^7.0.5",
 		"phosphor-svelte": "^3.0.1",
 		"simple-icons": "^15.7.0"
 	}

@@ -82,17 +82,33 @@
 			</h2>
 			<div class="grid gap-8 md:grid-cols-2 md:gap-12">
 				<div>
-					<p class="text-text mb-6 text-base sm:text-lg 2xl:text-xl">
+					<p class="text-text mb-6 text-base leading-relaxed sm:text-lg 2xl:text-xl">
 						I am an Informatics and Computing Engineering student at FEUP, determined and
 						enthusiastic about learning new things. I have a strong sense of responsibility and
 						enjoy working in a team, and I am motivated to contribute positively in a professional
 						environment.
 					</p>
-					<p class="text-text mb-6 text-base sm:text-lg 2xl:text-xl">
+					<p class="text-text mb-6 text-base leading-relaxed sm:text-lg 2xl:text-xl">
 						My journey spans from full-stack development at Significa to engineering judging at F1
 						In Schools. Currently in my final year, I'm passionate about creating clean, performant
 						web applications and exploring modern frontend architectures.
 					</p>
+
+					<!-- Quick Stats -->
+					<div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+						<div class="text-center">
+							<div class="text-2xl font-bold text-primary">3+</div>
+							<div class="text-sm text-muted-foreground">Years of Study</div>
+						</div>
+						<div class="text-center">
+							<div class="text-2xl font-bold text-primary">10+</div>
+							<div class="text-sm text-muted-foreground">Technologies</div>
+						</div>
+						<div class="col-span-2 text-center sm:col-span-1">
+							<div class="text-2xl font-bold text-primary">2</div>
+							<div class="text-sm text-muted-foreground">Internships</div>
+						</div>
+					</div>
 				</div>
 				<div class="flex flex-col gap-6">
 					<!-- Profile Image -->
@@ -131,34 +147,49 @@
 			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">
 				Skills & Technologies
 			</h3>
-			<div class="grid gap-8 md:grid-cols-3">
-				<div>
-					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Frontend & Full Stack</h4>
+			<div class="grid gap-8 lg:grid-cols-3">
+				<div class="group">
+					<div class="mb-4 flex items-center gap-2">
+						<div class="h-1 w-8 rounded-full bg-gradient-to-r from-primary to-primary/50"></div>
+						<h4 class="text-text text-xl font-semibold 2xl:text-2xl">Frontend & Full Stack</h4>
+					</div>
 					<div class="flex flex-wrap gap-2">
 						{#each frontendSkills as skill}
-							<Badge class="flex items-center gap-1.5 text-base">
+							<Badge
+								class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
+							>
 								<Icon icon={skill.icon} />
 								{skill.name}
 							</Badge>
 						{/each}
 					</div>
 				</div>
-				<div>
-					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Programming Languages</h4>
+				<div class="group">
+					<div class="mb-4 flex items-center gap-2">
+						<div class="h-1 w-8 rounded-full bg-gradient-to-r from-primary to-primary/50"></div>
+						<h4 class="text-text text-xl font-semibold 2xl:text-2xl">Programming Languages</h4>
+					</div>
 					<div class="flex flex-wrap gap-2">
 						{#each programmingLanguages as skill}
-							<Badge class="flex items-center gap-1.5 text-base">
+							<Badge
+								class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
+							>
 								<Icon icon={skill.icon} />
 								{skill.name}
 							</Badge>
 						{/each}
 					</div>
 				</div>
-				<div>
-					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Languages & Tools</h4>
+				<div class="group">
+					<div class="mb-4 flex items-center gap-2">
+						<div class="h-1 w-8 rounded-full bg-gradient-to-r from-primary to-primary/50"></div>
+						<h4 class="text-text text-xl font-semibold 2xl:text-2xl">Languages & Tools</h4>
+					</div>
 					<div class="flex flex-wrap gap-2">
 						{#each toolsAndLanguages as skill}
-							<Badge class="flex items-center gap-1.5 text-base">
+							<Badge
+								class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
+							>
 								<Icon icon={skill.icon} />
 								{skill.name}
 							</Badge>
@@ -172,37 +203,49 @@
 		<div class="mb-16">
 			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">What Drives Me</h3>
 			<div class="grid gap-6 md:grid-cols-3">
-				<Card>
+				<Card class="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 					<CardHeader>
-						<Heart size={32} weight="bold" class="mb-4 text-primary" />
+						<div
+							class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20"
+						>
+							<Heart size={24} weight="bold" class="text-primary" />
+						</div>
 						<h4 class="text-text mb-3 text-lg font-semibold">Teamwork</h4>
 					</CardHeader>
 					<CardContent>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-sm leading-relaxed text-muted-foreground">
 							I enjoy working in teams and believe that collaboration leads to the best solutions
 							and learning experiences.
 						</p>
 					</CardContent>
 				</Card>
-				<Card>
+				<Card class="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 					<CardHeader>
-						<Code size={32} weight="bold" class="mb-4 text-primary" />
+						<div
+							class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20"
+						>
+							<Code size={24} weight="bold" class="text-primary" />
+						</div>
 						<h4 class="text-text mb-3 text-lg font-semibold">Problem Solving</h4>
 					</CardHeader>
 					<CardContent>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-sm leading-relaxed text-muted-foreground">
 							I thrive on solving complex challenges and finding creative solutions to technical
 							problems.
 						</p>
 					</CardContent>
 				</Card>
-				<Card>
+				<Card class="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
 					<CardHeader>
-						<GraduationCap size={32} weight="bold" class="mb-4 text-primary" />
+						<div
+							class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20"
+						>
+							<GraduationCap size={24} weight="bold" class="text-primary" />
+						</div>
 						<h4 class="text-text mb-3 text-lg font-semibold">Continuous Learning</h4>
 					</CardHeader>
 					<CardContent>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-sm leading-relaxed text-muted-foreground">
 							Determined and enthusiastic about learning new technologies and staying adaptable in a
 							rapidly evolving field.
 						</p>
@@ -217,91 +260,120 @@
 				Experience & Education
 			</h3>
 			<div class="space-y-6">
-				<Card>
-					<CardContent>
+				<Card class="border-l-4 border-l-primary/50">
+					<CardContent class="pt-6">
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">
-									Summer Internship – Frontend Developer
-								</h4>
-								<p class="text-muted-foreground">Significa</p>
-								<p class="mt-2 text-sm text-muted-foreground">
+								<div class="mb-2 flex items-center gap-2">
+									<div class="h-2 w-2 rounded-full bg-primary"></div>
+									<h4 class="text-text text-lg font-semibold">
+										Summer Internship – Frontend Developer
+									</h4>
+								</div>
+								<p class="mb-2 font-medium text-muted-foreground">Significa</p>
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 									Working on internal projects using Svelte and SvelteKit, deepening knowledge of
 									Reactive UI Development and modern frontend architecture. Focused on maintainable
 									code, routing, and component-driven design.
 								</p>
 							</div>
-							<span class="text-sm text-primary">07/2025 - 08/2025</span>
+							<span class="text-sm font-medium whitespace-nowrap text-primary"
+								>07/2025 - 08/2025</span
+							>
 						</div>
 					</CardContent>
 				</Card>
-				<Card>
-					<CardContent>
+				<Card class="border-l-4 border-l-primary/50">
+					<CardContent class="pt-6">
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">
-									Engineering Judge – F1 In Schools 2025
-								</h4>
-								<p class="text-muted-foreground">F1 In Schools Regional Final</p>
-								<p class="mt-2 text-sm text-muted-foreground">
+								<div class="mb-2 flex items-center gap-2">
+									<div class="h-2 w-2 rounded-full bg-primary"></div>
+									<h4 class="text-text text-lg font-semibold">
+										Engineering Judge – F1 In Schools 2025
+									</h4>
+								</div>
+								<p class="mb-2 font-medium text-muted-foreground">F1 In Schools Regional Final</p>
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 									Integrated the engineering judging panel for the F1 In Schools Regional Final,
 									evaluating technical designs and engineering solutions.
 								</p>
 							</div>
-							<span class="text-sm text-primary">03/2025</span>
+							<span class="text-sm font-medium whitespace-nowrap text-primary">03/2025</span>
 						</div>
 					</CardContent>
 				</Card>
-				<Card>
-					<CardContent>
+				<Card class="border-l-4 border-l-primary/50">
+					<CardContent class="pt-6">
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">
-									Curricular Internship – Full Stack Developer
-								</h4>
-								<p class="text-muted-foreground">Significa</p>
-								<p class="mt-2 text-sm text-muted-foreground">
+								<div class="mb-2 flex items-center gap-2">
+									<div class="h-2 w-2 rounded-full bg-primary"></div>
+									<h4 class="text-text text-lg font-semibold">
+										Curricular Internship – Full Stack Developer
+									</h4>
+								</div>
+								<p class="mb-2 font-medium text-muted-foreground">Significa</p>
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 									Developed a responsive and performant web application using Next.js, Tailwind CSS,
-									and Drizzle ORM for <a href="https://dodia.pt" target="_blank">Dodia.pt</a>.
+									and Drizzle ORM for <a
+										href="https://dodia.pt"
+										target="_blank"
+										class="text-primary hover:underline">Dodia.pt</a
+									>.
 								</p>
 							</div>
-							<span class="text-sm text-primary">02/2025 - 06/2025</span>
+							<span class="text-sm font-medium whitespace-nowrap text-primary"
+								>02/2025 - 06/2025</span
+							>
 						</div>
 					</CardContent>
 				</Card>
-				<Card>
-					<CardContent>
+				<Card class="border-l-4 border-l-muted">
+					<CardContent class="pt-6">
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">
-									Informatics and Computing Engineering
-								</h4>
-								<p class="text-muted-foreground">
+								<div class="mb-2 flex items-center gap-2">
+									<div class="h-2 w-2 rounded-full bg-muted-foreground"></div>
+									<h4 class="text-text text-lg font-semibold">
+										Informatics and Computing Engineering
+									</h4>
+								</div>
+								<p class="mb-2 font-medium text-muted-foreground">
 									Faculty of Engineering, University of Porto (FEUP)
 								</p>
-								<p class="mt-2 text-sm text-muted-foreground">
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 									Currently enrolled in the 3rd and final year of the Bachelor's degree. Focused on
 									frontend development, web technologies, and modern software engineering practices.
 								</p>
 							</div>
-							<span class="text-sm whitespace-nowrap text-primary">09/2023 - Present</span>
+							<span class="text-sm font-medium whitespace-nowrap text-muted-foreground"
+								>09/2023 - Present</span
+							>
 						</div>
 					</CardContent>
 				</Card>
-				<Card>
-					<CardContent>
+				<Card class="border-l-4 border-l-muted">
+					<CardContent class="pt-6">
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">Electrical and Computer Engineering</h4>
-								<p class="text-muted-foreground">
+								<div class="mb-2 flex items-center gap-2">
+									<div class="h-2 w-2 rounded-full bg-muted-foreground"></div>
+									<h4 class="text-text text-lg font-semibold">
+										Electrical and Computer Engineering
+									</h4>
+								</div>
+								<p class="mb-2 font-medium text-muted-foreground">
 									Faculty of Engineering, University of Porto (FEUP)
 								</p>
-								<p class="mt-2 text-sm text-muted-foreground">
+								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 									Completed the first year of the Bachelor's degree before transferring to
 									Informatics and Computing Engineering.
 								</p>
 							</div>
-							<span class="text-sm whitespace-nowrap text-primary">09/2022 - 07/2023</span>
+							<span class="text-sm font-medium whitespace-nowrap text-muted-foreground"
+								>09/2022 - 07/2023</span
+							>
 						</div>
 					</CardContent>
 				</Card>

@@ -5,6 +5,31 @@
 	import ContactForm from '../../components/Contact-form.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
+	import { Badge } from '$lib/components/ui/badge';
+
+	// Skills and technologies arrays
+	const frontendSkills = [
+		'HTML',
+		'CSS',
+		'JavaScript',
+		'TypeScript',
+		'Svelte',
+		'SvelteKit',
+		'Next.js',
+		'React',
+		'Tailwind CSS',
+		'Drizzle ORM'
+	];
+
+	const toolsAndLanguages = [
+		'Git',
+		'VS Code',
+		'Figma',
+		'Node.js',
+		'English (C1)',
+		'Portuguese (Native)',
+		'Spanish (Basic)'
+	];
 </script>
 
 <svelte:head>
@@ -48,14 +73,15 @@
 			<div class="grid gap-8 md:grid-cols-2 md:gap-12">
 				<div>
 					<p class="text-text mb-6 text-base sm:text-lg 2xl:text-xl">
-						I am an Informatics and Computing Engineering student at FEUP, determined and enthusiastic about
-						learning new things. I have a strong sense of responsibility and enjoy working in a team, and I
-						am motivated to contribute positively in a professional environment.
+						I am an Informatics and Computing Engineering student at FEUP, determined and
+						enthusiastic about learning new things. I have a strong sense of responsibility and
+						enjoy working in a team, and I am motivated to contribute positively in a professional
+						environment.
 					</p>
 					<p class="text-text mb-6 text-base sm:text-lg 2xl:text-xl">
-						My journey spans from full-stack development at Significa to engineering judging at F1 In Schools.
-						Currently in my final year, I'm passionate about creating clean, performant web applications
-						and exploring modern frontend architectures.
+						My journey spans from full-stack development at Significa to engineering judging at F1
+						In Schools. Currently in my final year, I'm passionate about creating clean, performant
+						web applications and exploring modern frontend architectures.
 					</p>
 				</div>
 				<div class="flex flex-col gap-4">
@@ -84,29 +110,17 @@
 				<div>
 					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Frontend & Full Stack</h4>
 					<div class="flex flex-wrap gap-2">
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">HTML</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">CSS</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">JavaScript</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">TypeScript</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Svelte</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">SvelteKit</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Next.js</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">React</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Tailwind CSS</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Drizzle ORM</span>
+						{#each frontendSkills as skill}
+							<Badge class="text-sm">{skill}</Badge>
+						{/each}
 					</div>
 				</div>
 				<div>
 					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Languages & Tools</h4>
 					<div class="flex flex-wrap gap-2">
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Git</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">VS Code</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Figma</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Node.js</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Vite</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">English (C1)</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Portuguese (Native)</span>
-						<span class="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Spanish (Basic)</span>
+						{#each toolsAndLanguages as skill}
+							<Badge class="text-sm">{skill}</Badge>
+						{/each}
 					</div>
 				</div>
 			</div>
@@ -114,9 +128,7 @@
 
 		<!-- What I Love -->
 		<div class="mb-16">
-			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">
-				What Drives Me
-			</h3>
+			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">What Drives Me</h3>
 			<div class="grid gap-6 md:grid-cols-3">
 				<Card>
 					<CardHeader>
@@ -125,7 +137,8 @@
 					</CardHeader>
 					<CardContent>
 						<p class="text-sm text-muted-foreground">
-							I enjoy working in teams and believe that collaboration leads to the best solutions and learning experiences.
+							I enjoy working in teams and believe that collaboration leads to the best solutions
+							and learning experiences.
 						</p>
 					</CardContent>
 				</Card>
@@ -136,7 +149,8 @@
 					</CardHeader>
 					<CardContent>
 						<p class="text-sm text-muted-foreground">
-							I thrive on solving complex challenges and finding creative solutions to technical problems.
+							I thrive on solving complex challenges and finding creative solutions to technical
+							problems.
 						</p>
 					</CardContent>
 				</Card>
@@ -147,7 +161,8 @@
 					</CardHeader>
 					<CardContent>
 						<p class="text-sm text-muted-foreground">
-							Determined and enthusiastic about learning new technologies and staying adaptable in a rapidly evolving field.
+							Determined and enthusiastic about learning new technologies and staying adaptable in a
+							rapidly evolving field.
 						</p>
 					</CardContent>
 				</Card>
@@ -164,12 +179,14 @@
 					<CardContent>
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">Summer Internship – Frontend Developer</h4>
+								<h4 class="text-text text-lg font-semibold">
+									Summer Internship – Frontend Developer
+								</h4>
 								<p class="text-muted-foreground">Significa</p>
 								<p class="mt-2 text-sm text-muted-foreground">
-									Working on internal projects using Svelte and SvelteKit, deepening knowledge of Reactive UI 
-									Development and modern frontend architecture. Focused on maintainable code, routing, and 
-									component-driven design.
+									Working on internal projects using Svelte and SvelteKit, deepening knowledge of
+									Reactive UI Development and modern frontend architecture. Focused on maintainable
+									code, routing, and component-driven design.
 								</p>
 							</div>
 							<span class="text-sm text-primary">07/2025 - 08/2025</span>
@@ -180,11 +197,13 @@
 					<CardContent>
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">Curricular Internship – Full Stack Developer</h4>
+								<h4 class="text-text text-lg font-semibold">
+									Curricular Internship – Full Stack Developer
+								</h4>
 								<p class="text-muted-foreground">Significa</p>
 								<p class="mt-2 text-sm text-muted-foreground">
-									Developed a responsive and performant web application using Next.js, Tailwind CSS, and 
-									Drizzle ORM for Dodia.pt.
+									Developed a responsive and performant web application using Next.js, Tailwind CSS,
+									and Drizzle ORM for Dodia.pt.
 								</p>
 							</div>
 							<span class="text-sm text-primary">02/2025 - 06/2025</span>
@@ -195,10 +214,12 @@
 					<CardContent>
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">Engineering Judge – F1 In Schools 2025</h4>
+								<h4 class="text-text text-lg font-semibold">
+									Engineering Judge – F1 In Schools 2025
+								</h4>
 								<p class="text-muted-foreground">F1 In Schools Regional Final</p>
 								<p class="mt-2 text-sm text-muted-foreground">
-									Integrated the engineering judging panel for the F1 In Schools Regional Final, 
+									Integrated the engineering judging panel for the F1 In Schools Regional Final,
 									evaluating technical designs and engineering solutions.
 								</p>
 							</div>
@@ -210,11 +231,15 @@
 					<CardContent>
 						<div class="flex items-start justify-between">
 							<div>
-								<h4 class="text-text text-lg font-semibold">Informatics and Computing Engineering</h4>
-								<p class="text-muted-foreground">Faculty of Engineering, University of Porto (FEUP)</p>
+								<h4 class="text-text text-lg font-semibold">
+									Informatics and Computing Engineering
+								</h4>
+								<p class="text-muted-foreground">
+									Faculty of Engineering, University of Porto (FEUP)
+								</p>
 								<p class="mt-2 text-sm text-muted-foreground">
-									Currently enrolled in the 3rd and final year of the Bachelor's degree. Previously completed 
-									one year in Electrical and Computer Engineering before transferring.
+									Currently enrolled in the 3rd and final year of the Bachelor's degree. Previously
+									completed one year in Electrical and Computer Engineering before transferring.
 								</p>
 							</div>
 							<span class="text-sm text-primary">09/2023 - Present</span>
@@ -231,11 +256,11 @@
 				<Card>
 					<CardContent>
 						<div>
-							<h4 class="text-text text-lg font-semibold mb-2">F1 in Schools Competition</h4>
-							<p class="text-sm text-muted-foreground mb-2">
-								<span class="text-primary font-medium">Team Manager & Design Engineer</span>
+							<h4 class="text-text mb-2 text-lg font-semibold">F1 in Schools Competition</h4>
+							<p class="mb-2 text-sm text-muted-foreground">
+								<span class="font-medium text-primary">Team Manager & Design Engineer</span>
 							</p>
-							<ul class="text-sm text-muted-foreground space-y-1">
+							<ul class="space-y-1 text-sm text-muted-foreground">
 								<li>• 2nd place at regional level</li>
 								<li>• Marketing award winner</li>
 								<li>• 7th fastest car in the country</li>
@@ -246,10 +271,10 @@
 				<Card>
 					<CardContent>
 						<div>
-							<h4 class="text-text text-lg font-semibold mb-2">Dodia.pt Project</h4>
+							<h4 class="text-text mb-2 text-lg font-semibold">Dodia.pt Project</h4>
 							<p class="text-sm text-muted-foreground">
-								Built a performant and responsive web app for daily menu management using Next.js, 
-								Tailwind CSS, and Drizzle ORM. Emphasized clean UI, scalable architecture, and a 
+								Built a performant and responsive web app for daily menu management using Next.js,
+								Tailwind CSS, and Drizzle ORM. Emphasized clean UI, scalable architecture, and a
 								smooth user experience tailored for small restaurants.
 							</p>
 						</div>
@@ -264,7 +289,7 @@
 			<div class="grid gap-6 md:grid-cols-2">
 				<div>
 					<h4 class="text-text mb-4 text-lg font-semibold">Sports & Activities</h4>
-					<ul class="text-base text-muted-foreground space-y-2 sm:text-lg 2xl:text-xl">
+					<ul class="space-y-2 text-base text-muted-foreground sm:text-lg 2xl:text-xl">
 						<li>• Played Roller Hockey for 8 years</li>
 						<li>• Federated Bodyboard athlete for 2 years</li>
 						<li>• Currently volunteering at VO.U Pelos Animais</li>
@@ -272,7 +297,7 @@
 				</div>
 				<div>
 					<h4 class="text-text mb-4 text-lg font-semibold">Music</h4>
-					<ul class="text-base text-muted-foreground space-y-2 sm:text-lg 2xl:text-xl">
+					<ul class="space-y-2 text-base text-muted-foreground sm:text-lg 2xl:text-xl">
 						<li>• Bassist in several music projects (6+ years)</li>
 						<li>• Contestant of The Voice Portugal 2022</li>
 						<li>• Passionate about music production and composition</li>

@@ -131,7 +131,7 @@
 						</div>
 						<div class="flex items-center gap-3">
 							<GraduationCap size={24} weight="bold" class="text-primary" />
-							<span class="text-text text-lg 2xl:text-xl">FEUP - Computer Engineering</span>
+							<span class="text-text text-lg 2xl:text-xl">FEUP - Informatics and Computing Engineering</span>
 						</div>
 						<div class="flex items-center gap-3">
 							<Code size={24} weight="bold" class="text-primary" />

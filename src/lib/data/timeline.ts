@@ -5,7 +5,7 @@ export interface TimelineItem {
 	organization: string;
 	description: string;
 	startDate: string;
-	endDate: string;
+	endDate?: string; // Optional - if not provided, will use startDate for single month events
 	current?: boolean;
 	link?: {
 		url: string;
@@ -22,7 +22,8 @@ export const timelineData: TimelineItem[] = [
 		description:
 			'Working on internal projects using Svelte and SvelteKit, deepening knowledge of Reactive UI Development and modern frontend architecture. Focused on maintainable code, routing, and component-driven design.',
 		startDate: '07/2025',
-		endDate: '08/2025'
+		endDate: '08/2025',
+		current: true
 	},
 	{
 		id: 'f1-schools-judge-2025',
@@ -31,8 +32,7 @@ export const timelineData: TimelineItem[] = [
 		organization: 'F1 In Schools Regional Final',
 		description:
 			'Integrated the engineering judging panel for the F1 In Schools Regional Final, evaluating technical designs and engineering solutions.',
-		startDate: '03/2025',
-		endDate: '03/2025'
+		startDate: '03/2025'
 	},
 	{
 		id: 'curricular-internship-2025',
@@ -75,12 +75,34 @@ export const getExperienceItems = () => timelineData.filter((item) => item.type 
 export const getEducationItems = () => timelineData.filter((item) => item.type === 'education');
 export const getAllTimelineItems = () => timelineData;
 
+// Helper function to check if an item is a single-month event
+export const isSingleMonthEvent = (item: TimelineItem) => !item.endDate;
+
+// Helper function to get formatted date range
+export const getFormattedDateRange = (item: TimelineItem) => {
+	if (!item.endDate) {
+		return item.startDate;
+	}
+	return `${item.startDate} - ${item.endDate}`;
+};
+
 // Helper function to sort items by date (most recent first)
 export const sortTimelineByDate = (items: TimelineItem[]) => {
 	return items.sort((a, b) => {
-		// Handle "Present" dates
-		const aEndDate = a.endDate === 'Present' ? new Date() : new Date(a.endDate);
-		const bEndDate = b.endDate === 'Present' ? new Date() : new Date(b.endDate);
+		// Handle "Present" dates and undefined endDates (single month events)
+		const aEndDate =
+			a.endDate === 'Present'
+				? new Date()
+				: a.endDate
+					? new Date(a.endDate)
+					: new Date(a.startDate);
+
+		const bEndDate =
+			b.endDate === 'Present'
+				? new Date()
+				: b.endDate
+					? new Date(b.endDate)
+					: new Date(b.startDate);
 
 		return bEndDate.getTime() - aEndDate.getTime();
 	});

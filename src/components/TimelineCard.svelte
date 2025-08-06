@@ -6,7 +6,12 @@
 
 	$: isExperience = item.type === 'experience';
 	$: borderColor = isExperience ? 'border-l-primary/50' : 'border-l-muted';
-	$: dotColor = isExperience ? 'bg-primary' : 'bg-muted-foreground';
+	$: dotColor = item.current
+		? 'bg-green-500 animate-pulse'
+		: isExperience
+			? 'bg-primary'
+			: 'bg-muted-foreground';
+	$: dotSize = item.current ? 'h-2.5 w-2.5' : 'h-2 w-2';
 	$: dateColor = isExperience ? 'text-primary' : 'text-muted-foreground';
 </script>
 
@@ -15,7 +20,7 @@
 		<div class="flex items-start justify-between">
 			<div>
 				<div class="mb-2 flex items-center gap-2">
-					<div class="h-2 w-2 rounded-full {dotColor}"></div>
+					<div class="{dotSize} rounded-full {dotColor}"></div>
 					<h4 class="text-text text-lg font-semibold">
 						{item.title}
 					</h4>
@@ -33,7 +38,8 @@
 				</p>
 			</div>
 			<span class="text-sm font-medium whitespace-nowrap {dateColor}">
-				{item.startDate} - {item.endDate}
+				{item.startDate}{#if item.endDate}
+					- {item.endDate}{/if}
 			</span>
 		</div>
 	</CardContent>

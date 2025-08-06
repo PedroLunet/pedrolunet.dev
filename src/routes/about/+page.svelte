@@ -1,34 +1,34 @@
 <script>
 	import SplitText from '../../components/SplitText.svelte';
-	import Shiny from '../../components/Shiny.svelte';
 	import { ArrowRight, MapPin, GraduationCap, Code, Heart } from 'phosphor-svelte';
 	import ContactForm from '../../components/Contact-form.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
+	import Icon from '@iconify/svelte';
 
-	// Skills and technologies arrays
+	// Skills and technologies arrays with icons
 	const frontendSkills = [
-		'HTML',
-		'CSS',
-		'JavaScript',
-		'TypeScript',
-		'Svelte',
-		'SvelteKit',
-		'Next.js',
-		'React',
-		'Tailwind CSS',
-		'Drizzle ORM'
+		{ name: 'HTML', icon: 'simple-icons:html5' },
+		{ name: 'CSS', icon: 'simple-icons:css3' },
+		{ name: 'JavaScript', icon: 'simple-icons:javascript' },
+		{ name: 'TypeScript', icon: 'simple-icons:typescript' },
+		{ name: 'Svelte', icon: 'simple-icons:svelte' },
+		{ name: 'SvelteKit', icon: 'simple-icons:svelte' },
+		{ name: 'Next.js', icon: 'simple-icons:nextdotjs' },
+		{ name: 'React', icon: 'simple-icons:react' },
+		{ name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss' },
+		{ name: 'Drizzle ORM', icon: 'simple-icons:drizzle' }
 	];
 
 	const toolsAndLanguages = [
-		'Git',
-		'VS Code',
-		'Figma',
-		'Node.js',
-		'English (C1)',
-		'Portuguese (Native)',
-		'Spanish (Basic)'
+		{ name: 'Git', icon: 'simple-icons:git' },
+		{ name: 'VS Code', icon: 'simple-icons:visualstudiocode' },
+		{ name: 'Figma', icon: 'simple-icons:figma' },
+		{ name: 'Node.js', icon: 'simple-icons:nodedotjs' },
+		{ name: 'English (C1)', icon: 'ph:translate' },
+		{ name: 'Portuguese (Native)', icon: 'ph:translate' },
+		{ name: 'Spanish (Basic)', icon: 'ph:translate' }
 	];
 </script>
 
@@ -111,7 +111,10 @@
 					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Frontend & Full Stack</h4>
 					<div class="flex flex-wrap gap-2">
 						{#each frontendSkills as skill}
-							<Badge class="text-sm">{skill}</Badge>
+							<Badge class="flex items-center gap-1.5 text-base">
+								<Icon icon={skill.icon} />
+								{skill.name}
+							</Badge>
 						{/each}
 					</div>
 				</div>
@@ -119,7 +122,10 @@
 					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Languages & Tools</h4>
 					<div class="flex flex-wrap gap-2">
 						{#each toolsAndLanguages as skill}
-							<Badge class="text-sm">{skill}</Badge>
+							<Badge class="flex items-center gap-1.5 text-base">
+								<Icon icon={skill.icon} />
+								{skill.name}
+							</Badge>
 						{/each}
 					</div>
 				</div>

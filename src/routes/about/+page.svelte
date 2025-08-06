@@ -7,6 +7,8 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import Icon from '@iconify/svelte';
 	import PedroLunet from '../../components/PedroLunet.svelte';
+	import TimelineCard from '../../components/TimelineCard.svelte';
+	import { getAllTimelineItems } from '$lib/data/timeline';
 
 	// Skills and technologies arrays with icons
 	const frontendSkills = [
@@ -40,6 +42,9 @@
 		{ name: 'Portuguese (Native)', icon: 'ph:translate' },
 		{ name: 'Spanish (Basic)', icon: 'ph:translate' }
 	];
+
+	// Get timeline data
+	const timelineItems = getAllTimelineItems();
 </script>
 
 <svelte:head>
@@ -131,7 +136,9 @@
 						</div>
 						<div class="flex items-center gap-3">
 							<GraduationCap size={24} weight="bold" class="text-primary" />
-							<span class="text-text text-lg 2xl:text-xl">FEUP - Informatics and Computing Engineering</span>
+							<span class="text-text text-lg 2xl:text-xl"
+								>FEUP - Informatics and Computing Engineering</span
+							>
 						</div>
 						<div class="flex items-center gap-3">
 							<Code size={24} weight="bold" class="text-primary" />
@@ -260,123 +267,9 @@
 				Experience & Education
 			</h3>
 			<div class="space-y-6">
-				<Card class="border-l-4 border-l-primary/50">
-					<CardContent class="pt-6">
-						<div class="flex items-start justify-between">
-							<div>
-								<div class="mb-2 flex items-center gap-2">
-									<div class="h-2 w-2 rounded-full bg-primary"></div>
-									<h4 class="text-text text-lg font-semibold">
-										Summer Internship – Frontend Developer
-									</h4>
-								</div>
-								<p class="mb-2 font-medium text-muted-foreground">Significa</p>
-								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-									Working on internal projects using Svelte and SvelteKit, deepening knowledge of
-									Reactive UI Development and modern frontend architecture. Focused on maintainable
-									code, routing, and component-driven design.
-								</p>
-							</div>
-							<span class="text-sm font-medium whitespace-nowrap text-primary"
-								>07/2025 - 08/2025</span
-							>
-						</div>
-					</CardContent>
-				</Card>
-				<Card class="border-l-4 border-l-primary/50">
-					<CardContent class="pt-6">
-						<div class="flex items-start justify-between">
-							<div>
-								<div class="mb-2 flex items-center gap-2">
-									<div class="h-2 w-2 rounded-full bg-primary"></div>
-									<h4 class="text-text text-lg font-semibold">
-										Engineering Judge – F1 In Schools 2025
-									</h4>
-								</div>
-								<p class="mb-2 font-medium text-muted-foreground">F1 In Schools Regional Final</p>
-								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-									Integrated the engineering judging panel for the F1 In Schools Regional Final,
-									evaluating technical designs and engineering solutions.
-								</p>
-							</div>
-							<span class="text-sm font-medium whitespace-nowrap text-primary">03/2025</span>
-						</div>
-					</CardContent>
-				</Card>
-				<Card class="border-l-4 border-l-primary/50">
-					<CardContent class="pt-6">
-						<div class="flex items-start justify-between">
-							<div>
-								<div class="mb-2 flex items-center gap-2">
-									<div class="h-2 w-2 rounded-full bg-primary"></div>
-									<h4 class="text-text text-lg font-semibold">
-										Curricular Internship – Full Stack Developer
-									</h4>
-								</div>
-								<p class="mb-2 font-medium text-muted-foreground">Significa</p>
-								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-									Developed a responsive and performant web application using Next.js, Tailwind CSS,
-									and Drizzle ORM for <a
-										href="https://dodia.pt"
-										target="_blank"
-										class="text-primary hover:underline">Dodia.pt</a
-									>.
-								</p>
-							</div>
-							<span class="text-sm font-medium whitespace-nowrap text-primary"
-								>02/2025 - 06/2025</span
-							>
-						</div>
-					</CardContent>
-				</Card>
-				<Card class="border-l-4 border-l-muted">
-					<CardContent class="pt-6">
-						<div class="flex items-start justify-between">
-							<div>
-								<div class="mb-2 flex items-center gap-2">
-									<div class="h-2 w-2 rounded-full bg-muted-foreground"></div>
-									<h4 class="text-text text-lg font-semibold">
-										Informatics and Computing Engineering
-									</h4>
-								</div>
-								<p class="mb-2 font-medium text-muted-foreground">
-									Faculty of Engineering, University of Porto (FEUP)
-								</p>
-								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-									Currently enrolled in the 3rd and final year of the Bachelor's degree. Focused on
-									frontend development, web technologies, and modern software engineering practices.
-								</p>
-							</div>
-							<span class="text-sm font-medium whitespace-nowrap text-muted-foreground"
-								>09/2023 - Present</span
-							>
-						</div>
-					</CardContent>
-				</Card>
-				<Card class="border-l-4 border-l-muted">
-					<CardContent class="pt-6">
-						<div class="flex items-start justify-between">
-							<div>
-								<div class="mb-2 flex items-center gap-2">
-									<div class="h-2 w-2 rounded-full bg-muted-foreground"></div>
-									<h4 class="text-text text-lg font-semibold">
-										Electrical and Computer Engineering
-									</h4>
-								</div>
-								<p class="mb-2 font-medium text-muted-foreground">
-									Faculty of Engineering, University of Porto (FEUP)
-								</p>
-								<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-									Completed the first year of the Bachelor's degree before transferring to
-									Informatics and Computing Engineering.
-								</p>
-							</div>
-							<span class="text-sm font-medium whitespace-nowrap text-muted-foreground"
-								>09/2022 - 07/2023</span
-							>
-						</div>
-					</CardContent>
-				</Card>
+				{#each timelineItems as item (item.id)}
+					<TimelineCard {item} />
+				{/each}
 			</div>
 		</div>
 

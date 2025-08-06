@@ -6,6 +6,7 @@
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
 	import Icon from '@iconify/svelte';
+	import PedroLunet from '../../components/PedroLunet.svelte';
 
 	// Skills and technologies arrays with icons
 	const frontendSkills = [
@@ -84,18 +85,33 @@
 						web applications and exploring modern frontend architectures.
 					</p>
 				</div>
-				<div class="flex flex-col gap-4">
-					<div class="flex items-center gap-3">
-						<MapPin size={24} weight="bold" class="text-primary" />
-						<span class="text-text text-lg 2xl:text-xl">Porto, Portugal</span>
+				<div class="flex flex-col gap-6">
+					<!-- Profile Image -->
+					<div class="relative mx-auto mb-4 h-48 w-48 sm:h-56 sm:w-56 2xl:h-64 2xl:w-64">
+						<div
+							class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 blur-xl"
+						></div>
+						<div
+							class="relative overflow-hidden rounded-full ring-4 ring-primary/10 transition-all duration-300 hover:ring-primary/20"
+						>
+							<PedroLunet class="h-full w-full object-cover" />
+						</div>
 					</div>
-					<div class="flex items-center gap-3">
-						<GraduationCap size={24} weight="bold" class="text-primary" />
-						<span class="text-text text-lg 2xl:text-xl">FEUP - Computer Engineering</span>
-					</div>
-					<div class="flex items-center gap-3">
-						<Code size={24} weight="bold" class="text-primary" />
-						<span class="text-text text-lg 2xl:text-xl">Full Stack Developer</span>
+
+					<!-- Info Items -->
+					<div class="flex flex-col gap-4">
+						<div class="flex items-center gap-3">
+							<MapPin size={24} weight="bold" class="text-primary" />
+							<span class="text-text text-lg 2xl:text-xl">Porto, Portugal</span>
+						</div>
+						<div class="flex items-center gap-3">
+							<GraduationCap size={24} weight="bold" class="text-primary" />
+							<span class="text-text text-lg 2xl:text-xl">FEUP - Computer Engineering</span>
+						</div>
+						<div class="flex items-center gap-3">
+							<Code size={24} weight="bold" class="text-primary" />
+							<span class="text-text text-lg 2xl:text-xl">Full Stack Developer</span>
+						</div>
 					</div>
 				</div>
 			</div>

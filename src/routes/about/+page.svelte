@@ -204,23 +204,6 @@
 						<div class="flex items-start justify-between">
 							<div>
 								<h4 class="text-text text-lg font-semibold">
-									Curricular Internship – Full Stack Developer
-								</h4>
-								<p class="text-muted-foreground">Significa</p>
-								<p class="mt-2 text-sm text-muted-foreground">
-									Developed a responsive and performant web application using Next.js, Tailwind CSS,
-									and Drizzle ORM for Dodia.pt.
-								</p>
-							</div>
-							<span class="text-sm text-primary">02/2025 - 06/2025</span>
-						</div>
-					</CardContent>
-				</Card>
-				<Card>
-					<CardContent>
-						<div class="flex items-start justify-between">
-							<div>
-								<h4 class="text-text text-lg font-semibold">
 									Engineering Judge – F1 In Schools 2025
 								</h4>
 								<p class="text-muted-foreground">F1 In Schools Regional Final</p>
@@ -229,7 +212,24 @@
 									evaluating technical designs and engineering solutions.
 								</p>
 							</div>
-							<span class="text-sm text-primary">2025</span>
+							<span class="text-sm text-primary">03/2025</span>
+						</div>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardContent>
+						<div class="flex items-start justify-between">
+							<div>
+								<h4 class="text-text text-lg font-semibold">
+									Curricular Internship – Full Stack Developer
+								</h4>
+								<p class="text-muted-foreground">Significa</p>
+								<p class="mt-2 text-sm text-muted-foreground">
+									Developed a responsive and performant web application using Next.js, Tailwind CSS,
+									and Drizzle ORM for <a href="https://dodia.pt" target="_blank">Dodia.pt</a>.
+								</p>
+							</div>
+							<span class="text-sm text-primary">02/2025 - 06/2025</span>
 						</div>
 					</CardContent>
 				</Card>
@@ -244,45 +244,28 @@
 									Faculty of Engineering, University of Porto (FEUP)
 								</p>
 								<p class="mt-2 text-sm text-muted-foreground">
-									Currently enrolled in the 3rd and final year of the Bachelor's degree. Previously
-									completed one year in Electrical and Computer Engineering before transferring.
+									Currently enrolled in the 3rd and final year of the Bachelor's degree. Focused on
+									frontend development, web technologies, and modern software engineering practices.
 								</p>
 							</div>
-							<span class="text-sm text-primary">09/2023 - Present</span>
-						</div>
-					</CardContent>
-				</Card>
-			</div>
-		</div>
-
-		<!-- Achievements -->
-		<div class="mb-16">
-			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">Achievements</h3>
-			<div class="space-y-6">
-				<Card>
-					<CardContent>
-						<div>
-							<h4 class="text-text mb-2 text-lg font-semibold">F1 in Schools Competition</h4>
-							<p class="mb-2 text-sm text-muted-foreground">
-								<span class="font-medium text-primary">Team Manager & Design Engineer</span>
-							</p>
-							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• 2nd place at regional level</li>
-								<li>• Marketing award winner</li>
-								<li>• 7th fastest car in the country</li>
-							</ul>
+							<span class="text-sm whitespace-nowrap text-primary">09/2023 - Present</span>
 						</div>
 					</CardContent>
 				</Card>
 				<Card>
 					<CardContent>
-						<div>
-							<h4 class="text-text mb-2 text-lg font-semibold">Dodia.pt Project</h4>
-							<p class="text-sm text-muted-foreground">
-								Built a performant and responsive web app for daily menu management using Next.js,
-								Tailwind CSS, and Drizzle ORM. Emphasized clean UI, scalable architecture, and a
-								smooth user experience tailored for small restaurants.
-							</p>
+						<div class="flex items-start justify-between">
+							<div>
+								<h4 class="text-text text-lg font-semibold">Electrical and Computer Engineering</h4>
+								<p class="text-muted-foreground">
+									Faculty of Engineering, University of Porto (FEUP)
+								</p>
+								<p class="mt-2 text-sm text-muted-foreground">
+									Completed the first year of the Bachelor's degree before transferring to
+									Informatics and Computing Engineering.
+								</p>
+							</div>
+							<span class="text-sm whitespace-nowrap text-primary">09/2022 - 07/2023</span>
 						</div>
 					</CardContent>
 				</Card>
@@ -298,7 +281,7 @@
 					<ul class="space-y-2 text-base text-muted-foreground sm:text-lg 2xl:text-xl">
 						<li>• Played Roller Hockey for 8 years</li>
 						<li>• Federated Bodyboard athlete for 2 years</li>
-						<li>• Currently volunteering at VO.U Pelos Animais</li>
+						<li>• Volunteer at VO.U Pelos Animais (2024)</li>
 					</ul>
 				</div>
 				<div>

@@ -18,8 +18,17 @@
 		{ name: 'SvelteKit', icon: 'simple-icons:svelte' },
 		{ name: 'Next.js', icon: 'simple-icons:nextdotjs' },
 		{ name: 'React', icon: 'simple-icons:react' },
+		{ name: 'Flutter', icon: 'simple-icons:flutter' },
 		{ name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss' },
 		{ name: 'Drizzle ORM', icon: 'simple-icons:drizzle' }
+	];
+
+	const programmingLanguages = [
+		{ name: 'PHP', icon: 'simple-icons:php' },
+		{ name: 'Python', icon: 'simple-icons:python' },
+		{ name: 'Java', icon: 'simple-icons:java' },
+		{ name: 'C', icon: 'simple-icons:c' },
+		{ name: 'C++', icon: 'simple-icons:cplusplus' }
 	];
 
 	const toolsAndLanguages = [
@@ -122,11 +131,22 @@
 			<h3 class="mb-8 text-2xl font-bold text-primary sm:text-3xl 2xl:text-4xl">
 				Skills & Technologies
 			</h3>
-			<div class="grid gap-8 md:grid-cols-2">
+			<div class="grid gap-8 md:grid-cols-3">
 				<div>
 					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Frontend & Full Stack</h4>
 					<div class="flex flex-wrap gap-2">
 						{#each frontendSkills as skill}
+							<Badge class="flex items-center gap-1.5 text-base">
+								<Icon icon={skill.icon} />
+								{skill.name}
+							</Badge>
+						{/each}
+					</div>
+				</div>
+				<div>
+					<h4 class="text-text mb-4 text-xl font-semibold 2xl:text-2xl">Programming Languages</h4>
+					<div class="flex flex-wrap gap-2">
+						{#each programmingLanguages as skill}
 							<Badge class="flex items-center gap-1.5 text-base">
 								<Icon icon={skill.icon} />
 								{skill.name}

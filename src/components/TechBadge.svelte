@@ -7,7 +7,7 @@
 
 <Badge
 	variant="outline"
-	class="flex items-center gap-2 px-3 py-2 text-base"
+	class="flex items-center gap-2 px-3 py-2 text-base border-1"
 	style="border-color: {technology.color}40"
 >
 	<img src={technology.icon} alt={technology.name} class="h-6 w-6 object-contain" loading="lazy" />

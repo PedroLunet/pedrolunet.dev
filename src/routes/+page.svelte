@@ -89,7 +89,7 @@
 				right.
 			</p>
 			<a
-				href="/portefolio"
+				href="/projects"
 				class="group relative mt-4 inline-flex items-center gap-3 overflow-hidden"
 			>
 				<span class="relative">

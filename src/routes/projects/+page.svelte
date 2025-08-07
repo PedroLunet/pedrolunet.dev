@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ProjectCard from '../../components/ProjectCard.svelte';
 	import TechBadge from '../../components/TechBadge.svelte';
+	import ContactForm from '../../components/Contact-form.svelte';
 	import Marquee from 'svelte-fast-marquee';
 	import {
 		projectsData,
@@ -65,7 +66,7 @@
 		{#if featuredProjects.length > 0}
 			<div class="mb-16">
 				<h2 class="mb-8 text-center text-2xl font-semibold">Featured Projects</h2>
-				<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 					{#each featuredProjects as project}
 						<ProjectCard {project} />
 					{/each}
@@ -91,5 +92,14 @@
 				<p class="text-lg text-muted-foreground">No projects to show yet. Check back soon!</p>
 			</div>
 		{/if}
+
+		<!-- Contact Section -->
+		<div class="mt-20 text-center">
+			<h2 class="mb-4 text-3xl font-semibold">Let's Work Together</h2>
+			<p class="mb-8 text-lg text-muted-foreground">
+				Interested in collaborating or have a project in mind?
+			</p>
+			<ContactForm />
+		</div>
 	</div>
 </div>

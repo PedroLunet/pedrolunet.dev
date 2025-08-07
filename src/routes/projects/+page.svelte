@@ -44,7 +44,7 @@
 		<div class="mb-16">
 			<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I've Used</h2>
 			<div class="relative overflow-hidden">
-				<Marquee pauseOnHover={true} speed={40} play={marqueePlay}>
+				<Marquee pauseOnHover={false} speed={40} play={marqueePlay}>
 					{#each allTechnologies as technology}
 						<div class="mx-3">
 							<TechBadge {technology} />

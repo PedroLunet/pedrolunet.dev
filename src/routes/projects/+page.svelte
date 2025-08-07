@@ -42,15 +42,22 @@
 
 		<!-- Technologies Marquee -->
 		<div class="mb-16">
-			<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I Use</h2>
+			<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I've Used</h2>
 			<div class="relative overflow-hidden">
-				<Marquee pauseOnHover={true} speed={30} play={marqueePlay}>
+				<Marquee pauseOnHover={true} speed={40} play={marqueePlay}>
 					{#each allTechnologies as technology}
 						<div class="mx-3">
 							<TechBadge {technology} />
 						</div>
 					{/each}
 				</Marquee>
+				<!-- Fade gradients on the sides -->
+				<div
+					class="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-background to-transparent"
+				></div>
+				<div
+					class="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-background to-transparent"
+				></div>
 			</div>
 		</div>
 

@@ -52,6 +52,7 @@
 		"mode-watcher": "^1.1.0",
 		"nodemailer": "^7.0.5",
 		"phosphor-svelte": "^3.0.1",
-		"simple-icons": "^15.7.0"
+		"simple-icons": "^15.7.0",
+		"svelte-fast-marquee": "^1.0.2"
 	}
 }

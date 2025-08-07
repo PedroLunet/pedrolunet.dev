@@ -1,9 +1,12 @@
 <script lang="ts">
 	import ProjectCard from '../../components/ProjectCard.svelte';
+	import TechBadge from '../../components/TechBadge.svelte';
+	import Marquee from 'svelte-fast-marquee';
 	import {
 		projectsData,
 		getFeaturedProjects,
 		sortProjectsByDate,
+		getAllUsedTechnologies,
 		type Project
 	} from '$lib/data/projects.js';
 
@@ -11,6 +14,11 @@
 	$: featuredProjects = sortProjectsByDate(getFeaturedProjects());
 	$: allProjects = sortProjectsByDate(projectsData);
 	$: nonFeaturedProjects = sortProjectsByDate(projectsData.filter((project) => !project.featured));
+
+	// Get all unique technologies used across projects
+	$: allTechnologies = getAllUsedTechnologies();
+
+	let marqueePlay = true;
 </script>
 
 <svelte:head>
@@ -30,6 +38,20 @@
 				A collection of projects I've worked on, ranging from personal experiments to professional
 				work.
 			</p>
+		</div>
+
+		<!-- Technologies Marquee -->
+		<div class="mb-16">
+			<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I Use</h2>
+			<div class="relative overflow-hidden">
+				<Marquee pauseOnHover={true} speed={30} play={marqueePlay}>
+					{#each allTechnologies as technology}
+						<div class="mx-3">
+							<TechBadge {technology} />
+						</div>
+					{/each}
+				</Marquee>
+			</div>
 		</div>
 
 		<!-- Featured Projects Section (if you want to highlight some) -->

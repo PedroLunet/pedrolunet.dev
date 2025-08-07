@@ -8,8 +8,9 @@
 	} from '$lib/data/projects.js';
 
 	// You can switch between all projects or just featured ones
-	$: projects = sortProjectsByDate(projectsData);
-	$: featuredProjects = getFeaturedProjects();
+	$: featuredProjects = sortProjectsByDate(getFeaturedProjects());
+	$: allProjects = sortProjectsByDate(projectsData);
+	$: nonFeaturedProjects = sortProjectsByDate(projectsData.filter((project) => !project.featured));
 </script>
 
 <svelte:head>
@@ -45,16 +46,18 @@
 
 		<!-- All Projects Section -->
 		<div>
-			<h2 class="mb-8 text-center text-2xl font-semibold">All Projects</h2>
+			<h2 class="mb-8 text-center text-2xl font-semibold">
+				{#if featuredProjects.length > 0}Other Projects{:else}All Projects{/if}
+			</h2>
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{#each projects as project}
+				{#each featuredProjects.length > 0 ? nonFeaturedProjects : allProjects as project}
 					<ProjectCard {project} />
 				{/each}
 			</div>
 		</div>
 
 		<!-- Empty state if no projects -->
-		{#if projects.length === 0}
+		{#if allProjects.length === 0}
 			<div class="py-12 text-center">
 				<p class="text-lg text-muted-foreground">No projects to show yet. Check back soon!</p>
 			</div>

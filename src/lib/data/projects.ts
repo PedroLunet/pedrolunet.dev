@@ -74,6 +74,11 @@ export const TECHNOLOGIES = {
 		icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
 		color: '#06b6d4'
 	},
+	WEBGL: {
+		name: 'WebGL',
+		icon: 'https://upload.wikimedia.org/wikipedia/commons/2/25/WebGL_Logo.svg',
+		color: '#990000'
+	},
 
 	// Backend
 	NODEJS: {
@@ -341,6 +346,125 @@ export const projectsData: Project[] = [
 		status: 'completed',
 		startDate: '02/2025',
 		endDate: '06/2025'
+	},
+	{
+		id: 'atari-arilock',
+		name: 'Atari Arilock',
+		description:
+			'This game will take you back to 1982 playing on your Atari 2600 console, helping your hero escape a crashed nuclear submarine which has begun taking on water.',
+		technologies: [TECHNOLOGIES.JAVA],
+		links: {
+			github: 'https://github.com/PedroLunet/Y2S2-DA-AtariArilock'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '09/2023',
+		endDate: '12/2023'
+	},
+	{
+		id: 'WEBGL-3D-Game',
+		name: 'WebGL 3D Game',
+		description:
+			'This game will take you back to 1982 playing on your Atari 2600 console, helping your hero escape a crashed nuclear submarine which has begun taking on water.',
+		technologies: [TECHNOLOGIES.WEBGL, TECHNOLOGIES.JAVASCRIPT],
+		links: {
+			github: 'https://github.com/PedroLunet/CG-vercel-deploy',
+			website: 'https://cg-host.vercel.app/'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2025',
+		endDate: '06/2025'
+	},
+	{
+		id: 'twice-as-nice',
+		name: 'Twice as Nice',
+		description:
+			'Twice as Nice is a second-hand shopping website that dynamically generates PHP pages and uses an SQLite database, structured around two main SQL files. This project was developed for the Web Languages and Technologies course during the 2nd year of the L.EIC program.',
+		technologies: [
+			TECHNOLOGIES.PHP,
+			TECHNOLOGIES.JAVASCRIPT,
+			TECHNOLOGIES.HTML,
+			TECHNOLOGIES.SQLITE,
+			TECHNOLOGIES.CSS
+		],
+		links: {
+			github: 'https://github.com/PedroLunet/twice-as-nice'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2024',
+		endDate: '06/2024'
+	},
+	{
+		id: 'fp-python',
+		name: 'FP Python Scripts',
+		description:
+			'Python scripts I made during Programming Fundamentals class i took in the first semester of L.EIC at FEUP.',
+		technologies: [TECHNOLOGIES.PYTHON],
+		links: {
+			github: 'https://github.com/PedroLunet/FP'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '09/2023',
+		endDate: '12/2023'
+	},
+	{
+		id: 'marine-choice',
+		name: 'Marine Choice',
+		description:
+			'MarineChoice empowers seafood consumers by offering insights into harmful fishing practices, sustainable recipes, and fostering an eco-conscious community, all aimed at shaping a future where every seafood choice supports healthy oceans.',
+		technologies: [TECHNOLOGIES.FLUTTER],
+		links: {
+			github: 'https://github.com/PedroLunet/MarineChoice'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2024',
+		endDate: '06/2024'
+	},
+	{
+		id: 'serial-port-protocol',
+		name: 'Serial Port Protocol',
+		description:
+			'This project focuses on implementing a serial port communication protocol for data exchange between devices.',
+		technologies: [TECHNOLOGIES.C],
+		links: {
+			github: 'https://github.com/PedroLunet/RCOM'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '09/2024',
+		endDate: '01/2025'
+	},
+	{
+		id: 'C-Exercises',
+		name: 'C Exercises',
+		description:
+			'C scripts I made during Programming class I took in the first semester of L.EEC at FEUP.',
+		technologies: [TECHNOLOGIES.C],
+		links: {
+			github: 'https://github.com/PedroLunet/C-Exercises'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '09/2022',
+		endDate: '12/2022'
+	},
+	{
+		id: 'Cpp-Exercises',
+		name: 'C++ Exercises',
+		description:
+			'C++ scripts I made during Data Structures class I took in the second semester of L.EEC at FEUP.',
+		technologies: [TECHNOLOGIES.CPP],
+		links: {
+			github: 'https://github.com/PedroLunet/Cpp-Exercises'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2023',
+		endDate: '06/2023'
 	}
 ];
 
@@ -351,11 +475,18 @@ export const getInProgressProjects = () =>
 	projectsData.filter((project) => project.status === 'in-progress');
 export const getAllProjects = () => projectsData;
 
+// Helper function to parse MM/YYYY date format
+const parseProjectDate = (dateString: string): Date => {
+	const [month, year] = dateString.split('/');
+	// Create date object with year, month (0-indexed), and day 1
+	return new Date(parseInt(year), parseInt(month) - 1, 1);
+};
+
 // Helper function to sort projects by date (most recent first)
 export const sortProjectsByDate = (projects: Project[]) => {
 	return projects.sort((a, b) => {
-		const aDate = a.endDate ? new Date(a.endDate) : new Date(a.startDate);
-		const bDate = b.endDate ? new Date(b.endDate) : new Date(b.startDate);
+		const aDate = a.endDate ? parseProjectDate(a.endDate) : parseProjectDate(a.startDate);
+		const bDate = b.endDate ? parseProjectDate(b.endDate) : parseProjectDate(b.startDate);
 		return bDate.getTime() - aDate.getTime();
 	});
 };

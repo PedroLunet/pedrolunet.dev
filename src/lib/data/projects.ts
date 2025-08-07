@@ -498,3 +498,16 @@ export const getFormattedProjectDateRange = (project: Project) => {
 	}
 	return `${project.startDate} - ${project.endDate}`;
 };
+
+// Helper function to get all unique technologies used across projects
+export const getAllUsedTechnologies = (): Technology[] => {
+	const techMap = new Map<string, Technology>();
+	
+	projectsData.forEach(project => {
+		project.technologies.forEach(tech => {
+			techMap.set(tech.name, tech);
+		});
+	});
+	
+	return Array.from(techMap.values());
+};

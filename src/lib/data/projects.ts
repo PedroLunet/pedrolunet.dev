@@ -96,6 +96,17 @@ export const TECHNOLOGIES = {
 		icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg',
 		color: '#239120'
 	},
+	C: {
+		name: 'C',
+		icon: 'https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg',
+		color: '#283593'
+	},
+	CPP: {
+		name: 'C++',
+		icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+		color: '#00599c'
+	},
+
 	PHP: {
 		name: 'PHP',
 		icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
@@ -266,14 +277,71 @@ export const projectsData: Project[] = [
 		status: 'completed',
 		startDate: '02/2025',
 		endDate: '06/2025'
+	},
+	{
+		id: 'hyrio',
+		name: 'Hyrio',
+		description:
+			'A comprehensive freelancing website developed in PHP for the LTW (Web Languages and Technologies) course at FEUP.',
+		technologies: [
+			TECHNOLOGIES.PHP,
+			TECHNOLOGIES.JAVASCRIPT,
+			TECHNOLOGIES.HTML,
+			TECHNOLOGIES.SQLITE,
+			TECHNOLOGIES.CSS
+		],
+		links: {
+			website: 'https://hyrio.onrender.com/',
+			github: 'https://github.com/PedroLunet/hyrio'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2025',
+		endDate: '06/2025'
+	},
+	{
+		id: 'bytekart',
+		name: 'ByteKart',
+		description:
+			'A racing game developed in C for the LCOM (Computer Laboratory) course at FEUP, built on the MINIX operating system.',
+		technologies: [TECHNOLOGIES.C],
+		links: {
+			github: 'https://github.com/PedroLunet/bytekart',
+			demo: 'https://uporto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=06810408-5b1c-434a-b0f9-b2ef01760a52'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2025',
+		endDate: '06/2025'
+	},
+	{
+		id: 'pallet-packing-optimization',
+		name: 'Pallet Packing Optimization',
+		description:
+			'A sophisticated pallet packing optimization tool developed in C++ for the Design of Algorithms (DA) course at FEUP. ',
+		technologies: [TECHNOLOGIES.CPP],
+		links: {
+			github: 'https://github.com/PedroLunet/Y2S2-DA-Pallet-Optimizer'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2025',
+		endDate: '06/2025'
+	},
+	{
+		id: 'path-planning-tool',
+		name: 'Path Planning Tool',
+		description:
+			'A sophisticated pallet packing optimization tool developed in C++ for the Design of Algorithms (DA) course at FEUP. ',
+		technologies: [TECHNOLOGIES.CPP],
+		links: {
+			github: 'https://github.com/PedroLunet/Y2S2-DA-Path-Planning-Tool'
+		},
+		featured: false,
+		status: 'completed',
+		startDate: '02/2025',
+		endDate: '06/2025'
 	}
-	// Add more projects here...
-	// You can add examples like:
-	// - University projects
-	// - Side projects
-	// - Open source contributions
-	// - Hackathon projects
-	// etc.
 ];
 
 export const getFeaturedProjects = () => projectsData.filter((project) => project.featured);

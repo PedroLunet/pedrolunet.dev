@@ -71,7 +71,7 @@ export const TECHNOLOGIES = {
 	},
 	TAILWIND: {
 		name: 'Tailwind CSS',
-		icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+		icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',
 		color: '#06b6d4'
 	},
 	WEBGL: {

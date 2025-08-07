@@ -18,7 +18,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			from: email,
 			to: GMAIL_USER,
 			subject: `Contact Form Submission from ${name}`,
-			text: message
+			text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
 		});
 		return new Response(JSON.stringify({ success: true }), { status: 200 });
 	} catch (error) {

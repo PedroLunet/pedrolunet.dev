@@ -11,7 +11,9 @@
 		: isExperience
 			? 'bg-primary'
 			: 'bg-muted-foreground';
-	$: dotSize = item.current ? 'h-2.5 w-2.5' : 'h-2 w-2';
+	$: dotSize = item.current
+		? 'h-2.5 w-2.5 min-h-[10px] min-w-[10px]'
+		: 'h-2 w-2 min-h-[8px] min-w-[8px]';
 	$: dateColor = isExperience ? 'text-primary' : 'text-muted-foreground';
 </script>
 

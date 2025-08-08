@@ -26,7 +26,17 @@
 	<title>Projects - Pedro Lunet</title>
 	<meta
 		name="description"
-		content="Explore my projects and work. Full-stack development, web applications, and more."
+		content="Explore Pedro Lunet's portfolio of web development projects. Full-stack applications, frontend interfaces, and more built with modern technologies like Svelte, React, TypeScript, and Next.js."
+	/>
+	<meta property="og:title" content="Projects - Pedro Lunet" />
+	<meta
+		property="og:description"
+		content="Explore Pedro Lunet's portfolio of web development projects. Full-stack applications, frontend interfaces, and more built with modern technologies like Svelte, React, TypeScript, and Next.js."
+	/>
+	<meta name="twitter:title" content="Projects - Pedro Lunet" />
+	<meta
+		name="twitter:description"
+		content="Explore Pedro Lunet's portfolio of web development projects. Full-stack applications, frontend interfaces, and more built with modern technologies like Svelte, React, TypeScript, and Next.js."
 	/>
 </svelte:head>
 

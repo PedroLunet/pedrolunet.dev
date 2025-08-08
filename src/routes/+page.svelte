@@ -5,12 +5,30 @@
 	import ContactForm from '../components/Contact-form.svelte';
 </script>
 
+<svelte:head>
+	<title>Pedro Lunet - Web Developer from Porto, Portugal</title>
+	<meta
+		name="description"
+		content="I'm Pedro Lunet, a web developer from Porto, Portugal. I design clean, responsive interfaces with a focus on clarity and thoughtful details. Currently studying at FEUP."
+	/>
+	<meta property="og:title" content="Pedro Lunet - Web Developer from Porto, Portugal" />
+	<meta
+		property="og:description"
+		content="I'm Pedro Lunet, a web developer from Porto, Portugal. I design clean, responsive interfaces with a focus on clarity and thoughtful details. Currently studying at FEUP."
+	/>
+	<meta name="twitter:title" content="Pedro Lunet - Web Developer from Porto, Portugal" />
+	<meta
+		name="twitter:description"
+		content="I'm Pedro Lunet, a web developer from Porto, Portugal. I design clean, responsive interfaces with a focus on clarity and thoughtful details. Currently studying at FEUP."
+	/>
+</svelte:head>
+
 <section
-	class="text-text flex min-h-[calc(70vh-var(--navbar-height))] flex-col gap-y-12 bg-background px-4 py-10 md:flex-row md:items-start md:justify-center md:gap-x-16 2xl:gap-x-32 2xl:px-20 2xl:py-24 3xl:px-40 3xl:py-32"
+	class="text-text 3xl:px-40 3xl:py-32 flex min-h-[calc(70vh-var(--navbar-height))] flex-col gap-y-12 bg-background px-4 py-10 md:flex-row md:items-start md:justify-center md:gap-x-16 2xl:gap-x-32 2xl:px-20 2xl:py-24"
 >
 	<div class="flex flex-1 flex-col items-start justify-center xl:items-center xl:text-center">
 		<SplitText
-		textAlign="left"
+			textAlign="left"
 			text="Pedro Lunet"
 			className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 3xl:text-8xl font-bold leading-tight text-primary"
 			splitType="words"
@@ -75,7 +93,7 @@
 				></span>
 			</a>
 		</div>
-		<div class="flex flex-col justify-center xl:items-center xl:text-center md:items-end">
+		<div class="flex flex-col justify-center md:items-end xl:items-center xl:text-center">
 			<h3
 				class="w-fit border-b border-muted-foreground text-2xl font-bold text-primary/60 sm:text-3xl 2xl:text-4xl"
 			>

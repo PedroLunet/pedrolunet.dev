@@ -51,7 +51,17 @@
 	<title>About - Pedro Lunet</title>
 	<meta
 		name="description"
-		content="Learn more about Pedro Lunet, a web developer from Porto, Portugal, studying at FEUP."
+		content="Learn more about Pedro Lunet, a web developer from Porto, Portugal, studying Informatics and Computing Engineering at FEUP. Passionate about teamwork, problem solving, and continuous learning."
+	/>
+	<meta property="og:title" content="About - Pedro Lunet" />
+	<meta
+		property="og:description"
+		content="Learn more about Pedro Lunet, a web developer from Porto, Portugal, studying Informatics and Computing Engineering at FEUP. Passionate about teamwork, problem solving, and continuous learning."
+	/>
+	<meta name="twitter:title" content="About - Pedro Lunet" />
+	<meta
+		name="twitter:description"
+		content="Learn more about Pedro Lunet, a web developer from Porto, Portugal, studying Informatics and Computing Engineering at FEUP. Passionate about teamwork, problem solving, and continuous learning."
 	/>
 </svelte:head>
 

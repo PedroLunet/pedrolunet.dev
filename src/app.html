@@ -1,12 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" %sveltekit.theme%>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Default meta tags -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://pedrolunet.dev" />
+		<meta property="og:site_name" content="Pedro Lunet" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:creator" content="@pedrolunet" />
+		<meta name="author" content="Pedro Lunet" />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Theme color -->
+		<meta name="theme-color" content="#3b82f6" />
+
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover" class="antialiased">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

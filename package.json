@@ -26,6 +26,7 @@
 		"@tailwindcss/vite": "^4.1.11",
 		"@types/node": "^24.2.0",
 		"@types/nodemailer": "^6.4.17",
+		"@vercel/analytics": "^1.5.0",
 		"bits-ui": "^2.9.1",
 		"clsx": "^2.1.1",
 		"eslint": "^9.18.0",

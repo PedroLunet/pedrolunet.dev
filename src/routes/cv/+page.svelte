@@ -48,7 +48,7 @@
 			</div>
 
 			<!-- Optional: Embed PDF viewer for larger screens -->
-			<div class="mt-8 hidden lg:block">
+			<div class="mt-8 hidden md:block">
 				<div class="h-150 overflow-hidden rounded-lg border">
 					<iframe
 						src="/pedro-lunet-cv.pdf"

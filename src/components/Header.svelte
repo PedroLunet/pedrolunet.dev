@@ -23,6 +23,7 @@
 		<a href="/about" class="text-text transition hover:text-primary" aria-label="About Me"
 			>About Me</a
 		>
+		<a href="/cv" class="text-text transition hover:text-primary" aria-label="CV">CV</a>
 	</nav>
 
 	<!-- Hamburger icon for mobile -->
@@ -63,6 +64,12 @@
 					class="text-text transition hover:text-primary"
 					aria-label="About Me"
 					on:click={() => (menuOpen = false)}>About Me</a
+				>
+				<a
+					href="/cv"
+					class="text-text transition hover:text-primary"
+					aria-label="CV"
+					on:click={() => (menuOpen = false)}>CV</a
 				>
 			</nav>
 		</div>

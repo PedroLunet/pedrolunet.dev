@@ -2,6 +2,7 @@
 	import ProjectCard from '../../components/ProjectCard.svelte';
 	import TechBadge from '../../components/TechBadge.svelte';
 	import ContactForm from '../../components/Contact-form.svelte';
+	import FadeIn from '../../components/FadeIn.svelte';
 	import Marquee from 'svelte-fast-marquee';
 	import {
 		projectsData,
@@ -43,73 +44,89 @@
 <div class="container mx-auto px-4 py-8">
 	<div class="mx-auto max-w-6xl">
 		<!-- Header -->
-		<div class="mb-12 text-center">
-			<h1 class="mb-4 text-4xl font-bold tracking-tight">Projects</h1>
-			<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
-				A collection of projects I've worked on, ranging from personal experiments to professional
-				work.
-			</p>
-		</div>
+		<FadeIn>
+			<div class="mb-12 text-center">
+				<h1 class="mb-4 text-4xl font-bold tracking-tight">Projects</h1>
+				<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
+					A collection of projects I've worked on, ranging from personal experiments to professional
+					work.
+				</p>
+			</div>
+		</FadeIn>
 
 		<!-- Technologies Marquee -->
-		<div class="mb-16">
-			<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I've Used</h2>
-			<div class="relative overflow-hidden">
-				<Marquee pauseOnHover={false} speed={40} play={marqueePlay}>
-					{#each allTechnologies as technology}
-						<div class="mx-3">
-							<TechBadge {technology} />
-						</div>
-					{/each}
-				</Marquee>
-				<!-- Fade gradients on the sides -->
-				<div
-					class="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-background to-transparent"
-				></div>
-				<div
-					class="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-background to-transparent"
-				></div>
+		<FadeIn delay={400}>
+			<div class="mb-16">
+				<h2 class="mb-6 text-center text-2xl font-semibold">Technologies I've Used</h2>
+				<div class="relative overflow-hidden">
+					<Marquee pauseOnHover={false} speed={40} play={marqueePlay}>
+						{#each allTechnologies as technology}
+							<div class="mx-3">
+								<TechBadge {technology} />
+							</div>
+						{/each}
+					</Marquee>
+					<!-- Fade gradients on the sides -->
+					<div
+						class="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-background to-transparent"
+					></div>
+					<div
+						class="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-background to-transparent"
+					></div>
+				</div>
 			</div>
-		</div>
+		</FadeIn>
 
 		<!-- Featured Projects Section (if you want to highlight some) -->
 		{#if featuredProjects.length > 0}
-			<div class="mb-16">
-				<h2 class="mb-8 text-center text-2xl font-semibold">Featured Projects</h2>
+			<FadeIn delay={400}>
+				<div class="mb-16">
+					<h2 class="mb-8 text-center text-2xl font-semibold">Featured Projects</h2>
+				</div>
+			</FadeIn>
+			<FadeIn delay={400} stagger={150}>
 				<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 					{#each featuredProjects as project}
 						<ProjectCard {project} />
 					{/each}
 				</div>
-			</div>
+			</FadeIn>
 		{/if}
 
 		<!-- All Projects Section -->
-		<div>
-			<h2 class="mb-8 text-center text-2xl font-semibold">
-				{#if featuredProjects.length > 0}Other Projects{:else}All Projects{/if}
-			</h2>
+		<FadeIn delay={featuredProjects.length > 0 ? 400 : 200}>
+			<div>
+				<h2 class="mt-8 mb-8 text-center text-2xl font-semibold">
+					{#if featuredProjects.length > 0}Other Projects{:else}All Projects{/if}
+				</h2>
+			</div>
+		</FadeIn>
+		<FadeIn delay={featuredProjects.length > 0 ? 400 : 300} stagger={100}>
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each featuredProjects.length > 0 ? nonFeaturedProjects : allProjects as project}
 					<ProjectCard {project} />
 				{/each}
 			</div>
-		</div>
+		</FadeIn>
 
 		<!-- Empty state if no projects -->
 		{#if allProjects.length === 0}
-			<div class="py-12 text-center">
-				<p class="text-lg text-muted-foreground">No projects to show yet. Check back soon!</p>
-			</div>
+			<FadeIn>
+				<div class="py-12 text-center">
+					<p class="text-lg text-muted-foreground">No projects to show yet. Check back soon!</p>
+				</div>
+			</FadeIn>
 		{/if}
 
 		<!-- Contact Section -->
-		<div class="mt-20 text-center">
-			<h2 class="mb-4 text-3xl font-semibold">Let's Work Together</h2>
-			<p class="mb-8 text-lg text-muted-foreground">
-				Interested in collaborating or have a project in mind?
-			</p>
-			<ContactForm />
-		</div>
+		<FadeIn delay={400}>
+			<div class="mt-20 text-center">
+				<h2 class="mb-4 text-3xl font-semibold">Let's Work Together</h2>
+				<p class="mb-8 text-lg text-muted-foreground">
+					Interested in collaborating or have a project in mind?
+				</p>
+				<ContactForm />
+			</div>
+		</FadeIn>
 	</div>
 </div>

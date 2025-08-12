@@ -415,7 +415,7 @@ export const projectsData: Project[] = [
 		name: 'Marine Choice',
 		description:
 			'MarineChoice empowers seafood consumers by offering insights into harmful fishing practices, sustainable recipes, and fostering an eco-conscious community, all aimed at shaping a future where every seafood choice supports healthy oceans.',
-		technologies: [TECHNOLOGIES.FLUTTER],
+		technologies: [TECHNOLOGIES.FLUTTER, TECHNOLOGIES.FIREBASE],
 		links: {
 			github: 'https://github.com/PedroLunet/MarineChoice'
 		},
@@ -502,12 +502,12 @@ export const getFormattedProjectDateRange = (project: Project) => {
 // Helper function to get all unique technologies used across projects
 export const getAllUsedTechnologies = (): Technology[] => {
 	const techMap = new Map<string, Technology>();
-	
-	projectsData.forEach(project => {
-		project.technologies.forEach(tech => {
+
+	projectsData.forEach((project) => {
+		project.technologies.forEach((tech) => {
 			techMap.set(tech.name, tech);
 		});
 	});
-	
+
 	return Array.from(techMap.values());
 };

@@ -23,7 +23,7 @@ export const timelineData: TimelineItem[] = [
 			'Working on internal projects using Svelte and SvelteKit, deepening knowledge of Reactive UI Development and modern frontend architecture. Focused on maintainable code, routing, and component-driven design.',
 		startDate: '07/2025',
 		endDate: '08/2025',
-		current: false
+		current: false,
 	},
 	{
 		id: 'f1-schools-judge-2025',

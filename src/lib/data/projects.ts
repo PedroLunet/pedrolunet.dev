@@ -261,7 +261,7 @@ export const projectsData: Project[] = [
 			website: 'https://pedrolunet.dev'
 		},
 		featured: true,
-		status: 'in-progress',
+		status: 'completed',
 		startDate: '08/2025'
 	},
 	{

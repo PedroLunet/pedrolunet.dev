@@ -1,7 +1,3 @@
 name = "pedrolunet"
-compatibility_date = "2025-10-31"
-
 main = "./.svelte-kit/cloudflare/_worker.js"
-
-[site]
-bucket = "./.svelte-kit/output/client"
+compatibility_date = "2025-10-31"

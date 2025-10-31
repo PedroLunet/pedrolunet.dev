@@ -6,3 +6,6 @@ nodejs_compat = true
 [assets]
 directory = ".svelte-kit/output/client"
 binding = "ASSETS"
+
+compatibility_flags = ["nodejs_compat"]
+

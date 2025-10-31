@@ -1,3 +1,6 @@
 name = "pedrolunet"
 main = "./.svelte-kit/cloudflare/_worker.js"
 compatibility_date = "2025-10-31"
+
+[assets]
+directory = ".svelte-kit/output/client"

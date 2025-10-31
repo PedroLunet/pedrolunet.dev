@@ -1,6 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
-import { GMAIL_USER, GMAIL_PASS } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+
+const GMAIL_USER = env.GMAIL_USER;
+const GMAIL_PASS = env.GMAIL_PASS;
 
 export const POST: RequestHandler = async ({ request }) => {
 	const { name, email, message } = await request.json();

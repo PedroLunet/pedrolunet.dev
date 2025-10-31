@@ -1,12 +1,8 @@
 name = "pedrolunet"
 main = "./.svelte-kit/cloudflare/_worker.js"
 compatibility_date = "2025-10-31"
-nodejs_compat = true
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = ".svelte-kit/output/client"
 binding = "ASSETS"
-
-[compatibility_flags]
-flags = ["nodejs_compat"]
-

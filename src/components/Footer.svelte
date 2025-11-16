@@ -41,7 +41,7 @@
 			<GithubLogo size={24} class="text-muted-foreground" />
 		</a>
 		<a
-			href="mailto:pedrolunet@gmail.com"
+			href="mailto:hello@pedrolunet.dev"
 			tabindex="-1"
 			aria-label="Email"
 			class="cursor-pointer hover:opacity-80"

@@ -1,9 +1,19 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
-import { GMAIL_USER, GMAIL_PASS } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export const POST: RequestHandler = async ({ request }) => {
 	const { name, email, message } = await request.json();
+
+	const GMAIL_USER = env.GMAIL_USER;
+	const GMAIL_PASS = env.GMAIL_PASS;
+
+	if (!GMAIL_USER || !GMAIL_PASS) {
+		return new Response(
+			JSON.stringify({ success: false, error: 'Email service not configured' }),
+			{ status: 500 }
+		);
+	}
 
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',

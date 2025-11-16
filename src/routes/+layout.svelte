@@ -4,8 +4,6 @@
 	import Header from '../components/Header.svelte';
 	import { onMount } from 'svelte';
 	import { ModeWatcher } from 'mode-watcher';
-	import { dev } from '$app/environment';
-    import { inject } from '@vercel/analytics';
 
 	let { children } = $props();
 
@@ -27,8 +25,6 @@
 			}
 		});
 	});
-
-	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
 <ModeWatcher />

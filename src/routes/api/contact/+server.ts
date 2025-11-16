@@ -45,7 +45,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		// Send email using Resend
 		const result = await resend.emails.send({
-			from: 'Contact Form <contact@pedrolunet.dev>',
+			from: 'Contact PedroLunetDev <contact@pedrolunet.dev>',
 			to: [env.CONTACT_EMAIL || 'pedrolunet@gmail.com'],
 			replyTo: email,
 			subject: `Contact Form: Message from ${name}`,

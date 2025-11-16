@@ -11,5 +11,3 @@ export default defineConfig({
 		external: ['@iconify/svelte', 'gsap']
 	}
 });
-
-

@@ -49,6 +49,7 @@
 		"gsap": "^3.13.0",
 		"mode-watcher": "^1.1.0",
 		"phosphor-svelte": "^3.0.1",
+		"resend": "^6.4.2",
 		"simple-icons": "^15.7.0",
 		"svelte-fast-marquee": "^1.0.2"
 	}

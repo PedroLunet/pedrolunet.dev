@@ -6,7 +6,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
-	import Icon from '@iconify/svelte';
+	import TechIcon from '../../components/TechIcon.svelte';
 	import PedroLunet from '../../components/PedroLunet.svelte';
 	import TimelineCard from '../../components/TimelineCard.svelte';
 	import { getAllTimelineItems } from '$lib/data/timeline';
@@ -179,7 +179,7 @@
 								<Badge
 									class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
 								>
-									<Icon icon={skill.icon} />
+									<TechIcon icon={skill.icon} />
 									{skill.name}
 								</Badge>
 							{/each}
@@ -195,7 +195,7 @@
 								<Badge
 									class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
 								>
-									<Icon icon={skill.icon} />
+									<TechIcon icon={skill.icon} />
 									{skill.name}
 								</Badge>
 							{/each}
@@ -211,7 +211,7 @@
 								<Badge
 									class="flex items-center gap-1.5 text-base transition-all duration-200 hover:scale-105"
 								>
-									<Icon icon={skill.icon} />
+									<TechIcon icon={skill.icon} />
 									{skill.name}
 								</Badge>
 							{/each}

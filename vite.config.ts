@@ -4,5 +4,12 @@ import { defineConfig } from 'vite';
 import { sveltePhosphorOptimize } from 'phosphor-svelte/vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit(), sveltePhosphorOptimize()]
+	plugins: [tailwindcss(), sveltekit(), sveltePhosphorOptimize()],
+	ssr: {
+		// Externalize these packages from the server bundle to reduce Worker size
+		// They're only used in client-side pages (about page with ssr=false)
+		external: ['@iconify/svelte', 'gsap']
+	}
 });
+
+

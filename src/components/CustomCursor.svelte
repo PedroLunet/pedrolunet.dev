@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { lightTheme, darkTheme } from '$lib/theme';
 
 	let cursorX = $state(0);
 	let cursorY = $state(0);
@@ -7,6 +8,16 @@
 	let isDark = $state(false);
 
 	let { children } = $props();
+
+	// Get opposite theme colors - if page is dark, show light theme and vice versa
+	const oppositeTheme = $derived(isDark ? lightTheme : darkTheme);
+
+	// Convert to inline style string
+	const themeStyles = $derived(
+		Object.entries(oppositeTheme)
+			.map(([key, value]) => `${key}: ${value}`)
+			.join('; ')
+	);
 
 	onMount(() => {
 		// Check initial theme
@@ -49,15 +60,17 @@
 	});
 </script>
 
-<!-- Inverted theme layer with circular mask -->
+<!-- Inverted theme layer with circular mask - the "hole" showing opposite theme -->
 <div
-	class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-300"
+	class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-200"
 	class:opacity-100={isVisible}
 	class:opacity-0={!isVisible}
-	class:dark={!isDark}
 	style:--cursor-x="{cursorX}px"
 	style:--cursor-y="{cursorY}px"
 	style:clip-path="circle(50px at var(--cursor-x) var(--cursor-y))"
+	style={themeStyles}
 >
-	{@render children()}
+	<div class="h-full w-full bg-background text-foreground">
+		{@render children()}
+	</div>
 </div>

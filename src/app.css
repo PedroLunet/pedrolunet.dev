@@ -34,6 +34,8 @@
 	font-display: swap;
 }
 
+/*ALWAYS UPDATE COLRS IN theme.ts TOO*/
+
 :root {
 	--radius: 0.65rem;
 	--background: rgba(252, 240, 244, 1);

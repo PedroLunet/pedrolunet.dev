@@ -27,15 +27,22 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Fixel';
+	src: url('/src/lib/fonts/FixelVariable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
 :root {
 	--radius: 0.65rem;
-	--background: oklch(1 0 0);
+	--background: rgba(252, 240, 244, 1);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.141 0.005 285.823);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.141 0.005 285.823);
-	--primary: oklch(0.705 0.213 47.604);
+	--primary: rgba(137, 97, 89, 1);
 	--primary-foreground: oklch(0.98 0.016 73.684);
 	--secondary: oklch(0.967 0.001 286.375);
 	--secondary-foreground: oklch(0.21 0.006 285.885);
@@ -63,13 +70,13 @@
 }
 
 .dark {
-	--background: oklch(0.141 0.005 285.823);
+	--background: rgba(137, 97, 89, 1);
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.21 0.006 285.885);
 	--card-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.21 0.006 285.885);
 	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.646 0.222 41.116);
+	--primary: rgba(252, 240, 244, 1);
 	--primary-foreground: oklch(0.98 0.016 73.684);
 	--secondary: oklch(0.274 0.006 286.033);
 	--secondary-foreground: oklch(0.985 0 0);
@@ -143,7 +150,7 @@
 	}
 	body {
 		background-color: var(--color-background);
-		font-family: 'Satoshi', sans-serif;
+		font-family: 'Fixel', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		@apply bg-background text-foreground;

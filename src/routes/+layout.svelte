@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Footer from '../components/Footer.svelte';
 	import Header from '../components/Header.svelte';
+	import CustomCursor from '../components/CustomCursor.svelte';
 	import { onMount } from 'svelte';
 	import { ModeWatcher } from 'mode-watcher';
 
@@ -28,6 +29,7 @@
 </script>
 
 <ModeWatcher />
+<CustomCursor />
 <div class="flex min-h-screen flex-col">
 	<!-- <Header /> -->
 	<main class="flex-1 bg-background">

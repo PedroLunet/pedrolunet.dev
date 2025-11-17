@@ -6,10 +6,8 @@
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	// Track current theme mode
 	const mode = writable<'light' | 'dark'>('light');
 
-	// Detect initial mode and observe changes to the theme
 	onMount(() => {
 		const updateMode = () => {
 			if (document.documentElement.classList.contains('dark')) {

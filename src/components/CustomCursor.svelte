@@ -1,18 +1,22 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { spring } from 'svelte/motion';
 	import { lightTheme, darkTheme } from '$lib/theme';
 
-	let cursorX = $state(0);
-	let cursorY = $state(0);
+	let coords = spring(
+		{ x: 0, y: 0 },
+		{
+			stiffness: 0.1,
+			damping: 0.8
+		}
+	);
 	let isVisible = $state(false);
 	let isDark = $state(false);
 
 	let { children } = $props();
 
-	// Get opposite theme colors - if page is dark, show light theme and vice versa
 	const oppositeTheme = $derived(isDark ? lightTheme : darkTheme);
 
-	// Convert to inline style string
 	const themeStyles = $derived(
 		Object.entries(oppositeTheme)
 			.map(([key, value]) => `${key}: ${value}`)
@@ -20,10 +24,8 @@
 	);
 
 	onMount(() => {
-		// Check initial theme
 		isDark = document.documentElement.classList.contains('dark');
 
-		// Watch for theme changes
 		const observer = new MutationObserver(() => {
 			isDark = document.documentElement.classList.contains('dark');
 		});
@@ -34,8 +36,7 @@
 		});
 
 		const handleMouseMove = (e: MouseEvent) => {
-			cursorX = e.clientX;
-			cursorY = e.clientY;
+			coords.set({ x: e.clientX, y: e.clientY });
 			if (!isVisible) isVisible = true;
 		};
 
@@ -60,14 +61,13 @@
 	});
 </script>
 
-<!-- Inverted theme layer with circular mask - the "hole" showing opposite theme -->
 <div
 	class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-200"
 	class:opacity-100={isVisible}
 	class:opacity-0={!isVisible}
-	style:--cursor-x="{cursorX}px"
-	style:--cursor-y="{cursorY}px"
-	style:clip-path="circle(50px at var(--cursor-x) var(--cursor-y))"
+	style:--cursor-x="{$coords.x}px"
+	style:--cursor-y="{$coords.y}px"
+	style:clip-path="circle(40px at var(--cursor-x) var(--cursor-y))"
 	style={themeStyles}
 >
 	<div class="h-full w-full bg-background text-foreground">

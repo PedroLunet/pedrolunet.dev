@@ -32,13 +32,33 @@
 </script>
 
 <button
-	class={buttonVariants({ variant: 'outline', size: 'icon' })}
+	class="flex h-10 w-10 items-center justify-center rounded-md border border-input bg-background p-2 text-foreground transition-colors duration-200 hover:bg-accent hover:text-accent-foreground"
 	aria-label="Toggle theme"
 	on:click={toggleTheme}
 >
 	{#if $mode === 'light'}
-		<SunIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		<span class="rotate-in inline-block">
+			<SunIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		</span>
 	{:else}
-		<MoonIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		<span class="rotate-in inline-block">
+			<MoonIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		</span>
 	{/if}
 </button>
+
+<style>
+	.rotate-in {
+		animation: rotateIn 0.4s;
+	}
+	@keyframes rotateIn {
+		from {
+			transform: rotate(90deg);
+			opacity: 0;
+		}
+		to {
+			transform: rotate(0deg);
+			opacity: 1;
+		}
+	}
+</style>

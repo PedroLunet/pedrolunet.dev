@@ -152,7 +152,7 @@
 	}
 	body {
 		background-color: var(--color-background);
-		font-family: 'Fixel', sans-serif;
+		font-family: 'Geist Sans', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		@apply bg-background text-foreground;

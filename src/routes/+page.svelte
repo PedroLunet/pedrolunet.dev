@@ -4,5 +4,5 @@
 
 <div class="flex min-h-screen items-center justify-center">
 	<ThemeSwitch />
-	<h1 class="text-8xl font-extrabold text-primary">Pedro Lunet.</h1>
+	<h1 class="text-8xl font-black text-primary">PEDRO LUNET.</h1>
 </div>

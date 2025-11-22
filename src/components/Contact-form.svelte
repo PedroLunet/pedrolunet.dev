@@ -60,22 +60,8 @@
 			{/if}
 		</form>
 		<Drawer.Footer>
-			<Button type="submit" form="contact-form" disabled={success} {loading}>
+			<Button type="submit" form="contact-form" disabled={success} {loading} {success}>
 				{#if success}
-					<svg
-						class="mr-2 h-4 w-4"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M5 13l4 4L19 7"
-						/>
-					</svg>
 					Sent!
 				{:else}
 					{loading ? 'Sending...' : 'Submit'}

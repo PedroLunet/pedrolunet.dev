@@ -2,6 +2,8 @@
 	import { cn, type WithElementRef } from '$lib/utils.js';
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { type VariantProps, tv } from 'tailwind-variants';
+	import { Spinner } from '$lib/components/ui/spinner/index.js';
+	import CheckIcon from '@lucide/svelte/icons/check';
 
 	export const buttonVariants = tv({
 		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -37,6 +39,7 @@
 			variant?: ButtonVariant;
 			size?: ButtonSize;
 			loading?: boolean;
+			success?: boolean;
 		};
 </script>
 
@@ -50,6 +53,7 @@
 		type = 'button',
 		disabled,
 		loading = false,
+		success = false,
 		children,
 		...restProps
 	}: ButtonProps = $props();
@@ -59,32 +63,27 @@
 	<a
 		bind:this={ref}
 		data-slot="button"
-		class={cn(buttonVariants({ variant, size }), loading && 'relative', className)}
-		href={disabled || loading ? undefined : href}
-		aria-disabled={disabled || loading}
-		role={disabled || loading ? 'link' : undefined}
-		tabindex={disabled || loading ? -1 : undefined}
+		class={cn(buttonVariants({ variant, size }), (loading || success) && 'relative', className)}
+		href={disabled || loading || success ? undefined : href}
+		aria-disabled={disabled || loading || success}
+		role={disabled || loading || success ? 'link' : undefined}
+		tabindex={disabled || loading || success ? -1 : undefined}
 		{...restProps}
 	>
 		{@render children?.()}
-		{#if loading}
+		{#if loading || success}
 			<span
-				class="absolute -top-1.5 -right-1.5 flex size-6 animate-in items-center justify-center rounded-full bg-primary duration-300 zoom-in-50 fade-in"
+				class="absolute -top-1.5 -right-1.5 flex size-6 animate-in items-center justify-center rounded-full bg-primary shadow-lg duration-300 zoom-in-50 fade-in"
 			>
-				<svg
-					class="size-3.5 animate-spin text-primary-foreground"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-				>
-					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
-					></circle>
-					<path
-						class="opacity-75"
-						fill="currentColor"
-						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-					></path>
-				</svg>
+				{#if loading}
+					<span class="icon-morph inline-block">
+						<Spinner class="size-4 text-primary-foreground" />
+					</span>
+				{:else if success}
+					<span class="icon-morph inline-block">
+						<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
+					</span>
+				{/if}
 			</span>
 		{/if}
 	</a>
@@ -92,31 +91,42 @@
 	<button
 		bind:this={ref}
 		data-slot="button"
-		class={cn(buttonVariants({ variant, size }), loading && 'relative', className)}
+		class={cn(buttonVariants({ variant, size }), (loading || success) && 'relative', className)}
 		{type}
-		disabled={disabled || loading}
+		disabled={disabled || loading || success}
 		{...restProps}
 	>
 		{@render children?.()}
-		{#if loading}
+		{#if loading || success}
 			<span
-				class="absolute -top-1.5 -right-1.5 flex size-6 animate-in items-center justify-center rounded-full bg-primary duration-300 zoom-in-50 fade-in"
+				class="absolute -top-1.5 -right-1.5 flex size-6 animate-in items-center justify-center rounded-full bg-primary shadow-lg duration-300 zoom-in-50 fade-in"
 			>
-				<svg
-					class="size-3.5 animate-spin text-primary-foreground"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-				>
-					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
-					></circle>
-					<path
-						class="opacity-75"
-						fill="currentColor"
-						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-					></path>
-				</svg>
+				{#if loading}
+					<span class="icon-morph inline-block">
+						<Spinner class="size-4 text-primary-foreground" />
+					</span>
+				{:else if success}
+					<span class="icon-morph inline-block">
+						<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
+					</span>
+				{/if}
 			</span>
 		{/if}
 	</button>
 {/if}
+
+<style>
+	.icon-morph {
+		animation: iconMorph 0.4s;
+	}
+	@keyframes iconMorph {
+		from {
+			transform: rotate(90deg) scale(0.8);
+			opacity: 0;
+		}
+		to {
+			transform: rotate(0deg) scale(1);
+			opacity: 1;
+		}
+	}
+</style>

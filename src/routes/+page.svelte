@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ThemeSwitch from '../components/ThemeSwitch.svelte';
+	import CustomCursor from '../components/CustomCursor.svelte';
 	import FadeIn from '../components/FadeIn.svelte';
 	import TimelineCard from '../components/TimelineCard.svelte';
 	import ProjectCard from '../components/ProjectCard.svelte';
@@ -22,13 +23,15 @@
 </header>
 
 <!-- Hero Section -->
-<section class="relative flex min-h-screen items-center justify-center">
-	<h1 class="text-8xl font-black text-primary">PEDRO LUNET.</h1>
+	<CustomCursor><section class="relative flex min-h-screen items-center justify-center">
 
-	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-		<ArrowDownIcon class="h-6 w-6 text-muted-foreground" />
-	</div>
-</section>
+		<h1 class="text-8xl font-black text-primary">PEDRO LUNET.</h1>
+
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+			<ArrowDownIcon class="h-6 w-6 text-muted-foreground" />
+		</div>
+	
+</section></CustomCursor>
 
 <!-- About Section -->
 <section class="px-4 py-32">

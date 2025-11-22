@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 	import { lightTheme, darkTheme } from '$lib/theme';
+
 	let coords = spring(
 		{ x: 0, y: 0 },
 		{
@@ -9,24 +10,18 @@
 			damping: 0.8
 		}
 	);
+
 	let isVisible = $state(false);
 	let isDark = $state(false);
+	let containerElement: HTMLDivElement;
 	let { children } = $props();
+
 	const oppositeTheme = $derived(isDark ? lightTheme : darkTheme);
 	const themeStyles = $derived(
 		Object.entries(oppositeTheme)
 			.map(([key, value]) => `${key}: ${value}`)
 			.join('; ')
 	);
-
-	let overlayContent: HTMLDivElement;
-
-	function syncOverlayScroll() {
-		if (overlayContent) {
-			overlayContent.scrollTop = window.scrollY;
-			overlayContent.scrollLeft = window.scrollX;
-		}
-	}
 
 	onMount(() => {
 		isDark = document.documentElement.classList.contains('dark');
@@ -37,49 +32,55 @@
 			attributes: true,
 			attributeFilter: ['class']
 		});
+
 		const handleMouseMove = (e: MouseEvent) => {
-			coords.set({ x: e.clientX, y: e.clientY });
+			if (!containerElement) return;
+			const rect = containerElement.getBoundingClientRect();
+			coords.set({ x: e.clientX - rect.left, y: e.clientY - rect.top });
 			if (!isVisible) isVisible = true;
 		};
+
 		const handleMouseLeave = () => {
 			isVisible = false;
 		};
+
 		const handleMouseEnter = () => {
 			isVisible = true;
 		};
-		window.addEventListener('mousemove', handleMouseMove);
-		document.body.addEventListener('mouseleave', handleMouseLeave);
-		document.body.addEventListener('mouseenter', handleMouseEnter);
 
-		// Sync overlay scroll with main window scroll
-		window.addEventListener('scroll', syncOverlayScroll, { passive: true });
-		// Initial sync
-		setTimeout(syncOverlayScroll, 0);
+		if (containerElement) {
+			containerElement.addEventListener('mousemove', handleMouseMove);
+			containerElement.addEventListener('mouseleave', handleMouseLeave);
+			containerElement.addEventListener('mouseenter', handleMouseEnter);
+		}
 
 		return () => {
 			observer.disconnect();
-			window.removeEventListener('mousemove', handleMouseMove);
-			document.body.removeEventListener('mouseleave', handleMouseLeave);
-			document.body.removeEventListener('mouseenter', handleMouseEnter);
-			window.removeEventListener('scroll', syncOverlayScroll);
+			if (containerElement) {
+				containerElement.removeEventListener('mousemove', handleMouseMove);
+				containerElement.removeEventListener('mouseleave', handleMouseLeave);
+				containerElement.removeEventListener('mouseenter', handleMouseEnter);
+			}
 		};
 	});
 </script>
 
-<div
-	class="pointer-events-none fixed inset-0 z-[9999] transition-opacity duration-200"
-	class:opacity-100={isVisible}
-	class:opacity-0={!isVisible}
-	style:--cursor-x="{$coords.x}px"
-	style:--cursor-y="{$coords.y}px"
-	style:clip-path="circle(40px at var(--cursor-x) var(--cursor-y))"
-	style={themeStyles}
->
-	<div
-		bind:this={overlayContent}
-		class="h-full w-full overflow-auto bg-background text-foreground"
-		style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-	>
+<div bind:this={containerElement} class="relative">
+	<div class="pointer-events-auto">
 		{@render children()}
+	</div>
+
+	<div
+		class="pointer-events-none absolute inset-0 transition-opacity duration-200"
+		class:opacity-100={isVisible}
+		class:opacity-0={!isVisible}
+		style:--cursor-x="{$coords.x}px"
+		style:--cursor-y="{$coords.y}px"
+		style:clip-path="circle(40px at var(--cursor-x) var(--cursor-y))"
+		style={themeStyles}
+	>
+		<div class="h-full w-full bg-background text-foreground">
+			{@render children()}
+		</div>
 	</div>
 </div>

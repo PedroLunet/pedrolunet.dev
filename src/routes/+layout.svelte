@@ -2,7 +2,6 @@
 	import '../app.css';
 	import Footer from '../components/Footer.svelte';
 	import Header from '../components/Header.svelte';
-	import CustomCursor from '../components/CustomCursor.svelte';
 	import { onMount } from 'svelte';
 	import { ModeWatcher } from 'mode-watcher';
 
@@ -36,12 +35,3 @@
 	</main>
 	<!-- <Footer /> -->
 </div>
-<CustomCursor>
-	<div class="flex min-h-screen flex-col">
-		<!-- <Header /> -->
-		<main class="flex-1 bg-background">
-			{@render children()}
-		</main>
-		<!-- <Footer /> -->
-	</div>
-</CustomCursor>

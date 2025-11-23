@@ -6,24 +6,16 @@
 	import CheckIcon from '@lucide/svelte/icons/check';
 
 	export const buttonVariants = tv({
-		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative duration-300",
 		variants: {
 			variant: {
-				default: 'bg-primary text-primary-foreground shadow-xs',
-				defaultWithHover: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
+				default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
 				destructive:
-					'bg-destructive shadow-xs focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white',
-				destructiveWithHover:
 					'bg-destructive shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white',
 				outline:
-					'bg-background shadow-xs hover:text-accent-foreground dark:bg-input/30 dark:border-input border',
-				outlineWithHover:
 					'bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border',
-				secondary: 'bg-secondary text-secondary-foreground shadow-xs',
-				secondaryWithHover:
-					'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
-				ghost: 'hover:text-accent-foreground dark:hover:bg-accent/50',
-				ghostWithHover: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+				secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
+				ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline'
 			},
 			size: {
@@ -48,7 +40,7 @@
 			size?: ButtonSize;
 			loading?: boolean;
 			success?: boolean;
-			hoverIcon?: any;
+			hoverIcon?: any; // Type as generic component if possible
 		};
 </script>
 
@@ -70,38 +62,54 @@
 
 	let isHovered = $state(false);
 
-	const mickeyEarBg = $derived(() => {
+	// Logic: If loading/success, background matches the 'active' state.
+	// If just hovering with an icon, we match the variant's color.
+	const bubbleColorClass = $derived.by(() => {
 		if (loading || success) return 'bg-secondary-foreground';
-		if (!hoverIcon) return '';
-		if (variant === 'default') return 'bg-primary';
 		if (variant === 'destructive') return 'bg-destructive';
 		if (variant === 'outline' || variant === 'ghost') return 'bg-accent';
 		if (variant === 'secondary') return 'bg-secondary';
 		return 'bg-primary';
 	});
-
-	const effectiveVariant = $derived(() => {
-		if (!hoverIcon) {
-			// Add 'WithHover' suffix for buttons without hoverIcon
-			if (variant === 'default') return 'defaultWithHover';
-			if (variant === 'destructive') return 'destructiveWithHover';
-			if (variant === 'outline') return 'outlineWithHover';
-			if (variant === 'secondary') return 'secondaryWithHover';
-			if (variant === 'ghost') return 'ghostWithHover';
-		}
-		return variant;
-	});
 </script>
+
+{#snippet statusBubble()}
+	{#if loading || success || hoverIcon}
+		<span
+			class={cn(
+				'pointer-events-none absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full shadow-sm',
+				bubbleColorClass
+			)}
+			class:animate-in={loading || success}
+			class:zoom-in-50={loading || success}
+			class:fade-in={loading || success}
+			class:bubble-pop={hoverIcon && isHovered && !loading && !success}
+			class:bubble-hide={hoverIcon && !isHovered && !loading && !success}
+		>
+			{#if loading}
+				<span class="icon-morph flex items-center justify-center">
+					<Spinner class="size-4 text-primary-foreground" />
+				</span>
+			{:else if success}
+				<span class="icon-morph flex items-center justify-center">
+					<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
+				</span>
+			{:else if hoverIcon}
+				{@const Icon = hoverIcon}
+				<span class="icon-morph flex items-center justify-center">
+					<Icon class="size-3.5 text-primary-foreground" stroke-width="2.5" />
+				</span>
+			{/if}
+		</span>
+	{/if}
+{/snippet}
 
 {#if href}
 	<a
 		bind:this={ref}
-		data-slot="button"
 		class={cn(
-			buttonVariants({ variant: effectiveVariant(), size }),
-			(loading || success || hoverIcon) && 'relative',
-			'transition-colors duration-300',
-			(loading || success) && 'bg-secondary-foreground text-secondary',
+			buttonVariants({ variant, size }),
+			(loading || success) && 'cursor-not-allowed bg-secondary-foreground text-secondary',
 			className
 		)}
 		href={disabled || loading || success ? undefined : href}
@@ -113,43 +121,13 @@
 		{...restProps}
 	>
 		{@render children?.()}
-		{#if loading || success || hoverIcon}
-			<span
-				class={cn(
-					'absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full',
-					mickeyEarBg()
-				)}
-				class:animate-in={loading || success}
-				class:zoom-in-50={loading || success}
-				class:fade-in={loading || success}
-				class:bubble-pop={hoverIcon && isHovered && !loading && !success}
-				class:bubble-hide={hoverIcon && !isHovered && !loading && !success}
-			>
-				{#if loading}
-					<span class="icon-morph inline-block">
-						<Spinner class="size-4 text-primary-foreground" />
-					</span>
-				{:else if success}
-					<span class="icon-morph inline-block">
-						<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
-					</span>
-				{:else if hoverIcon}
-					{@const Icon = hoverIcon}
-					<span class="icon-morph inline-block">
-						<Icon class="size-3.5 text-primary-foreground" stroke-width="2.5" />
-					</span>
-				{/if}
-			</span>
-		{/if}
+		{@render statusBubble()}
 	</a>
 {:else}
 	<button
 		bind:this={ref}
-		data-slot="button"
 		class={cn(
-			buttonVariants({ variant: effectiveVariant(), size }),
-			(loading || success || hoverIcon) && 'relative',
-			'transition-colors duration-300',
+			buttonVariants({ variant, size }),
 			(loading || success) && 'bg-secondary-foreground text-secondary',
 			className
 		)}
@@ -160,41 +138,19 @@
 		{...restProps}
 	>
 		{@render children?.()}
-		{#if loading || success || hoverIcon}
-			<span
-				class={cn(
-					'absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full',
-					mickeyEarBg()
-				)}
-				class:animate-in={loading || success}
-				class:zoom-in-50={loading || success}
-				class:fade-in={loading || success}
-				class:bubble-pop={hoverIcon && isHovered && !loading && !success}
-				class:bubble-hide={hoverIcon && !isHovered && !loading && !success}
-			>
-				{#if loading}
-					<span class="icon-morph inline-block">
-						<Spinner class="size-4 text-primary-foreground" />
-					</span>
-				{:else if success}
-					<span class="icon-morph inline-block">
-						<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
-					</span>
-				{:else if hoverIcon}
-					{@const Icon = hoverIcon}
-					<span class="icon-morph inline-block">
-						<Icon class="size-3.5 text-primary-foreground" stroke-width="2.5" />
-					</span>
-				{/if}
-			</span>
-		{/if}
+		{@render statusBubble()}
 	</button>
 {/if}
 
 <style>
+	/* Optimization: Ensure transform-origin is center for better scaling 
+    added will-change for performance hint
+  */
 	.icon-morph {
 		animation: iconMorph 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		will-change: transform, opacity;
 	}
+
 	@keyframes iconMorph {
 		from {
 			transform: rotate(90deg) scale(0);
@@ -207,11 +163,13 @@
 	}
 
 	.bubble-pop {
-		animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+		animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+		will-change: transform, opacity;
 	}
 
 	.bubble-hide {
 		animation: bubbleHide 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+		will-change: transform, opacity;
 	}
 
 	@keyframes bubblePop {

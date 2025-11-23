@@ -23,15 +23,15 @@
 </header>
 
 <!-- Hero Section -->
-	<CustomCursor><section class="relative flex min-h-screen items-center justify-center">
-
+<CustomCursor
+	><section class="relative flex min-h-screen items-center justify-center">
 		<h1 class="text-8xl font-black text-primary">PEDRO LUNET.</h1>
 
 		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
 			<ArrowDownIcon class="h-6 w-6 text-muted-foreground" />
 		</div>
-	
-</section></CustomCursor>
+	</section></CustomCursor
+>
 
 <!-- About Section -->
 <section class="px-4 py-32">
@@ -139,5 +139,4 @@
 			</div>
 		</FadeIn>
 	</div>
-	<Button size="lg" hoverIcon={ArrowRightIcon}>Hover me</Button>
 </section>

@@ -6,7 +6,7 @@
 	import CheckIcon from '@lucide/svelte/icons/check';
 
 	export const buttonVariants = tv({
-		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		variants: {
 			variant: {
 				default: 'bg-primary text-primary-foreground shadow-xs',
@@ -28,8 +28,8 @@
 			},
 			size: {
 				default: 'h-11 px-6 py-4 has-[>svg]:px-3',
-				sm: 'h-10 gap-1.5 rounded-2xl px-5 has-[>svg]:px-2.5',
-				lg: 'h-12 rounded-2xl px-8 has-[>svg]:px-4',
+				sm: 'h-10 gap-1.5 px-5 has-[>svg]:px-2.5',
+				lg: 'h-12 px-8 has-[>svg]:px-4',
 				icon: 'size-11'
 			}
 		},
@@ -116,7 +116,7 @@
 		{#if loading || success || hoverIcon}
 			<span
 				class={cn(
-					'absolute -top-1.5 -right-1.5 flex size-6 items-center justify-center rounded-full',
+					'absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full',
 					mickeyEarBg()
 				)}
 				class:animate-in={loading || success}
@@ -147,7 +147,7 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(
-			buttonVariants({ variant, size }),
+			buttonVariants({ variant: effectiveVariant(), size }),
 			(loading || success || hoverIcon) && 'relative',
 			'transition-colors duration-300',
 			(loading || success) && 'bg-secondary-foreground text-secondary',
@@ -163,7 +163,7 @@
 		{#if loading || success || hoverIcon}
 			<span
 				class={cn(
-					'absolute -top-1.5 -right-1.5 flex size-6 items-center justify-center rounded-full',
+					'absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full',
 					mickeyEarBg()
 				)}
 				class:animate-in={loading || success}

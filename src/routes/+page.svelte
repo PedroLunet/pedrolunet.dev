@@ -139,4 +139,5 @@
 			</div>
 		</FadeIn>
 	</div>
+	<Button size="lg" hoverIcon={ArrowRightIcon}>Hover me</Button>
 </section>

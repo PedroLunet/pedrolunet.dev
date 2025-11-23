@@ -71,7 +71,7 @@
 	let isHovered = $state(false);
 
 	const mickeyEarBg = $derived(() => {
-		if (loading || success) return 'bg-primary';
+		if (loading || success) return 'bg-secondary-foreground';
 		if (!hoverIcon) return '';
 		if (variant === 'default') return 'bg-primary';
 		if (variant === 'destructive') return 'bg-destructive';
@@ -100,6 +100,8 @@
 		class={cn(
 			buttonVariants({ variant: effectiveVariant(), size }),
 			(loading || success || hoverIcon) && 'relative',
+			'transition-colors duration-300',
+			(loading || success) && 'bg-secondary-foreground text-secondary',
 			className
 		)}
 		href={disabled || loading || success ? undefined : href}
@@ -147,6 +149,8 @@
 		class={cn(
 			buttonVariants({ variant, size }),
 			(loading || success || hoverIcon) && 'relative',
+			'transition-colors duration-300',
+			(loading || success) && 'bg-secondary-foreground text-secondary',
 			className
 		)}
 		{type}

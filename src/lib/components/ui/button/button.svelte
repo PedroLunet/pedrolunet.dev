@@ -2,9 +2,11 @@
 	import { cn, type WithElementRef } from '$lib/utils.js';
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { type VariantProps, tv } from 'tailwind-variants';
+	import { Spinner } from '$lib/components/ui/spinner/index.js';
+	import CheckIcon from '@lucide/svelte/icons/check';
 
 	export const buttonVariants = tv({
-		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative duration-300",
 		variants: {
 			variant: {
 				default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
@@ -17,10 +19,10 @@
 				link: 'text-primary underline-offset-4 hover:underline'
 			},
 			size: {
-				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
-				sm: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
-				lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-				icon: 'size-9'
+				default: 'h-11 px-6 py-4 has-[>svg]:px-3',
+				sm: 'h-10 gap-1.5 px-5 has-[>svg]:px-2.5',
+				lg: 'h-12 px-8 has-[>svg]:px-4',
+				icon: 'size-11'
 			}
 		},
 		defaultVariants: {
@@ -36,6 +38,9 @@
 		WithElementRef<HTMLAnchorAttributes> & {
 			variant?: ButtonVariant;
 			size?: ButtonSize;
+			loading?: boolean;
+			success?: boolean;
+			hoverIcon?: any; // Type as generic component if possible
 		};
 </script>
 
@@ -48,33 +53,147 @@
 		href = undefined,
 		type = 'button',
 		disabled,
+		loading = false,
+		success = false,
+		hoverIcon = undefined,
 		children,
 		...restProps
 	}: ButtonProps = $props();
+
+	let isHovered = $state(false);
+
+	// Logic: If loading/success, background matches the 'active' state.
+	// If just hovering with an icon, we match the variant's color.
+	const bubbleColorClass = $derived.by(() => {
+		if (loading || success) return 'bg-secondary-foreground';
+		if (variant === 'destructive') return 'bg-destructive';
+		if (variant === 'outline' || variant === 'ghost') return 'bg-accent';
+		if (variant === 'secondary') return 'bg-secondary';
+		return 'bg-primary';
+	});
 </script>
+
+{#snippet statusBubble()}
+	{#if loading || success || hoverIcon}
+		<span
+			class={cn(
+				'pointer-events-none absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full shadow-sm',
+				bubbleColorClass
+			)}
+			class:animate-in={loading || success}
+			class:zoom-in-50={loading || success}
+			class:fade-in={loading || success}
+			class:bubble-pop={hoverIcon && isHovered && !loading && !success}
+			class:bubble-hide={hoverIcon && !isHovered && !loading && !success}
+		>
+			{#if loading}
+				<span class="icon-morph flex items-center justify-center">
+					<Spinner class="size-4 text-primary-foreground" />
+				</span>
+			{:else if success}
+				<span class="icon-morph flex items-center justify-center">
+					<CheckIcon class="size-3.5 text-primary-foreground" stroke-width="3" />
+				</span>
+			{:else if hoverIcon}
+				{@const Icon = hoverIcon}
+				<span class="icon-morph flex items-center justify-center">
+					<Icon class="size-3.5 text-primary-foreground" stroke-width="2.5" />
+				</span>
+			{/if}
+		</span>
+	{/if}
+{/snippet}
 
 {#if href}
 	<a
 		bind:this={ref}
-		data-slot="button"
-		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : href}
-		aria-disabled={disabled}
-		role={disabled ? 'link' : undefined}
-		tabindex={disabled ? -1 : undefined}
+		class={cn(
+			buttonVariants({ variant, size }),
+			(loading || success) && 'cursor-not-allowed bg-secondary-foreground text-secondary',
+			className
+		)}
+		href={disabled || loading || success ? undefined : href}
+		aria-disabled={disabled || loading || success}
+		role={disabled || loading || success ? 'link' : undefined}
+		tabindex={disabled || loading || success ? -1 : undefined}
+		onmouseenter={() => (isHovered = true)}
+		onmouseleave={() => (isHovered = false)}
 		{...restProps}
 	>
 		{@render children?.()}
+		{@render statusBubble()}
 	</a>
 {:else}
 	<button
 		bind:this={ref}
-		data-slot="button"
-		class={cn(buttonVariants({ variant, size }), className)}
+		class={cn(
+			buttonVariants({ variant, size }),
+			(loading || success) && 'bg-secondary-foreground text-secondary',
+			className
+		)}
 		{type}
-		{disabled}
+		disabled={disabled || loading || success}
+		onmouseenter={() => (isHovered = true)}
+		onmouseleave={() => (isHovered = false)}
 		{...restProps}
 	>
 		{@render children?.()}
+		{@render statusBubble()}
 	</button>
 {/if}
+
+<style>
+	/* Optimization: Ensure transform-origin is center for better scaling 
+    added will-change for performance hint
+  */
+	.icon-morph {
+		animation: iconMorph 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		will-change: transform, opacity;
+	}
+
+	@keyframes iconMorph {
+		from {
+			transform: rotate(90deg) scale(0);
+			opacity: 0;
+		}
+		to {
+			transform: rotate(0deg) scale(1);
+			opacity: 1;
+		}
+	}
+
+	.bubble-pop {
+		animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+		will-change: transform, opacity;
+	}
+
+	.bubble-hide {
+		animation: bubbleHide 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+		will-change: transform, opacity;
+	}
+
+	@keyframes bubblePop {
+		0% {
+			transform: scale(0) translate(-50%, 50%);
+			opacity: 0;
+		}
+		50% {
+			transform: scale(1.1) translate(0, 0);
+		}
+		100% {
+			transform: scale(1) translate(0, 0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes bubbleHide {
+		0% {
+			transform: scale(1) translate(0, 0);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(0) translate(-50%, 50%);
+			opacity: 0;
+		}
+	}
+</style>

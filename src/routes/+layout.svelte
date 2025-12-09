@@ -29,7 +29,7 @@
 
 <ModeWatcher />
 <div class="flex min-h-screen flex-col" id="main-content">
-	<!-- <Header /> -->
+	<Header />
 	<main class="flex-1 bg-background">
 		{@render children()}
 	</main>

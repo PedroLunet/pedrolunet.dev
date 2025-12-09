@@ -213,3 +213,7 @@
 header {
 	font-family: 'Satoshi', 'Geist Sans', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -7,11 +7,9 @@
 		DrawerHeader,
 		DrawerTitle,
 		DrawerTrigger,
-		DrawerFooter,
 		DrawerClose
 	} from '$lib/components/ui/drawer/index.js';
 	import type { Project } from '$lib/data/projects.js';
-	import { getFormattedProjectDateRange } from '$lib/data/projects.js';
 	import GithubIcon from '@lucide/svelte/icons/github';
 	import GlobeIcon from '@lucide/svelte/icons/globe';
 	import PlayIcon from '@lucide/svelte/icons/play';
@@ -26,12 +24,12 @@
 
 <Drawer>
 	<DrawerTrigger
-		class="group relative flex h-full min-h-[300px] w-full flex-col justify-between overflow-hidden rounded-sm bg-muted/20 p-8 text-left transition-all duration-500 hover:bg-primary hover:text-primary-foreground"
+		class="group relative flex h-full min-h-[300px] w-full flex-col justify-between overflow-hidden bg-muted/20 p-8 text-left transition-all duration-500 hover:bg-primary hover:text-primary-foreground"
 	>
 		<div class="flex w-full items-start justify-between">
 			<div class="flex items-center gap-3">
 				<div
-					class="flex h-10 w-10 items-center justify-center rounded-full bg-background/50 p-2 backdrop-blur-sm transition-colors group-hover:bg-white/20"
+					class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-background/50 p-2 backdrop-blur-sm transition-colors group-hover:bg-white/20"
 				>
 					<img
 						src={mainTech.icon}
@@ -51,9 +49,9 @@
 			</span>
 		</div>
 
-		<div class="relative z-10 mt-auto">
+		<div class="relative z-10 mt-auto w-full text-left">
 			<h3
-				class="max-w-[90%] text-4xl leading-[0.9] font-black tracking-tighter uppercase md:text-5xl"
+				class="line-clamp-3 max-w-full text-2xl leading-[0.9] font-black tracking-tighter break-words uppercase sm:text-4xl md:text-5xl"
 			>
 				{project.name}
 			</h3>
@@ -68,7 +66,7 @@
 				</p>
 
 				<div
-					class="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/20 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white group-hover:text-black"
+					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/20 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white group-hover:text-black"
 				>
 					<ArrowUpRightIcon
 						class="h-6 w-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -88,14 +86,14 @@
 				</DrawerClose>
 
 				<div class="space-y-4">
-					<div class="flex items-center gap-3 text-muted-foreground">
+					<div class="flex items-center justify-start gap-3 text-muted-foreground">
 						<span class="font-mono text-xs tracking-widest uppercase">Project 0{project.id}</span>
 						<span class="h-px w-8 bg-border"></span>
 						<span class="font-mono text-xs tracking-widest uppercase">{projectYear}</span>
 					</div>
 
 					<DrawerTitle
-						class="text-5xl font-black tracking-tighter text-primary uppercase md:text-7xl"
+						class="text-3xl font-black tracking-tighter break-words text-primary uppercase sm:text-5xl md:text-7xl"
 					>
 						{project.name}
 					</DrawerTitle>
@@ -104,17 +102,17 @@
 
 			<div class="px-4 pb-12 md:px-6">
 				<div class="grid gap-10 md:grid-cols-[2fr_1fr]">
-					<div class="space-y-8">
+					<div class="space-y-8 text-left">
 						<div>
 							<h4 class="mb-3 text-sm font-bold tracking-widest text-muted-foreground uppercase">
 								Context
 							</h4>
-							<DrawerDescription class="text-lg leading-relaxed text-foreground/90">
+							<DrawerDescription class="text-left text-lg leading-relaxed text-foreground/90">
 								{project.description}
 							</DrawerDescription>
 						</div>
 
-						<div class="flex flex-wrap gap-3">
+						<div class="flex flex-wrap justify-start gap-3">
 							{#if project.links.website}
 								<Button href={project.links.website} target="_blank" size="lg" class="rounded-full">
 									<GlobeIcon class="mr-2 h-4 w-4" />
@@ -136,12 +134,12 @@
 						</div>
 					</div>
 
-					<div class="space-y-8 rounded-xl bg-muted/30 p-6">
+					<div class="space-y-8 rounded-xl bg-muted/30 p-6 text-left">
 						<div>
 							<h4 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 								Stack
 							</h4>
-							<div class="flex flex-wrap gap-2">
+							<div class="flex flex-wrap justify-start gap-2">
 								{#each project.technologies as tech}
 									<div
 										class="flex items-center gap-2 rounded-md border bg-background px-2.5 py-1.5 shadow-sm"

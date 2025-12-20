@@ -1,14 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import {
-		Drawer,
-		DrawerContent,
-		DrawerDescription,
-		DrawerHeader,
-		DrawerTitle,
-		DrawerTrigger,
-		DrawerClose
-	} from '$lib/components/ui/drawer/index.js';
+	import * as Drawer from '$lib/components/ui/drawer/index.js';
 	import type { Project } from '$lib/data/projects.js';
 	import GithubIcon from '@lucide/svelte/icons/github';
 	import GlobeIcon from '@lucide/svelte/icons/globe';
@@ -22,8 +14,8 @@
 	$: projectYear = project.startDate ? new Date(project.startDate).getFullYear() : '2024';
 </script>
 
-<Drawer>
-	<DrawerTrigger
+<Drawer.Root>
+	<Drawer.Trigger
 		class="group relative flex h-full min-h-[300px] w-full flex-col justify-between overflow-hidden bg-muted/20 p-8 text-left transition-all duration-500 hover:bg-primary hover:text-primary-foreground"
 	>
 		<div class="flex w-full items-start justify-between">
@@ -43,7 +35,6 @@
 					/{mainTech.name}
 				</span>
 			</div>
-
 			<span class="font-mono text-xs font-bold opacity-40 group-hover:opacity-60">
 				©{projectYear}
 			</span>
@@ -64,7 +55,6 @@
 				>
 					{project.description}
 				</p>
-
 				<div
 					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/20 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white group-hover:text-black"
 				>
@@ -74,58 +64,69 @@
 				</div>
 			</div>
 		</div>
-	</DrawerTrigger>
+	</Drawer.Trigger>
 
-	<DrawerContent>
-		<div class="mx-auto w-full max-w-3xl">
-			<DrawerHeader class="relative pt-12 pb-8 text-left">
-				<DrawerClose class="absolute top-4 right-4 opacity-50 transition-opacity hover:opacity-100">
-					<Button variant="ghost" size="icon" class="h-10 w-10 rounded-full bg-muted">
+	<Drawer.Content class="max-h-[96vh]">
+		<div class="mx-auto w-full max-w-4xl overflow-y-auto">
+			<Drawer.Header class="relative border-b border-foreground/5 pt-16 pb-10 text-left md:pt-24">
+				<Drawer.Close class="absolute top-6 right-6 z-50">
+					<Button variant="secondary" size="icon" class="h-12 w-12 rounded-full shadow-sm">
 						<XIcon class="h-5 w-5" />
 					</Button>
-				</DrawerClose>
+				</Drawer.Close>
 
-				<div class="space-y-4">
-					<div class="flex items-center justify-start gap-3 text-muted-foreground">
-						<span class="font-mono text-xs tracking-widest uppercase">Project 0{project.id}</span>
-						<span class="h-px w-8 bg-border"></span>
-						<span class="font-mono text-xs tracking-widest uppercase">{projectYear}</span>
+				<div class="space-y-6 px-4 md:px-0">
+					<div class="flex items-center justify-start gap-4">
+						<span class="font-mono text-xs font-bold tracking-[0.2em] text-primary uppercase"
+							>Project 0{project.id}</span
+						>
+						<div class="h-px w-12 bg-primary/30"></div>
+						<span class="font-mono text-xs font-medium uppercase opacity-50">{projectYear}</span>
 					</div>
 
-					<DrawerTitle
-						class="text-3xl font-black tracking-tighter break-words text-primary uppercase sm:text-5xl md:text-7xl"
+					<Drawer.Title
+						class="text-5xl leading-[0.85] font-black tracking-tighter break-words text-foreground uppercase sm:text-7xl md:text-8xl"
 					>
 						{project.name}
-					</DrawerTitle>
+					</Drawer.Title>
 				</div>
-			</DrawerHeader>
+			</Drawer.Header>
 
-			<div class="px-4 pb-12 md:px-6">
-				<div class="grid gap-10 md:grid-cols-[2fr_1fr]">
-					<div class="space-y-8 text-left">
-						<div>
-							<h4 class="mb-3 text-sm font-bold tracking-widest text-muted-foreground uppercase">
-								Context
+			<div class="px-4 py-12 md:px-0">
+				<div class="grid gap-12 md:grid-cols-[1.5fr_1fr]">
+					<div class="space-y-10">
+						<section>
+							<h4
+								class="mb-4 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Overview
 							</h4>
-							<DrawerDescription class="text-left text-lg leading-relaxed text-foreground/90">
+							<Drawer.Description
+								class="text-left text-xl leading-relaxed text-foreground/90 md:text-2xl"
+							>
 								{project.description}
-							</DrawerDescription>
-						</div>
+							</Drawer.Description>
+						</section>
 
-						<div class="flex flex-wrap justify-start gap-3">
+						<div class="flex flex-wrap gap-3">
 							{#if project.links.website}
-								<Button href={project.links.website} target="_blank" size="lg" class="rounded-full">
+								<Button
+									href={project.links.website}
+									target="_blank"
+									size="lg"
+									class="rounded-full px-8 font-bold"
+								>
 									<GlobeIcon class="mr-2 h-4 w-4" />
 									Visit Website
 								</Button>
 							{/if}
 							{#if project.links.demo}
 								<Button
-									variant="secondary"
+									variant="outline"
 									href={project.links.demo}
 									target="_blank"
 									size="lg"
-									class="rounded-full"
+									class="rounded-full px-8 font-bold"
 								>
 									<PlayIcon class="mr-2 h-4 w-4" />
 									Live Demo
@@ -134,44 +135,52 @@
 						</div>
 					</div>
 
-					<div class="space-y-8 rounded-xl bg-muted/30 p-6 text-left">
-						<div>
-							<h4 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
-								Stack
+					<div class="space-y-8">
+						<section>
+							<h4
+								class="mb-6 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Tech Stack
 							</h4>
-							<div class="flex flex-wrap justify-start gap-2">
+							<div class="flex flex-wrap gap-2">
 								{#each project.technologies as tech}
 									<div
-										class="flex items-center gap-2 rounded-md border bg-background px-2.5 py-1.5 shadow-sm"
+										class="group flex items-center gap-2 rounded-full border border-foreground/10 bg-muted/30 px-4 py-2 transition-all hover:bg-primary hover:text-primary-foreground"
 									>
-										<img src={tech.icon} alt={tech.name} class="h-4 w-4" />
-										<span class="text-xs font-bold">{tech.name}</span>
+										<img
+											src={tech.icon}
+											alt={tech.name}
+											class="h-4 w-4 object-contain grayscale group-hover:grayscale-0 group-hover:invert"
+										/>
+										<span class="text-xs font-bold uppercase">{tech.name}</span>
 									</div>
 								{/each}
 							</div>
-						</div>
+						</section>
 
-						<div>
-							<h4 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
-								Source
+						<section class="rounded-2xl bg-muted/20 p-6">
+							<h4
+								class="mb-4 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Source
 							</h4>
 							{#if project.links.github}
 								<Button
-									variant="outline"
+									variant="ghost"
 									href={project.links.github}
 									target="_blank"
-									class="w-full justify-start gap-2"
+									class="w-full justify-between rounded-xl bg-background px-4 py-6 shadow-sm hover:bg-primary hover:text-primary-foreground"
 								>
-									<GithubIcon class="h-4 w-4" />
-									Repository
+									<span class="font-bold tracking-tight uppercase">GitHub Repository</span>
+									<GithubIcon class="h-5 w-5" />
 								</Button>
 							{:else}
-								<span class="text-sm text-muted-foreground italic">Source not public</span>
+								<p class="px-2 font-mono text-xs italic opacity-50">Source code is private</p>
 							{/if}
-						</div>
+						</section>
 					</div>
 				</div>
 			</div>
 		</div>
-	</DrawerContent>
-</Drawer>
+	</Drawer.Content>
+</Drawer.Root>

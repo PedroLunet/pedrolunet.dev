@@ -1,25 +1,64 @@
 <script lang="ts">
 	import SunIcon from '@lucide/svelte/icons/sun';
 	import MoonIcon from '@lucide/svelte/icons/moon';
-
-	import { resetMode, setMode } from 'mode-watcher';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { setMode } from 'mode-watcher';
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
+
+	const mode = writable<'light' | 'dark'>('light');
+
+	onMount(() => {
+		const updateMode = () => {
+			if (document.documentElement.classList.contains('dark')) {
+				mode.set('dark');
+			} else {
+				mode.set('light');
+			}
+		};
+		updateMode();
+		const observer = new MutationObserver(updateMode);
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+		return () => observer.disconnect();
+	});
+
+	function toggleTheme() {
+		mode.update((current) => {
+			const next = current === 'light' ? 'dark' : 'light';
+			setMode(next);
+			return next;
+		});
+	}
 </script>
 
-<DropdownMenu.Root>
-	<DropdownMenu.Trigger class={buttonVariants({ variant: 'outline', size: 'icon' })}>
-		<SunIcon
-			class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 !transition-all dark:scale-0 dark:-rotate-90"
-		/>
-		<MoonIcon
-			class="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 !transition-all dark:scale-100 dark:rotate-0"
-		/>
-		<span class="sr-only">Toggle theme</span>
-	</DropdownMenu.Trigger>
-	<DropdownMenu.Content align="end">
-		<DropdownMenu.Item onclick={() => setMode('light')}>Light</DropdownMenu.Item>
-		<DropdownMenu.Item onclick={() => setMode('dark')}>Dark</DropdownMenu.Item>
-		<DropdownMenu.Item onclick={() => resetMode()}>System</DropdownMenu.Item>
-	</DropdownMenu.Content>
-</DropdownMenu.Root>
+<button
+	class="flex h-10 w-10 items-center justify-center rounded-md border border-input bg-background p-2 text-foreground transition-colors duration-200 hover:bg-accent hover:text-accent-foreground"
+	aria-label="Toggle theme"
+	on:click={toggleTheme}
+>
+	{#if $mode === 'light'}
+		<span class="rotate-in inline-block">
+			<SunIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		</span>
+	{:else}
+		<span class="rotate-in inline-block">
+			<MoonIcon class="h-[1.2rem] w-[1.2rem] transition-all" />
+		</span>
+	{/if}
+</button>
+
+<style>
+	.rotate-in {
+		animation: rotateIn 0.4s;
+	}
+	@keyframes rotateIn {
+		from {
+			transform: rotate(90deg);
+			opacity: 0;
+		}
+		to {
+			transform: rotate(0deg);
+			opacity: 1;
+		}
+	}
+</style>

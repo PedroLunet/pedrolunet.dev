@@ -1,178 +1,178 @@
 <script lang="ts">
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from '$lib/components/ui/card/index.js';
-	import { Badge } from '$lib/components/ui/badge/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import {
-		Drawer,
-		DrawerContent,
-		DrawerDescription,
-		DrawerHeader,
-		DrawerTitle,
-		DrawerTrigger
-	} from '$lib/components/ui/drawer/index.js';
+	import * as Drawer from '$lib/components/ui/drawer/index.js';
 	import type { Project } from '$lib/data/projects.js';
-	import { getFormattedProjectDateRange } from '$lib/data/projects.js';
 	import GithubIcon from '@lucide/svelte/icons/github';
 	import GlobeIcon from '@lucide/svelte/icons/globe';
 	import PlayIcon from '@lucide/svelte/icons/play';
-	import CalendarIcon from '@lucide/svelte/icons/calendar';
-	import CheckCircle2Icon from '@lucide/svelte/icons/check-circle-2';
-	import ClockIcon from '@lucide/svelte/icons/clock';
-	import ArchiveIcon from '@lucide/svelte/icons/archive';
-	import PlusCircleIcon from '@lucide/svelte/icons/plus-circle';
+	import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
+	import XIcon from '@lucide/svelte/icons/x';
 
 	export let project: Project;
 
-	// Get the main technology (first one in the array)
 	$: mainTech = project.technologies[0];
-
-	// Status icon mapping
-	$: statusIcon = {
-		completed: CheckCircle2Icon,
-		'in-progress': ClockIcon,
-		archived: ArchiveIcon
-	}[project.status];
-
-	// Status colors
-	$: statusColor = {
-		completed: 'text-green-600',
-		'in-progress': 'text-blue-600',
-		archived: 'text-gray-600'
-	}[project.status];
+	$: projectYear = project.startDate ? new Date(project.startDate).getFullYear() : '2025';
 </script>
 
-<Drawer>
-	<Card class="relative flex h-full flex-col transition-shadow duration-200 hover:shadow-lg">
-		<!-- Main Technology Icon in top-left corner -->
-		<div class="absolute top-4 left-4 z-10">
-			<img src={mainTech.icon} alt={mainTech.name} class="h-12 w-12" title={mainTech.name} />
+<Drawer.Root>
+	<Drawer.Trigger
+		class="group relative flex h-full min-h-[300px] w-full flex-col justify-between overflow-hidden bg-muted/20 p-8 text-left transition-all duration-500 hover:bg-primary hover:text-primary-foreground"
+	>
+		<div class="flex w-full items-start justify-between">
+			<div class="flex items-center gap-3">
+				<div
+					class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-background/50 p-2 backdrop-blur-sm transition-colors group-hover:bg-white/20"
+				>
+					<img
+						src={mainTech.icon}
+						alt={mainTech.name}
+						class="h-full w-full object-contain opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:invert"
+					/>
+				</div>
+				<span
+					class="font-mono text-xs font-medium tracking-widest uppercase opacity-60 group-hover:opacity-80"
+				>
+					/{mainTech.name}
+				</span>
+			</div>
+
 		</div>
 
-		<CardHeader class="pt-16">
-			<CardTitle class="text-xl">{project.name}</CardTitle>
-			<CardDescription class="text-base">{project.description}</CardDescription>
-		</CardHeader>
+		<div class="relative z-10 mt-auto w-full text-left">
+			<h3
+				class="line-clamp-3 max-w-full text-2xl leading-[0.9] font-black tracking-tighter break-words uppercase sm:text-4xl md:text-5xl"
+			>
+				{project.name}
+			</h3>
 
-		<CardContent class="flex flex-1 flex-col justify-end">
-			<!-- Links -->
-			<div class="mt-auto flex items-center justify-between gap-2">
-				<div class="flex flex-wrap gap-2">
-					{#if project.links.github}
-						<Button variant="outline" size="sm" href={project.links.github} target="_blank">
-							<GithubIcon class="mr-1 h-4 w-4" />
-							GitHub
-						</Button>
-					{/if}
-					{#if project.links.website}
-						<Button variant="default" size="sm" href={project.links.website} target="_blank">
-							<GlobeIcon class="mr-1 h-4 w-4" />
-							Website
-						</Button>
-					{/if}
-					{#if project.links.demo}
-						<Button variant="secondary" size="sm" href={project.links.demo} target="_blank">
-							<PlayIcon class="mr-1 h-4 w-4" />
-							Demo
-						</Button>
-					{/if}
+			<div
+				class="mt-6 flex items-end justify-between border-t border-foreground/10 pt-4 group-hover:border-white/20"
+			>
+				<p
+					class="line-clamp-2 max-w-[70%] text-sm leading-relaxed opacity-70 group-hover:opacity-90"
+				>
+					{project.description}
+				</p>
+				<div
+					class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-foreground/20 transition-all duration-300 group-hover:border-white/40 group-hover:bg-white group-hover:text-black"
+				>
+					<ArrowUpRightIcon
+						class="h-6 w-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					/>
 				</div>
-				<DrawerTrigger>
-					<Button variant="ghost" size="sm" class="shrink-0">
-						<PlusCircleIcon class="h-4 w-4" />
-					</Button>
-				</DrawerTrigger>
 			</div>
-		</CardContent>
-	</Card>
+		</div>
+	</Drawer.Trigger>
 
-	<DrawerContent class="px-6 pb-6">
-		<DrawerHeader class="text-left">
-			<div class="mb-4 flex items-center gap-4">
-				<img src={mainTech.icon} alt={mainTech.name} class="h-16 w-16" />
-				<div class="flex-1">
-					<DrawerTitle class="text-2xl font-bold">{project.name}</DrawerTitle>
-					<div class="mt-2 flex items-center gap-2">
-						<svelte:component this={statusIcon} class="h-4 w-4 {statusColor}" />
-						<span class="text-sm capitalize {statusColor}">{project.status.replace('-', ' ')}</span>
-						{#if project.featured}
-							<Badge variant="secondary" class="ml-2">Featured</Badge>
-						{/if}
+	<Drawer.Content class="max-h-[96vh]">
+		<div class="mx-auto w-full max-w-4xl overflow-y-auto">
+			<Drawer.Header class="relative border-b border-foreground/5 pt-16 pb-10 text-left md:pt-24">
+				<Drawer.Close class="absolute top-6 right-6 z-50">
+					<Button variant="secondary" size="icon" class="h-12 w-12 rounded-full shadow-sm">
+						<XIcon class="h-5 w-5" />
+					</Button>
+				</Drawer.Close>
+
+				<div class="space-y-6 px-4 md:px-0">
+
+
+					<Drawer.Title
+						class="text-5xl leading-[0.85] font-black tracking-tighter break-words text-foreground uppercase sm:text-7xl md:text-8xl"
+					>
+						{project.name}
+					</Drawer.Title>
+				</div>
+			</Drawer.Header>
+
+			<div class="px-4 py-12 md:px-0">
+				<div class="grid gap-12 md:grid-cols-[1.5fr_1fr]">
+					<div class="space-y-10">
+						<section>
+							<h4
+								class="mb-4 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Overview
+							</h4>
+							<Drawer.Description
+								class="text-left text-xl leading-relaxed text-foreground/90 md:text-2xl"
+							>
+								{project.description}
+							</Drawer.Description>
+						</section>
+
+						<div class="flex flex-wrap gap-3">
+							{#if project.links.website}
+								<Button
+									href={project.links.website}
+									target="_blank"
+									size="lg"
+									class="rounded-full px-8 font-bold"
+								>
+									<GlobeIcon class="mr-2 h-4 w-4" />
+									Visit Website
+								</Button>
+							{/if}
+							{#if project.links.demo}
+								<Button
+									variant="outline"
+									href={project.links.demo}
+									target="_blank"
+									size="lg"
+									class="rounded-full px-8 font-bold"
+								>
+									<PlayIcon class="mr-2 h-4 w-4" />
+									Live Demo
+								</Button>
+							{/if}
+						</div>
+					</div>
+
+					<div class="space-y-8">
+						<section>
+							<h4
+								class="mb-6 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Tech Stack
+							</h4>
+							<div class="flex flex-wrap gap-2">
+								{#each project.technologies as tech}
+									<div
+										class="group flex items-center gap-2 rounded-full border border-foreground/10 bg-muted/30 px-4 py-2 transition-all hover:bg-primary hover:text-primary-foreground"
+									>
+										<img
+											src={tech.icon}
+											alt={tech.name}
+											class="h-4 w-4 object-contain grayscale group-hover:grayscale-0 group-hover:invert"
+										/>
+										<span class="text-xs font-bold uppercase">{tech.name}</span>
+									</div>
+								{/each}
+							</div>
+						</section>
+
+						<section class="rounded-2xl bg-muted/20 p-6">
+							<h4
+								class="mb-4 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase"
+							>
+								// Source
+							</h4>
+							{#if project.links.github}
+								<Button
+									variant="ghost"
+									href={project.links.github}
+									target="_blank"
+									class="w-full justify-between rounded-xl bg-background px-4 py-6 shadow-sm hover:bg-primary hover:text-primary-foreground"
+								>
+									<span class="font-bold tracking-tight uppercase">GitHub Repository</span>
+									<GithubIcon class="h-5 w-5" />
+								</Button>
+							{:else}
+								<p class="px-2 font-mono text-xs italic opacity-50">Source code is private</p>
+							{/if}
+						</section>
 					</div>
 				</div>
 			</div>
-		</DrawerHeader>
-
-		<div class="space-y-6">
-			<!-- Description -->
-			<div>
-				<h3 class="mb-2 text-lg font-semibold">About</h3>
-				<DrawerDescription class="text-base leading-relaxed">
-					{project.description}
-				</DrawerDescription>
-			</div>
-
-			<!-- Timeline -->
-			<div>
-				<h3 class="mb-2 text-lg font-semibold">Timeline</h3>
-				<div class="flex items-center gap-2 text-muted-foreground">
-					<CalendarIcon class="h-4 w-4" />
-					<span>{getFormattedProjectDateRange(project)}</span>
-				</div>
-			</div>
-
-			<!-- Technologies -->
-			<div>
-				<h3 class="mb-3 text-lg font-semibold">Technologies</h3>
-				<div class="flex flex-wrap gap-3">
-					{#each project.technologies as tech}
-						<div class="flex items-center gap-2 rounded-lg border bg-background px-3 py-2">
-							<img src={tech.icon} alt={tech.name} class="h-6 w-6" />
-							<span class="text-sm font-medium">{tech.name}</span>
-						</div>
-					{/each}
-				</div>
-			</div>
-
-			<!-- Links -->
-			<div>
-				<h3 class="mb-3 text-lg font-semibold">Links</h3>
-				<div class="flex flex-wrap gap-3">
-					{#if project.links.github}
-						<Button
-							variant="outline"
-							href={project.links.github}
-							target="_blank"
-							class="flex-1 sm:flex-none"
-						>
-							<GithubIcon class="mr-2 h-4 w-4" />
-							View on GitHub
-						</Button>
-					{/if}
-					{#if project.links.website}
-						<Button href={project.links.website} target="_blank" class="flex-1 sm:flex-none">
-							<GlobeIcon class="mr-2 h-4 w-4" />
-							Visit Website
-						</Button>
-					{/if}
-					{#if project.links.demo}
-						<Button
-							variant="secondary"
-							href={project.links.demo}
-							target="_blank"
-							class="flex-1 sm:flex-none"
-						>
-							<PlayIcon class="mr-2 h-4 w-4" />
-							View Demo
-						</Button>
-					{/if}
-				</div>
-			</div>
 		</div>
-	</DrawerContent>
-</Drawer>
+	</Drawer.Content>
+</Drawer.Root>

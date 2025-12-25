@@ -28,10 +28,10 @@
 </script>
 
 <ModeWatcher />
-<div class="flex min-h-screen flex-col">
+<div class="flex min-h-screen flex-col" id="main-content">
 	<Header />
-	<main class="flex-1 bg-background p-4 md:p-6 lg:p-8">
+	<main class="flex-1 bg-background">
 		{@render children()}
 	</main>
-	<Footer />
+	<!-- <Footer /> -->
 </div>

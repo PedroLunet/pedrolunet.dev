@@ -11,7 +11,7 @@
 	export let project: Project;
 
 	$: mainTech = project.technologies[0];
-	$: projectYear = project.startDate ? new Date(project.startDate).getFullYear() : '2024';
+	$: projectYear = project.startDate ? new Date(project.startDate).getFullYear() : '2025';
 </script>
 
 <Drawer.Root>

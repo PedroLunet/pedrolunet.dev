@@ -35,9 +35,7 @@
 					/{mainTech.name}
 				</span>
 			</div>
-			<span class="font-mono text-xs font-bold opacity-40 group-hover:opacity-60">
-				©{projectYear}
-			</span>
+
 		</div>
 
 		<div class="relative z-10 mt-auto w-full text-left">
@@ -76,13 +74,7 @@
 				</Drawer.Close>
 
 				<div class="space-y-6 px-4 md:px-0">
-					<div class="flex items-center justify-start gap-4">
-						<span class="font-mono text-xs font-bold tracking-[0.2em] text-primary uppercase"
-							>Project 0{project.id}</span
-						>
-						<div class="h-px w-12 bg-primary/30"></div>
-						<span class="font-mono text-xs font-medium uppercase opacity-50">{projectYear}</span>
-					</div>
+
 
 					<Drawer.Title
 						class="text-5xl leading-[0.85] font-black tracking-tighter break-words text-foreground uppercase sm:text-7xl md:text-8xl"

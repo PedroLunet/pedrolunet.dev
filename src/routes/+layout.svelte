@@ -27,7 +27,13 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<link rel="preload" href="/fonts/Switzer-Variable.ttf" as="font" type="font/ttf" crossorigin />
+	<link
+		rel="preload"
+		href="/fonts/Switzer-Variable.ttf"
+		as="font"
+		type="font/ttf"
+		crossorigin="anonymous"
+	/>
 </svelte:head>
 
 <Header />

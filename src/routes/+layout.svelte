@@ -38,6 +38,8 @@
 
 <Header />
 
-<main class="w-full h-screen">
+<main
+	class="h-[calc(100vh-var(--header-height-mobile))] w-full md:h-[calc(100vh-var(--header-height-desktop))]"
+>
 	{@render children()}
 </main>

@@ -1,4 +1,31 @@
-<div class="flex h-svh w-full flex-col justify-center px-6 md:px-9">
+<script>
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+
+	onMount(() => {
+		const tl = gsap.timeline();
+
+		tl.from('h1, h2, h3', {
+			y: 20,
+			opacity: 0,
+			duration: 1.2,
+			ease: 'power3.out',
+			stagger: 0.5
+		})
+
+			.from(
+				'.bg-accent',
+				{
+					width: 0,
+					duration: 2.5,
+					ease: 'power4.out'
+				},
+				'-=1.0'
+			);
+	});
+</script>
+
+<div class="flex h-full w-full flex-col justify-center px-6 md:px-9">
 	<div class="flex flex-wrap items-center gap-4 md:gap-8">
 		<h1 class="text-6xl leading-none font-medium tracking-tighter md:text-9xl">Pedro</h1>
 

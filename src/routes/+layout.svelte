@@ -38,6 +38,6 @@
 
 <Header />
 
-<main class="w-full">
+<main class="w-full h-screen">
 	{@render children()}
 </main>

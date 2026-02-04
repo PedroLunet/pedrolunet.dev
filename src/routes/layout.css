@@ -2,9 +2,48 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+	font-family: 'Switzer';
+	src: url('/fonts/Switzer-Variable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Switzer';
+	src: url('/fonts/Switzer-VariableItalic.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-Variable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-Italic-Variable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
 @theme {
 	--color-bg: #131313;
 	--color-text: #f8f7f4;
 	--color-accent: #ff4d00;
 	--color-text-secondary: #848484;
+	--font-sans: 'Switzer', 'Inter', sans-serif;
+}
+body {
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
 }

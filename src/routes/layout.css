@@ -39,7 +39,10 @@
 	--color-accent: #ff4d00;
 	--color-text-secondary: #848484;
 	--font-sans: 'Switzer', 'Inter', sans-serif;
+	--header-height-mobile: 48px;
+	--header-height-desktop: 72px;
 }
+
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);

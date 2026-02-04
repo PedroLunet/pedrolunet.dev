@@ -7,6 +7,6 @@
 >
 	<span>pedro lunet</span>
 	<div>
-		<span>portfolio </span><span class="text-text-secondary">2026</span>
+		<span>portfolio </span><TumblerYear year="2026" />
 	</div>
 </header>

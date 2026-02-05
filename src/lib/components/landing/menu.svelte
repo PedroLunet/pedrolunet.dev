@@ -9,26 +9,40 @@
 >
 	<a
 		href="/works"
-		class="menu-item invisible text-4xl font-semibold tracking-tight transition-colors hover:text-accent md:text-8xl"
+		class="menu-item group text-text-primary invisible block text-4xl font-bold tracking-tight md:text-8xl"
 	>
-		Selected Works
+		<span
+			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
+		>
+			Selected Works
+		</span>
 	</a>
+
 	<a
 		href="/about"
-		class="menu-item invisible text-4xl font-semibold tracking-tight transition-colors hover:text-accent md:text-8xl"
+		class="menu-item group text-text-primary invisible block text-4xl font-bold tracking-tight md:text-8xl"
 	>
-		About Me
+		<span
+			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
+		>
+			About Me
+		</span>
 	</a>
+
 	<a
 		href="/contact"
-		class="menu-item invisible text-4xl font-semibold tracking-tight transition-colors hover:text-accent md:text-8xl"
+		class="menu-item group text-text-primary invisible block text-4xl font-bold tracking-tight md:text-8xl"
 	>
-		Contact
+		<span
+			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
+		>
+			Contact
+		</span>
 	</a>
 
-	<div class="menu-item invisible my-4 h-px w-24 bg-text-secondary"></div>
+	<div class="menu-item invisible my-4 mr-1 h-px w-24 bg-text-secondary"></div>
 
-	<p class="menu-item invisible text-lg text-text-secondary">
+	<p class="menu-item invisible pr-1 text-lg text-text-secondary">
 		Available for freelance<br />
 		<span class="text-accent">hello@pedrolunet.dev</span>
 	</p>

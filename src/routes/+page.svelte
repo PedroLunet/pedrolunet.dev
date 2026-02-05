@@ -66,7 +66,7 @@
 				{
 					x: 0,
 					autoAlpha: 1,
-					duration: 1.2,
+					duration: 1.0,
 					ease: 'power3.inOut',
 					stagger: 0.1
 				},
@@ -85,14 +85,12 @@
 						const blockRect = block.getBoundingClientRect();
 						const ghostRect = ghost.getBoundingClientRect();
 
-						const diff = ghostRect.left - blockRect.left;
-
-						return diff;
+						return ghostRect.left - blockRect.left;
 					},
 					rotation: 90,
-					scale: 0.8,
-					duration: 1.2,
-					ease: 'back.out(1.7)'
+					scale: 0.75,
+					duration: 1.0,
+					ease: 'expo.inOut'
 				},
 				0
 			);

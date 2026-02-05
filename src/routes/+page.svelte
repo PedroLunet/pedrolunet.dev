@@ -68,7 +68,7 @@
 					autoAlpha: 1,
 					duration: 1.0,
 					ease: 'power3.inOut',
-					stagger: 0.1
+					stagger: 0.05
 				},
 				0.2
 			);
@@ -79,13 +79,15 @@
 					x: () => {
 						const block = document.querySelector('.js-block');
 						const ghost = document.querySelector('.js-ghost-target');
-
 						if (!block || !ghost) return 0;
+						return ghost.getBoundingClientRect().left - block.getBoundingClientRect().left;
+					},
 
-						const blockRect = block.getBoundingClientRect();
-						const ghostRect = ghost.getBoundingClientRect();
-
-						return ghostRect.left - blockRect.left;
+					y: () => {
+						const block = document.querySelector('.js-block');
+						const ghost = document.querySelector('.js-ghost-target');
+						if (!block || !ghost) return 0;
+						return ghost.getBoundingClientRect().top - block.getBoundingClientRect().top;
 					},
 					rotation: 90,
 					scale: 0.75,
@@ -106,10 +108,10 @@
 	}
 </script>
 
-<div class="relative h-full w-full overflow-hidden px-6 lg:px-9">
-	<div class="js-ghost-target absolute top-1/2 left-6 h-0 w-0 -translate-y-1/2 lg:left-9"></div>
+<div class="relative h-full w-full overflow-hidden px-8 lg:px-12">
+	<div class="js-ghost-target absolute top-1/2 left-3 h-0 w-0 -translate-y-1/2 lg:left-9"></div>
 
-	<div class="absolute inset-0 flex flex-col justify-center px-6 lg:px-9">
+	<div class="absolute inset-0 flex flex-col justify-center px-8 lg:px-12">
 		<Hero>
 			{#snippet block()}
 				<Block onclick={toggle} />

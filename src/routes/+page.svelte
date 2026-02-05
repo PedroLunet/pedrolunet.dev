@@ -76,9 +76,22 @@
 			tlOpen.to(
 				'.js-block',
 				{
+					x: () => {
+						const block = document.querySelector('.js-block');
+						const ghost = document.querySelector('.js-ghost-target');
+
+						if (!block || !ghost) return 0;
+
+						const blockRect = block.getBoundingClientRect();
+						const ghostRect = ghost.getBoundingClientRect();
+
+						const diff = ghostRect.left - blockRect.left;
+
+						return diff;
+					},
 					rotation: 90,
 					scale: 0.8,
-					duration: 0.8,
+					duration: 1.2,
 					ease: 'back.out(1.7)'
 				},
 				0
@@ -96,6 +109,8 @@
 </script>
 
 <div class="relative h-full w-full overflow-hidden px-6 lg:px-9">
+	<div class="js-ghost-target absolute top-1/2 left-6 h-0 w-0 -translate-y-1/2 lg:left-9"></div>
+
 	<div class="absolute inset-0 flex flex-col justify-center px-6 lg:px-9">
 		<Hero>
 			{#snippet block()}

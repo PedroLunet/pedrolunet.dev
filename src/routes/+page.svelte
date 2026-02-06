@@ -135,7 +135,7 @@
 	<div class="absolute inset-0 flex flex-col justify-center px-8 lg:px-12">
 		<Hero>
 			{#snippet block()}
-				<Block onclick={handleClick} />
+				<Block onclick={handleClick} isOpen={isMenuOpen} />
 			{/snippet}
 		</Hero>
 	</div>

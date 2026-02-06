@@ -37,8 +37,18 @@
 			mm.add('(max-width: 1023px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
-					{ height: 0, autoAlpha: 1 },
-					{ height: '3rem', duration: 2.5, ease: 'power4.out' },
+					{
+						height: 0,
+						marginTop: 0,
+						marginBottom: 0,
+						autoAlpha: 1
+					},
+					{
+						height: '3rem',
+
+						duration: 2.5,
+						ease: 'power4.out'
+					},
 					'-=1.0'
 				);
 			});

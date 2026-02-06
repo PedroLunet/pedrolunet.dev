@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="pointer-events-none flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:gap-8"
+	class="pointer-events-none flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:gap-4"
 >
 	<h1
 		class="hero-text invisible text-6xl leading-none font-medium tracking-tighter md:text-7xl lg:text-9xl"

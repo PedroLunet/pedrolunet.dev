@@ -22,7 +22,7 @@
 		class="relative flex h-full w-full items-end justify-center overflow-hidden bg-accent transition-transform duration-200 ease-out active:scale-90"
 	>
 		<div
-			class="absolute inset-0 z-0 origin-left scale-x-0 bg-accent-light transition-transform duration-300 ease-out group-hover:scale-x-100"
+			class="absolute inset-0 z-0 origin-left scale-x-0 bg-accent-light transition-transform duration-300 ease-out [@media(hover:hover)]:group-hover:scale-x-100"
 		></div>
 
 		<div class="relative z-10 flex h-5 w-full justify-center leading-none lg:h-7">

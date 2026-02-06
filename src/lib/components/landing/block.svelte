@@ -2,13 +2,20 @@
 	let { onclick, isOpen = false } = $props();
 
 	let label = $state('menu');
-	const TEXT_DELAY = 600;
+
+	const DELAY_MOBILE = 450;
+	const DELAY_DESKTOP = 600;
 
 	$effect(() => {
 		const targetLabel = isOpen ? 'close' : 'menu';
+
+		const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+		const currentDelay = isDesktop ? DELAY_DESKTOP : DELAY_MOBILE;
+
 		const timer = setTimeout(() => {
 			label = targetLabel;
-		}, TEXT_DELAY);
+		}, currentDelay);
+
 		return () => clearTimeout(timer);
 	});
 </script>
@@ -19,10 +26,12 @@
 	aria-label="Toggle Menu"
 >
 	<div
-		class="relative flex h-full w-full items-end justify-center overflow-hidden bg-accent transition-transform duration-200 ease-out active:scale-90"
+		class="relative flex h-full w-full items-end justify-center overflow-hidden bg-accent transition-transform duration-200 ease-out md:active:scale-90"
 	>
 		<div
-			class="absolute inset-0 z-0 origin-left scale-x-0 bg-accent-light transition-transform duration-300 ease-out [@media(hover:hover)]:group-hover:scale-x-100"
+			class="absolute inset-0 z-0 origin-left bg-accent-light transition-transform duration-300 ease-out {isOpen
+				? 'scale-x-100'
+				: 'scale-x-0'} md:scale-x-0 md:group-hover:scale-x-100"
 		></div>
 
 		<div class="relative z-10 flex h-5 w-full justify-center leading-none lg:h-7">

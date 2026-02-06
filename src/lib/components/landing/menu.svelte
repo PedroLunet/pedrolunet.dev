@@ -8,7 +8,7 @@
 		: 'pointer-events-none'}"
 >
 	<a
-		href="/works"
+		href="/work"
 		class="menu-item group text-text-primary invisible block text-4xl font-thin tracking-tight md:text-8xl"
 	>
 		<span

@@ -15,7 +15,7 @@
 
 <button
 	{onclick}
-	class="js-block group relative h-12 w-32 cursor-pointer outline-none md:h-24 md:w-48"
+	class="js-block group relative flex h-12 w-32 cursor-pointer border-none p-0 outline-none md:h-24 md:w-48"
 	aria-label="Toggle Menu"
 >
 	<div
@@ -34,12 +34,5 @@
 				</span>
 			{/key}
 		</div>
-
-		<div
-			class="pointer-events-none absolute top-1 right-1 h-1 w-1 border-t border-r border-bg/30"
-		></div>
-		<div
-			class="pointer-events-none absolute bottom-1 left-1 h-1 w-1 border-b border-l border-bg/30"
-		></div>
 	</div>
 </button>

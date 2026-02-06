@@ -18,17 +18,13 @@
 			gsap.set('.hero-text', { y: 20, autoAlpha: 0 });
 			gsap.set('.menu-item', { x: 50, autoAlpha: 0 });
 
-			tlLoad.addLabel('start').to(
-				'.hero-text',
-				{
-					y: 0,
-					autoAlpha: 1,
-					duration: 1.2,
-					ease: 'power3.out',
-					stagger: 0.3
-				},
-				'start'
-			);
+			tlLoad
+				.addLabel('start')
+				.to(
+					'.hero-text',
+					{ y: 0, autoAlpha: 1, duration: 1.2, ease: 'power3.out', stagger: 0.3 },
+					'start'
+				);
 
 			mm.add('(min-width: 1024px)', () => {
 				tlLoad.fromTo(
@@ -54,7 +50,7 @@
 				{
 					x: -50,
 					autoAlpha: 0,
-					duration: 0.8,
+					duration: 0.5,
 					ease: 'power3.inOut',
 					stagger: 0.05
 				},
@@ -66,8 +62,8 @@
 				{
 					x: 0,
 					autoAlpha: 1,
-					duration: 1.0,
-					ease: 'power3.inOut',
+					duration: 0.6,
+					ease: 'power3.out',
 					stagger: 0.05
 				},
 				0.2
@@ -82,7 +78,6 @@
 						if (!block || !ghost) return 0;
 						return ghost.getBoundingClientRect().left - block.getBoundingClientRect().left;
 					},
-
 					y: () => {
 						const block = document.querySelector('.js-block');
 						const ghost = document.querySelector('.js-ghost-target');
@@ -114,9 +109,7 @@
 
 	function handleScroll(event: WheelEvent) {
 		if (!tlOpen) return;
-
 		const threshold = 5;
-
 		if (event.deltaY > threshold && !isMenuOpen) {
 			tlOpen.play();
 			isMenuOpen = true;
@@ -135,7 +128,7 @@
 	<div class="absolute inset-0 flex flex-col justify-center px-8 lg:px-12">
 		<Hero>
 			{#snippet block()}
-				<Block onclick={handleClick} />
+				<Block onclick={handleClick} isOpen={isMenuOpen} />
 			{/snippet}
 		</Hero>
 	</div>

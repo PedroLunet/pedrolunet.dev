@@ -29,7 +29,7 @@
 				</h1>
 
 				<div
-					class="border-text-primary/20 flex flex-col gap-1 border-l pl-4 font-mono text-xs tracking-widest text-text-secondary uppercase"
+					class="border-text-primary/20 flex flex-col gap-1 border-l pl-4 text-xs tracking-widest text-text-secondary uppercase"
 				>
 					<span>{data.project.year}</span>
 					<span class="text-text-primary">{data.project.context}</span>

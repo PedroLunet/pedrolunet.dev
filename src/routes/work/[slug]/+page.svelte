@@ -8,9 +8,9 @@
 	}
 </script>
 
-<div class="min-h-screen w-full bg-bg px-4 pt-4 pb-12 lg:px-12 lg:pt-8">
+<div class="min-h-screen w-full bg-bg px-4 pt-8 pb-24 lg:px-12 lg:pt-12">
 	<div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-		<div class="order-1 col-span-1 flex h-fit flex-col gap-12 lg:sticky lg:top-48 lg:col-span-4">
+		<div class="order-1 col-span-1 flex h-fit flex-col gap-12 lg:sticky lg:top-12 lg:col-span-4">
 			<div>
 				<a
 					href="/work"
@@ -23,7 +23,7 @@
 
 			<div class="flex flex-col gap-6" style="container-type: inline-size">
 				<h1
-					class="text-text-primary w-full text-[12cqi] leading-[0.85] font-bold tracking-tight break-normal hyphens-none uppercase"
+					class="text-text-primary w-full text-[clamp(2.5rem,12cqi,6rem)] leading-[0.85] font-bold tracking-tight break-normal hyphens-none uppercase"
 				>
 					{data.project.title}
 				</h1>
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 
-		<div class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-12">
+		<div class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-20">
 			<div
 				class="text-text-primary/90 prose prose-lg max-w-none leading-relaxed font-light prose-invert"
 			>

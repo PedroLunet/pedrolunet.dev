@@ -1,94 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	const projects = [
-		{
-			id: '01',
-			title: 'Neural Architectures',
-			context: "Master's Thesis",
-			year: '2024',
-			tech: [
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL',
-				'Python',
-				'TensorFlow',
-				'WebGL'
-			],
-			image:
-				'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop'
-		},
-		{
-			id: '02',
-			title: 'Morphology',
-			context: 'Generative Art',
-			year: '2023',
-			tech: ['p5.js', 'GLSL', 'Canvas'],
-			image:
-				'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop'
-		},
-		{
-			id: '03',
-			title: 'Urban Decay',
-			context: 'Photography',
-			year: '2023',
-			tech: ['Analog', 'Darkroom', 'Scan'],
-			image:
-				'https://images.unsplash.com/photo-1478720568477-152d9b164e63?q=80&w=1998&auto=format&fit=crop'
-		},
-		{
-			id: '04',
-			title: 'System 01',
-			context: 'University',
-			year: '2022',
-			tech: ['Figma', 'Design Systems'],
-			image:
-				'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop'
-		},
-		{
-			id: '05',
-			title: 'Playground',
-			context: 'Experiments',
-			year: '2021—24',
-			tech: ['Svelte', 'Three.js', 'Blender'],
-			image:
-				'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop'
-		}
-	];
-
+	import projects from '$lib/data/projects.json';
 	let activeImage = $state(projects[0].image);
 </script>
 
@@ -106,7 +19,7 @@
 
 			{#each projects as project}
 				<a
-					href="/works/{project.title.toLowerCase().replace(' ', '-')}"
+					href="/works/{project.slug}"
 					class="group border-text-primary/20 hover:bg-text-primary/5 relative grid grid-cols-1 gap-y-2 border-b py-6 transition-all duration-300 hover:pl-4 md:grid-cols-12 md:items-center md:gap-4"
 					onmouseenter={() => (activeImage = project.image)}
 				>
@@ -166,7 +79,6 @@
 						class="absolute inset-0 h-full w-full object-cover"
 					/>
 				{/key}
-
 				<div
 					class="pointer-events-none absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10"
 				></div>

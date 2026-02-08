@@ -1,0 +1,52 @@
+[
+	{
+		"id": "01",
+		"slug": "neural-architectures",
+		"title": "Neural Architectures",
+		"context": "Master's Thesis",
+		"year": "2024",
+		"tech": ["Python", "TensorFlow", "WebGL"],
+		"image": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop",
+		"description": "Visualizing high-dimensional data using biological metaphors."
+	},
+	{
+		"id": "02",
+		"slug": "morphology",
+		"title": "Morphology",
+		"context": "Generative Art",
+		"year": "2023",
+		"tech": ["p5.js", "GLSL", "Canvas"],
+		"image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop",
+		"description": "A study in algorithmic growth patterns."
+	},
+	{
+		"id": "03",
+		"slug": "urban-decay",
+		"title": "Urban Decay",
+		"context": "Photography",
+		"year": "2023",
+		"tech": ["Analog", "Darkroom", "Scan"],
+		"image": "https://images.unsplash.com/photo-1478720568477-152d9b164e63?q=80&w=1998&auto=format&fit=crop",
+		"description": "Documenting the quiet collapse of modern structures."
+	},
+	{
+		"id": "04",
+		"slug": "system-01",
+		"title": "System 01",
+		"context": "University",
+		"year": "2022",
+		"tech": ["Figma", "Design Systems"],
+		"image": "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
+		"description": "A comprehensive UI kit for academic dashboards."
+	},
+	{
+		"id": "05",
+		"slug": "playground",
+		"title": "Playground",
+		"context": "Experiments",
+		"year": "2021—24",
+		"tech": ["Svelte", "Three.js", "Blender"],
+		"image": "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop",
+		"description": "Code sketches and 3D explorations."
+	}
+]

@@ -51,4 +51,26 @@ body {
 	font-family: var(--font-sans);
 	min-height: 100vh;
 	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	width: 100%;
+}
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+	pointer-events: none;
 }

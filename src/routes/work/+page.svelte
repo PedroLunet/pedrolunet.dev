@@ -19,7 +19,7 @@
 
 			{#each projects as project}
 				<a
-					href="/works/{project.slug}"
+					href="/work/{project.slug}"
 					class="group border-text-primary/20 hover:bg-text-primary/5 relative grid grid-cols-1 gap-y-2 border-b py-6 transition-all duration-300 hover:pl-4 md:grid-cols-12 md:items-center md:gap-4"
 					onmouseenter={() => (activeImage = project.image)}
 				>
@@ -67,7 +67,7 @@
 			{/each}
 		</div>
 
-		<div class="relative sticky top-32 col-span-5 hidden h-[50vh] lg:block">
+		<div class="sticky top-32 col-span-5 hidden h-[50vh] lg:block">
 			<div
 				class="border-text-primary/5 relative h-full w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-black/5"
 			>

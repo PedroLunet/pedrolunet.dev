@@ -7,7 +7,9 @@
 		"year": "2024",
 		"tech": ["Python", "TensorFlow", "WebGL"],
 		"image": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop",
-		"description": "Visualizing high-dimensional data using biological metaphors."
+		"description": "Visualizing high-dimensional data using biological metaphors. This project explores the intersection of organic growth patterns and machine learning datasets.",
+		"repo": "https://github.com/pedrolunet/neural-architectures",
+		"demo": "https://neural-architectures.vercel.app"
 	},
 	{
 		"id": "02",
@@ -17,7 +19,8 @@
 		"year": "2023",
 		"tech": ["p5.js", "GLSL", "Canvas"],
 		"image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop",
-		"description": "A study in algorithmic growth patterns."
+		"description": "A study in algorithmic growth patterns. Using reaction-diffusion equations to generate infinite variations of organic textures.",
+		"demo": "https://morphology-art.com"
 	},
 	{
 		"id": "03",
@@ -27,7 +30,7 @@
 		"year": "2023",
 		"tech": ["Analog", "Darkroom", "Scan"],
 		"image": "https://images.unsplash.com/photo-1478720568477-152d9b164e63?q=80&w=1998&auto=format&fit=crop",
-		"description": "Documenting the quiet collapse of modern structures."
+		"description": "Documenting the quiet collapse of modern structures. Shot on Ilford HP5+ and developed by hand."
 	},
 	{
 		"id": "04",
@@ -37,7 +40,8 @@
 		"year": "2022",
 		"tech": ["Figma", "Design Systems"],
 		"image": "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
-		"description": "A comprehensive UI kit for academic dashboards."
+		"description": "A comprehensive UI kit for academic dashboards. Focused on high-contrast accessibility and density.",
+		"repo": "https://github.com/pedrolunet/system-01"
 	},
 	{
 		"id": "05",
@@ -47,6 +51,6 @@
 		"year": "2021—24",
 		"tech": ["Svelte", "Three.js", "Blender"],
 		"image": "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop",
-		"description": "Code sketches and 3D explorations."
+		"description": "Code sketches and 3D explorations. A collection of half-baked ideas and visual experiments."
 	}
 ]

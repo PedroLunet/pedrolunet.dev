@@ -64,6 +64,41 @@
 					{/each}
 				</div>
 			</div>
+
+			{#if data.project.repo || data.project.demo}
+				<div>
+					<h3
+						class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
+					>
+						Resources
+					</h3>
+					<div class="flex flex-col gap-2">
+						{#if data.project.demo}
+							<a
+								href={data.project.demo}
+								target="_blank"
+								rel="noreferrer"
+								class="border-text-primary/10 group flex w-full items-center justify-between border bg-bg px-4 py-3 transition-colors hover:border-accent hover:text-accent"
+							>
+								<span class="text-xs font-bold tracking-widest uppercase">Live Demo</span>
+								<span class="text-xs opacity-50 group-hover:opacity-100">↗</span>
+							</a>
+						{/if}
+
+						{#if data.project.repo}
+							<a
+								href={data.project.repo}
+								target="_blank"
+								rel="noreferrer"
+								class="border-text-primary/10 group flex w-full items-center justify-between border bg-bg px-4 py-3 transition-colors hover:border-accent hover:text-accent"
+							>
+								<span class="text-xs font-bold tracking-widest uppercase">GitHub</span>
+								<span class="text-xs opacity-50 group-hover:opacity-100">↗</span>
+							</a>
+						{/if}
+					</div>
+				</div>
+			{/if}
 		</div>
 
 		<div class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-20">

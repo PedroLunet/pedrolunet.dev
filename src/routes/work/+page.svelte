@@ -24,7 +24,7 @@
 					onmouseenter={() => (activeImage = project.image)}
 				>
 					<div
-						class="col-span-1 font-mono text-xs text-accent opacity-70 transition-opacity group-hover:opacity-100"
+						class="col-span-1 text-xs text-accent opacity-70 transition-opacity group-hover:opacity-100"
 					>
 						/{project.id}
 					</div>
@@ -52,14 +52,14 @@
 						{/each}
 
 						{#if project.tech.length > 6}
-							<span class="px-1 font-mono text-[10px] text-text-secondary/50">
+							<span class="px-1 text-[10px] text-text-secondary/50">
 								+{project.tech.length - 6}
 							</span>
 						{/if}
 					</div>
 
 					<div
-						class="group-hover:text-text-primary col-span-2 mt-2 text-right font-mono text-xs text-text-secondary md:mt-0"
+						class="group-hover:text-text-primary col-span-2 mt-2 text-right text-xs text-text-secondary md:mt-0"
 					>
 						{project.year}
 					</div>

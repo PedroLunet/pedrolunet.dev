@@ -130,7 +130,7 @@
 					</div>
 
 					<div class="col-span-4 mt-2 flex flex-wrap content-center items-center gap-2 md:mt-0">
-						{#each project.tech.slice(0, 3) as t}
+						{#each project.tech.slice(0, 6) as t}
 							<span
 								class="bg-text-primary/5 rounded-sm px-2 py-1 text-[10px] tracking-wider text-text-secondary uppercase transition-colors group-hover:bg-accent/10 group-hover:text-accent"
 							>
@@ -138,9 +138,9 @@
 							</span>
 						{/each}
 
-						{#if project.tech.length > 3}
+						{#if project.tech.length > 6}
 							<span class="px-1 font-mono text-[10px] text-text-secondary/50">
-								+{project.tech.length - 3}
+								+{project.tech.length - 6}
 							</span>
 						{/if}
 					</div>

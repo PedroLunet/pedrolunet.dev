@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
 	import { ArrowUpRight, ArrowUp } from '@lucide/svelte';
 	import Carousel from '$lib/components/carousel.svelte';
+	import gsap from 'gsap';
 
 	let { data } = $props();
 
@@ -14,12 +14,25 @@
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
+
+	$effect(() => {
+		gsap.set('.reveal', { y: 20, autoAlpha: 0 });
+
+		gsap.to('.reveal', {
+			y: 0,
+			autoAlpha: 1,
+			duration: 0.8,
+			stagger: 0.1,
+			ease: 'power3.out',
+			delay: 0.1
+		});
+	});
 </script>
 
 <div class="min-h-screen w-full bg-bg px-4 pt-8 pb-24 lg:px-12 lg:pt-12">
 	<div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 		<div class="order-1 col-span-1 flex h-fit flex-col gap-12 lg:sticky lg:top-12 lg:col-span-4">
-			<div>
+			<div class="reveal">
 				<a
 					href="/work"
 					class="group inline-flex items-center gap-2 text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors hover:text-accent"
@@ -29,7 +42,7 @@
 				</a>
 			</div>
 
-			<div class="flex flex-col gap-6" style="container-type: inline-size">
+			<div class="reveal flex flex-col gap-6" style="container-type: inline-size">
 				<h1
 					class="text-text-primary w-full text-[clamp(2.5rem,12cqi,6rem)] leading-[0.85] font-bold tracking-tight break-normal hyphens-none uppercase"
 				>
@@ -44,7 +57,7 @@
 				</div>
 			</div>
 
-			<div>
+			<div class="reveal">
 				<h3
 					class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 				>
@@ -73,7 +86,7 @@
 			</div>
 
 			{#if data.project.repo || data.project.demo}
-				<div>
+				<div class="reveal">
 					<h3
 						class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 					>
@@ -116,14 +129,16 @@
 
 		<div class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-20">
 			<div
-				class="text-text-primary/90 prose prose-lg max-w-none leading-relaxed font-light prose-invert"
+				class="reveal text-text-primary/90 prose prose-lg max-w-none leading-relaxed font-light prose-invert"
 			>
 				<p>{data.project.description}</p>
 			</div>
 
-			<Carousel images={allImages} title={data.project.title} />
+			<div class="reveal">
+				<Carousel images={allImages} title={data.project.title} />
+			</div>
 
-			<div class="border-text-primary/10 mt-24 flex justify-end border-t pt-8">
+			<div class="reveal border-text-primary/10 mt-24 flex justify-end border-t pt-8">
 				<button
 					onclick={scrollToTop}
 					class="group flex items-center gap-4 text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors hover:text-accent"

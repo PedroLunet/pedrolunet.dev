@@ -116,9 +116,9 @@
       "
 		>
 			{#if cursorSide === 'left'}
-				<ArrowLeft size={32} strokeWidth={1.5} />
+				<ArrowLeft size={32} strokeWidth={2} />
 			{:else}
-				<ArrowRight size={32} strokeWidth={1.5} />
+				<ArrowRight size={32} strokeWidth={2} />
 			{/if}
 		</div>
 	{/if}

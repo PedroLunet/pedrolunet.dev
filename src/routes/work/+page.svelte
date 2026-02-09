@@ -6,7 +6,9 @@
 	let activeImage = $state(projects[0].image);
 </script>
 
-<div class="min-h-screen w-full bg-bg px-4 pt-28 pb-12 md:px-12">
+<div
+	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg px-6 pt-4 pb-12 md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9"
+>
 	<div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
 		<div class="col-span-1 flex flex-col lg:col-span-7">
 			<div
@@ -94,20 +96,21 @@
 			</a>
 		</div>
 
-		<div class="sticky top-32 col-span-5 hidden h-[50vh] lg:block">
+		<div class="sticky top-32 col-span-5 hidden h-fit lg:block">
 			<div
-				class="border-text-primary/5 relative h-full w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-black/5"
+				class="border-text-primary/5 relative aspect-16/10 w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-black/5"
 			>
 				{#key activeImage}
 					<img
 						src={activeImage}
 						alt="Preview"
-						in:fade={{ duration: 400 }}
+						in:fade={{ duration: 300 }}
 						class="absolute inset-0 h-full w-full object-cover"
 					/>
 				{/key}
+
 				<div
-					class="pointer-events-none absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10"
+					class="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5"
 				></div>
 			</div>
 		</div>

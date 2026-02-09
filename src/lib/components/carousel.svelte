@@ -66,7 +66,7 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div
-	class="group border-text-primary/10 relative aspect-4/3 w-full cursor-none overflow-hidden border bg-neutral-900 shadow-2xl shadow-black/20 select-none"
+	class="group border-text-primary/10 relative aspect-16/10 w-full cursor-none overflow-hidden border bg-neutral-900 shadow-2xl shadow-black/20 select-none"
 	role="button"
 	tabindex="0"
 	aria-label="Project Gallery"

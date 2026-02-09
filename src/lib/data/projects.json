@@ -16,11 +16,11 @@
 		"id": "02",
 		"slug": "dodia",
 		"title": "DODIA.PT",
-		"context": "Currcicular Internship",
+		"context": "Curricular Internship",
 		"year": "2025",
 		"tech": ["Next.js", "TailwindCSS", "TypeScript", "React", "Drizzle"],
 		"image": "/projects/dodia/01.png",
-		"description": "Dodia it's my first professional project, built during my curricular internship at @Significa. It's a web app where local restaurants (tascas) can post their daily menu, allowing user to decide where to eat. It is comunity-driven, with a siple and intuitive interface, where users can post the menu for their favourite restaurants.",
+		"description": "Dodia it's my first professional project, built during my curricular internship at @Significa. It's a web app where local restaurants (tascas) can post their daily menu, allowing user to decide where to eat. It is comunity-driven, with a simple and intuitive interface, where users can post the menu for their favourite restaurants.",
 		"demo": "https://dodia.pt",
 		"gallery": ["/projects/dodia/02.png"]
 	},
@@ -32,10 +32,10 @@
 		"year": "2026",
 		"tech": ["Svelte", "TailwindCSS", "TypeScript"],
 		"image": "/projects/dotJournal/01.png",
-		"description": "It's my most recent project, a minimalist journal app, that runs on web and stores everything locally. Built with svelte as a way to explore Svelte 5's new features and capabilities. The app focuses on simplicity and ease of use, allowing users to quickly jot down their thoughts and ideas without any distractions. It features a clean and intuitive interface, with a focus on typography and whitespace to create a calming writing environment. It also allows users to costumize each day by selecting a color for the dot so it's easier to go back to in the future.",
-		"gallery": ["/projects/dotJournal/02.png", "/projects/dotJournal/03.png"],
+		"description": "It's my most recent project, a minimalist journal app, that runs on web and stores everything locally. Built with Svelte as a way to explore Svelte 5's new features and capabilities. The app focuses on simplicity and ease of use, allowing users to quickly jot down their thoughts and ideas without any distractions. It features a clean and intuitive interface, with a focus on typography and whitespace to create a calming writing environment. It also allows users to costumize each day by selecting a color for the dot so it's easier to go back to in the future.",
 		"repo": "https://github.com/pedrolunet/journal",
-		"demo": "https://journal.pedrolunet.dev"
+		"demo": "https://journal.pedrolunet.dev",
+		"gallery": ["/projects/dotJournal/02.png", "/projects/dotJournal/03.png"]
 	},
 	{
 		"id": "04",

@@ -43,25 +43,25 @@
 				>
 					Stack
 				</h3>
-				<div class="flex flex-wrap gap-3">
+
+				<div class="flex flex-wrap gap-4">
 					{#each data.project.tech as t}
 						<div
-							class="group border-text-primary/10 bg-text-primary/5 relative flex h-10 w-10 items-center justify-center rounded-sm border transition-all hover:border-accent hover:bg-accent/10"
+							class="h-5 w-5 bg-text transition-colors duration-300 hover:bg-accent-light"
 							title={t}
-						>
-							<img
-								src={getIconPath(t)}
-								alt={t}
-								class="h-5 w-5 opacity-60 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
-								onerror={(e) => {
-									(e.currentTarget as HTMLElement).style.display = 'none';
-									(e.currentTarget as HTMLElement).nextElementSibling!.classList.remove('hidden');
-								}}
-							/>
-							<span class="hidden text-[10px] font-bold text-accent">
-								{t.slice(0, 2).toUpperCase()}
-							</span>
-						</div>
+							style="
+                  mask-image: url({getIconPath(t)});
+                  mask-size: contain;
+                  mask-position: center;
+                  mask-repeat: no-repeat;
+                  -webkit-mask-image: url({getIconPath(t)});
+                  -webkit-mask-size: contain;
+                  -webkit-mask-position: center;
+                  -webkit-mask-repeat: no-repeat;
+                "
+						></div>
+
+						<span class="sr-only">{t}</span>
 					{/each}
 				</div>
 			</div>

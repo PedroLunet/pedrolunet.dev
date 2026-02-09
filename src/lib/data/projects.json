@@ -5,7 +5,7 @@
 		"title": "PEDROLUNET.DEV",
 		"context": "Personal Project",
 		"year": "2026",
-		"tech": ["Svelte", "SvelteKit", "TypeScript", "TailwindCSS", "Gsap"],
+		"tech": ["Svelte", "TypeScript", "TailwindCSS", "Gsap"],
 		"image": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop",
 		"description": "An exploration of digital brutalism and Swiss design principles. Built using my favourite web framework, Svelte, and trying to experiment with motion using Gsap. This site prioritizes raw information density, strict grid adherence, and typographic hierarchy over decorative elements. A performant canvas for my projects and thoughts. Started this project because my old portfolio didn't looked like me and didnt really showcased my work the way I wanted. I wanted to create a space that felt more personal and reflected my design sensibilities. I also wanted to experiment with Svelte 5 and see how far I could push it in terms of performance and interactivity.",
 		"repo": "https://github.com/pedrolunet/pedrolunet.dev",

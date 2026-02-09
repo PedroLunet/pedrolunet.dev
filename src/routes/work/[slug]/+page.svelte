@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { ArrowUpRight } from '@lucide/svelte';
 
 	let { data } = $props();
 
@@ -81,7 +82,10 @@
 								class="border-text-primary/10 group flex w-full items-center justify-between border bg-bg px-4 py-3 transition-colors hover:border-accent hover:text-accent"
 							>
 								<span class="text-xs font-bold tracking-widest uppercase">Live Demo</span>
-								<span class="text-xs opacity-50 group-hover:opacity-100">↗</span>
+								<ArrowUpRight
+									size={14}
+									class="opacity-50 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+								/>
 							</a>
 						{/if}
 
@@ -93,7 +97,10 @@
 								class="border-text-primary/10 group flex w-full items-center justify-between border bg-bg px-4 py-3 transition-colors hover:border-accent hover:text-accent"
 							>
 								<span class="text-xs font-bold tracking-widest uppercase">GitHub</span>
-								<span class="text-xs opacity-50 group-hover:opacity-100">↗</span>
+								<ArrowUpRight
+									size={14}
+									class="opacity-50 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+								/>
 							</a>
 						{/if}
 					</div>
@@ -109,7 +116,7 @@
 			</div>
 
 			<div
-				class="border-text-primary/10 relative aspect-4/3 w-full border bg-neutral-900 shadow-2xl shadow-black/20"
+				class="border-text-primary/10 relative aspect-[4/3] w-full border bg-neutral-900 shadow-2xl shadow-black/20"
 			>
 				<img
 					src={data.project.image}

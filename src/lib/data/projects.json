@@ -44,18 +44,8 @@
 		"context": "University",
 		"year": "2025",
 		"tech": ["Laravel", "PostgreSQL", "TailwindCSS", "Docker"],
-		"image": "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
-		"description": "A comprehensive UI kit for academic dashboards. Focused on high-contrast accessibility and density.",
-		"repo": "https://github.com/pedrolunet/system-01"
-	},
-	{
-		"id": "05",
-		"slug": "playground",
-		"title": "Playground",
-		"context": "Experiments",
-		"year": "2021—24",
-		"tech": ["Svelte", "Three.js", "Blender"],
-		"image": "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop",
-		"description": "Code sketches and 3D explorations. A collection of half-baked ideas and visual experiments."
+		"image": "/projects/junto/01.png",
+		"description": "Project developed for the LBAW (Database and Web Applications Laboratory) course at FEUP. Junto is a full-featured social media platform designed to bring people together through shared cultural interests. The platform combines traditional social networking features with media discovery, allowing users to connect, share, and discuss their favorite movies, books, and music.",
+		"repo": "https://github.com/PedroLunet/junto."
 	}
 ]

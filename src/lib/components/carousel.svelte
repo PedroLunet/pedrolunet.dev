@@ -31,7 +31,6 @@
 
 	function handleWheel(e: WheelEvent) {
 		const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-
 		if (isHorizontal) {
 			e.stopPropagation();
 		}
@@ -108,7 +107,7 @@
 
 	{#if showCursor && cursorSide}
 		<div
-			class="pointer-events-none fixed z-9999 text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out"
+			class="pointer-events-none fixed z-9999 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
 			style="
         left: {cursorX}px; 
         top: {cursorY}px; 

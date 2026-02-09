@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { ArrowUpRight, ArrowUp } from '@lucide/svelte';
+	import Carousel from '$lib/components/carousel.svelte';
 
 	let { data } = $props();
+
+	let allImages = $derived([data.project.image, ...(data.project.gallery || [])]);
 
 	function getIconPath(techName: string) {
 		return `/icons/${techName.toLowerCase().replace('.', '')}.svg`;
@@ -118,29 +121,9 @@
 				<p>{data.project.description}</p>
 			</div>
 
-			<div
-				class="border-text-primary/10 relative aspect-4/3 w-full border bg-neutral-900 shadow-2xl shadow-black/20"
-			>
-				<img
-					src={data.project.image}
-					alt={data.project.title}
-					class="absolute inset-0 h-full w-full object-cover"
-					in:fade={{ duration: 600 }}
-				/>
-				<div class="pointer-events-none absolute inset-0 m-6 border border-white/10"></div>
-				<div
-					class="pointer-events-none absolute right-6 bottom-6 text-[9px] tracking-widest text-white/50 uppercase"
-				>
-					Fig. 01
-				</div>
-			</div>
+			<Carousel images={allImages} title={data.project.title} />
 
-			<div class="grid grid-cols-2 gap-4">
-				<div class="border-text-primary/5 aspect-square w-full border bg-neutral-800/20"></div>
-				<div class="border-text-primary/5 aspect-square w-full border bg-neutral-800/20"></div>
-			</div>
-
-			<div class="border-text-primary/10 flex justify-end border-t pt-8">
+			<div class="border-text-primary/10 mt-24 flex justify-end border-t pt-8">
 				<button
 					onclick={scrollToTop}
 					class="group flex items-center gap-4 text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors hover:text-accent"

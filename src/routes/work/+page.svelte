@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { ArrowUpRight } from '@lucide/svelte';
 	import projects from '$lib/data/projects.json';
 
 	let activeImage = $state(projects[0].image);
@@ -68,6 +69,29 @@
 					</div>
 				</a>
 			{/each}
+
+			<a
+				href="https://github.com/pedrolunet"
+				target="_blank"
+				rel="noreferrer"
+				class="group border-text-primary/20 hover:bg-text-primary/5 flex items-center justify-between border-b py-6 transition-all duration-300 hover:pl-4"
+			>
+				<span
+					class="text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors group-hover:text-accent"
+				>
+					See more
+				</span>
+
+				<div
+					class="flex items-center gap-2 text-xs text-text-secondary opacity-50 transition-all group-hover:text-accent group-hover:opacity-100"
+				>
+					<span class="hidden md:inline-block">GitHub</span>
+					<ArrowUpRight
+						size={16}
+						class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+					/>
+				</div>
+			</a>
 		</div>
 
 		<div class="sticky top-32 col-span-5 hidden h-[50vh] lg:block">

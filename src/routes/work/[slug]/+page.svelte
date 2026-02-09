@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { ArrowUpRight } from '@lucide/svelte';
+	import { ArrowUpRight, ArrowUp } from '@lucide/svelte';
 
 	let { data } = $props();
 
 	function getIconPath(techName: string) {
 		return `/icons/${techName.toLowerCase().replace('.', '')}.svg`;
+	}
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 </script>
 
@@ -47,8 +51,8 @@
 				<div class="flex flex-wrap gap-4">
 					{#each data.project.tech as t}
 						<div
-							class="h-5 w-5 bg-text transition-colors duration-300 hover:bg-accent-light"
 							title={t}
+							class="h-5 w-5 bg-text transition-colors duration-300 hover:bg-accent-light"
 							style="
                   mask-image: url({getIconPath(t)});
                   mask-size: contain;
@@ -60,7 +64,6 @@
                   -webkit-mask-repeat: no-repeat;
                 "
 						></div>
-
 						<span class="sr-only">{t}</span>
 					{/each}
 				</div>
@@ -116,7 +119,7 @@
 			</div>
 
 			<div
-				class="border-text-primary/10 relative aspect-[4/3] w-full border bg-neutral-900 shadow-2xl shadow-black/20"
+				class="border-text-primary/10 relative aspect-4/3 w-full border bg-neutral-900 shadow-2xl shadow-black/20"
 			>
 				<img
 					src={data.project.image}
@@ -135,6 +138,20 @@
 			<div class="grid grid-cols-2 gap-4">
 				<div class="border-text-primary/5 aspect-square w-full border bg-neutral-800/20"></div>
 				<div class="border-text-primary/5 aspect-square w-full border bg-neutral-800/20"></div>
+			</div>
+
+			<div class="border-text-primary/10 flex justify-end border-t pt-8">
+				<button
+					onclick={scrollToTop}
+					class="group flex items-center gap-4 text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors hover:text-accent"
+				>
+					<span>Back to Top</span>
+					<div
+						class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+					>
+						<ArrowUp size={14} />
+					</div>
+				</button>
 			</div>
 		</div>
 	</div>

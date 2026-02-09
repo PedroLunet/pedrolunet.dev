@@ -38,12 +38,13 @@
 
 	function handleMouseMove(e: MouseEvent) {
 		showCursor = true;
-		cursorX = e.clientX;
-		cursorY = e.clientY;
 
-		const { left, width } = (e.currentTarget as HTMLElement).getBoundingClientRect();
-		const xInContainer = e.clientX - left;
-		cursorSide = xInContainer > width / 2 ? 'right' : 'left';
+		const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+
+		cursorX = e.clientX - rect.left;
+		cursorY = e.clientY - rect.top;
+
+		cursorSide = cursorX > rect.width / 2 ? 'right' : 'left';
 	}
 
 	function handleMouseLeave() {
@@ -107,7 +108,7 @@
 
 	{#if showCursor && cursorSide}
 		<div
-			class="pointer-events-none fixed z-9999 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
+			class="pointer-events-none absolute z-9999 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
 			style="
         left: {cursorX}px; 
         top: {cursorY}px; 

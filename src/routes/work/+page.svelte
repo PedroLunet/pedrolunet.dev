@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-
 	import projects from '$lib/data/projects.json';
+
 	let activeImage = $state(projects[0].image);
 </script>
 
@@ -29,9 +29,12 @@
 						/{project.id}
 					</div>
 
-					<div class="col-span-5 flex flex-col justify-center">
+					<div
+						class="col-span-5 flex flex-col justify-center pr-6"
+						style="container-type: inline-size"
+					>
 						<h2
-							class="text-text-primary text-2xl font-bold transition-colors group-hover:text-accent md:text-3xl lg:text-4xl"
+							class="text-text-primary overflow-hidden text-[clamp(1.25rem,11cqi,2.5rem)] leading-none font-bold text-ellipsis whitespace-nowrap transition-colors group-hover:text-accent"
 						>
 							{project.title}
 						</h2>

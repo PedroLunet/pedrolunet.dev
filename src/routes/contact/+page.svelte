@@ -88,7 +88,7 @@
 							required
 							value={form?.values?.name ?? ''}
 							placeholder=" "
-							class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent py-4 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+							class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
 						/>
 						<label
 							for="name"
@@ -106,7 +106,7 @@
 							required
 							value={form?.values?.email ?? ''}
 							placeholder=" "
-							class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent py-4 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+							class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
 						/>
 						<label
 							for="email"

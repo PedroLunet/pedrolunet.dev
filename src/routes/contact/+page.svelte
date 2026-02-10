@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
-	import { ArrowRight, LoaderCircle, X } from '@lucide/svelte';
+	import { ArrowRight, LoaderCircle, X, Copy, Check } from '@lucide/svelte';
 	import { fade, scale } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
 	import gsap from 'gsap';
@@ -11,6 +11,15 @@
 	let loading = $state(false);
 	let time = $state('');
 	let showSuccessPopup = $state(false);
+
+	let emailCopied = $state(false);
+	let isHovered = $state(false);
+
+	function handleEmailClick() {
+		navigator.clipboard.writeText('hello@pedrolunet.dev');
+		emailCopied = true;
+		setTimeout(() => (emailCopied = false), 2000);
+	}
 
 	onMount(() => {
 		const interval = setInterval(() => {
@@ -170,7 +179,45 @@
 					</div>
 				{/if}
 
-				<div class="flex justify-end pt-4">
+				<div class="flex items-center justify-end pt-4 md:justify-between">
+					<button
+						type="button"
+						onclick={handleEmailClick}
+						onmouseenter={() => (isHovered = true)}
+						onmouseleave={() => {
+							isHovered = false;
+							emailCopied = false;
+						}}
+						class="group hidden items-center overflow-hidden text-left md:grid"
+					>
+						<span
+							class="col-start-1 row-start-1 block py-2 text-xs font-bold tracking-widest text-text-secondary uppercase transition-transform duration-300"
+							class:translate-y-[-100%]={isHovered}
+						>
+							Don't like forms?
+						</span>
+
+						<div
+							class="col-start-1 row-start-1 flex items-center gap-2 py-2 transition-transform duration-300"
+							class:translate-y-full={!isHovered}
+							class:translate-y-0={isHovered}
+						>
+							<span
+								class="text-xs font-bold tracking-widest uppercase transition-colors"
+								class:text-emerald-500={emailCopied}
+								class:text-accent={!emailCopied}
+							>
+								{emailCopied ? 'Copied!' : 'hello@pedrolunet.dev'}
+							</span>
+
+							{#if emailCopied}
+								<Check size={12} class="text-emerald-500" />
+							{:else}
+								<Copy size={12} class="text-accent" />
+							{/if}
+						</div>
+					</button>
+
 					<button
 						type="submit"
 						disabled={loading}

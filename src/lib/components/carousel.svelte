@@ -6,6 +6,8 @@
 	let scroller: HTMLDivElement;
 	let currentIndex = $state(0);
 
+	let loaded = $derived<boolean[]>(new Array(images.length).fill(false));
+
 	let cursorX = $state(0);
 	let cursorY = $state(0);
 	let showCursor = $state(false);
@@ -38,12 +40,9 @@
 
 	function handleMouseMove(e: MouseEvent) {
 		showCursor = true;
-
 		const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-
 		cursorX = e.clientX - rect.left;
 		cursorY = e.clientY - rect.top;
-
 		cursorSide = cursorX > rect.width / 2 ? 'right' : 'left';
 	}
 
@@ -82,25 +81,42 @@
 		bind:this={scroller}
 		onscroll={handleScroll}
 		class="flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
-		style="
-      scrollbar-width: none; 
-      -ms-overflow-style: none; 
-      overscroll-behavior-x: contain;
-    "
+		style="scrollbar-width: none; -ms-overflow-style: none;"
 	>
 		<style>
 			div::-webkit-scrollbar {
 				display: none;
 			}
+
+			@keyframes shimmer {
+				0% {
+					background-position: 200% 0;
+				}
+				100% {
+					background-position: -200% 0;
+				}
+			}
+			.animate-shimmer {
+				background: linear-gradient(90deg, #171717 25%, #262626 50%, #171717 75%);
+				background-size: 200% 100%;
+				animation: shimmer 2s infinite linear;
+			}
 		</style>
 
 		{#each images as src, i}
-			<div class="relative h-full w-full shrink-0 snap-center">
+			<div class="relative h-full w-full shrink-0 snap-center bg-neutral-900">
+				{#if !loaded[i]}
+					<div class="animate-shimmer absolute inset-0 z-10 h-full w-full"></div>
+				{/if}
+
 				<img
 					{src}
 					alt="{title} - Fig {i + 1}"
-					class="pointer-events-none h-full w-full object-cover"
+					class="pointer-events-none h-full w-full object-cover transition-opacity duration-700 ease-in-out"
+					class:opacity-0={!loaded[i]}
+					class:opacity-100={loaded[i]}
 					draggable="false"
+					onload={() => (loaded[i] = true)}
 				/>
 			</div>
 		{/each}
@@ -108,7 +124,7 @@
 
 	{#if showCursor && cursorSide}
 		<div
-			class="pointer-events-none absolute z-9999 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
+			class="pointer-events-none absolute z-50 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
 			style="
         left: {cursorX}px; 
         top: {cursorY}px; 

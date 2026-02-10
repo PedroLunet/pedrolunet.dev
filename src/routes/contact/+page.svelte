@@ -1,17 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ArrowUpRight, Copy, Check } from '@lucide/svelte';
+	import { enhance } from '$app/forms';
+	import { ArrowUpRight, ArrowRight, Loader2 } from '@lucide/svelte';
 	import gsap from 'gsap';
 
-	let copied = $state(false);
-	const email = 'pedro@example.com';
+	let { form } = $props();
 
-	function copyEmail() {
-		navigator.clipboard.writeText(email);
-		copied = true;
-		setTimeout(() => (copied = false), 2000);
-	}
-
+	let loading = $state(false);
 	let time = $state('');
 
 	onMount(() => {
@@ -24,10 +19,6 @@
 			});
 		}, 1000);
 
-		return () => clearInterval(interval);
-	});
-
-	$effect(() => {
 		const ctx = gsap.context(() => {
 			gsap.to('.reveal', {
 				y: 0,
@@ -37,89 +28,156 @@
 				ease: 'power3.out'
 			});
 		});
-		return () => ctx.revert();
+
+		return () => {
+			clearInterval(interval);
+			ctx.revert();
+		};
 	});
 </script>
 
 <div class="min-h-screen w-full bg-bg px-4 pt-32 pb-12 lg:px-12 lg:pt-40">
 	<div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
-		<div class="col-span-1 lg:col-span-8">
+		<div class="col-span-1 lg:col-span-7">
 			<div class="reveal translate-y-8 opacity-0">
 				<h1
 					class="text-text-primary text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter uppercase"
 				>
-					Let's<br />
-					Talk.
+					Let's<br />Talk.
 				</h1>
 			</div>
 		</div>
 
-		<div class="col-span-1 flex flex-col gap-12 lg:col-span-4 lg:pt-4">
-			<div class="reveal translate-y-8 opacity-0">
-				<h3
-					class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
+		<div class="col-span-1 flex flex-col gap-12 lg:col-span-5 lg:pt-4">
+			{#if form?.success}
+				<div
+					class="animate-in fade-in zoom-in flex h-full flex-col items-center justify-center border border-accent/20 bg-accent/5 p-12 text-center duration-500"
 				>
-					Email
-				</h3>
-				<button
-					onclick={copyEmail}
-					class="group border-text-primary/10 relative flex w-full items-center justify-between border-b pb-4 text-left transition-colors hover:border-accent"
-				>
-					<span
-						class="text-text-primary text-xl font-light transition-colors group-hover:text-accent md:text-2xl"
+					<h3 class="text-text-primary mb-2 text-2xl font-bold uppercase">Message Sent</h3>
+					<p class="mb-8 text-sm text-text-secondary">I'll get back to you shortly.</p>
+					<a
+						href="/contact"
+						class="text-xs font-bold tracking-widest text-accent uppercase hover:underline"
 					>
-						{email}
-					</span>
-
-					<div class="relative h-5 w-5 overflow-hidden">
-						<div
-							class="ease-spring absolute inset-0 flex items-center justify-center text-text-secondary transition-transform duration-500 group-hover:text-accent"
-							class:translate-y-[-100%]={copied}
-							class:translate-y-0={!copied}
+						Send another
+					</a>
+				</div>
+			{:else}
+				<form
+					method="POST"
+					use:enhance={() => {
+						loading = true;
+						return async ({ update }) => {
+							loading = false;
+							await update();
+						};
+					}}
+					class="reveal flex translate-y-8 flex-col gap-8 opacity-0"
+				>
+					<div class="group relative">
+						<input
+							type="text"
+							name="name"
+							id="name"
+							required
+							value={form?.values?.name ?? ''}
+							placeholder=" "
+							class="peer border-text-primary/20 text-text-primary w-full border-b bg-transparent py-4 text-lg font-light transition-all outline-none focus:border-accent"
+						/>
+						<label
+							for="name"
+							class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50 peer-valid:-top-2 peer-valid:text-[10px] peer-valid:font-bold peer-focus:-top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent"
 						>
-							<Copy size={20} strokeWidth={1.5} />
-						</div>
-
-						<div
-							class="ease-spring absolute inset-0 flex items-center justify-center text-emerald-500 transition-transform duration-500"
-							class:translate-y-0={copied}
-							class:translate-y-[100%]={!copied}
-						>
-							<Check size={20} strokeWidth={2} />
-						</div>
+							Name
+						</label>
 					</div>
 
-					<div
-						class="absolute bottom-[-1px] left-0 h-[1px] w-0 bg-accent transition-all duration-500 group-hover:w-full"
-					></div>
-				</button>
-			</div>
-
-			<div class="reveal translate-y-8 opacity-0">
-				<h3
-					class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
-				>
-					Socials
-				</h3>
-				<div class="flex flex-col gap-2">
-					{#each [{ name: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' }, { name: 'GitHub', url: 'https://github.com/yourusername' }, { name: 'Twitter / X', url: 'https://twitter.com/yourhandle' }] as social}
-						<a
-							href={social.url}
-							target="_blank"
-							rel="noreferrer"
-							class="group text-text-primary flex items-center justify-between py-2 transition-colors hover:text-accent"
+					<div class="group relative">
+						<input
+							type="email"
+							name="email"
+							id="email"
+							required
+							value={form?.values?.email ?? ''}
+							placeholder=" "
+							class="peer border-text-primary/20 text-text-primary w-full border-b bg-transparent py-4 text-lg font-light transition-all outline-none focus:border-accent"
+						/>
+						<label
+							for="email"
+							class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50 peer-valid:-top-2 peer-valid:text-[10px] peer-valid:font-bold peer-focus:-top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent"
 						>
-							<span class="text-sm font-medium tracking-wide uppercase">{social.name}</span>
-							<ArrowUpRight
-								size={16}
-								class="-translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-							/>
-						</a>
-					{/each}
-				</div>
-			</div>
+							Email
+						</label>
+					</div>
 
-			<div class="reveal mt-auto translate-y-8 opacity-0">
+					<div class="group relative">
+						<textarea
+							name="message"
+							id="message"
+							required
+							rows="4"
+							value={form?.values?.message ?? ''}
+							placeholder=" "
+							class="peer border-text-primary/20 text-text-primary w-full resize-none border-b bg-transparent py-4 text-lg font-light transition-all outline-none focus:border-accent"
+						></textarea>
+						<label
+							for="message"
+							class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50 peer-valid:-top-2 peer-valid:text-[10px] peer-valid:font-bold peer-focus:-top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent"
+						>
+							Message
+						</label>
+					</div>
+
+					{#if form?.error}
+						<div
+							class="animate-in fade-in slide-in-from-top-1 text-xs font-bold tracking-widest text-red-500 uppercase"
+						>
+							{form.error}
+						</div>
+					{/if}
+
+					<div class="flex justify-end pt-4">
+						<button
+							type="submit"
+							disabled={loading}
+							class="group text-text-primary flex items-center gap-4 text-xs font-bold tracking-widest uppercase transition-colors hover:text-accent disabled:opacity-50"
+						>
+							<span>{loading ? 'Sending...' : 'Send Message'}</span>
+							<div
+								class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+							>
+								{#if loading}
+									<Loader2 size={14} class="animate-spin" />
+								{:else}
+									<ArrowRight size={14} />
+								{/if}
+							</div>
+						</button>
+					</div>
+				</form>
+			{/if}
+
+			<div class="reveal mt-12 flex translate-y-8 flex-col gap-8 opacity-0 lg:mt-auto">
+				<div>
+					<h3
+						class="mb-4 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
+					>
+						Socials
+					</h3>
+					<div class="flex gap-6">
+						<a
+							href="https://linkedin.com/in/PedroLunet"
+							target="_blank"
+							class="text-xs font-bold uppercase transition-colors hover:text-accent">LinkedIn</a
+						>
+						<a
+							href="https://github.com/PedroLunet"
+							target="_blank"
+							class="text-xs font-bold uppercase transition-colors hover:text-accent">GitHub</a
+						>
+					</div>
+				</div>
+
 				<div class="border-text-primary/10 flex items-end justify-between border-t pt-6">
 					<div class="flex flex-col gap-1">
 						<span
@@ -133,18 +191,10 @@
 							class="text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 							>Local Time</span
 						>
-						<span class="text-text-primary font-mono text-xs">
-							{time || '--:--'}
-						</span>
+						<span class="text-text-primary font-mono text-xs">{time || '--:--'}</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<style>
-	.ease-spring {
-		transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	}
-</style>

@@ -2,12 +2,15 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "portfolio",
 	"compatibility_date": "2026-02-03",
-	"compatibility_flags": ["nodejs_als"],
+	"compatibility_flags": ["nodejs_als", "nodejs_compat"],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": true
+	"preview_urls": true,
+	"vars": {
+		"CONTACT_EMAIL": "hello@pedrolunet.dev"
+	}
 }

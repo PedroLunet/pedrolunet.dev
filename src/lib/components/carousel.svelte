@@ -1,12 +1,31 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { ArrowLeft, ArrowRight } from '@lucide/svelte';
 
-	let { images, title } = $props();
+	let { images = [], title } = $props();
 
 	let scroller: HTMLDivElement;
 	let currentIndex = $state(0);
+	let loaded = $state<boolean[]>([]);
+	let mounted = $state(false);
 
-	let loaded = $derived<boolean[]>(new Array(images.length).fill(false));
+	$effect(() => {
+		if (images.length && loaded.length !== images.length) {
+			loaded = new Array(images.length).fill(false);
+		}
+	});
+
+	onMount(() => {
+		mounted = true;
+	});
+
+	function loadImage(node: HTMLImageElement, index: number) {
+		if (node.complete && node.naturalHeight !== 0) {
+			loaded[index] = true;
+		} else {
+			node.onload = () => (loaded[index] = true);
+		}
+	}
 
 	let cursorX = $state(0);
 	let cursorY = $state(0);
@@ -24,18 +43,7 @@
 		if (!scroller) return;
 		const width = scroller.clientWidth;
 		if (index < 0 || index >= images.length) return;
-
-		scroller.scrollTo({
-			left: index * width,
-			behavior: 'smooth'
-		});
-	}
-
-	function handleWheel(e: WheelEvent) {
-		const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-		if (isHorizontal) {
-			e.stopPropagation();
-		}
+		scroller.scrollTo({ left: index * width, behavior: 'smooth' });
 	}
 
 	function handleMouseMove(e: MouseEvent) {
@@ -75,7 +83,10 @@
 	onkeydown={(e) => {
 		if (e.key === 'Enter' || e.key === ' ') handleClick();
 	}}
-	onwheel={handleWheel}
+	onwheel={(e) => {
+		const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+		if (isHorizontal) e.stopPropagation();
+	}}
 >
 	<div
 		bind:this={scroller}
@@ -87,7 +98,6 @@
 			div::-webkit-scrollbar {
 				display: none;
 			}
-
 			@keyframes shimmer {
 				0% {
 					background-position: 200% 0;
@@ -103,21 +113,24 @@
 			}
 		</style>
 
-		{#each images as src, i}
+		{#each images as src, i (src)}
 			<div class="relative h-full w-full shrink-0 snap-center bg-neutral-900">
 				{#if !loaded[i]}
 					<div class="animate-shimmer absolute inset-0 z-10 h-full w-full"></div>
 				{/if}
 
-				<img
-					{src}
-					alt="{title} - Fig {i + 1}"
-					class="pointer-events-none h-full w-full object-cover transition-opacity duration-700 ease-in-out"
-					class:opacity-0={!loaded[i]}
-					class:opacity-100={loaded[i]}
-					draggable="false"
-					onload={() => (loaded[i] = true)}
-				/>
+				{#if mounted}
+					<img
+						{src}
+						use:loadImage={i}
+						alt="{title} - Fig {i + 1}"
+						class="pointer-events-none h-full w-full object-cover transition-opacity duration-700 ease-in-out"
+						class:opacity-0={!loaded[i]}
+						class:opacity-100={loaded[i]}
+						draggable="false"
+						loading="lazy"
+					/>
+				{/if}
 			</div>
 		{/each}
 	</div>
@@ -125,11 +138,7 @@
 	{#if showCursor && cursorSide}
 		<div
 			class="pointer-events-none absolute z-50 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
-			style="
-        left: {cursorX}px; 
-        top: {cursorY}px; 
-        transform: translate(-50%, -50%);
-      "
+			style="left: {cursorX}px; top: {cursorY}px; transform: translate(-50%, -50%);"
 		>
 			{#if cursorSide === 'left'}
 				<ArrowLeft size={32} strokeWidth={2} />

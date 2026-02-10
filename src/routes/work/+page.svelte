@@ -12,7 +12,7 @@
 	<div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
 		<div class="col-span-1 flex flex-col lg:col-span-7">
 			<div
-				class="border-text-primary/10 mb-2 hidden grid-cols-12 gap-4 border-b pb-2 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-40 md:grid"
+				class="border-text-primary/10 mb-2 hidden grid-cols-12 gap-4 border-b pb-2 text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-40 lg:grid"
 			>
 				<div class="col-span-1">No.</div>
 				<div class="col-span-5">Project</div>
@@ -23,7 +23,7 @@
 			{#each projects as project}
 				<a
 					href="/work/{project.slug}"
-					class="group border-text-primary/20 hover:bg-text-primary/5 relative grid grid-cols-1 gap-y-2 border-b py-6 transition-all duration-300 hover:pl-4 md:grid-cols-12 md:items-center md:gap-4"
+					class="group border-text-primary/20 hover:bg-text-primary/5 relative grid grid-cols-1 gap-y-2 border-b py-6 transition-all duration-300 hover:pl-4 lg:grid-cols-12 lg:items-center lg:gap-4"
 					onmouseenter={() => (activeImage = project.image)}
 				>
 					<div
@@ -48,7 +48,7 @@
 						</span>
 					</div>
 
-					<div class="col-span-4 mt-2 flex flex-wrap content-center items-center gap-2 md:mt-0">
+					<div class="col-span-4 mt-2 flex flex-wrap content-center items-center gap-2 lg:mt-0">
 						{#each project.tech.slice(0, 6) as t}
 							<span
 								class="bg-text-primary/5 rounded-sm px-2 py-1 text-[10px] tracking-wider text-text-secondary uppercase transition-colors group-hover:bg-accent/10 group-hover:text-accent"
@@ -65,7 +65,7 @@
 					</div>
 
 					<div
-						class="group-hover:text-text-primary col-span-2 mt-2 text-right text-xs text-text-secondary md:mt-0"
+						class="group-hover:text-text-primary col-span-2 mt-2 text-right text-xs text-text-secondary lg:mt-0"
 					>
 						{project.year}
 					</div>

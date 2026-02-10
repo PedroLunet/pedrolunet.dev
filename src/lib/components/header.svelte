@@ -23,7 +23,7 @@
 
 			const targetColor = bgSamplerRef
 				? window.getComputedStyle(bgSamplerRef).backgroundColor
-				: '#000';
+				: '#0a0a0a';
 
 			tl.add(() => {
 				if (triggerRef && ghostRef) {
@@ -41,50 +41,33 @@
 				}
 			}, 0);
 
-			tl.to(
-				ghostRef,
-				{
-					top: 0,
-					left: 0,
-					width: '100vw',
-					height: '100vh',
-					backgroundColor: targetColor,
-					duration: 0.8,
-					ease: 'expo.inOut'
-				},
-				0
-			);
+			if (ghostRef) {
+				tl.to(
+					ghostRef,
+					{
+						top: 0,
+						left: 0,
+						width: '100vw',
+						height: '100vh',
+						backgroundColor: targetColor,
+						duration: 1.0,
+						ease: 'expo.inOut'
+					},
+					0
+				);
+			}
 
-			tl.to(
-				'.header-content-wrapper',
-				{
-					autoAlpha: 0,
-					duration: 0.3
-				},
-				0
-			);
+			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0);
 
-			tl.to(
-				'.menu-overlay',
-				{
-					autoAlpha: 1,
-					duration: 0.1
-				},
-				0
-			);
+			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.1 }, 0);
 
-			tl.fromTo(
-				'.close-strip',
-				{ x: -100, autoAlpha: 0 },
-				{ x: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
-				0.5
-			);
+			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.4);
 
 			tl.fromTo(
 				'.menu-item',
-				{ x: 50, autoAlpha: 0 },
-				{ x: 0, autoAlpha: 1, duration: 0.6, stagger: 0.05, ease: 'power3.out' },
-				0.4
+				{ x: 100, autoAlpha: 0 },
+				{ x: 0, autoAlpha: 1, duration: 1.0, stagger: 0.1, ease: 'expo.out' },
+				0.5
 			);
 		});
 
@@ -94,10 +77,10 @@
 	function toggleMenu() {
 		if (!tl) return;
 		if (isMenuOpen) {
-			tl.reverse();
+			tl.timeScale(1.5).reverse();
 			isMenuOpen = false;
 		} else {
-			tl.play();
+			tl.timeScale(1).play();
 			isMenuOpen = true;
 		}
 	}
@@ -116,15 +99,15 @@
 
 <div class="menu-overlay pointer-events-none fixed inset-0 z-50 flex opacity-0">
 	<div
-		class="close-strip border-text-primary/10 pointer-events-auto flex h-full w-12 flex-col items-center justify-center border-r bg-bg lg:w-24"
+		class="close-strip border-text-primary/10 absolute top-0 left-0 z-60 h-full w-12 border-r lg:w-24"
 	>
 		<button
 			onclick={toggleMenu}
-			class="group flex h-full w-full flex-col items-center justify-center gap-8 transition-colors hover:bg-accent/5"
+			class="group pointer-events-auto flex h-full w-full flex-col items-center justify-center gap-8 transition-colors hover:bg-accent/5"
 		>
 			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
 			<span
-				class="text-text-primary rotate-[-90deg] text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
+				class="text-text-primary -rotate-90deg text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
 			>
 				Close
 			</span>
@@ -132,7 +115,9 @@
 		</button>
 	</div>
 
-	<div class="flex flex-1 flex-col items-end justify-center bg-bg px-6 lg:px-9">
+	<div
+		class="pointer-events-auto flex h-full w-full flex-col items-end justify-center bg-bg px-6 pl-12 lg:px-9 lg:pl-24"
+	>
 		<Menu isOpen={isMenuOpen} />
 	</div>
 </div>

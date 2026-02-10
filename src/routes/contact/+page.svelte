@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
-	import { ArrowRight, Loader2 } from '@lucide/svelte';
+	import { ArrowRight, LoaderCircle } from '@lucide/svelte';
 	import gsap from 'gsap';
 
 	let { form } = $props();
@@ -151,13 +151,14 @@
 							class="group text-text-primary flex items-center gap-4 text-xs font-bold tracking-widest uppercase transition-colors hover:text-accent disabled:opacity-50"
 						>
 							<span>{loading ? 'Sending...' : 'Send Message'}</span>
+
 							<div
-								class="relative flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1"
+								class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
 							>
 								{#if loading}
-									<Loader2 size={16} class="animate-spin" />
+									<LoaderCircle size={14} class="animate-spin" />
 								{:else}
-									<ArrowRight size={16} />
+									<ArrowRight size={14} />
 								{/if}
 							</div>
 						</button>

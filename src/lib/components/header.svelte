@@ -11,25 +11,44 @@
 	let tl: gsap.core.Timeline;
 	let ctx: gsap.Context;
 
+	let triggerRef = $state<HTMLButtonElement>();
+	let ghostRef = $state<HTMLDivElement>();
+	let bgSamplerRef = $state<HTMLDivElement>();
+
 	let isHomePage = $derived($page.url.pathname === '/');
 
 	onMount(() => {
 		ctx = gsap.context(() => {
 			tl = gsap.timeline({ paused: true });
 
+			const targetColor = bgSamplerRef
+				? window.getComputedStyle(bgSamplerRef).backgroundColor
+				: '#000';
+
+			tl.add(() => {
+				if (triggerRef && ghostRef) {
+					const rect = triggerRef.getBoundingClientRect();
+					gsap.set(ghostRef, {
+						position: 'fixed',
+						top: rect.top,
+						left: rect.left,
+						width: rect.width,
+						height: rect.height,
+						autoAlpha: 1,
+						backgroundColor: '#FF4D00',
+						borderRadius: '0px'
+					});
+				}
+			}, 0);
+
 			tl.to(
-				'.header-block-bg',
+				ghostRef,
 				{
-					position: 'fixed',
 					top: 0,
 					left: 0,
 					width: '100vw',
 					height: '100vh',
-					borderRadius: 0,
-					margin: 0,
-					x: 0,
-					y: 0,
-					zIndex: 40,
+					backgroundColor: targetColor,
 					duration: 0.8,
 					ease: 'expo.inOut'
 				},
@@ -52,6 +71,13 @@
 					duration: 0.1
 				},
 				0
+			);
+
+			tl.fromTo(
+				'.close-strip',
+				{ x: -100, autoAlpha: 0 },
+				{ x: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
+				0.5
 			);
 
 			tl.fromTo(
@@ -84,10 +110,31 @@
 	});
 </script>
 
-<div
-	class="menu-overlay pointer-events-none fixed inset-0 z-50 flex flex-col items-end justify-center px-6 opacity-0 lg:px-9"
->
-	<Menu isOpen={isMenuOpen} />
+<div bind:this={bgSamplerRef} class="hidden bg-bg"></div>
+
+<div bind:this={ghostRef} class="pointer-events-none fixed z-40 hidden bg-accent"></div>
+
+<div class="menu-overlay pointer-events-none fixed inset-0 z-50 flex opacity-0">
+	<div
+		class="close-strip border-text-primary/10 pointer-events-auto flex h-full w-12 flex-col items-center justify-center border-r bg-bg lg:w-24"
+	>
+		<button
+			onclick={toggleMenu}
+			class="group flex h-full w-full flex-col items-center justify-center gap-8 transition-colors hover:bg-accent/5"
+		>
+			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
+			<span
+				class="text-text-primary rotate-[-90deg] text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
+			>
+				Close
+			</span>
+			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
+		</button>
+	</div>
+
+	<div class="flex flex-1 flex-col items-end justify-center bg-bg px-6 lg:px-9">
+		<Menu isOpen={isMenuOpen} />
+	</div>
 </div>
 
 <header
@@ -97,15 +144,14 @@
 		<a href="/">pedro lunet</a>
 
 		<button
+			bind:this={triggerRef}
 			onclick={toggleMenu}
-			class="group relative flex h-6 w-6 items-center justify-center transition-all duration-300"
+			class="group relative flex h-6 w-6 items-center justify-center"
 			class:opacity-0={isHomePage}
 			class:pointer-events-none={isHomePage}
 			aria-label="Open Menu"
 		>
-			<div
-				class="header-block-bg h-3 w-3 bg-accent transition-transform duration-300 group-hover:rotate-90"
-			></div>
+			<div class="h-3 w-3 bg-accent transition-transform duration-300 group-hover:rotate-90"></div>
 		</button>
 	</div>
 

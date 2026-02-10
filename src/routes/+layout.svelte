@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
 	import Lenis from '@studio-freight/lenis';
 
 	import './layout.css';
@@ -23,6 +24,12 @@
 
 		requestAnimationFrame(raf);
 	});
+
+	afterNavigate(() => {
+		document.body.style.overflow = '';
+		document.documentElement.style.overflow = '';
+		window.scrollTo(0, 0);
+	});
 </script>
 
 <svelte:head>
@@ -39,7 +46,7 @@
 <Header />
 
 <main
-	class="h-[calc(100vh-var(--header-height-mobile))] w-full md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))]"
+	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
 	{@render children()}
 </main>

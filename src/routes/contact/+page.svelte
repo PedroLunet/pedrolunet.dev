@@ -39,7 +39,9 @@
 	});
 </script>
 
-<div class="relative min-h-screen w-full bg-bg px-6 pt-12 pb-12 lg:px-9 lg:pt-24">
+<div
+	class="relative min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg px-6 pt-12 pb-12 md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9 lg:pt-24"
+>
 	{#if showSuccessPopup}
 		<div
 			class="fixed inset-0 z-50 flex items-center justify-center p-4"

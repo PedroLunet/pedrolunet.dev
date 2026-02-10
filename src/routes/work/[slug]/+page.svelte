@@ -34,7 +34,9 @@
 </script>
 
 {#if data.project}
-	<div class="min-h-screen w-full bg-bg px-4 pt-8 pb-24 lg:px-12 lg:pt-12">
+	<div
+		class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg px-4 pt-8 pb-24 md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-12 lg:pt-12"
+	>
 		<div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 			<div class="order-1 col-span-1 flex h-fit flex-col gap-12 lg:sticky lg:top-12 lg:col-span-4">
 				<div class="reveal translate-y-8 opacity-0">

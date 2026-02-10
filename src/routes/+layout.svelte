@@ -56,12 +56,12 @@
 
 		requestAnimationFrame(() => {
 			gsap.to(curtain, {
-				yPercent: -100,
-				duration: 0.8,
+				yPercent: 100,
+				duration: 0.5,
 				ease: 'power4.inOut',
 				delay: 0.1,
 				onComplete: () => {
-					gsap.set(curtain, { yPercent: 100, display: 'none' });
+					gsap.set(curtain, { display: 'none' });
 
 					document.body.style.overflow = '';
 					if (lenis) lenis.start();

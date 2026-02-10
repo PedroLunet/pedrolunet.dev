@@ -34,6 +34,7 @@
 					'-=1.0'
 				);
 			});
+
 			mm.add('(max-width: 1023px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
@@ -45,7 +46,6 @@
 					},
 					{
 						height: '3rem',
-
 						duration: 2.5,
 						ease: 'power4.out'
 					},
@@ -57,25 +57,13 @@
 
 			tlOpen.to(
 				'.hero-text',
-				{
-					x: -50,
-					autoAlpha: 0,
-					duration: 0.5,
-					ease: 'power3.inOut',
-					stagger: 0.05
-				},
+				{ x: -50, autoAlpha: 0, duration: 0.5, ease: 'power3.inOut', stagger: 0.05 },
 				0
 			);
 
 			tlOpen.to(
 				'.menu-item',
-				{
-					x: 0,
-					autoAlpha: 1,
-					duration: 0.6,
-					ease: 'power3.out',
-					stagger: 0.05
-				},
+				{ x: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', stagger: 0.05 },
 				0.2
 			);
 
@@ -151,3 +139,28 @@
 		<Menu isOpen={isMenuOpen} />
 	</div>
 </div>
+
+<style>
+	:global(.hero-text),
+	:global(.menu-item) {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	:global(.js-block) {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	@media (min-width: 1024px) {
+		:global(.js-block) {
+			width: 0;
+		}
+	}
+
+	@media (max-width: 1023px) {
+		:global(.js-block) {
+			height: 0;
+		}
+	}
+</style>

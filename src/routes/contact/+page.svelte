@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="min-h-screen w-full bg-bg px-6 pt-32 pb-12 lg:px-9 lg:pt-40">
+<div class="min-h-screen w-full bg-bg px-6 pt-12 pb-12 lg:px-9 lg:pt-24">
 	<div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
 		<div class="col-span-1 lg:col-span-7">
 			<div class="reveal translate-y-8 opacity-0">
@@ -51,14 +51,12 @@
 		<div class="col-span-1 flex flex-col gap-12 lg:col-span-5 lg:pt-4">
 			{#if form?.success}
 				<div
-					class="animate-in fade-in slide-in-from-bottom-4 flex h-full flex-col items-start justify-center duration-700"
+					class="animate-in fade-in zoom-in flex h-full min-h-100 flex-col items-center justify-center border border-accent/20 bg-accent/5 p-12 text-center duration-500"
 				>
-					<h3 class="text-text-primary mb-2 text-4xl font-bold tracking-tight uppercase">
+					<h3 class="text-text-primary mb-2 text-2xl font-bold tracking-widest uppercase">
 						Message Sent
 					</h3>
-					<p class="mb-8 text-lg font-light text-text-secondary">
-						Thank you. I'll get back to you shortly.
-					</p>
+					<p class="mb-8 text-sm text-text-secondary">Thank you. I'll get back to you shortly.</p>
 
 					<a
 						href="/contact"
@@ -116,19 +114,23 @@
 						</label>
 					</div>
 
-					<div class="group relative">
+					<div class="group relative mt-4">
 						<textarea
 							name="message"
 							id="message"
 							required
-							rows="4"
+							rows="5"
 							value={form?.values?.message ?? ''}
 							placeholder=" "
-							class="peer border-text-primary/20 text-text-primary w-full resize-none rounded-none border-0 border-b bg-transparent py-4 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+							class="peer border-text-primary/20 text-text-primary w-full resize-none rounded-none border bg-transparent p-4 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
 						></textarea>
+
 						<label
 							for="message"
-							class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50 peer-valid:-top-2 peer-valid:text-[10px] peer-valid:font-bold peer-focus:-top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent"
+							class="pointer-events-none absolute top-4 left-4 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+              peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
+              peer-valid:-top-2.5 peer-valid:left-3 peer-valid:bg-bg peer-valid:px-1 peer-valid:text-[10px] peer-valid:font-bold peer-focus:-top-2.5
+              peer-focus:left-3 peer-focus:bg-bg peer-focus:px-1 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent"
 						>
 							Message
 						</label>
@@ -149,7 +151,6 @@
 							class="group text-text-primary flex items-center gap-4 text-xs font-bold tracking-widest uppercase transition-colors hover:text-accent disabled:opacity-50"
 						>
 							<span>{loading ? 'Sending...' : 'Send Message'}</span>
-
 							<div
 								class="relative flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1"
 							>

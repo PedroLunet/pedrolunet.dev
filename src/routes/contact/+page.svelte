@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
 	import { ArrowRight, LoaderCircle, X } from '@lucide/svelte';
+	import { fade, scale } from 'svelte/transition';
+	import { backOut } from 'svelte/easing';
 	import gsap from 'gsap';
 
 	let { form } = $props();
@@ -39,17 +41,23 @@
 
 <div class="relative min-h-screen w-full bg-bg px-6 pt-12 pb-12 lg:px-9 lg:pt-24">
 	{#if showSuccessPopup}
-		<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+		<div
+			class="fixed inset-0 z-50 flex items-center justify-center p-4"
+			role="dialog"
+			aria-modal="true"
+		>
 			<div
-				class="absolute inset-0"
+				class="absolute inset-0 bg-bg/80 backdrop-blur-sm"
 				role="button"
 				tabindex="-1"
 				onclick={() => (showSuccessPopup = false)}
-				onkeydown={() => (showSuccessPopup = false)}
+				onkeydown={(e) => e.key === 'Escape' && (showSuccessPopup = false)}
+				transition:fade={{ duration: 200 }}
 			></div>
 
 			<div
-				class="animate-in fade-in zoom-in-95 relative z-10 w-full max-w-md border border-accent bg-bg p-12 text-center shadow-2xl duration-300"
+				class="relative z-10 w-full max-w-md border border-accent bg-bg p-12 text-center shadow-2xl"
+				transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: backOut }}
 			>
 				<h3 class="text-text-primary mb-2 text-2xl font-bold tracking-widest uppercase">
 					Message Sent
@@ -61,7 +69,9 @@
 					class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-white"
 				>
 					<span>Close</span>
-					<X size={14} class="transition-transform group-hover:rotate-90" />
+					<div class="relative transition-transform duration-300 group-hover:rotate-90">
+						<X size={14} />
+					</div>
 				</button>
 			</div>
 		</div>

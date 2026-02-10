@@ -36,7 +36,7 @@ export const actions: Actions = {
 
 		try {
 			const result = await resend.emails.send({
-				from: 'Portfolio Contact <onboarding@resend.dev>',
+				from: 'Portfolio Contact <contact@pedrolunet.dev>',
 				to: [env.CONTACT_EMAIL || 'hello@pedrolunet.dev'],
 				replyTo: email,
 				subject: `[Portfolio] Message from ${name}`,

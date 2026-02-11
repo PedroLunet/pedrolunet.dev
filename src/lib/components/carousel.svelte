@@ -153,7 +153,7 @@
 	></div>
 
 	<div
-		class="pointer-events-none absolute right-6 bottom-6 flex gap-2 font-mono text-[9px] tracking-widest text-text/50 uppercase"
+		class="pointer-events-none absolute right-6 bottom-6 flex gap-2 text-[9px] tracking-widest text-text/50 uppercase"
 	>
 		<span class="text-text">Fig. {String(currentIndex + 1).padStart(2, '0')}</span>
 		<span class="opacity-50">/</span>

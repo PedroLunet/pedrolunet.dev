@@ -1,0 +1,236 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { ArrowUpRight } from '@lucide/svelte';
+	import gsap from 'gsap';
+	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+
+	import ProjectTooltip from '$lib/components/projectTooltip.svelte';
+	import experience from '$lib/data/experience.json';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	function parseDescription(text: string) {
+		const parts = text.split(/(\[\[.*?\]\])/);
+
+		return parts.map((part) => {
+			if (part.startsWith('[[') && part.endsWith(']]')) {
+				const content = part.slice(2, -2).split('|');
+				return {
+					type: 'link' as const,
+					text: content[0] || '',
+					external: content[1] || '#',
+					internal: content[2] || ''
+				};
+			}
+			return { type: 'text' as const, content: part };
+		});
+	}
+
+	let sortedExperience = experience.sort((a, b) => {
+		const dateA = new Date(a.start);
+		const dateB = new Date(b.start);
+		return dateB.getTime() - dateA.getTime();
+	});
+
+	let ctx: gsap.Context;
+
+	onMount(() => {
+		ctx = gsap.context(() => {
+			const tl = gsap.timeline();
+
+			tl.to('.reveal-text', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' });
+			tl.to(
+				'.image-mask',
+				{ scaleY: 0, transformOrigin: 'bottom', duration: 1.2, ease: 'expo.inOut' },
+				0.3
+			);
+			tl.from('.profile-img', { scale: 1.2, duration: 1.5, ease: 'power2.out' }, 0.3);
+			tl.to(
+				'.fade-in-text',
+				{ y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out' },
+				0.5
+			);
+
+			gsap.utils.toArray('.experience-item').forEach((item: any, i) => {
+				gsap.from(item, {
+					scrollTrigger: {
+						trigger: item,
+						start: 'top 95%',
+						toggleActions: 'play none none reverse'
+					},
+					y: 20,
+					opacity: 0,
+					duration: 0.6,
+					delay: i * 0.1,
+					ease: 'power2.out'
+				});
+			});
+		});
+		return () => ctx.revert();
+	});
+</script>
+
+<div
+	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
+>
+	<div class="mx-auto flex max-w-500 flex-col px-6 lg:px-9 2xl:px-24">
+		<div class="flex flex-col gap-16 lg:flex-row lg:gap-12 2xl:gap-24">
+			<div class="relative w-full flex-none lg:w-[25%]">
+				<div
+					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
+				>
+					<div class="w-full shrink-0 overflow-hidden">
+						<h1
+							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,14rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
+						>
+							It's<br />Me.
+						</h1>
+					</div>
+					<div
+						class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+					>
+						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
+						<img
+							src="/me.png"
+							alt="Pedro Lunet"
+							class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex-1 lg:pt-32 2xl:pt-48">
+				<div
+					class="ml-auto flex max-w-2xl flex-col items-end text-right lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl"
+				>
+					<div class="flex flex-col gap-8 2xl:gap-16">
+						<h3
+							class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0 2xl:text-sm"
+						>
+							The Story
+						</h3>
+
+						<div class="fade-in-text translate-y-8 opacity-0">
+							<p
+								class="text-text-primary m-0 text-xl leading-relaxed font-light [text-wrap:balance] md:text-3xl 2xl:text-5xl 2xl:leading-tight"
+							>
+								I’m a developer based in Porto, dedicated to crafting <span
+									class="text-text-primary border-b border-accent/50 font-normal">smooth</span
+								>
+								and
+								<span class="text-text-primary border-b border-accent/50 font-normal"
+									>meaningful</span
+								> digital experiences.
+							</p>
+						</div>
+
+						<div
+							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose [text-wrap:pretty] text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
+						>
+							<p class="m-0">
+								Currently a student and a frontend developer, my work is driven by the belief that
+								the distance between a line of code and a visual emotion should be as small as
+								possible.
+							</p>
+							<p class="m-0">
+								Although my background is rooted in engineering rather than design, I treat
+								aesthetics as a core technical requirement. I believe that in our current digital
+								landscape, the way a project feels is just as critical as how it functions.
+							</p>
+							<p class="m-0">
+								My focus is on bridging that gap. Using technical precision to build interfaces that
+								aren't just usable, but genuinely enjoyable to interact with. The goal is always the
+								same: making the web a more refined and beautiful destination.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="pt-12 lg:pt-24 2xl:pt-40 2xl:pb-40">
+			<div class="flex flex-col">
+				<h3
+					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0 2xl:mb-12 2xl:pb-6 2xl:text-sm"
+				>
+					Experience
+				</h3>
+
+				<div class="flex flex-col gap-0">
+					{#each sortedExperience as job}
+						<div
+							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+						>
+							<div class="col-span-3">
+								<span
+									class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
+									class:opacity-0={job.end !== 'Present'}
+								>
+									{job.end === 'Present' ? 'Current' : ''}
+								</span>
+								<span class="text-text-primary text-sm font-bold 2xl:text-lg"
+									>{job.start} — {job.end}</span
+								>
+							</div>
+
+							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
+								<div class="flex items-center justify-between">
+									<h4
+										class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
+									>
+										{job.role}
+									</h4>
+								</div>
+
+								<div
+									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
+								>
+									<a
+										href={job.companyUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="transition-colors hover:text-accent">{job.company}</a
+									>
+									{#if job.location}
+										<span class="opacity-30">•</span>
+										<span class="opacity-50">{job.location}</span>
+									{/if}
+								</div>
+
+								<p
+									class="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
+								>
+									{#each parseDescription(job.description) as part}
+										{#if part.type === 'text'}
+											{part.content}
+										{:else}
+											<ProjectTooltip
+												text={part.text}
+												external={part.external}
+												internal={part.internal || ''}
+											/>
+										{/if}
+									{/each}
+								</p>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
+		</div>
+		<div
+			class="fade-in-text mt-12 pb-12 flex translate-y-8 justify-end opacity-0 lg:pb-24 2xl:pb-48"
+		>
+			<a
+				href="/cv.pdf"
+				download="Pedro_Lunet_CV.pdf"
+				class="group border-text-primary text-text-primary relative border px-10 py-5 text-xs font-bold tracking-widest uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
+			>
+				<span class="flex items-center gap-3">
+					Download CV
+					<ArrowUpRight class="h-4 w-4 transition-transform duration-300 group-hover:rotate-135" />
+				</span>
+			</a>
+		</div>
+	</div>
+</div>

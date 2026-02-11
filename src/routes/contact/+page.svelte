@@ -282,7 +282,7 @@
 							class="text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 							>Local Time</span
 						>
-						<span class="text-text-primary font-mono text-xs">{time || '--:--'}</span>
+						<span class="text-text-primary text-xs">{time || '--:--'}</span>
 					</div>
 				</div>
 			</div>

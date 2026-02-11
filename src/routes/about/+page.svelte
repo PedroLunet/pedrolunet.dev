@@ -73,7 +73,9 @@
 	});
 </script>
 
-<div class="min-h-screen w-full bg-bg px-6 pt-12 pb-24 lg:px-9 lg:pt-24">
+<div
+	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg px-6 pt-12 pb-24 md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9 lg:pt-24"
+>
 	<div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
 		<div class="sticky top-24 col-span-1 flex flex-col gap-12 self-start lg:col-span-5">
 			<div class="overflow-hidden">
@@ -84,9 +86,7 @@
 				</h1>
 			</div>
 
-			<div
-				class="fade-in-text relative aspect-[3/4] w-full translate-y-8 overflow-hidden opacity-0"
-			>
+			<div class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0">
 				<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
 				<img
 					src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"

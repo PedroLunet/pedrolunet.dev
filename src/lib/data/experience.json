@@ -1,29 +1,38 @@
 [
 	{
-		"role": "Freelance Creative Developer",
-		"company": "Self-Employed",
-		"companyUrl": "https://pedrolunet.dev",
-		"location": "Porto, PT",
-		"start": "Sep 2023",
+		"role": "Recruit",
+		"company": "NIAEFEUP",
+		"companyUrl": "https://ni.fe.up.pt",
+		"location": "FEUP, Porto",
+		"start": "Nov 2025",
 		"end": "Present",
-		"description": "Partnering with global design studios to implement high-end web experiences. Specializing in SvelteKit, WebGL, and interaction design."
+		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a schedule builder for UP students (React)."
 	},
 	{
-		"role": "Senior Frontend Engineer",
-		"company": "Agency X",
-		"companyUrl": "https://google.com",
-		"location": "London, UK",
-		"start": "Jan 2021",
-		"end": "Aug 2023",
-		"description": "Led the frontend team for award-winning e-commerce projects. Focused on performance optimization and headless CMS architectures."
+		"role": "Junior Software Engineer",
+		"company": "Xarevision",
+		"companyUrl": "https://xarevision.pt",
+		"location": "Porto, PT",
+		"start": "Nov 2025",
+		"end": "Jan 2026",
+		"description": "Specialized in retail software solutions for major clients like SONAE. Engineered robust PHP microservices for backend operations and maintained Android systems for in-store deployments."
 	},
 	{
-		"role": "Full Stack Developer",
-		"company": "Studio Y",
-		"companyUrl": "https://google.com",
-		"location": "Remote",
-		"start": "Mar 2019",
-		"end": "Dec 2020",
-		"description": "Built scalable backend systems and responsive UIs for SaaS products. Collaborated closely with product managers to deliver features."
+		"role": "Frontend Developer Intern",
+		"company": "Significa",
+		"companyUrl": "https://significa.co",
+		"location": "Porto, PT",
+		"start": "Jul 2025",
+		"end": "Sep 2025",
+		"description": "Full-time summer internship focusing on Dodia.pt and the agency's own website. Marked my first professional deep dive into Svelte, refining UI interactions and performance."
+	},
+	{
+		"role": "Full Stack Developer Intern",
+		"company": "Significa",
+		"companyUrl": "https://significa.co",
+		"location": "Porto, PT",
+		"start": "Feb 2025",
+		"end": "Jun 2025",
+		"description": "Curricular internship where I built Dodia.pt from the ground up. Architected the full-stack solution using Next.js and Drizzle ORM, delivering my first production-grade application."
 	}
 ]

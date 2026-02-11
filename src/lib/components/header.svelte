@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
@@ -15,7 +15,7 @@
 	let ghostRef = $state<HTMLDivElement>();
 	let bgSamplerRef = $state<HTMLDivElement>();
 
-	let isHomePage = $derived($page.url.pathname === '/');
+	let isHomePage = $derived(page.url.pathname === '/');
 
 	onMount(() => {
 		ctx = gsap.context(() => {
@@ -41,19 +41,21 @@
 				}
 			}, 0);
 
-			tl.to(
-				ghostRef,
-				{
-					top: 0,
-					left: 0,
-					width: '100vw',
-					height: '100vh',
-					backgroundColor: targetColor,
-					duration: 0.8,
-					ease: 'expo.inOut'
-				},
-				0
-			);
+			if (ghostRef) {
+				tl.to(
+					ghostRef,
+					{
+						top: 0,
+						left: 0,
+						width: '100vw',
+						height: '100vh',
+						backgroundColor: targetColor,
+						duration: 0.8,
+						ease: 'expo.inOut'
+					},
+					0
+				);
+			}
 
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0);
 
@@ -105,7 +107,7 @@
 		>
 			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
 			<span
-				class="text-text-primary rotate-[-90deg] text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
+				class="text-text-primary -rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
 			>
 				Close
 			</span>

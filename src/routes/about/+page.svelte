@@ -77,10 +77,8 @@
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
 	<div class="mx-auto flex max-w-500 flex-col px-6 lg:px-9 2xl:px-24">
-		<div class="flex flex-col gap-16 lg:flex-row lg:gap-24 2xl:gap-40">
-			<div
-				class="relative w-full flex-none lg:w-[min(45vw,60vh)] lg:max-w-[60%] lg:min-w-[30%] 2xl:min-w-[35%]"
-			>
+		<div class="flex flex-col gap-16 lg:flex-row lg:gap-12 2xl:gap-24">
+			<div class="relative w-full flex-none lg:w-[25%]">
 				<div
 					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
 				>
@@ -106,7 +104,9 @@
 			</div>
 
 			<div class="flex-1 lg:pt-32 2xl:pt-48">
-				<div class="flex max-w-2xl flex-col 2xl:max-w-4xl">
+				<div
+					class="ml-auto flex max-w-2xl flex-col items-end text-right lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+				>
 					<div class="flex flex-col gap-8 2xl:gap-16">
 						<h3
 							class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0 2xl:text-sm"

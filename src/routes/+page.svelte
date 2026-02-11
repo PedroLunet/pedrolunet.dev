@@ -104,9 +104,7 @@
 	}
 </script>
 
-<div
-	class="relative h-[calc(100vh-var(--header-height-mobile))] w-full overflow-hidden md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))]"
->
+<div class="relative w-full flex-1 overflow-hidden">
 	<div class="js-ghost-target absolute top-1/2 left-0 h-0 w-0 -translate-y-1/2"></div>
 
 	<div class="absolute inset-0 flex flex-col items-start justify-center">

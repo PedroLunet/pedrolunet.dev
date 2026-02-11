@@ -91,7 +91,7 @@
 					>
 						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
 						<img
-							src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+							src="/me.png"
 							alt="Pedro Lunet"
 							class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
 						/>

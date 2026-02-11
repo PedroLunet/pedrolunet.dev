@@ -19,50 +19,43 @@
 
 	onMount(() => {
 		ctx = gsap.context(() => {
+			if (!triggerRef || !ghostRef || !bgSamplerRef) return;
+
+			const targetColor = window.getComputedStyle(bgSamplerRef).backgroundColor || '#0a0a0a';
+
 			tl = gsap.timeline({ paused: true });
 
-			const targetColor = bgSamplerRef
-				? window.getComputedStyle(bgSamplerRef).backgroundColor
-				: '#0a0a0a';
-
 			tl.add(() => {
-				if (triggerRef && ghostRef) {
-					const rect = triggerRef.getBoundingClientRect();
-					gsap.set(ghostRef, {
-						position: 'fixed',
-						top: rect.top,
-						left: rect.left,
-						width: rect.width,
-						height: rect.height,
-						autoAlpha: 1,
-						backgroundColor: '#FF4D00',
-						borderRadius: '0px'
-					});
-				}
+				const rect = triggerRef!.getBoundingClientRect();
+				gsap.set(ghostRef!, {
+					position: 'fixed',
+					top: rect.top,
+					left: rect.left,
+					width: rect.width,
+					height: rect.height,
+					autoAlpha: 1,
+					backgroundColor: '#FF4D00',
+					borderRadius: '0px'
+				});
 			}, 0);
 
-			if (ghostRef) {
-				tl.to(
-					ghostRef,
-					{
-						top: 0,
-						left: 0,
-						width: '100vw',
-						height: '100vh',
-						backgroundColor: targetColor,
-						duration: 0.8,
-						ease: 'expo.inOut'
-					},
-					0
-				);
-			}
+			tl.to(
+				ghostRef,
+				{
+					top: 0,
+					left: 0,
+					width: '100vw',
+					height: '100vh',
+					backgroundColor: targetColor,
+					duration: 0.8,
+					ease: 'expo.inOut'
+				},
+				0
+			);
 
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0);
-
 			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.1 }, 0);
-
 			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.4);
-
 			tl.fromTo(
 				'.menu-item',
 				{ x: 100, autoAlpha: 0 },
@@ -94,8 +87,7 @@
 </script>
 
 <div bind:this={bgSamplerRef} class="hidden bg-bg"></div>
-
-<div bind:this={ghostRef} class="pointer-events-none fixed z-40 hidden bg-accent"></div>
+<div bind:this={ghostRef} class="pointer-events-none invisible fixed z-40 bg-accent"></div>
 
 <div class="menu-overlay pointer-events-none fixed inset-0 z-50 flex opacity-0">
 	<div
@@ -144,7 +136,6 @@
 				>
 					Menu
 				</span>
-
 				<span
 					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase"
 				>

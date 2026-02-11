@@ -3,9 +3,16 @@
 	import { ArrowUpRight } from '@lucide/svelte';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+
 	import experience from '$lib/data/experience.json';
 
 	gsap.registerPlugin(ScrollTrigger);
+
+	let sortedExperience = experience.sort((a, b) => {
+		const dateA = new Date(a.start);
+		const dateB = new Date(b.start);
+		return dateB.getTime() - dateA.getTime();
+	});
 
 	let ctx: gsap.Context;
 
@@ -162,7 +169,7 @@
 				</h3>
 
 				<div class="flex flex-col gap-0">
-					{#each experience as job}
+					{#each sortedExperience as job}
 						<div
 							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 						>

@@ -92,11 +92,11 @@
 
 <main
 	class="mx-auto min-h-[calc(100vh-var(--header-height-mobile))] w-full max-w-600
-  bg-bg px-6 pt-4
-  pb-12
+  bg-bg px-6 pt-4 pb-12
   md:min-h-[calc(100vh-var(--header-height-tablet))]
   lg:min-h-[calc(100vh-var(--header-height-desktop))]
-  lg:px-9 lg:pt-12
+  lg:px-9
+  lg:pt-12 2xl:min-h-[calc(100vh-var(--header-height-ultrawide))]
   2xl:px-24 2xl:pt-20"
 >
 	{@render children()}

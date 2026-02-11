@@ -155,9 +155,20 @@
 						name="message"
 						id="message"
 						required
-						rows="5"
 						placeholder=" "
-						class="peer border-text-primary/20 text-text-primary w-full resize-none rounded-none border bg-transparent p-4 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+						data-lenis-prevent
+						onwheel={(e) => e.stopPropagation()}
+						class="
+    peer border-text-primary/20 text-text-primary [&::-webkit-scrollbar-thumb]:bg-text-primary/20 relative h-40 w-full resize-none overflow-y-auto overscroll-contain rounded-none border bg-transparent p-4 text-lg
+    font-light
+    placeholder-transparent
+    transition-colors
+    outline-none focus:border-accent
+    focus:ring-0
+    [&::-webkit-scrollbar]:w-1.5
+    hover:[&::-webkit-scrollbar-thumb]:bg-accent
+    [&::-webkit-scrollbar-track]:bg-transparent
+  "
 					></textarea>
 
 					<label

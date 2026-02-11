@@ -148,7 +148,7 @@
 			</div>
 		</div>
 
-		<div class="pt-12 pb-24 lg:pt-24 2xl:pt-40 2xl:pb-40">
+		<div class="pt-12 lg:pt-24 2xl:pt-40 2xl:pb-40">
 			<div class="flex flex-col">
 				<h3
 					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0 2xl:mb-12 2xl:pb-6 2xl:text-sm"
@@ -219,7 +219,7 @@
 			</div>
 		</div>
 		<div
-			class="fade-in-text mt-12 flex translate-y-8 justify-end opacity-0 lg:mt-0 lg:pb-32 2xl:pb-48"
+			class="fade-in-text mt-12 pb-12 flex translate-y-8 justify-end opacity-0 lg:pb-24 2xl:pb-48"
 		>
 			<a
 				href="/cv.pdf"

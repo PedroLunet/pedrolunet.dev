@@ -6,8 +6,8 @@
 	import Block from '$lib/components/landing/block.svelte';
 
 	let isMenuOpen = $state(false);
-	let isReady = $state(false);
 
+	let tlLoad: gsap.core.Timeline;
 	let tlOpen: gsap.core.Timeline;
 	let ctx: gsap.Context;
 
@@ -15,11 +15,7 @@
 		let mm = gsap.matchMedia();
 
 		ctx = gsap.context(() => {
-			const tlLoad = gsap.timeline({
-				onComplete: () => {
-					isReady = true;
-				}
-			});
+			tlLoad = gsap.timeline();
 
 			gsap.set('.hero-text', { y: 20, autoAlpha: 0 });
 			gsap.set('.menu-item', { x: 50, autoAlpha: 0 });
@@ -92,7 +88,19 @@
 	});
 
 	function handleClick() {
-		if (!tlOpen || !isReady) return;
+		if (!tlOpen) return;
+
+		if (tlLoad && tlLoad.isActive()) {
+			tlLoad.timeScale(3);
+
+			tlLoad.eventCallback('onComplete', () => {
+				tlOpen.play();
+				isMenuOpen = true;
+				tlLoad.timeScale(1);
+			});
+
+			return;
+		}
 
 		if (isMenuOpen) {
 			tlOpen.reverse();
@@ -110,7 +118,7 @@
 	<div class="absolute inset-0 flex flex-col items-start justify-center">
 		<Hero>
 			{#snippet block()}
-				<div class={isReady ? 'cursor-pointer' : 'cursor-default'}>
+				<div class="cursor-pointer">
 					<Block onclick={handleClick} isOpen={isMenuOpen} />
 				</div>
 			{/snippet}

@@ -23,22 +23,32 @@
 
 			const targetColor = window.getComputedStyle(bgSamplerRef).backgroundColor || '#0a0a0a';
 
-			tl = gsap.timeline({ paused: true });
+			tl = gsap.timeline({
+				paused: true,
+				onStart: () => {
+					if (!triggerRef || !ghostRef) return;
 
-			tl.add(() => {
-				const rect = triggerRef!.getBoundingClientRect();
-				gsap.set(ghostRef!, {
-					position: 'fixed',
-					top: rect.top,
-					left: rect.left,
-					width: rect.width,
-					height: rect.height,
-					autoAlpha: 1,
-					scale: 1,
-					backgroundColor: '#FF4D00',
-					borderRadius: '0px'
-				});
-			}, 0);
+					const rect = triggerRef.getBoundingClientRect();
+					gsap.set(ghostRef, {
+						top: rect.top,
+						left: rect.left,
+						width: rect.width,
+						height: rect.height,
+						scale: 1,
+						borderRadius: '0px',
+						backgroundColor: '#FF4D00',
+						autoAlpha: 1
+					});
+
+					gsap.set('.ghost-text-wrapper', { autoAlpha: 1 });
+
+					gsap.set(triggerRef, { autoAlpha: 0 });
+				},
+				onReverseComplete: () => {
+					if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
+					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0 });
+				}
+			});
 
 			tl.to(ghostRef, { scale: 0.9, duration: 0.1, ease: 'power1.out' }, 0);
 
@@ -57,6 +67,7 @@
 				0.1
 			);
 
+			tl.to('.ghost-text-wrapper', { autoAlpha: 0, duration: 0.2 }, 0.1);
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.1);
 			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.1);
 
@@ -87,6 +98,9 @@
 		if (isMenuOpen && tl) {
 			tl.progress(0).pause();
 			isMenuOpen = false;
+
+			if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0 });
+			if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
 		}
 	});
 </script>
@@ -95,12 +109,25 @@
 
 <div
 	bind:this={ghostRef}
-	class="pointer-events-none invisible fixed z-40 bg-accent transition-opacity duration-300"
+	class="pointer-events-none invisible fixed z-55 overflow-hidden bg-accent px-2 will-change-transform"
 	class:!opacity-0={isHomePage}
 	class:!invisible={isHomePage}
-></div>
+>
+	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
+		<span
+			class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+		>
+			Menu
+		</span>
+		<span
+			class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+		>
+			Menu
+		</span>
+	</div>
+</div>
 
-<div class="menu-overlay pointer-events-none invisible fixed inset-0 z-50 flex opacity-0">
+<div class="menu-overlay pointer-events-none invisible fixed inset-0 z-60 flex opacity-0">
 	<div
 		class="close-strip absolute top-0 left-0 z-60 h-full w-12 border-r border-text/10 lg:w-24 2xl:w-32"
 	>

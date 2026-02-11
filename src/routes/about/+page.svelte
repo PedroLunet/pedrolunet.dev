@@ -175,7 +175,7 @@
 						>
 							<div class="col-span-3">
 								<span
-									class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
+									class="mb-1 block text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
 									class:opacity-0={job.end !== 'Present'}
 								>
 									{job.end === 'Present' ? 'Current' : ''}

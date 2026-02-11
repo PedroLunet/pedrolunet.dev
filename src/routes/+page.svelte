@@ -26,6 +26,7 @@
 					'start'
 				);
 
+			// Desktop Block Animation
 			mm.add('(min-width: 1024px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
@@ -38,17 +39,8 @@
 			mm.add('(max-width: 1023px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
-					{
-						height: 0,
-						marginTop: 0,
-						marginBottom: 0,
-						autoAlpha: 1
-					},
-					{
-						height: '3rem',
-						duration: 2.5,
-						ease: 'power4.out'
-					},
+					{ height: 0, marginTop: 0, marginBottom: 0, autoAlpha: 1 },
+					{ height: '3rem', duration: 2.5, ease: 'power4.out' },
 					'-=1.0'
 				);
 			});
@@ -121,11 +113,11 @@
 <svelte:window onwheel={handleScroll} />
 
 <div
-	class="relative h-[calc(100vh-var(--header-height-mobile))] w-full overflow-hidden px-8 md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))] lg:px-12"
+	class="relative h-[calc(100vh-var(--header-height-mobile))] w-full overflow-hidden md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="js-ghost-target absolute top-1/2 left-3 h-0 w-0 -translate-y-1/2 lg:left-9"></div>
+	<div class="js-ghost-target absolute top-1/2 left-0 h-0 w-0 -translate-y-1/2"></div>
 
-	<div class="absolute inset-0 flex flex-col justify-center px-8 lg:px-12">
+	<div class="absolute inset-0 flex flex-col items-start justify-center">
 		<Hero>
 			{#snippet block()}
 				<Block onclick={handleClick} isOpen={isMenuOpen} />
@@ -133,9 +125,7 @@
 		</Hero>
 	</div>
 
-	<div
-		class="pointer-events-none absolute inset-0 flex flex-col items-end justify-center px-6 lg:px-9"
-	>
+	<div class="pointer-events-none absolute inset-0 flex flex-col items-end justify-center">
 		<Menu isOpen={isMenuOpen} />
 	</div>
 </div>

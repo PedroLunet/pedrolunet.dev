@@ -180,11 +180,6 @@
 									>
 										{job.role}
 									</h4>
-									<a href={job.companyUrl} target="_blank" rel="noopener noreferrer">
-										<ArrowUpRight
-											class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 2xl:h-8 2xl:w-8"
-										/>
-									</a>
 								</div>
 
 								<div
@@ -196,9 +191,10 @@
 										rel="noopener noreferrer"
 										class="transition-colors hover:text-accent">{job.company}</a
 									>
-									{#if job.location}<span class="opacity-30">•</span><span class="opacity-50"
-											>{job.location}</span
-										>{/if}
+									{#if job.location}
+										<span class="opacity-30">•</span>
+										<span class="opacity-50">{job.location}</span>
+									{/if}
 								</div>
 
 								<p

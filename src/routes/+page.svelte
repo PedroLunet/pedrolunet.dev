@@ -6,6 +6,8 @@
 	import Block from '$lib/components/landing/block.svelte';
 
 	let isMenuOpen = $state(false);
+
+	let tlLoad: gsap.core.Timeline;
 	let tlOpen: gsap.core.Timeline;
 	let ctx: gsap.Context;
 
@@ -13,7 +15,7 @@
 		let mm = gsap.matchMedia();
 
 		ctx = gsap.context(() => {
-			const tlLoad = gsap.timeline();
+			tlLoad = gsap.timeline();
 
 			gsap.set('.hero-text', { y: 20, autoAlpha: 0 });
 			gsap.set('.menu-item', { x: 50, autoAlpha: 0 });
@@ -30,7 +32,7 @@
 				tlLoad.fromTo(
 					'.js-block',
 					{ width: 0, autoAlpha: 1 },
-					{ width: '12rem', duration: 2.5, ease: 'power4.out' },
+					{ width: '12rem', duration: 2, ease: 'power4.out' },
 					'-=1.0'
 				);
 			});
@@ -38,17 +40,8 @@
 			mm.add('(max-width: 1023px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
-					{
-						height: 0,
-						marginTop: 0,
-						marginBottom: 0,
-						autoAlpha: 1
-					},
-					{
-						height: '3rem',
-						duration: 2.5,
-						ease: 'power4.out'
-					},
+					{ height: 0, marginTop: 0, marginBottom: 0, autoAlpha: 1 },
+					{ height: '3rem', duration: 2.5, ease: 'power4.out' },
 					'-=1.0'
 				);
 			});
@@ -96,6 +89,19 @@
 
 	function handleClick() {
 		if (!tlOpen) return;
+
+		if (tlLoad && tlLoad.isActive()) {
+			tlLoad.timeScale(3);
+
+			tlLoad.eventCallback('onComplete', () => {
+				tlOpen.play();
+				isMenuOpen = true;
+				tlLoad.timeScale(1);
+			});
+
+			return;
+		}
+
 		if (isMenuOpen) {
 			tlOpen.reverse();
 			isMenuOpen = false;
@@ -104,38 +110,22 @@
 			isMenuOpen = true;
 		}
 	}
-
-	function handleScroll(event: WheelEvent) {
-		if (!tlOpen) return;
-		const threshold = 5;
-		if (event.deltaY > threshold && !isMenuOpen) {
-			tlOpen.play();
-			isMenuOpen = true;
-		} else if (event.deltaY < -threshold && isMenuOpen) {
-			tlOpen.reverse();
-			isMenuOpen = false;
-		}
-	}
 </script>
 
-<svelte:window onwheel={handleScroll} />
+<div class="relative w-full flex-1 overflow-hidden">
+	<div class="js-ghost-target absolute top-1/2 left-0 h-0 w-0 -translate-y-1/2"></div>
 
-<div
-	class="relative h-[calc(100vh-var(--header-height-mobile))] w-full overflow-hidden px-8 md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))] lg:px-12"
->
-	<div class="js-ghost-target absolute top-1/2 left-3 h-0 w-0 -translate-y-1/2 lg:left-9"></div>
-
-	<div class="absolute inset-0 flex flex-col justify-center px-8 lg:px-12">
+	<div class="absolute inset-0 flex flex-col items-start justify-center">
 		<Hero>
 			{#snippet block()}
-				<Block onclick={handleClick} isOpen={isMenuOpen} />
+				<div class="cursor-pointer">
+					<Block onclick={handleClick} isOpen={isMenuOpen} />
+				</div>
 			{/snippet}
 		</Hero>
 	</div>
 
-	<div
-		class="pointer-events-none absolute inset-0 flex flex-col items-end justify-center px-6 lg:px-9"
-	>
+	<div class="pointer-events-none absolute inset-0 flex flex-col items-end justify-center">
 		<Menu isOpen={isMenuOpen} />
 	</div>
 </div>

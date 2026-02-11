@@ -22,7 +22,7 @@
 
 <button
 	{onclick}
-	class="js-block group relative flex h-12 w-32 cursor-pointer border-none p-0 outline-none md:h-24 md:w-48"
+	class="js-block group relative flex h-12 w-32 cursor-pointer border-none p-0 outline-none md:h-24 md:w-48 2xl:h-32 2xl:w-64"
 	aria-label="Toggle Menu"
 >
 	<div
@@ -34,10 +34,10 @@
 				: 'scale-x-0'} md:scale-x-0 md:group-hover:scale-x-100"
 		></div>
 
-		<div class="relative z-10 flex h-5 w-full justify-center leading-none lg:h-7">
+		<div class="relative z-10 flex h-5 w-full justify-center leading-none lg:h-7 2xl:h-10">
 			{#key label}
 				<span
-					class="animate-in fade-in zoom-in-95 absolute bottom-0 flex items-end justify-center text-lg font-medium tracking-widest text-bg lowercase duration-300 lg:text-3xl"
+					class="animate-in fade-in zoom-in-95 absolute bottom-0 flex items-end justify-center text-lg font-medium tracking-widest text-bg lowercase duration-300 lg:text-3xl 2xl:text-5xl"
 				>
 					{label}
 				</span>

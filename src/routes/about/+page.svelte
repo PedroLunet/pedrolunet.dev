@@ -218,5 +218,19 @@
 				</div>
 			</div>
 		</div>
+		<div
+			class="fade-in-text mt-12 flex translate-y-8 justify-end opacity-0 lg:mt-0 lg:pb-32 2xl:pb-48"
+		>
+			<a
+				href="/cv.pdf"
+				download="Pedro_Lunet_CV.pdf"
+				class="group border-text-primary text-text-primary relative border px-10 py-5 text-xs font-bold tracking-widest uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
+			>
+				<span class="flex items-center gap-3">
+					Download CV
+					<ArrowUpRight class="h-4 w-4 transition-transform duration-300 group-hover:rotate-135" />
+				</span>
+			</a>
+		</div>
 	</div>
 </div>

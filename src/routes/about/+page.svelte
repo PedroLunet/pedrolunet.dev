@@ -81,7 +81,7 @@
 				>
 					<div class="w-full shrink-0 overflow-hidden">
 						<h1
-							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,14rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
+							class="reveal-text text-text translate-y-full text-[clamp(3.5rem,6vw,14rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
 						>
 							It's<br />Me.
 						</h1>
@@ -112,13 +112,13 @@
 
 						<div class="fade-in-text translate-y-8 opacity-0">
 							<p
-								class="text-text-primary m-0 text-xl leading-relaxed font-light [text-wrap:balance] md:text-3xl 2xl:text-5xl 2xl:leading-tight"
+								class="text-text m-0 text-xl leading-relaxed font-light text-balance md:text-3xl 2xl:text-5xl 2xl:leading-tight"
 							>
 								I’m a developer based in Porto, dedicated to crafting <span
-									class="text-text-primary border-b border-accent/50 font-normal">smooth</span
+									class="text-text border-b border-accent/50 font-normal">smooth</span
 								>
 								and
-								<span class="text-text-primary border-b border-accent/50 font-normal"
+								<span class="text-text border-b border-accent/50 font-normal"
 									>meaningful</span
 								> digital experiences.
 							</p>
@@ -151,7 +151,7 @@
 		<div class="pt-12 lg:pt-24 2xl:pt-40 2xl:pb-40">
 			<div class="flex flex-col">
 				<h3
-					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0 2xl:mb-12 2xl:pb-6 2xl:text-sm"
+					class="fade-in-text border-text/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0 2xl:mb-12 2xl:pb-6 2xl:text-sm"
 				>
 					Experience
 				</h3>
@@ -159,7 +159,7 @@
 				<div class="flex flex-col gap-0">
 					{#each sortedExperience as job}
 						<div
-							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+							class="experience-item group border-text/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 						>
 							<div class="col-span-3">
 								<span
@@ -168,7 +168,7 @@
 								>
 									{job.end === 'Present' ? 'Current' : ''}
 								</span>
-								<span class="text-text-primary text-sm font-bold 2xl:text-lg"
+								<span class="text-text text-sm font-bold 2xl:text-lg"
 									>{job.start} — {job.end}</span
 								>
 							</div>
@@ -176,7 +176,7 @@
 							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 								<div class="flex items-center justify-between">
 									<h4
-										class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
+										class="text-text text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
 									>
 										{job.role}
 									</h4>
@@ -224,7 +224,7 @@
 			<a
 				href="/cv.pdf"
 				download="Pedro_Lunet_CV.pdf"
-				class="group border-text-primary text-text-primary relative border px-10 py-5 text-xs font-bold tracking-widest uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
+				class="group border-text text-text relative border px-10 py-5 text-xs font-bold tracking-widest uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
 			>
 				<span class="flex items-center gap-3">
 					Download CV

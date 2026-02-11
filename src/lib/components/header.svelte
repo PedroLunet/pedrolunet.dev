@@ -102,7 +102,7 @@
 
 <div class="menu-overlay pointer-events-none invisible fixed inset-0 z-50 flex opacity-0">
 	<div
-		class="close-strip border-text-primary/10 absolute top-0 left-0 z-60 h-full w-12 border-r lg:w-24"
+		class="close-strip border-text/10 absolute top-0 left-0 z-60 h-full w-12 border-r lg:w-24"
 	>
 		<button
 			onclick={toggleMenu}
@@ -110,7 +110,7 @@
 		>
 			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
 			<span
-				class="text-text-primary -rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
+				class="text-text -rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
 			>
 				Close
 			</span>

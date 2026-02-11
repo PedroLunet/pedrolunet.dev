@@ -9,7 +9,7 @@
 <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 2xl:gap-32">
 	<div class="col-span-1 flex flex-col lg:col-span-6">
 		<div
-			class="border-text-primary/10 mb-2 hidden grid-cols-12 gap-4 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary uppercase opacity-40 lg:grid 2xl:mb-6 2xl:pb-6 2xl:text-sm"
+			class="border-text/10 mb-2 hidden grid-cols-12 gap-4 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary uppercase opacity-40 lg:grid 2xl:mb-6 2xl:pb-6 2xl:text-sm"
 		>
 			<div class="col-span-1">No.</div>
 			<div class="col-span-5">Project</div>
@@ -20,7 +20,7 @@
 		{#each projects as project}
 			<a
 				href="/work/{project.slug}"
-				class="group border-text-primary/20 hover:bg-text-primary/5 relative grid grid-cols-1 gap-y-2 border-b py-8 transition-all duration-300 hover:pl-6 lg:grid-cols-12 lg:items-center lg:gap-6 2xl:py-16 2xl:hover:pl-10"
+				class="group border-text/20 hover:bg-text/5 relative grid grid-cols-1 gap-y-2 border-b py-8 transition-all duration-300 hover:pl-6 lg:grid-cols-12 lg:items-center lg:gap-6 2xl:py-16 2xl:hover:pl-10"
 				onmouseenter={() => (activeImage = project.image)}
 			>
 				<div
@@ -34,12 +34,12 @@
 					style="container-type: inline-size"
 				>
 					<h2
-						class="text-text-primary overflow-hidden text-[clamp(1.5rem,12cqi,3rem)] leading-none font-bold text-ellipsis whitespace-nowrap transition-colors group-hover:text-accent 2xl:text-[clamp(2.5rem,12cqi,5rem)]"
+						class="text-text overflow-hidden text-[clamp(1.5rem,12cqi,3rem)] leading-none font-bold text-ellipsis whitespace-nowrap transition-colors group-hover:text-accent 2xl:text-[clamp(2.5rem,12cqi,5rem)]"
 					>
 						{project.title}
 					</h2>
 					<span
-						class="group-hover:text-text-primary mt-2 text-sm text-text-secondary transition-colors 2xl:mt-3 2xl:text-lg"
+						class="group-hover:text-text mt-2 text-sm text-text-secondary transition-colors 2xl:mt-3 2xl:text-lg"
 					>
 						{project.context}
 					</span>
@@ -50,7 +50,7 @@
 				>
 					{#each project.tech.slice(0, 5) as t}
 						<span
-							class="bg-text-primary/5 rounded-sm px-3 py-1.5 text-xs tracking-wider text-text-secondary uppercase transition-colors group-hover:bg-accent/10 group-hover:text-accent 2xl:px-4 2xl:py-2 2xl:text-sm"
+							class="bg-text/5 rounded-sm px-3 py-1.5 text-xs tracking-wider text-text-secondary uppercase transition-colors group-hover:bg-accent/10 group-hover:text-accent 2xl:px-4 2xl:py-2 2xl:text-sm"
 						>
 							{t}
 						</span>
@@ -64,7 +64,7 @@
 				</div>
 
 				<div
-					class="group-hover:text-text-primary col-span-2 mt-2 text-right text-sm text-text-secondary lg:mt-0 2xl:text-base"
+					class="group-hover:text-text col-span-2 mt-2 text-right text-sm text-text-secondary lg:mt-0 2xl:text-base"
 				>
 					{project.year}
 				</div>
@@ -75,7 +75,7 @@
 			href="https://github.com/pedrolunet"
 			target="_blank"
 			rel="noreferrer"
-			class="group border-text-primary/20 hover:bg-text-primary/5 flex items-center justify-between border-b py-8 transition-all duration-300 hover:pl-6 2xl:py-16 2xl:hover:pl-10"
+			class="group border-text/20 hover:bg-text/5 flex items-center justify-between border-b py-8 transition-all duration-300 hover:pl-6 2xl:py-16 2xl:hover:pl-10"
 		>
 			<span
 				class="text-sm font-bold tracking-widest text-text-secondary uppercase transition-colors group-hover:text-accent 2xl:text-base"
@@ -96,7 +96,7 @@
 
 	<div class="sticky top-32 col-span-6 hidden h-fit lg:block 2xl:top-48">
 		<div
-			class="border-text-primary/5 relative aspect-16/10 w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-bg/5"
+			class="border-text/5 relative aspect-16/10 w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-bg/5"
 		>
 			{#key activeImage}
 				<img

@@ -9,7 +9,7 @@
 >
 	<a
 		href="/work"
-		class="menu-item group text-text-primary invisible block text-4xl font-thin tracking-tight md:text-8xl"
+		class="menu-item group text-text invisible block text-4xl font-thin tracking-tight md:text-8xl"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
@@ -20,7 +20,7 @@
 
 	<a
 		href="/about"
-		class="menu-item group text-text-primary invisible block text-4xl font-thin tracking-tight md:text-8xl"
+		class="menu-item group text-text invisible block text-4xl font-thin tracking-tight md:text-8xl"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
@@ -31,7 +31,7 @@
 
 	<a
 		href="/contact"
-		class="menu-item group text-text-primary invisible block text-4xl font-thin tracking-tight md:text-8xl"
+		class="menu-item group text-text invisible block text-4xl font-thin tracking-tight md:text-8xl"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"

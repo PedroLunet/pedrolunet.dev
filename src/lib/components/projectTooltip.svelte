@@ -34,7 +34,7 @@
 <div class="relative inline-block" bind:this={triggerEl}>
 	<a
 		href={internal || external}
-		class="text-text-primary border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent lg:cursor-default {hovered
+		class="text-text border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent lg:cursor-default {hovered
 			? 'invisible'
 			: 'visible'}"
 		on:mouseenter={handleOpen}

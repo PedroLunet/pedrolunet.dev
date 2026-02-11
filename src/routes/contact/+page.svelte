@@ -70,7 +70,7 @@
 				class="relative z-10 w-full max-w-md border border-accent bg-bg p-12 text-center shadow-2xl"
 				transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: backOut }}
 			>
-				<h3 class="text-text-primary mb-2 text-2xl font-bold tracking-widest uppercase">
+				<h3 class="text-text mb-2 text-2xl font-bold tracking-widest uppercase">
 					Message Sent
 				</h3>
 				<p class="mb-8 text-sm text-text-secondary">Thank you. I'll get back to you shortly.</p>
@@ -92,7 +92,7 @@
 		<div class="col-span-1 lg:col-span-7">
 			<div class="reveal translate-y-8 opacity-0">
 				<h1
-					class="text-text-primary text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter uppercase"
+					class="text-text text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter uppercase"
 				>
 					Let's<br />Talk.
 				</h1>
@@ -123,7 +123,7 @@
 						id="name"
 						required
 						placeholder=" "
-						class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+						class="peer border-text/20 text-text w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
 					/>
 					<label
 						for="name"
@@ -140,7 +140,7 @@
 						id="email"
 						required
 						placeholder=" "
-						class="peer border-text-primary/20 text-text-primary w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
+						class="peer border-text/20 text-text w-full rounded-none border-0 border-b bg-transparent px-0 text-lg font-light placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0"
 					/>
 					<label
 						for="email"
@@ -159,7 +159,7 @@
 						data-lenis-prevent
 						onwheel={(e) => e.stopPropagation()}
 						class="
-    peer border-text-primary/20 text-text-primary [&::-webkit-scrollbar-thumb]:bg-text-primary/20 relative h-40 w-full resize-none overflow-y-auto overscroll-contain rounded-none border bg-transparent p-4 text-lg
+    peer border-text/20 text-text [&::-webkit-scrollbar-thumb]:bg-text/20 relative h-40 w-full resize-none overflow-y-auto overscroll-contain rounded-none border bg-transparent p-4 text-lg
     font-light
     placeholder-transparent
     transition-colors
@@ -232,11 +232,11 @@
 					<button
 						type="submit"
 						disabled={loading}
-						class="group text-text-primary flex items-center gap-4 text-xs font-bold tracking-widest uppercase transition-colors hover:text-accent disabled:opacity-50"
+						class="group text-text flex items-center gap-4 text-xs font-bold tracking-widest uppercase transition-colors hover:text-accent disabled:opacity-50"
 					>
 						<span>{loading ? 'Sending...' : 'Send Message'}</span>
 						<div
-							class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-text"
+							class="border-text/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-text"
 						>
 							{#if loading}
 								<LoaderCircle size={14} class="animate-spin" />
@@ -269,20 +269,20 @@
 					</div>
 				</div>
 
-				<div class="border-text-primary/10 flex items-end justify-between border-t pt-6">
+				<div class="border-text/10 flex items-end justify-between border-t pt-6">
 					<div class="flex flex-col gap-1">
 						<span
 							class="text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 							>Location</span
 						>
-						<span class="text-text-primary text-xs font-bold uppercase">Porto, Portugal</span>
+						<span class="text-text text-xs font-bold uppercase">Porto, Portugal</span>
 					</div>
 					<div class="flex flex-col items-end gap-1">
 						<span
 							class="text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50"
 							>Local Time</span
 						>
-						<span class="text-text-primary text-xs">{time || '--:--'}</span>
+						<span class="text-text text-xs">{time || '--:--'}</span>
 					</div>
 				</div>
 			</div>

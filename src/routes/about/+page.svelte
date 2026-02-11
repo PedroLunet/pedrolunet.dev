@@ -12,6 +12,7 @@
 		ctx = gsap.context(() => {
 			const tl = gsap.timeline();
 
+			// --- OPENING SEQUENCE ---
 			tl.to('.reveal-text', {
 				y: 0,
 				opacity: 1,
@@ -53,6 +54,7 @@
 				0.5
 			);
 
+			// --- SCROLL ANIMATIONS ---
 			gsap.utils.toArray('.experience-item').forEach((item: any, i) => {
 				gsap.from(item, {
 					scrollTrigger: {
@@ -76,76 +78,79 @@
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="grid grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-24 lg:px-9">
-		<div class="relative col-span-1 lg:col-span-5">
-			<div
-				class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:pt-12 lg:pb-12"
-			>
-				<div class="w-full shrink-0 overflow-hidden">
-					<h1
-						class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
-					>
-						It's<br />Me.
-					</h1>
-				</div>
-
+	<div class="flex flex-col px-6 lg:px-9">
+		<div class="flex flex-col gap-16 lg:flex-row lg:gap-24">
+			<div class="relative w-full flex-none lg:w-[min(45vw,60vh)] lg:max-w-[60%] lg:min-w-[30%]">
 				<div
-					class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
 				>
-					<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
-					<img
-						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-						alt="Pedro Lunet"
-						class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
-					/>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-span-1 lg:col-span-7 lg:pt-32 lg:pl-12">
-			<div class="flex max-w-2xl flex-col">
-				<div class="flex flex-col gap-8">
-					<h3
-						class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0"
-					>
-						The Story
-					</h3>
-
-					<div class="fade-in-text translate-y-8 opacity-0">
-						<p class="text-text-primary text-xl leading-relaxed font-light md:text-3xl">
-							I'm a creative developer based in Porto, sitting right at the intersection of <span
-								class="text-text-primary border-b border-accent/50 font-normal">logic</span
-							>
-							and
-							<span class="text-text-primary border-b border-accent/50 font-normal">aesthetics</span
-							>.
-						</p>
+					<div class="w-full shrink-0 overflow-hidden">
+						<h1
+							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
+						>
+							It's<br />Me.
+						</h1>
 					</div>
 
 					<div
-						class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg"
+						class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
 					>
-						<p>
-							My journey didn't start in design—it started in engineering. I spent years
-							understanding the architecture of systems before realizing that the most powerful code
-							is the kind that people can feel.
-						</p>
-						<p>
-							Today, I use that technical foundation to build digital experiences that are fluid,
-							reactive, and memorable. I don't just write code; I orchestrate motion, interactivity,
-							and typography to turn static screens into living environments.
-						</p>
-						<p>
-							Whether it's a high-performance landing page or a complex WebGL experience, my goal is
-							always the same: to make the web feel less like a document and more like a
-							destination.
-						</p>
+						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
+						<img
+							src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+							alt="Pedro Lunet"
+							class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex-1 lg:pt-32">
+				<div class="flex max-w-2xl flex-col">
+					<div class="flex flex-col gap-8">
+						<h3
+							class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0"
+						>
+							The Story
+						</h3>
+
+						<div class="fade-in-text translate-y-8 opacity-0">
+							<p class="text-text-primary text-xl leading-relaxed font-light md:text-3xl">
+								I'm a creative developer based in Porto, sitting right at the intersection of <span
+									class="text-text-primary border-b border-accent/50 font-normal">logic</span
+								>
+								and
+								<span class="text-text-primary border-b border-accent/50 font-normal"
+									>aesthetics</span
+								>.
+							</p>
+						</div>
+
+						<div
+							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg"
+						>
+							<p>
+								My journey didn't start in design—it started in engineering. I spent years
+								understanding the architecture of systems before realizing that the most powerful
+								code is the kind that people can feel.
+							</p>
+							<p>
+								Today, I use that technical foundation to build digital experiences that are fluid,
+								reactive, and memorable. I don't just write code; I orchestrate motion,
+								interactivity, and typography to turn static screens into living environments.
+							</p>
+							<p>
+								Whether it's a high-performance landing page or a complex WebGL experience, my goal
+								is always the same: to make the web feel less like a document and more like a
+								destination.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-span-1 pt-12 pb-24 lg:col-span-12 lg:pt-24">
+		<div class="pt-12 pb-24 lg:pt-24">
 			<div class="flex flex-col">
 				<h3
 					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0"

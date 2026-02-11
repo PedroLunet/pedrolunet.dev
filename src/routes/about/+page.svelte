@@ -16,13 +16,13 @@
 			if (part.startsWith('[[') && part.endsWith(']]')) {
 				const content = part.slice(2, -2).split('|');
 				return {
-					type: 'link',
-					text: content[0],
-					external: content[1],
-					internal: content[2] || null
+					type: 'link' as const,
+					text: content[0] || '',
+					external: content[1] || '#',
+					internal: content[2] || ''
 				};
 			}
-			return { type: 'text', content: part };
+			return { type: 'text' as const, content: part };
 		});
 	}
 
@@ -209,7 +209,7 @@
 											<ProjectTooltip
 												text={part.text}
 												external={part.external}
-												internal={part.internal}
+												internal={part.internal || ''}
 											/>
 										{/if}
 									{/each}

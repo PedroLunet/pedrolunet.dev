@@ -4,26 +4,26 @@
 		"company": "Self-Employed",
 		"companyUrl": "https://pedrolunet.dev",
 		"location": "Porto, PT",
-		"start": "2023",
+		"start": "Sep 2023",
 		"end": "Present",
-		"description": "Partnering with global design studios to implement high-end web experiences. Specializing in SvelteKit, WebGL, and interaction design to bridge the gap between design and engineering."
+		"description": "Partnering with global design studios to implement high-end web experiences. Specializing in SvelteKit, WebGL, and interaction design."
 	},
 	{
 		"role": "Senior Frontend Engineer",
 		"company": "Agency X",
 		"companyUrl": "https://google.com",
 		"location": "London, UK",
-		"start": "2021",
-		"end": "2023",
-		"description": "Led the frontend team for award-winning e-commerce projects. Focused on performance optimization, accessibility, and implementing headless CMS architectures for scalable content management."
+		"start": "Jan 2021",
+		"end": "Aug 2023",
+		"description": "Led the frontend team for award-winning e-commerce projects. Focused on performance optimization and headless CMS architectures."
 	},
 	{
 		"role": "Full Stack Developer",
 		"company": "Studio Y",
 		"companyUrl": "https://google.com",
 		"location": "Remote",
-		"start": "2019",
-		"end": "2021",
-		"description": "Built scalable backend systems and responsive UIs for SaaS products. Collaborated closely with product managers to deliver features that increased user retention by 25%."
+		"start": "Mar 2019",
+		"end": "Dec 2020",
+		"description": "Built scalable backend systems and responsive UIs for SaaS products. Collaborated closely with product managers to deliver features."
 	}
 ]

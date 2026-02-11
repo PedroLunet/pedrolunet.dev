@@ -52,8 +52,6 @@
 	});
 
 	afterNavigate(() => {
-		window.scrollTo(0, 0);
-
 		requestAnimationFrame(() => {
 			gsap.to(curtain, {
 				yPercent: 100,

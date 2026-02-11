@@ -76,30 +76,28 @@
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="grid grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:px-9">
+	<div class="grid grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-24 lg:px-9">
 		<div class="relative col-span-1 lg:col-span-5">
 			<div
-				class="flex flex-col gap-12 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:h-[calc(100vh-var(--header-height-desktop))] lg:justify-center lg:overflow-y-auto lg:pt-0 lg:pr-12"
+				class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:h-[calc(100vh-var(--header-height-desktop))] lg:pt-12 lg:pb-12"
 			>
-				<div class="w-full">
-					<div class="overflow-hidden">
-						<h1
-							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
-						>
-							It's<br />Me.
-						</h1>
-					</div>
-
-					<div
-						class="fade-in-text relative mt-12 aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+				<div class="w-full shrink-0 overflow-hidden">
+					<h1
+						class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
 					>
-						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
-						<img
-							src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-							alt="Pedro Lunet"
-							class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
-						/>
-					</div>
+						It's<br />Me.
+					</h1>
+				</div>
+
+				<div
+					class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl lg:aspect-auto lg:min-h-0 lg:flex-1"
+				>
+					<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
+					<img
+						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+						alt="Pedro Lunet"
+						class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+					/>
 				</div>
 			</div>
 		</div>

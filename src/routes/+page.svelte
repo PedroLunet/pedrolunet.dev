@@ -6,6 +6,8 @@
 	import Block from '$lib/components/landing/block.svelte';
 
 	let isMenuOpen = $state(false);
+	let isReady = $state(false);
+
 	let tlOpen: gsap.core.Timeline;
 	let ctx: gsap.Context;
 
@@ -13,7 +15,11 @@
 		let mm = gsap.matchMedia();
 
 		ctx = gsap.context(() => {
-			const tlLoad = gsap.timeline();
+			const tlLoad = gsap.timeline({
+				onComplete: () => {
+					isReady = true;
+				}
+			});
 
 			gsap.set('.hero-text', { y: 20, autoAlpha: 0 });
 			gsap.set('.menu-item', { x: 50, autoAlpha: 0 });
@@ -26,12 +32,11 @@
 					'start'
 				);
 
-			// Desktop Block Animation
 			mm.add('(min-width: 1024px)', () => {
 				tlLoad.fromTo(
 					'.js-block',
 					{ width: 0, autoAlpha: 1 },
-					{ width: '12rem', duration: 2.5, ease: 'power4.out' },
+					{ width: '12rem', duration: 2, ease: 'power4.out' },
 					'-=1.0'
 				);
 			});
@@ -87,7 +92,8 @@
 	});
 
 	function handleClick() {
-		if (!tlOpen) return;
+		if (!tlOpen || !isReady) return;
+
 		if (isMenuOpen) {
 			tlOpen.reverse();
 			isMenuOpen = false;
@@ -96,21 +102,7 @@
 			isMenuOpen = true;
 		}
 	}
-
-	function handleScroll(event: WheelEvent) {
-		if (!tlOpen) return;
-		const threshold = 5;
-		if (event.deltaY > threshold && !isMenuOpen) {
-			tlOpen.play();
-			isMenuOpen = true;
-		} else if (event.deltaY < -threshold && isMenuOpen) {
-			tlOpen.reverse();
-			isMenuOpen = false;
-		}
-	}
 </script>
-
-<svelte:window onwheel={handleScroll} />
 
 <div
 	class="relative h-[calc(100vh-var(--header-height-mobile))] w-full overflow-hidden md:h-[calc(100vh-var(--header-height-tablet))] lg:h-[calc(100vh-var(--header-height-desktop))]"
@@ -120,7 +112,9 @@
 	<div class="absolute inset-0 flex flex-col items-start justify-center">
 		<Hero>
 			{#snippet block()}
-				<Block onclick={handleClick} isOpen={isMenuOpen} />
+				<div class={isReady ? 'cursor-pointer' : 'cursor-default'}>
+					<Block onclick={handleClick} isOpen={isMenuOpen} />
+				</div>
 			{/snippet}
 		</Hero>
 	</div>

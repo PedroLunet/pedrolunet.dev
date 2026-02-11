@@ -12,7 +12,6 @@
 		ctx = gsap.context(() => {
 			const tl = gsap.timeline();
 
-			// --- OPENING SEQUENCE ---
 			tl.to('.reveal-text', {
 				y: 0,
 				opacity: 1,
@@ -54,7 +53,6 @@
 				0.5
 			);
 
-			// --- SCROLL ANIMATIONS ---
 			gsap.utils.toArray('.experience-item').forEach((item: any, i) => {
 				gsap.from(item, {
 					scrollTrigger: {
@@ -78,15 +76,17 @@
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="flex flex-col px-6 lg:px-9">
-		<div class="flex flex-col gap-16 lg:flex-row lg:gap-24">
-			<div class="relative w-full flex-none lg:w-[min(45vw,60vh)] lg:max-w-[60%] lg:min-w-[30%]">
+	<div class="mx-auto flex max-w-500 flex-col px-6 lg:px-9 2xl:px-24">
+		<div class="flex flex-col gap-16 lg:flex-row lg:gap-24 2xl:gap-40">
+			<div
+				class="relative w-full flex-none lg:w-[min(45vw,60vh)] lg:max-w-[60%] lg:min-w-[30%] 2xl:min-w-[35%]"
+			>
 				<div
 					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
 				>
 					<div class="w-full shrink-0 overflow-hidden">
 						<h1
-							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
+							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,14rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
 						>
 							It's<br />Me.
 						</h1>
@@ -105,17 +105,19 @@
 				</div>
 			</div>
 
-			<div class="flex-1 lg:pt-32">
-				<div class="flex max-w-2xl flex-col">
-					<div class="flex flex-col gap-8">
+			<div class="flex-1 lg:pt-32 2xl:pt-48">
+				<div class="flex max-w-2xl flex-col 2xl:max-w-4xl">
+					<div class="flex flex-col gap-8 2xl:gap-16">
 						<h3
-							class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0"
+							class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0 2xl:text-sm"
 						>
 							The Story
 						</h3>
 
 						<div class="fade-in-text translate-y-8 opacity-0">
-							<p class="text-text-primary text-xl leading-relaxed font-light md:text-3xl">
+							<p
+								class="text-text-primary text-xl leading-relaxed font-light md:text-3xl 2xl:text-5xl 2xl:leading-tight"
+							>
 								I'm a creative developer based in Porto, sitting right at the intersection of <span
 									class="text-text-primary border-b border-accent/50 font-normal">logic</span
 								>
@@ -127,7 +129,7 @@
 						</div>
 
 						<div
-							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg"
+							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
 						>
 							<p>
 								My journey didn't start in design—it started in engineering. I spent years
@@ -150,38 +152,40 @@
 			</div>
 		</div>
 
-		<div class="pt-12 pb-24 lg:pt-24">
+		<div class="pt-12 pb-24 lg:pt-24 2xl:pt-40 2xl:pb-40">
 			<div class="flex flex-col">
 				<h3
-					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0"
+					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0 2xl:mb-12 2xl:pb-6 2xl:text-sm"
 				>
 					Experience
 				</h3>
 
 				<div class="flex flex-col gap-0">
 					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 					>
 						<div class="col-span-3">
 							<span
-								class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100"
+								class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
 								>Current</span
 							>
-							<span class="text-text-primary text-sm font-bold">2023 — Present</span>
+							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2023 — Present</span>
 						</div>
 
-						<div class="col-span-9 flex flex-col gap-2">
+						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 							<div class="flex items-center justify-between">
 								<h4
-									class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
+									class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
 								>
 									Freelance Creative Dev
 								</h4>
 								<ArrowUpRight
-									class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
+									class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 2xl:h-8 2xl:w-8"
 								/>
 							</div>
-							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+							<p
+								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
+							>
 								Partnering with global design studios to implement high-end web experiences.
 								Specializing in SvelteKit, WebGL, and interaction design.
 							</p>
@@ -189,21 +193,24 @@
 					</div>
 
 					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 					>
 						<div class="col-span-3">
-							<span class="text-text-primary text-sm font-bold">2021 — 2023</span>
+							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2021 — 2023</span>
 						</div>
-						<div class="col-span-9 flex flex-col gap-2">
+						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 							<h4
-								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
+								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
 							>
 								Senior Frontend Engineer
 							</h4>
-							<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
+							<span
+								class="text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>Agency X</span
 							>
-							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+							<p
+								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
+							>
 								Led the frontend team for award-winning e-commerce projects. Focused on performance
 								optimization and headless CMS architectures.
 							</p>
@@ -211,21 +218,24 @@
 					</div>
 
 					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 					>
 						<div class="col-span-3">
-							<span class="text-text-primary text-sm font-bold">2019 — 2021</span>
+							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2019 — 2021</span>
 						</div>
-						<div class="col-span-9 flex flex-col gap-2">
+						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 							<h4
-								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
+								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
 							>
 								Full Stack Developer
 							</h4>
-							<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
+							<span
+								class="text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>Studio Y</span
 							>
-							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+							<p
+								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
+							>
 								Built scalable backend systems and responsive UIs for SaaS products.
 							</p>
 						</div>

@@ -157,7 +157,7 @@
 					>
 						<span>Back to Top</span>
 						<div
-							class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+							class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-text"
 						>
 							<ArrowUp size={14} />
 						</div>

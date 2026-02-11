@@ -98,7 +98,7 @@
 
 		<div class="sticky top-32 col-span-5 hidden h-fit lg:block">
 			<div
-				class="border-text-primary/5 relative aspect-16/10 w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-black/5"
+				class="border-text-primary/5 relative aspect-16/10 w-full overflow-hidden border bg-neutral-100 shadow-2xl shadow-bg/5"
 			>
 				{#key activeImage}
 					<img
@@ -110,7 +110,7 @@
 				{/key}
 
 				<div
-					class="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5"
+					class="pointer-events-none absolute inset-0 bg-bg/0 transition-colors duration-500 group-hover:bg-bg/5"
 				></div>
 			</div>
 		</div>

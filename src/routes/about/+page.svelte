@@ -7,7 +7,6 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	let ctx: gsap.Context;
-	let scroller: HTMLElement;
 
 	onMount(() => {
 		ctx = gsap.context(() => {
@@ -58,7 +57,6 @@
 				gsap.from(item, {
 					scrollTrigger: {
 						trigger: item,
-						scroller: scroller,
 						start: 'top 95%',
 						toggleActions: 'play none none reverse'
 					},
@@ -76,53 +74,39 @@
 </script>
 
 <div
-	class="relative w-full bg-bg pt-[var(--header-height-mobile)] lg:h-screen lg:overflow-hidden lg:pt-[var(--header-height-desktop)]"
+	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="flex h-full w-full flex-col lg:flex-row">
-		<div class="hidden h-full w-5/12 flex-col justify-center px-12 lg:flex">
-			<div class="w-full max-w-md">
-				<div class="overflow-hidden">
-					<h1
-						class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
-					>
-						It's<br />Me.
-					</h1>
-				</div>
+	<div class="grid grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:px-9">
+		<div class="relative col-span-1 lg:col-span-5">
+			<div
+				class="flex flex-col gap-12 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:h-[calc(100vh-var(--header-height-desktop))] lg:justify-center lg:overflow-y-auto lg:pt-0 lg:pr-12"
+			>
+				<div class="w-full">
+					<div class="overflow-hidden">
+						<h1
+							class="reveal-text text-text-primary translate-y-full text-[clamp(3.5rem,6vw,8rem)] leading-[0.85] font-bold tracking-tighter uppercase opacity-0"
+						>
+							It's<br />Me.
+						</h1>
+					</div>
 
-				<div
-					class="fade-in-text relative mt-12 aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
-				>
-					<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
-					<img
-						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-						alt="Pedro Lunet"
-						class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
-					/>
+					<div
+						class="fade-in-text relative mt-12 aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+					>
+						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
+						<img
+							src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+							alt="Pedro Lunet"
+							class="profile-img h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div
-			bind:this={scroller}
-			class="scroll-container h-full w-full px-6 pb-24 lg:w-7/12 lg:overflow-y-auto lg:px-24 lg:pb-32"
-		>
-			<div class="mb-12 pt-12 lg:hidden">
-				<h1
-					class="text-text-primary text-[4rem] leading-[0.85] font-bold tracking-tighter uppercase"
-				>
-					It's<br />Me.
-				</h1>
-				<div class="relative mt-8 aspect-square w-full overflow-hidden">
-					<img
-						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-						alt="Pedro Lunet"
-						class="h-full w-full object-cover grayscale"
-					/>
-				</div>
-			</div>
-
-			<div class="flex max-w-2xl flex-col lg:pt-32">
-				<div class="mb-24 flex flex-col gap-8">
+		<div class="col-span-1 lg:col-span-7 lg:pt-32 lg:pl-12">
+			<div class="flex max-w-2xl flex-col">
+				<div class="flex flex-col gap-8">
 					<h3
 						class="fade-in-text mb-2 translate-y-8 text-xs font-bold tracking-widest text-accent uppercase opacity-0"
 					>
@@ -160,85 +144,87 @@
 						</p>
 					</div>
 				</div>
+			</div>
+		</div>
 
-				<div class="flex flex-col">
-					<h3
-						class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0"
+		<div class="col-span-1 pt-12 pb-24 lg:col-span-12 lg:pt-24">
+			<div class="flex flex-col">
+				<h3
+					class="fade-in-text border-text-primary/10 mb-8 translate-y-8 border-b pb-4 text-xs font-bold tracking-widest text-text-secondary/50 uppercase opacity-0"
+				>
+					Experience
+				</h3>
+
+				<div class="flex flex-col gap-0">
+					<div
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
 					>
-						Experience
-					</h3>
-
-					<div class="flex flex-col gap-0">
-						<div
-							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
-						>
-							<div class="col-span-3">
-								<span
-									class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100"
-									>Current</span
-								>
-								<span class="text-text-primary text-sm font-bold">2023 — Present</span>
-							</div>
-
-							<div class="col-span-9 flex flex-col gap-2">
-								<div class="flex items-center justify-between">
-									<h4
-										class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
-									>
-										Freelance Creative Dev
-									</h4>
-									<ArrowUpRight
-										class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
-									/>
-								</div>
-								<p class="max-w-md text-sm leading-relaxed text-text-secondary">
-									Partnering with global design studios to implement high-end web experiences.
-									Specializing in SvelteKit, WebGL, and interaction design.
-								</p>
-							</div>
+						<div class="col-span-3">
+							<span
+								class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100"
+								>Current</span
+							>
+							<span class="text-text-primary text-sm font-bold">2023 — Present</span>
 						</div>
 
-						<div
-							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
-						>
-							<div class="col-span-3">
-								<span class="text-text-primary text-sm font-bold">2021 — 2023</span>
-							</div>
-							<div class="col-span-9 flex flex-col gap-2">
+						<div class="col-span-9 flex flex-col gap-2">
+							<div class="flex items-center justify-between">
 								<h4
 									class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
 								>
-									Senior Frontend Engineer
+									Freelance Creative Dev
 								</h4>
-								<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
-									>Agency X</span
-								>
-								<p class="max-w-md text-sm leading-relaxed text-text-secondary">
-									Led the frontend team for award-winning e-commerce projects. Focused on
-									performance optimization and headless CMS architectures.
-								</p>
+								<ArrowUpRight
+									class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
+								/>
 							</div>
+							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+								Partnering with global design studios to implement high-end web experiences.
+								Specializing in SvelteKit, WebGL, and interaction design.
+							</p>
 						</div>
+					</div>
 
-						<div
-							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
-						>
-							<div class="col-span-3">
-								<span class="text-text-primary text-sm font-bold">2019 — 2021</span>
-							</div>
-							<div class="col-span-9 flex flex-col gap-2">
-								<h4
-									class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
-								>
-									Full Stack Developer
-								</h4>
-								<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
-									>Studio Y</span
-								>
-								<p class="max-w-md text-sm leading-relaxed text-text-secondary">
-									Built scalable backend systems and responsive UIs for SaaS products.
-								</p>
-							</div>
+					<div
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
+					>
+						<div class="col-span-3">
+							<span class="text-text-primary text-sm font-bold">2021 — 2023</span>
+						</div>
+						<div class="col-span-9 flex flex-col gap-2">
+							<h4
+								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
+							>
+								Senior Frontend Engineer
+							</h4>
+							<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
+								>Agency X</span
+							>
+							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+								Led the frontend team for award-winning e-commerce projects. Focused on performance
+								optimization and headless CMS architectures.
+							</p>
+						</div>
+					</div>
+
+					<div
+						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12"
+					>
+						<div class="col-span-3">
+							<span class="text-text-primary text-sm font-bold">2019 — 2021</span>
+						</div>
+						<div class="col-span-9 flex flex-col gap-2">
+							<h4
+								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent"
+							>
+								Full Stack Developer
+							</h4>
+							<span class="text-xs font-bold tracking-widest text-text-secondary uppercase"
+								>Studio Y</span
+							>
+							<p class="max-w-3xl text-sm leading-relaxed text-text-secondary">
+								Built scalable backend systems and responsive UIs for SaaS products.
+							</p>
 						</div>
 					</div>
 				</div>

@@ -34,6 +34,7 @@
 					width: rect.width,
 					height: rect.height,
 					autoAlpha: 1,
+					scale: 1,
 					backgroundColor: '#FF4D00',
 					borderRadius: '0px'
 				});
@@ -42,25 +43,39 @@
 			tl.to(
 				ghostRef,
 				{
+					scale: 0.9,
+					duration: 0.1,
+					ease: 'power1.out'
+				},
+				0
+			);
+
+			tl.to(
+				ghostRef,
+				{
 					top: 0,
 					left: 0,
+					scale: 1,
 					width: '100vw',
 					height: '100vh',
 					backgroundColor: targetColor,
 					duration: 0.8,
 					ease: 'expo.inOut'
 				},
-				0
+				0.1
 			);
 
-			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0);
-			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.1 }, 0);
-			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.4);
+			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.1);
+
+			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.1);
+
+			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.5);
+
 			tl.fromTo(
 				'.menu-item',
 				{ x: 100, autoAlpha: 0 },
 				{ x: 0, autoAlpha: 1, duration: 1.0, stagger: 0.1, ease: 'expo.out' },
-				0.5
+				0.6
 			);
 		});
 
@@ -123,7 +138,7 @@
 		<button
 			bind:this={triggerRef}
 			onclick={toggleMenu}
-			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2"
+			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 active:scale-90"
 			class:opacity-0={isHomePage}
 			class:pointer-events-none={isHomePage}
 			aria-label="Open Menu"

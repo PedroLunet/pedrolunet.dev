@@ -43,6 +43,7 @@
 	--header-height-mobile: 48px;
 	--header-height-tablet: 56px;
 	--header-height-desktop: 72px;
+  --header-height-ultrawide: 92px;
 }
 
 body {

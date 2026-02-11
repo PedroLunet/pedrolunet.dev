@@ -73,7 +73,7 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div
-	class="group border-text-primary/10 relative aspect-16/10 w-full cursor-none overflow-hidden border bg-neutral-900 shadow-2xl shadow-black/20 select-none"
+	class="group border-text-primary/10 relative aspect-16/10 w-full cursor-none overflow-hidden border bg-neutral-900 shadow-2xl shadow-bg/20 select-none"
 	role="button"
 	tabindex="0"
 	aria-label="Project Gallery"
@@ -137,7 +137,7 @@
 
 	{#if showCursor && cursorSide}
 		<div
-			class="pointer-events-none absolute z-50 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
+			class="pointer-events-none absolute z-50 hidden text-text mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
 			style="left: {cursorX}px; top: {cursorY}px; transform: translate(-50%, -50%);"
 		>
 			{#if cursorSide === 'left'}
@@ -149,18 +149,18 @@
 	{/if}
 
 	<div
-		class="pointer-events-none absolute inset-0 m-6 border border-white/10 transition-colors duration-300 group-hover:border-white/20"
+		class="pointer-events-none absolute inset-0 m-6 border border-text/10 transition-colors duration-300 group-hover:border-text/20"
 	></div>
 
 	<div
-		class="pointer-events-none absolute right-6 bottom-6 flex gap-2 font-mono text-[9px] tracking-widest text-white/50 uppercase"
+		class="pointer-events-none absolute right-6 bottom-6 flex gap-2 font-mono text-[9px] tracking-widest text-text/50 uppercase"
 	>
-		<span class="text-white">Fig. {String(currentIndex + 1).padStart(2, '0')}</span>
+		<span class="text-text">Fig. {String(currentIndex + 1).padStart(2, '0')}</span>
 		<span class="opacity-50">/</span>
 		<span class="opacity-50">{String(images.length).padStart(2, '0')}</span>
 	</div>
 
-	<div class="pointer-events-none absolute bottom-0 left-0 h-0.5 w-full bg-white/5">
+	<div class="pointer-events-none absolute bottom-0 left-0 h-0.5 w-full bg-text/5">
 		<div
 			class="h-full bg-accent transition-all duration-300 ease-out"
 			style="width: {100 / images.length}%; transform: translateX({currentIndex * 100}%);"

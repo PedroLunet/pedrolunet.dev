@@ -77,7 +77,7 @@
 
 				<button
 					onclick={() => (showSuccessPopup = false)}
-					class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-white"
+					class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-text"
 				>
 					<span>Close</span>
 					<div class="relative transition-transform duration-300 group-hover:rotate-90">
@@ -225,7 +225,7 @@
 					>
 						<span>{loading ? 'Sending...' : 'Send Message'}</span>
 						<div
-							class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+							class="border-text-primary/20 flex h-8 w-8 items-center justify-center border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-text"
 						>
 							{#if loading}
 								<LoaderCircle size={14} class="animate-spin" />

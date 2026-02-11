@@ -41,21 +41,19 @@
 				}
 			}, 0);
 
-			if (ghostRef) {
-				tl.to(
-					ghostRef,
-					{
-						top: 0,
-						left: 0,
-						width: '100vw',
-						height: '100vh',
-						backgroundColor: targetColor,
-						duration: 1.0,
-						ease: 'expo.inOut'
-					},
-					0
-				);
-			}
+			tl.to(
+				ghostRef,
+				{
+					top: 0,
+					left: 0,
+					width: '100vw',
+					height: '100vh',
+					backgroundColor: targetColor,
+					duration: 0.8,
+					ease: 'expo.inOut'
+				},
+				0
+			);
 
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0);
 
@@ -87,7 +85,7 @@
 
 	afterNavigate(() => {
 		if (isMenuOpen && tl) {
-			tl.reverse();
+			tl.progress(0).pause();
 			isMenuOpen = false;
 		}
 	});
@@ -107,7 +105,7 @@
 		>
 			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
 			<span
-				class="text-text-primary -rotate-90deg text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
+				class="text-text-primary rotate-[-90deg] text-xs font-bold tracking-[0.2em] whitespace-nowrap uppercase transition-colors group-hover:text-accent"
 			>
 				Close
 			</span>

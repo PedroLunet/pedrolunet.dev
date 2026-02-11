@@ -3,6 +3,7 @@
 	import { ArrowUpRight } from '@lucide/svelte';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import experience from '$lib/data/experience.json';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -161,85 +162,63 @@
 				</h3>
 
 				<div class="flex flex-col gap-0">
-					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
-					>
-						<div class="col-span-3">
-							<span
-								class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
-								>Current</span
-							>
-							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2023 — Present</span>
-						</div>
-
-						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
-							<div class="flex items-center justify-between">
-								<h4
-									class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
+					{#each experience as job}
+						<div
+							class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+						>
+							<div class="col-span-3">
+								<span
+									class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
+									class:opacity-0={job.end !== 'Present'}
 								>
-									Freelance Creative Dev
-								</h4>
-								<ArrowUpRight
-									class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 2xl:h-8 2xl:w-8"
-								/>
+									{job.end === 'Present' ? 'Current' : ''}
+								</span>
+
+								<span class="text-text-primary text-sm font-bold 2xl:text-lg">
+									{job.start} — {job.end}
+								</span>
 							</div>
-							<p
-								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
-							>
-								Partnering with global design studios to implement high-end web experiences.
-								Specializing in SvelteKit, WebGL, and interaction design.
-							</p>
-						</div>
-					</div>
 
-					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
-					>
-						<div class="col-span-3">
-							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2021 — 2023</span>
-						</div>
-						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
-							<h4
-								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
-							>
-								Senior Frontend Engineer
-							</h4>
-							<span
-								class="text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
-								>Agency X</span
-							>
-							<p
-								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
-							>
-								Led the frontend team for award-winning e-commerce projects. Focused on performance
-								optimization and headless CMS architectures.
-							</p>
-						</div>
-					</div>
+							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
+								<div class="flex items-center justify-between">
+									<h4
+										class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
+									>
+										{job.role}
+									</h4>
+									<a href={job.companyUrl} target="_blank" rel="noopener noreferrer">
+										<ArrowUpRight
+											class="h-5 w-5 -translate-x-2 translate-y-2 text-accent opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 2xl:h-8 2xl:w-8"
+										/>
+									</a>
+								</div>
 
-					<div
-						class="experience-item group border-text-primary/10 grid grid-cols-1 gap-4 border-b py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
-					>
-						<div class="col-span-3">
-							<span class="text-text-primary text-sm font-bold 2xl:text-lg">2019 — 2021</span>
+								<div
+									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
+								>
+									<a
+										href={job.companyUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="transition-colors hover:text-accent"
+									>
+										{job.company}
+									</a>
+
+									{#if job.location}
+										<span class="opacity-30">•</span>
+										<span class="opacity-50">{job.location}</span>
+									{/if}
+								</div>
+
+								<p
+									class="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
+								>
+									{job.description}
+								</p>
+							</div>
 						</div>
-						<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
-							<h4
-								class="text-text-primary text-2xl font-medium transition-colors group-hover:text-accent 2xl:text-4xl"
-							>
-								Full Stack Developer
-							</h4>
-							<span
-								class="text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
-								>Studio Y</span
-							>
-							<p
-								class="max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
-							>
-								Built scalable backend systems and responsive UIs for SaaS products.
-							</p>
-						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</div>

@@ -11,7 +11,8 @@
 	let triggerEl: HTMLElement;
 	let alignment: 'center' | 'left' | 'right' = 'center';
 
-	function handleHover() {
+	function handleOpen() {
+		if (window.innerWidth < 1024) return;
 		if (!triggerEl) return;
 
 		const rect = triggerEl.getBoundingClientRect();
@@ -30,26 +31,27 @@
 	}
 </script>
 
-<div
-	class="relative inline-block"
-	bind:this={triggerEl}
-	role="button"
-	tabindex="0"
-	on:mouseenter={handleHover}
-	on:mouseleave={() => (hovered = false)}
->
-	<span
-		class="text-text-primary border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent {hovered
+<div class="relative inline-block" bind:this={triggerEl}>
+	<a
+		href={internal || external}
+		class="text-text-primary border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent lg:cursor-default {hovered
 			? 'invisible'
 			: 'visible'}"
+		on:mouseenter={handleOpen}
+		on:mouseleave={() => (hovered = false)}
+		on:click={(e) => {
+			if (window.innerWidth >= 1024) {
+				e.preventDefault();
+			}
+		}}
 	>
 		{text}
-	</span>
+	</a>
 
 	{#if hovered}
 		<div
 			transition:fly={{ y: 4, duration: 300, easing: cubicOut }}
-			class="absolute top-1/2 z-50 flex -translate-y-1/2 flex-row border border-accent bg-bg shadow-2xl
+			class="absolute top-1/2 z-50 hidden -translate-y-1/2 flex-row border border-accent bg-bg shadow-2xl lg:flex
       {alignment === 'center' ? 'left-1/2 -translate-x-1/2' : ''}
       {alignment === 'left' ? 'left-0' : ''}
       {alignment === 'right' ? 'right-0' : ''}"

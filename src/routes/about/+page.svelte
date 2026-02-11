@@ -101,7 +101,7 @@
 
 			<div class="flex-1 lg:pt-32 2xl:pt-48">
 				<div
-					class="ml-auto flex max-w-2xl flex-col items-end text-right lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+					class="ml-auto flex max-w-2xl flex-col items-end text-right lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl"
 				>
 					<div class="flex flex-col gap-8 2xl:gap-16">
 						<h3
@@ -109,36 +109,38 @@
 						>
 							The Story
 						</h3>
+
 						<div class="fade-in-text translate-y-8 opacity-0">
 							<p
-								class="text-text-primary text-xl leading-relaxed font-light md:text-3xl 2xl:text-5xl 2xl:leading-tight"
+								class="text-text-primary m-0 text-xl leading-relaxed font-light [text-wrap:balance] md:text-3xl 2xl:text-5xl 2xl:leading-tight"
 							>
-								I'm a creative developer based in Porto, sitting right at the intersection of <span
-									class="text-text-primary border-b border-accent/50 font-normal">logic</span
+								I’m a developer based in Porto, dedicated to crafting <span
+									class="text-text-primary border-b border-accent/50 font-normal">smooth</span
 								>
 								and
 								<span class="text-text-primary border-b border-accent/50 font-normal"
-									>aesthetics</span
-								>.
+									>meaningful</span
+								> digital experiences.
 							</p>
 						</div>
+
 						<div
-							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
+							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose [text-wrap:pretty] text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
 						>
-							<p>
-								My journey didn't start in design—it started in engineering. I spent years
-								understanding the architecture of systems before realizing that the most powerful
-								code is the kind that people can feel.
+							<p class="m-0">
+								Currently a student and a frontend developer, my work is driven by the belief that
+								the distance between a line of code and a visual emotion should be as small as
+								possible.
 							</p>
-							<p>
-								Today, I use that technical foundation to build digital experiences that are fluid,
-								reactive, and memorable. I don't just write code; I orchestrate motion,
-								interactivity, and typography to turn static screens into living environments.
+							<p class="m-0">
+								Although my background is rooted in engineering rather than design, I treat
+								aesthetics as a core technical requirement. I believe that in our current digital
+								landscape, the way a project feels is just as critical as how it functions.
 							</p>
-							<p>
-								Whether it's a high-performance landing page or a complex WebGL experience, my goal
-								is always the same: to make the web feel less like a document and more like a
-								destination.
+							<p class="m-0">
+								My focus is on bridging that gap. Using technical precision to build interfaces that
+								aren't just usable, but genuinely enjoyable to interact with. The goal is always the
+								same: making the web a more refined and beautiful destination.
 							</p>
 						</div>
 					</div>

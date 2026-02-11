@@ -79,7 +79,7 @@
 	<div class="grid grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-24 lg:px-9">
 		<div class="relative col-span-1 lg:col-span-5">
 			<div
-				class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:h-[calc(100vh-var(--header-height-desktop))] lg:pt-12 lg:pb-12"
+				class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:pt-12 lg:pb-12"
 			>
 				<div class="w-full shrink-0 overflow-hidden">
 					<h1
@@ -90,7 +90,7 @@
 				</div>
 
 				<div
-					class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl lg:aspect-auto lg:min-h-0 lg:flex-1"
+					class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
 				>
 					<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
 					<img

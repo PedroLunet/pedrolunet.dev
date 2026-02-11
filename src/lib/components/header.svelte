@@ -126,7 +126,7 @@
 </div>
 
 <header
-	class="relative z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between px-6 text-base font-semibold tracking-tight
+	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-all duration-300
   md:h-(--header-height-tablet)
   lg:h-(--header-height-desktop) lg:px-9 lg:text-xl
   2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl"
@@ -161,7 +161,6 @@
 	</div>
 
 	<div class="header-content-wrapper flex flex-row items-center transition-opacity">
-		<span>portfolio </span>
-		<TumblerYear />
+		<span>portfolio </span><TumblerYear />
 	</div>
 </header>

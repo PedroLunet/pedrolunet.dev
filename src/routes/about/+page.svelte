@@ -73,11 +73,11 @@
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="mx-auto flex max-w-[2000px] flex-col px-6 lg:px-9 2xl:px-24">
+	<div class="mx-auto flex max-w-500 flex-col px-6 lg:px-9 2xl:px-24">
 		<div class="flex flex-col gap-16 lg:flex-row lg:gap-12 2xl:gap-24">
 			<div class="relative w-full flex-none lg:w-[25%]">
 				<div
-					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:pt-12 lg:pb-12"
+					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
 				>
 					<div class="w-full shrink-0 overflow-hidden">
 						<h1
@@ -87,7 +87,7 @@
 						</h1>
 					</div>
 					<div
-						class="fade-in-text relative aspect-[3/4] w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+						class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
 					>
 						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
 						<img

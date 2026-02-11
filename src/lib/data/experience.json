@@ -6,7 +6,7 @@
 		"location": "FEUP, Porto",
 		"start": "Nov 2025",
 		"end": "Present",
-		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a schedule builder for UP students (React)."
+		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
 	},
 	{
 		"role": "Junior Software Engineer",
@@ -15,7 +15,7 @@
 		"location": "Porto, PT",
 		"start": "Nov 2025",
 		"end": "Jan 2026",
-		"description": "Specialized in retail software solutions for major clients like SONAE. Engineered robust PHP microservices for backend operations and maintained Android systems for in-store deployments."
+		"description": "Part-time role working on retail software solutions for major clients like SONAE. Engineered robust PHP microservices for backend operations and maintained Android systems for in-store deployments."
 	},
 	{
 		"role": "Frontend Developer Intern",
@@ -24,7 +24,7 @@
 		"location": "Porto, PT",
 		"start": "Jul 2025",
 		"end": "Sep 2025",
-		"description": "Full-time summer internship focusing on Dodia.pt and the agency's own website. Marked my first professional deep dive into Svelte, refining UI interactions and performance."
+		"description": "Full-time summer internship continuing development on [[Dodia.pt|https://dodia.pt|/work/dodia]] and the agency's own website. Marked my first professional deep dive into Svelte, refining UI interactions and performance."
 	},
 	{
 		"role": "Full Stack Developer Intern",
@@ -33,6 +33,6 @@
 		"location": "Porto, PT",
 		"start": "Feb 2025",
 		"end": "Jun 2025",
-		"description": "Curricular internship where I built Dodia.pt from the ground up. Architected the full-stack solution using Next.js and Drizzle ORM, delivering my first production-grade application."
+		"description": "Curricular internship where I built [[Dodia.pt|https://dodia.pt|/work/dodia]] from the ground up. Architected the full-stack solution using Next.js and Drizzle ORM, delivering my first production-grade application."
 	}
 ]

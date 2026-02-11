@@ -3,13 +3,11 @@
 	import { fly, fade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 
-	export let text: string;
-	export let external: string;
-	export let internal: string;
+	let { text, external, internal } = $props();
 
-	let hovered = false;
-	let triggerEl: HTMLElement;
-	let alignment: 'center' | 'left' | 'right' = 'center';
+	let hovered = $state(false);
+	let triggerEl = $state<HTMLElement>();
+	let alignment = $state<'center' | 'left' | 'right'>('center');
 
 	function handleOpen() {
 		if (window.innerWidth < 1024) return;
@@ -31,15 +29,17 @@
 	}
 </script>
 
-<div class="relative inline-block" bind:this={triggerEl}>
+<div
+	class="relative inline-block"
+	bind:this={triggerEl}
+	role="tooltip"
+	onmouseenter={handleOpen}
+	onmouseleave={() => (hovered = false)}
+>
 	<a
 		href={internal || external}
-		class="text-text border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent lg:cursor-default {hovered
-			? 'invisible'
-			: 'visible'}"
-		on:mouseenter={handleOpen}
-		on:mouseleave={() => (hovered = false)}
-		on:click={(e) => {
+		class="border-b border-accent/40 font-medium text-text transition-colors duration-500 hover:text-accent lg:cursor-default"
+		onclick={(e) => {
 			if (window.innerWidth >= 1024) {
 				e.preventDefault();
 			}

@@ -124,7 +124,7 @@
 						</div>
 
 						<div
-							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose [text-wrap:pretty] text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
+							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-pretty text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
 						>
 							<p class="m-0">
 								Currently a student and a frontend developer, my work is driven by the belief that

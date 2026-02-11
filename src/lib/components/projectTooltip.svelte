@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Globe, ArrowRight } from '@lucide/svelte';
-	import { scale } from 'svelte/transition';
+	import { fly, fade } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 
 	export let text: string;
 	export let external: string;
@@ -15,7 +16,7 @@
 
 		const rect = triggerEl.getBoundingClientRect();
 		const screenWidth = window.innerWidth;
-		const threshold = 160;
+		const threshold = 180;
 
 		if (rect.left < threshold) {
 			alignment = 'left';
@@ -38,37 +39,41 @@
 	on:mouseleave={() => (hovered = false)}
 >
 	<span
-		class="text-text-primary cursor-pointer border-b border-accent/40 font-medium transition-colors hover:border-accent hover:text-accent"
+		class="text-text-primary border-b border-accent/40 font-medium transition-colors duration-500 hover:text-accent {hovered
+			? 'invisible'
+			: 'visible'}"
 	>
 		{text}
 	</span>
 
 	{#if hovered}
 		<div
-			transition:scale={{ duration: 150, start: 0.98, opacity: 0 }}
-			class="absolute bottom-[calc(100%+12px)] z-50 flex flex-row border border-accent/20 bg-bg shadow-2xl backdrop-blur-md
+			transition:fly={{ y: 4, duration: 300, easing: cubicOut }}
+			class="absolute top-1/2 z-50 flex -translate-y-1/2 flex-row border border-accent bg-bg shadow-2xl
       {alignment === 'center' ? 'left-1/2 -translate-x-1/2' : ''}
       {alignment === 'left' ? 'left-0' : ''}
       {alignment === 'right' ? 'right-0' : ''}"
 		>
 			<a
+				in:fade={{ delay: 100, duration: 200 }}
 				href={external}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center gap-2 px-4 py-3 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors hover:bg-accent hover:text-bg"
+				class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-bg"
 			>
 				<Globe size={12} />
 				<span>Visit Site</span>
 			</a>
 
 			{#if internal}
-				<div class="h-auto w-px bg-accent/10"></div>
+				<div in:fade={{ delay: 150 }} class="h-auto w-px bg-accent/20"></div>
 				<a
+					in:fade={{ delay: 200, duration: 200 }}
 					href={internal}
-					class="flex items-center gap-2 px-4 py-3 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors hover:bg-accent hover:text-bg"
+					class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-bg"
 				>
 					<ArrowRight size={12} />
-					<span>Case Study</span>
+					<span>Project Page</span>
 				</a>
 			{/if}
 		</div>

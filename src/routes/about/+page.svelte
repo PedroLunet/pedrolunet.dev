@@ -4,9 +4,27 @@
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
+	import ProjectTooltip from '$lib/components/projectTooltip.svelte';
 	import experience from '$lib/data/experience.json';
 
 	gsap.registerPlugin(ScrollTrigger);
+
+	function parseDescription(text: string) {
+		const parts = text.split(/(\[\[.*?\]\])/);
+
+		return parts.map((part) => {
+			if (part.startsWith('[[') && part.endsWith(']]')) {
+				const content = part.slice(2, -2).split('|');
+				return {
+					type: 'link',
+					text: content[0],
+					external: content[1],
+					internal: content[2] || null
+				};
+			}
+			return { type: 'text', content: part };
+		});
+	}
 
 	let sortedExperience = experience.sort((a, b) => {
 		const dateA = new Date(a.start);
@@ -20,44 +38,16 @@
 		ctx = gsap.context(() => {
 			const tl = gsap.timeline();
 
-			tl.to('.reveal-text', {
-				y: 0,
-				opacity: 1,
-				duration: 0.8,
-				stagger: 0.1,
-				ease: 'power3.out'
-			});
-
+			tl.to('.reveal-text', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out' });
 			tl.to(
 				'.image-mask',
-				{
-					scaleY: 0,
-					transformOrigin: 'bottom',
-					duration: 1.2,
-					ease: 'expo.inOut'
-				},
+				{ scaleY: 0, transformOrigin: 'bottom', duration: 1.2, ease: 'expo.inOut' },
 				0.3
 			);
-
-			tl.from(
-				'.profile-img',
-				{
-					scale: 1.2,
-					duration: 1.5,
-					ease: 'power2.out'
-				},
-				0.3
-			);
-
+			tl.from('.profile-img', { scale: 1.2, duration: 1.5, ease: 'power2.out' }, 0.3);
 			tl.to(
 				'.fade-in-text',
-				{
-					y: 0,
-					opacity: 1,
-					duration: 0.8,
-					stagger: 0.1,
-					ease: 'power2.out'
-				},
+				{ y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out' },
 				0.5
 			);
 
@@ -76,7 +66,6 @@
 				});
 			});
 		});
-
 		return () => ctx.revert();
 	});
 </script>
@@ -84,11 +73,11 @@
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
 >
-	<div class="mx-auto flex max-w-500 flex-col px-6 lg:px-9 2xl:px-24">
+	<div class="mx-auto flex max-w-[2000px] flex-col px-6 lg:px-9 2xl:px-24">
 		<div class="flex flex-col gap-16 lg:flex-row lg:gap-12 2xl:gap-24">
 			<div class="relative w-full flex-none lg:w-[25%]">
 				<div
-					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-(--header-height-desktop) lg:pt-12 lg:pb-12"
+					class="flex flex-col gap-8 pt-12 lg:sticky lg:top-[var(--header-height-desktop)] lg:pt-12 lg:pb-12"
 				>
 					<div class="w-full shrink-0 overflow-hidden">
 						<h1
@@ -97,9 +86,8 @@
 							It's<br />Me.
 						</h1>
 					</div>
-
 					<div
-						class="fade-in-text relative aspect-3/4 w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
+						class="fade-in-text relative aspect-[3/4] w-full translate-y-8 overflow-hidden opacity-0 shadow-2xl"
 					>
 						<div class="image-mask absolute inset-0 z-20 h-full w-full origin-top bg-accent"></div>
 						<img
@@ -121,7 +109,6 @@
 						>
 							The Story
 						</h3>
-
 						<div class="fade-in-text translate-y-8 opacity-0">
 							<p
 								class="text-text-primary text-xl leading-relaxed font-light md:text-3xl 2xl:text-5xl 2xl:leading-tight"
@@ -135,7 +122,6 @@
 								>.
 							</p>
 						</div>
-
 						<div
 							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
 						>
@@ -175,15 +161,14 @@
 						>
 							<div class="col-span-3">
 								<span
-									class="mb-1 block text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
+									class="mb-1 block font-mono text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
 									class:opacity-0={job.end !== 'Present'}
 								>
 									{job.end === 'Present' ? 'Current' : ''}
 								</span>
-
-								<span class="text-text-primary text-sm font-bold 2xl:text-lg">
-									{job.start} — {job.end}
-								</span>
+								<span class="text-text-primary text-sm font-bold 2xl:text-lg"
+									>{job.start} — {job.end}</span
+								>
 							</div>
 
 							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
@@ -207,21 +192,27 @@
 										href={job.companyUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										class="transition-colors hover:text-accent"
+										class="transition-colors hover:text-accent">{job.company}</a
 									>
-										{job.company}
-									</a>
-
-									{#if job.location}
-										<span class="opacity-30">•</span>
-										<span class="opacity-50">{job.location}</span>
-									{/if}
+									{#if job.location}<span class="opacity-30">•</span><span class="opacity-50"
+											>{job.location}</span
+										>{/if}
 								</div>
 
 								<p
 									class="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
 								>
-									{job.description}
+									{#each parseDescription(job.description) as part}
+										{#if part.type === 'text'}
+											{part.content}
+										{:else}
+											<ProjectTooltip
+												text={part.text}
+												external={part.external}
+												internal={part.internal}
+											/>
+										{/if}
+									{/each}
 								</p>
 							</div>
 						</div>

@@ -131,12 +131,26 @@
 		<button
 			bind:this={triggerRef}
 			onclick={toggleMenu}
-			class="group relative flex h-6 w-6 items-center justify-center"
+			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2"
 			class:opacity-0={isHomePage}
 			class:pointer-events-none={isHomePage}
 			aria-label="Open Menu"
 		>
-			<div class="h-3 w-3 bg-accent transition-transform duration-300 group-hover:rotate-90"></div>
+			<div
+				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2"
+			>
+				<span
+					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase"
+				>
+					Menu
+				</span>
+
+				<span
+					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase"
+				>
+					Menu
+				</span>
+			</div>
 		</button>
 	</div>
 

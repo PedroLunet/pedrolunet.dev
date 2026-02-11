@@ -1,0 +1,29 @@
+[
+	{
+		"role": "Freelance Creative Developer",
+		"company": "Self-Employed",
+		"companyUrl": "https://pedrolunet.dev",
+		"location": "Porto, PT",
+		"start": "2023",
+		"end": "Present",
+		"description": "Partnering with global design studios to implement high-end web experiences. Specializing in SvelteKit, WebGL, and interaction design to bridge the gap between design and engineering."
+	},
+	{
+		"role": "Senior Frontend Engineer",
+		"company": "Agency X",
+		"companyUrl": "https://google.com",
+		"location": "London, UK",
+		"start": "2021",
+		"end": "2023",
+		"description": "Led the frontend team for award-winning e-commerce projects. Focused on performance optimization, accessibility, and implementing headless CMS architectures for scalable content management."
+	},
+	{
+		"role": "Full Stack Developer",
+		"company": "Studio Y",
+		"companyUrl": "https://google.com",
+		"location": "Remote",
+		"start": "2019",
+		"end": "2021",
+		"description": "Built scalable backend systems and responsive UIs for SaaS products. Collaborated closely with product managers to deliver features that increased user retention by 25%."
+	}
+]

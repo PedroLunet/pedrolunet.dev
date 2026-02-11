@@ -3,10 +3,10 @@
 </script>
 
 <div
-	class="pointer-events-none flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:gap-6"
+	class="pointer-events-none flex flex-col items-start gap-2 lg:flex-row lg:items-center lg:gap-6 2xl:gap-10"
 >
 	<h1
-		class="hero-text invisible text-6xl leading-none font-medium tracking-tighter md:text-7xl lg:text-9xl"
+		class="hero-text invisible text-6xl leading-none font-medium tracking-tighter md:text-7xl lg:text-9xl 2xl:text-[clamp(8rem,15cqi,14rem)]"
 	>
 		Pedro
 	</h1>
@@ -16,18 +16,20 @@
 	</div>
 
 	<h1
-		class="hero-text invisible text-6xl leading-none font-medium tracking-tighter md:text-7xl lg:text-9xl"
+		class="hero-text invisible text-6xl leading-none font-medium tracking-tighter md:text-7xl lg:text-9xl 2xl:text-[clamp(8rem,15cqi,14rem)]"
 	>
 		Lunet
 	</h1>
 </div>
 
 <h2
-	class="hero-text invisible mt-4 text-2xl font-medium tracking-tight text-text-secondary md:mt-5 md:text-4xl lg:mt-6 lg:text-7xl"
+	class="hero-text invisible mt-4 text-2xl font-medium tracking-tight text-text-secondary md:mt-5 md:text-4xl lg:mt-6 lg:text-7xl 2xl:mt-10 2xl:text-8xl"
 >
 	frontend dev
 </h2>
 
-<h3 class="hero-text invisible mt-2 text-lg font-normal text-accent md:text-xl lg:text-2xl">
+<h3
+	class="hero-text invisible mt-2 text-lg font-normal text-accent md:text-xl lg:text-2xl 2xl:mt-4 2xl:text-4xl"
+>
 	porto, portugal
 </h3>

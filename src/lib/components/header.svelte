@@ -40,15 +40,7 @@
 				});
 			}, 0);
 
-			tl.to(
-				ghostRef,
-				{
-					scale: 0.9,
-					duration: 0.1,
-					ease: 'power1.out'
-				},
-				0
-			);
+			tl.to(ghostRef, { scale: 0.9, duration: 0.1, ease: 'power1.out' }, 0);
 
 			tl.to(
 				ghostRef,
@@ -66,11 +58,9 @@
 			);
 
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.1);
-
 			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.1);
 
 			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.5);
-
 			tl.fromTo(
 				'.menu-item',
 				{ x: 100, autoAlpha: 0 },
@@ -102,9 +92,15 @@
 </script>
 
 <div bind:this={bgSamplerRef} class="hidden bg-bg"></div>
-<div bind:this={ghostRef} class="pointer-events-none invisible fixed z-40 bg-accent"></div>
 
-<div class="menu-overlay pointer-events-none fixed inset-0 z-50 flex opacity-0">
+<div
+	bind:this={ghostRef}
+	class="pointer-events-none invisible fixed z-40 bg-accent transition-opacity duration-300"
+	class:!opacity-0={isHomePage}
+	class:!invisible={isHomePage}
+></div>
+
+<div class="menu-overlay pointer-events-none invisible fixed inset-0 z-50 flex opacity-0">
 	<div
 		class="close-strip border-text-primary/10 absolute top-0 left-0 z-60 h-full w-12 border-r lg:w-24"
 	>

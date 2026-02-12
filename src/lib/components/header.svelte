@@ -96,6 +96,8 @@
 
 	afterNavigate(() => {
 		if (tl) {
+			tl.pause();
+			tl.progress(0);
 			tl.kill();
 		}
 
@@ -105,10 +107,20 @@
 			gsap.set(ghostRef, {
 				clearProps: 'all',
 				autoAlpha: 0,
-				display: 'none',
-				visibility: 'hidden'
+				display: 'none'
 			});
 		}
+
+		gsap.set(['.menu-overlay', '.close-strip', '.menu-item'], {
+			clearProps: 'all',
+			autoAlpha: 0,
+			visibility: 'hidden'
+		});
+
+		gsap.set('.header-content-wrapper', {
+			clearProps: 'all',
+			autoAlpha: 1
+		});
 
 		if (triggerRef) {
 			gsap.set(triggerRef, {

@@ -1,42 +1,63 @@
-# sv
+# Pedro Lunet — Portfolio 2026
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A minimal, motion-driven portfolio designed with a focus on typography,
+technical precision, and meaningful digital experiences.
 
-## Creating a project
+## 🛠 Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** [SvelteKit 2](https://kit.svelte.dev/)
+- **Animation:** [GSAP (GreenSock)](https://gsap.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Smooth Scroll:** [Lenis](https://github.com/darkroomengineering/lenis)
+- **Icons:** [Lucide Svelte](https://lucide.dev/)
+- **Deployment:** [Cloudflare Workers](https://workers.cloudflare.com/)
 
-```sh
-# create a new project
-npx sv create my-app
+## ✨ Key Features
+
+- **Fluid Motion:** Heavy use of GSAP timelines for entrance animations and state transitions.
+- **Dynamic Layout:** A responsive "Swiss" grid that adapts between mobile, tablet, and ultra-wide screens.
+- **Custom Navigation:** A unique header transition system using "ghost" element samplers to bridge page states.
+- **Dynamic Projects:** Work pages generated via SvelteKit dynamic routes using structured JSON data.
+- **SEO Optimized:** Fully configured with Open Graph meta tags, JSON-LD structured data, and an automated sitemap.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) (recommended) or pnpm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone [https://github.com/PedroLunet/pedrolunet.dev.git](https://github.com/PedroLunet/pedrolunet.dev.git)
+cd portfolio
 ```
 
-To recreate this project with the same configuration:
+2. Install dependencies:
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" mdsvex --install npm pedrolunet.dev
+```bash
+npm install
 ```
 
-## Developing
+3. Start the development server:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```bash
+npm dev
 ```
 
-## Building
+## 🏗 Project Structure
 
-To create a production version of your app:
+- /src/lib/components: Reusable UI components (Hero, Menu, Tooltip, etc.)
 
-```sh
-npm run build
-```
+- /src/lib/data: JSON files for experience and project content.
 
-You can preview the production build with `npm run preview`.
+- /src/routes: SvelteKit page routing and API endpoints (sitemap).
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- /static: Static assets like icons, fonts, and the CV.
+
+## 📜 License
+
+Designed and Developed by Pedro Lunet. Feel free to use the code as a reference for your own learning!

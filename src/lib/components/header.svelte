@@ -26,7 +26,7 @@
 			tl = gsap.timeline({
 				paused: true,
 				onStart: () => {
-					if (!triggerRef || !ghostRef) return;
+					if (!triggerRef || !ghostRef || isHomePage) return;
 
 					const rect = triggerRef.getBoundingClientRect();
 					gsap.set(ghostRef, {
@@ -37,16 +37,16 @@
 						scale: 1,
 						borderRadius: '0px',
 						backgroundColor: '#FF4D00',
-						autoAlpha: 1
+						autoAlpha: 1,
+						display: 'block'
 					});
 
 					gsap.set('.ghost-text-wrapper', { autoAlpha: 1 });
-
 					gsap.set(triggerRef, { autoAlpha: 0 });
 				},
 				onReverseComplete: () => {
 					if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
-					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0 });
+					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
 				}
 			});
 
@@ -95,12 +95,26 @@
 	}
 
 	afterNavigate(() => {
-		if (isMenuOpen && tl) {
-			tl.progress(0).pause();
-			isMenuOpen = false;
+		if (tl) {
+			tl.kill();
+		}
 
-			if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0 });
-			if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
+		isMenuOpen = false;
+
+		if (ghostRef) {
+			gsap.set(ghostRef, {
+				clearProps: 'all',
+				autoAlpha: 0,
+				display: 'none',
+				visibility: 'hidden'
+			});
+		}
+
+		if (triggerRef) {
+			gsap.set(triggerRef, {
+				clearProps: 'all',
+				autoAlpha: 1
+			});
 		}
 	});
 </script>
@@ -110,8 +124,7 @@
 <div
 	bind:this={ghostRef}
 	class="pointer-events-none invisible fixed z-55 overflow-hidden bg-accent px-2 will-change-transform"
-	class:!opacity-0={isHomePage}
-	class:!invisible={isHomePage}
+	class:hidden={isHomePage}
 >
 	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
 		<span

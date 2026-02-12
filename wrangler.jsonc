@@ -10,7 +10,9 @@
 	},
 	"workers_dev": true,
 	"preview_urls": true,
-	"vars": {
-		"CONTACT_EMAIL": "hello@pedrolunet.dev"
-	}
+	"routes": [
+		{ "pattern": "pedrolunet.dev", "custom_domain": true },
+		{ "pattern": "www.pedrolunet.dev", "custom_domain": true }
+	],
+	"vars": { "CONTACT_EMAIL": "hello@pedrolunet.dev" }
 }

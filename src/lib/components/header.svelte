@@ -27,7 +27,6 @@
 				paused: true,
 				onStart: () => {
 					if (!triggerRef || !ghostRef || isHomePage) return;
-
 					const rect = triggerRef.getBoundingClientRect();
 					gsap.set(ghostRef, {
 						top: rect.top,
@@ -35,29 +34,28 @@
 						width: rect.width,
 						height: rect.height,
 						scale: 1,
-						borderRadius: '0px',
 						backgroundColor: '#FF4D00',
 						autoAlpha: 1,
 						display: 'block'
 					});
-
-					gsap.set('.ghost-text-wrapper', { autoAlpha: 1 });
 					gsap.set(triggerRef, { autoAlpha: 0 });
 				},
 				onReverseComplete: () => {
 					if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
 					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
+					gsap.set('.menu-overlay', { autoAlpha: 0, visibility: 'hidden' });
 				}
 			});
 
-			tl.to(ghostRef, { scale: 0.9, duration: 0.1, ease: 'power1.out' }, 0);
+			// 1. Initial Squeeze (Tactile feel)
+			tl.to(ghostRef, { scale: 0.95, duration: 0.2, ease: 'power2.inOut' }, 0);
 
+			// 2. The Expansion (Background fills screen)
 			tl.to(
 				ghostRef,
 				{
 					top: 0,
 					left: 0,
-					scale: 1,
 					width: '100vw',
 					height: '100vh',
 					backgroundColor: targetColor,
@@ -67,16 +65,36 @@
 				0.1
 			);
 
-			tl.to('.ghost-text-wrapper', { autoAlpha: 0, duration: 0.2 }, 0.1);
-			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.1);
-			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.1);
+			// 3. Reveal the Overlay container
+			tl.to('.menu-overlay', { autoAlpha: 1, visibility: 'visible', duration: 0.01 }, 0.2);
 
-			tl.fromTo('.close-strip', { x: '-100%' }, { x: '0%', duration: 1.0, ease: 'expo.out' }, 0.5);
+			// 4. Hide the background header content
+			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.2);
+
+			// 5. THE SMOOTH SLIDE: Close Strip
+			// Starts as the background is finishing its expansion
+			tl.to(
+				'.close-strip',
+				{
+					x: '0%',
+					duration: 1.2,
+					ease: 'expo.out'
+				},
+				0.4
+			);
+
+			// 6. Menu Items Stagger
 			tl.fromTo(
 				'.menu-item',
-				{ x: 100, autoAlpha: 0 },
-				{ x: 0, autoAlpha: 1, duration: 1.0, stagger: 0.1, ease: 'expo.out' },
-				0.6
+				{ x: 50, autoAlpha: 0 },
+				{
+					x: 0,
+					autoAlpha: 1,
+					stagger: 0.08,
+					duration: 0.8,
+					ease: 'power3.out'
+				},
+				0.5
 			);
 		});
 
@@ -100,7 +118,6 @@
 			tl.progress(0);
 			tl.kill();
 		}
-
 		isMenuOpen = false;
 
 		if (ghostRef) {
@@ -111,15 +128,15 @@
 			});
 		}
 
-		gsap.set(['.menu-overlay', '.close-strip', '.menu-item'], {
+		gsap.set(['.menu-overlay', '.close-strip', '.menu-item', '.header-content-wrapper'], {
 			clearProps: 'all',
 			autoAlpha: 0,
 			visibility: 'hidden'
 		});
 
 		gsap.set('.header-content-wrapper', {
-			clearProps: 'all',
-			autoAlpha: 1
+			autoAlpha: 1,
+			visibility: 'visible'
 		});
 
 		if (triggerRef) {
@@ -140,12 +157,12 @@
 >
 	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
 		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
 		>
 			Menu
 		</span>
 		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
 		>
 			Menu
 		</span>
@@ -155,6 +172,7 @@
 <div class="menu-overlay pointer-events-none invisible fixed inset-0 z-60 flex opacity-0">
 	<div
 		class="close-strip absolute top-0 left-0 z-60 h-full w-12 border-r border-text/10 lg:w-24 2xl:w-32"
+		style="transform: translateX(-100%);"
 	>
 		<button
 			onclick={toggleMenu}
@@ -178,10 +196,7 @@
 </div>
 
 <header
-	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-all duration-300
-  md:h-(--header-height-tablet)
-  lg:h-(--header-height-desktop) lg:px-9 lg:text-xl
-  2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl"
+	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-all duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl"
 >
 	<div class="header-content-wrapper flex items-center gap-4 transition-opacity 2xl:gap-8">
 		<a href="/">pedro lunet</a>
@@ -189,8 +204,7 @@
 		<button
 			bind:this={triggerRef}
 			onclick={toggleMenu}
-			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 active:scale-90
-      2xl:h-8 2xl:min-w-16 2xl:px-4"
+			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 active:scale-90 2xl:h-8 2xl:min-w-16 2xl:px-4"
 			class:opacity-0={isHomePage}
 			class:pointer-events-none={isHomePage}
 			aria-label="Open Menu"
@@ -199,12 +213,12 @@
 				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2"
 			>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold text-bg uppercase 2xl:text-sm"
 				>
 					Menu
 				</span>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold tracking-tight text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold text-bg uppercase 2xl:text-sm"
 				>
 					Menu
 				</span>

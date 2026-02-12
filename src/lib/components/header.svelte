@@ -23,6 +23,7 @@
 
 			const targetColor = window.getComputedStyle(bgSamplerRef).backgroundColor || '#0a0a0a';
 
+			// 1. Setup Timeline
 			tl = gsap.timeline({
 				paused: true,
 				onStart: () => {
@@ -41,16 +42,22 @@
 					gsap.set(triggerRef, { autoAlpha: 0 });
 				},
 				onReverseComplete: () => {
-					if (triggerRef) gsap.set(triggerRef, { autoAlpha: 1 });
+					// Reset trigger visibility based on where we are
+					const currentPath = window.location.pathname;
+					if (triggerRef) {
+						gsap.set(triggerRef, {
+							autoAlpha: currentPath === '/' ? 0 : 1,
+							pointerEvents: currentPath === '/' ? 'none' : 'auto'
+						});
+					}
 					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
-					gsap.set('.menu-overlay', { autoAlpha: 0, visibility: 'hidden' });
+					gsap.set('.menu-overlay', { autoAlpha: 0 });
 				}
 			});
 
-			// 1. Initial Squeeze (Tactile feel)
+			// 2. Animation Sequence
 			tl.to(ghostRef, { scale: 0.95, duration: 0.2, ease: 'power2.inOut' }, 0);
 
-			// 2. The Expansion (Background fills screen)
 			tl.to(
 				ghostRef,
 				{
@@ -65,35 +72,24 @@
 				0.1
 			);
 
-			// 3. Reveal the Overlay container
-			tl.to('.menu-overlay', { autoAlpha: 1, visibility: 'visible', duration: 0.01 }, 0.2);
-
-			// 4. Hide the background header content
+			// We use autoAlpha to handle visibility: hidden automatically
+			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.2);
 			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.2);
 
-			// 5. THE SMOOTH SLIDE: Close Strip
-			// Starts as the background is finishing its expansion
 			tl.to(
 				'.close-strip',
 				{
 					x: '0%',
-					duration: 1.2,
+					duration: 1.1,
 					ease: 'expo.out'
 				},
 				0.4
 			);
 
-			// 6. Menu Items Stagger
 			tl.fromTo(
 				'.menu-item',
 				{ x: 50, autoAlpha: 0 },
-				{
-					x: 0,
-					autoAlpha: 1,
-					stagger: 0.08,
-					duration: 0.8,
-					ease: 'power3.out'
-				},
+				{ x: 0, autoAlpha: 1, stagger: 0.08, duration: 0.8, ease: 'power3.out' },
 				0.5
 			);
 		});
@@ -113,37 +109,30 @@
 	}
 
 	afterNavigate(() => {
+		isMenuOpen = false;
+
 		if (tl) {
 			tl.pause();
 			tl.progress(0);
-			tl.kill();
-		}
-		isMenuOpen = false;
-
-		if (ghostRef) {
-			gsap.set(ghostRef, {
-				clearProps: 'all',
-				autoAlpha: 0,
-				display: 'none'
-			});
 		}
 
-		gsap.set(['.menu-overlay', '.close-strip', '.menu-item', '.header-content-wrapper'], {
-			clearProps: 'all',
-			autoAlpha: 0,
-			visibility: 'hidden'
-		});
+		gsap.set('.menu-overlay', { autoAlpha: 0 });
+		gsap.set('.close-strip', { x: '-100%' });
 
-		gsap.set('.header-content-wrapper', {
-			autoAlpha: 1,
-			visibility: 'visible'
-		});
+		gsap.set('.header-content-wrapper', { autoAlpha: 1 });
+
+
+		const onHome = page.url.pathname === '/';
 
 		if (triggerRef) {
 			gsap.set(triggerRef, {
-				clearProps: 'all',
-				autoAlpha: 1
+				autoAlpha: onHome ? 0 : 1,
+				pointerEvents: onHome ? 'none' : 'auto'
 			});
+		}
+
+		if (ghostRef) {
+			gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
 		}
 	});
 </script>
@@ -158,14 +147,12 @@
 	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
 		<span
 			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+			>Menu</span
 		>
-			Menu
-		</span>
 		<span
 			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+			>Menu</span
 		>
-			Menu
-		</span>
 	</div>
 </div>
 
@@ -213,15 +200,13 @@
 				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2"
 			>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+					>Menu</span
 				>
-					Menu
-				</span>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs leading-none font-semibold text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+					>Menu</span
 				>
-					Menu
-				</span>
 			</div>
 		</button>
 	</div>

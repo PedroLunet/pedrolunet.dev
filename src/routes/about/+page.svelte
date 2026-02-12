@@ -6,6 +6,7 @@
 
 	import ProjectTooltip from '$lib/components/projectTooltip.svelte';
 	import experience from '$lib/data/experience.json';
+	import SEO from '$lib/components/seo.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +70,11 @@
 		return () => ctx.revert();
 	});
 </script>
+
+<SEO
+	title="About - Pedro Lunet"
+	description="My journey from engineering to frontend development. Based in Porto."
+/>
 
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"

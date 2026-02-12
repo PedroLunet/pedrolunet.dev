@@ -33,7 +33,7 @@ technical precision, and meaningful digital experiences.
 
 ```bash
 git clone [https://github.com/PedroLunet/pedrolunet.dev.git](https://github.com/PedroLunet/pedrolunet.dev.git)
-cd portfolio
+cd pedrolunet.dev
 ```
 
 2. Install dependencies:
@@ -45,7 +45,7 @@ npm install
 3. Start the development server:
 
 ```bash
-npm dev
+npm run dev
 ```
 
 ## 🏗 Project Structure

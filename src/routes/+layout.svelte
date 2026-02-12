@@ -7,6 +7,7 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Header from '$lib/components/header.svelte';
+	import SEO from '$lib/components/seo.svelte';
 
 	let { children } = $props();
 	let lenis: Lenis;
@@ -80,6 +81,7 @@
 	/>
 </svelte:head>
 
+<SEO />
 <Header />
 
 <div

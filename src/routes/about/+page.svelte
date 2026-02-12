@@ -6,6 +6,7 @@
 
 	import ProjectTooltip from '$lib/components/projectTooltip.svelte';
 	import experience from '$lib/data/experience.json';
+	import SEO from '$lib/components/seo.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +70,29 @@
 		return () => ctx.revert();
 	});
 </script>
+
+<svelte:head>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Pedro Lunet",
+			"url": "https://pedrolunet.dev",
+			"jobTitle": "Frontend Developer",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Porto",
+				"addressCountry": "Portugal"
+			},
+			"sameAs": ["https://github.com/PedroLunet", "https://linkedin.com/in/PedroLunet"]
+		}
+	</script>
+</svelte:head>
+
+<SEO
+	title="About - Pedro Lunet"
+	description="My journey from engineering to frontend development. Based in Porto."
+/>
 
 <div
 	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"

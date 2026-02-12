@@ -6,6 +6,8 @@
 	import { backOut } from 'svelte/easing';
 	import gsap from 'gsap';
 
+	import SEO from '$lib/components/seo.svelte';
+
 	let { form } = $props();
 
 	let loading = $state(false);
@@ -47,6 +49,11 @@
 		};
 	});
 </script>
+
+<SEO
+	title="Contact - Pedro Lunet"
+	description="Get in touch for collaborations, freelance opportunities, or just to say hello. Based in Porto, Portugal."
+/>
 
 {#if showSuccessPopup}
 	<div

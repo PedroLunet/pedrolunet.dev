@@ -2,6 +2,7 @@
 	import { ArrowUpRight, ArrowUp, ArrowLeft } from '@lucide/svelte';
 	import Carousel from '$lib/components/carousel.svelte';
 	import gsap from 'gsap';
+	import SEO from '$lib/components/seo.svelte';
 
 	let { data } = $props();
 
@@ -33,6 +34,15 @@
 </script>
 
 {#if data.project}
+	<SEO
+		title="{project.title} - Pedro Lunet"
+		description={project.description
+			? project.description.slice(0, 160) + '...'
+			: 'Project details'}
+		image={project.image}
+		type="article"
+	/>
+
 	<div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 2xl:gap-32">
 		<div
 			class="order-1 col-span-1 flex h-fit flex-col gap-12 lg:sticky lg:top-24 lg:col-span-4 2xl:top-40 2xl:gap-20"

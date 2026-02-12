@@ -151,7 +151,7 @@
 		</div>
 
 		<div
-			class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-32 2xl:mt-48 2xl:gap-32"
+			class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-12 2xl:mt-24 2xl:gap-32"
 		>
 			<div
 				class="reveal prose prose-lg max-w-none translate-y-8 leading-relaxed font-light text-text/90 opacity-0 prose-invert 2xl:prose-2xl 2xl:leading-loose"

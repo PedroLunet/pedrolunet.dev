@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 
 	let {
-		title = 'Pedro Lunet — Frontend Developer',
+		title = 'Pedro Lunet - Frontend Developer',
 		description = 'Frontend Developer based in Porto, creating smooth and meaningful digital experiences.',
 		image = 'https://pedrolunet.dev/og-image.png',
 		type = 'website'

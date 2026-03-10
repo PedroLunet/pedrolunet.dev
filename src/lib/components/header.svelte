@@ -210,21 +210,23 @@
 		</button>
 	</div>
 
-	<div class="header-content-wrapper flex flex-row items-center gap-4 transition-opacity 2xl:gap-8">
+	<div
+		class="header-content-wrapper flex flex-row items-center gap-3 transition-opacity md:gap-4 2xl:gap-8"
+	>
 		<a
 			href="https://buymeacoffee.com/pedrolunet"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="group hidden w-auto flex-row items-center justify-center gap-2 border border-transparent transition-all duration-300 hover:border-accent-light active:scale-90 md:flex md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
+			class="group flex flex-row items-center justify-center gap-2 border border-transparent transition-all duration-300 hover:border-accent-light active:scale-90 md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
 			aria-label="Buy me a coffee"
 		>
 			<img
 				src="/bmc.png"
 				alt="BMC Logo"
-				class="mask aspect-square w-3 object-contain opacity-50 grayscale transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 md:w-3.5 2xl:w-4"
+				class="mask aspect-square w-4.5 object-contain opacity-50 grayscale transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 md:w-3.5 2xl:w-4.5"
 			/>
 			<span
-				class="text-[10px] font-semibold tracking-tight text-text/50 transition-colors duration-300 group-hover:text-text md:text-xs 2xl:text-sm"
+				class="hidden text-[10px] font-semibold tracking-tight text-text/50 transition-colors duration-300 group-hover:text-text md:block md:text-xs 2xl:text-sm"
 			>
 				buy me a coffee
 			</span>

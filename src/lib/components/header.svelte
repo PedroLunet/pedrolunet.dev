@@ -215,7 +215,7 @@
 			href="https://buymeacoffee.com/pedrolunet"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="group hidden w-auto flex-row items-center justify-center gap-2 border border-accent transition-all duration-300 hover:border-accent-light hover:bg-accent/5 active:scale-90 md:flex md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
+			class="group hidden w-auto flex-row items-center justify-center gap-2 border border-transparent transition-all duration-300 hover:border-accent-light active:scale-90 md:flex md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
 			aria-label="Buy me a coffee"
 		>
 			<img

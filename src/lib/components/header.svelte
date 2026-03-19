@@ -221,7 +221,7 @@
 			aria-label="Buy me a coffee"
 		>
 			<img
-				src="/bmc.png"
+				src="/bmc.webp"
 				alt="BMC Logo"
 				class="mask aspect-square w-4.5 object-contain opacity-50 grayscale transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0 md:w-3.5 2xl:w-4.5"
 			/>

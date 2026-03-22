@@ -6,24 +6,15 @@
 	<div
 		class="absolute top-[35%] left-1/2 z-10 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 text-center md:gap-8 lg:top-[30%] 2xl:top-[10%]"
 	>
-		<p class="text-lg font-medium tracking-tight text-text/60 md:text-xl 2xl:text-2xl">
-			looks like you got lost.
+		<p class="text-xl font-light tracking-tight text-text md:text-2xl 2xl:text-3xl">
+			looks like you got lost...
 		</p>
 
 		<a
 			href="/"
-			class="group flex flex-row items-center justify-center gap-2 border border-text/10 px-6 py-3 transition-all duration-300 hover:border-accent hover:bg-accent/5 active:scale-95 2xl:px-8 2xl:py-4"
+			class="text-lg font-extralight tracking-tight text-text underline decoration-accent underline-offset-4 transition-transform duration-300 hover:scale-110 md:text-xl 2xl:text-2xl"
 		>
-			<span
-				class="text-xs font-semibold tracking-tight text-text uppercase transition-colors duration-300 group-hover:text-accent 2xl:text-sm"
-			>
-				go back to home page
-			</span>
-			<span
-				class="text-xs text-text transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent 2xl:text-sm"
-			>
-				↗
-			</span>
+			go back to home page
 		</a>
 	</div>
 

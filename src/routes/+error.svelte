@@ -2,10 +2,10 @@
 	// +error.svelte
 </script>
 
-<div
-	class="relative -mb-12 flex w-full flex-1 flex-col items-center justify-center overflow-hidden bg-bg"
->
-	<div class="relative z-10 flex flex-col items-center gap-6 text-center md:gap-8">
+<div class="relative -mb-12 h-full w-full flex-1 overflow-hidden bg-bg">
+	<div
+		class="absolute top-[35%] left-1/2 z-10 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 text-center md:gap-8 lg:top-[30%] 2xl:top-[10%]"
+	>
 		<p class="text-lg font-medium tracking-tight text-text/60 md:text-xl 2xl:text-2xl">
 			looks like you got lost.
 		</p>
@@ -30,7 +30,9 @@
 	<div
 		class="pointer-events-none absolute bottom-0 left-1/2 flex w-full -translate-x-1/2 translate-y-[8%] items-end justify-center select-none"
 	>
-		<span class="flex flex-row text-[55vw] leading-[0.7] font-medium tracking-[-0.07em] text-text">
+		<span
+			class="flex flex-row text-[60vw] leading-[0.7] font-medium tracking-[-0.07em] text-text md:text-[50vw] xl:text-[40vw]"
+		>
 			<span>4</span>
 			<span class="-mx-[4%] text-accent">0</span>
 			<span>4</span>

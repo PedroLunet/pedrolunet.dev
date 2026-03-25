@@ -1,10 +1,19 @@
 [
 	{
+		"role": "Member",
+		"company": "NIAEFEUP",
+		"companyUrl": "https://ni.fe.up.pt",
+		"location": "FEUP, Porto",
+		"start": "Mar 2026",
+		"end": "Present",
+		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
+	},
+	{
 		"role": "Recruit",
 		"company": "NIAEFEUP",
 		"companyUrl": "https://ni.fe.up.pt",
 		"location": "FEUP, Porto",
-		"start": "Nov 2025",
+		"start": "Mar 2026",
 		"end": "Present",
 		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
 	},

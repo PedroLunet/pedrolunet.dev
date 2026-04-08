@@ -1,0 +1,17 @@
+{
+  "name": "Pedro Lunet",
+  "short_name": "Pedro Lunet",
+  "description": "Pedro Lunet's portfolio and personal website",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF4D00",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

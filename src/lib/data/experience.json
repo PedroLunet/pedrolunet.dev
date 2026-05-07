@@ -1,5 +1,23 @@
 [
 	{
+		"role": "Incoming Software Engineer Intern",
+		"company": "Cloudflare",
+		"companyUrl": "https://www.cloudflare.com",
+		"location": "Cloudflare, Lisbon",
+		"start": "Jul 2026",
+		"end": "Sep 2026",
+		"description": "Joining Cloudflare's Lisbon office for a summer internship as a Software Engineer. I'll be working on improving cloudflare user and developer experience by building tools and features that enhance the usability and functionality of Cloudflare's services. This opportunity will allow me to gain hands-on experience in a leading tech company and contribute to projects that impact millions of users worldwide."
+	},
+	{
+		"role": "Researcher",
+		"company": "INESC TEC",
+		"companyUrl": "https://www.inesctec.pt/pt",
+		"location": "INESC TEC, Porto",
+		"start": "May 2026",
+		"end": "Present",
+		"description": "Developing a UX report for the VAXPRED platform, a tool designed to predict vaccine efficacy. This project involves analyzing user interactions and feedback to enhance the platform's usability and effectiveness in delivering critical health information."
+	},
+	{
 		"role": "Member",
 		"company": "NIAEFEUP",
 		"companyUrl": "https://ni.fe.up.pt",

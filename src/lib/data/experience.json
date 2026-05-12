@@ -1,12 +1,12 @@
 [
 	{
-		"role": "Incoming Software Engineer Intern",
+		"role": "Incoming Software Engineering Intern",
 		"company": "Cloudflare",
 		"companyUrl": "https://www.cloudflare.com",
 		"location": "Cloudflare, Lisbon",
 		"start": "Jul 2026",
 		"end": "Sep 2026",
-		"description": "Joining Cloudflare's Lisbon office for a summer internship as a Software Engineer. I'll be working on improving cloudflare user and developer experience by building tools and features that enhance the usability and functionality of Cloudflare's services. This opportunity will allow me to gain hands-on experience in a leading tech company and contribute to projects that impact millions of users worldwide."
+		"description": "Joining the Design Engineering team to enhance the Cloudflare dashboard experience. Focusing on the evolution of the open-source Kumo component library, refining page layouts, and implementing complex data visualizations. My work bridges the gap between design and production, building high-fidelity tools and features that elevate the user journey for millions of developers worldwide."
 	},
 	{
 		"role": "Researcher",

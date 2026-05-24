@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowUpRight } from '@lucide/svelte';
-	import { resolve } from '$app/paths';
+	import { asset } from '$app/paths';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
@@ -245,7 +245,7 @@
 			class="fade-in-text mt-12 flex translate-y-8 justify-end pb-12 opacity-0 lg:pb-24 2xl:pb-48"
 		>
 			<a
-				href={resolve('/cv.pdf')}
+				href={asset('/cv.pdf')}
 				download="Pedro_Lunet_CV.pdf"
 				class="group relative border border-text px-10 py-5 text-xs font-bold tracking-widest text-text uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
 			>

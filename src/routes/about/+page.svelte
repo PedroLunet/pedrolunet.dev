@@ -206,6 +206,7 @@
 								<div
 									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>
+									<!-- svelte-ignore no-navigation-without-resolve -->
 									<a
 										href={job.companyUrl}
 										target="_blank"

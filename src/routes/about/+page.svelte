@@ -52,7 +52,7 @@
 				0.5
 			);
 
-			gsap.utils.toArray('.experience-item').forEach((item: any, i) => {
+			gsap.utils.toArray('.experience-item').forEach((item: Element, i) => {
 				gsap.from(item, {
 					scrollTrigger: {
 						trigger: item,

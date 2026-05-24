@@ -196,11 +196,7 @@
 				<div class="flex flex-col gap-0">
 					{#each sortedExperience as job (job.role + job.company)}
 						<div
-							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-all hover:border-accent/50 md:grid-cols-12 2xl:py-12 {getJobStatus(job) === 'current'
-								? 'glow-current'
-								: ''} {getJobStatus(job) === 'future'
-								? 'glow-future'
-								: ''}"
+							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 						>
 							<div class="col-span-3">
 								<span class="mb-1 block text-xs font-bold text-accent 2xl:text-sm">
@@ -213,8 +209,17 @@
 							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 								<div class="flex items-center justify-between">
 									<h4
-										class="text-2xl font-medium text-text transition-colors group-hover:text-accent 2xl:text-4xl"
+										class="flex items-center gap-3 text-2xl font-medium text-text transition-colors group-hover:text-accent 2xl:text-4xl"
 									>
+										{#if getJobStatus(job) === 'current'}
+											<span
+												class="inline-block h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_6px_2px_var(--color-accent)] animate-pulse"
+											></span>
+										{:else if getJobStatus(job) === 'future'}
+											<span
+												class="inline-block h-2 w-2 shrink-0 rounded-full bg-accent-light shadow-[0_0_4px_1px_var(--color-accent-light)]"
+											></span>
+										{/if}
 										{job.role}
 									</h4>
 								</div>
@@ -273,31 +278,4 @@
 	</div>
 </div>
 
-<style>
-	.glow-current {
-		box-shadow:
-			inset 0 1px 0 0 var(--color-accent),
-			0 0 12px 0 color-mix(in srgb, var(--color-accent) 30%, transparent);
-		animation: glow-pulse 2.5s ease-in-out infinite;
-	}
 
-	.glow-future {
-		box-shadow:
-			inset 0 1px 0 0 var(--color-accent-light),
-			0 0 8px 0 color-mix(in srgb, var(--color-accent-light) 20%, transparent);
-	}
-
-	@keyframes glow-pulse {
-		0%,
-		100% {
-			box-shadow:
-				inset 0 1px 0 0 var(--color-accent),
-				0 0 12px 0 color-mix(in srgb, var(--color-accent) 30%, transparent);
-		}
-		50% {
-			box-shadow:
-				inset 0 2px 0 0 var(--color-accent-light),
-				0 0 18px 2px color-mix(in srgb, var(--color-accent) 50%, transparent);
-		}
-	}
-</style>

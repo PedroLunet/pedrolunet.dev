@@ -180,7 +180,7 @@
 				</h3>
 
 				<div class="flex flex-col gap-0">
-					{#each sortedExperience as job}
+					{#each sortedExperience as job (job.role + job.company)}
 						<div
 							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
 						>

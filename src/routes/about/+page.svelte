@@ -207,11 +207,12 @@
 								<div
 									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>
-									<a
-										href={job.companyUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="transition-colors hover:text-accent">{job.company}</a
+									<span
+										onclick={() => window.open(job.companyUrl, '_blank')}
+										onkeydown={(e) => e.key === 'Enter' && window.open(job.companyUrl, '_blank')}
+										role="link"
+										tabindex="0"
+										class="cursor-pointer transition-colors hover:text-accent">{job.company}</span
 									>
 									{#if job.location}
 										<span class="opacity-30">•</span>

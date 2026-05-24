@@ -197,6 +197,11 @@
 					{#each sortedExperience as job (job.role + job.company)}
 						<div
 							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+							class:border-l-2={getJobStatus(job) === 'current' || getJobStatus(job) === 'future'}
+							class:border-l-accent={getJobStatus(job) === 'current'}
+							class:border-l-accent-light={getJobStatus(job) === 'future'}
+							class:pl-4={getJobStatus(job) === 'current' || getJobStatus(job) === 'future'}
+
 						>
 							<div class="col-span-3">
 								<span class="mb-1 block text-xs font-bold text-accent 2xl:text-sm">
@@ -209,17 +214,8 @@
 							<div class="col-span-9 flex flex-col gap-2 2xl:gap-4">
 								<div class="flex items-center justify-between">
 									<h4
-										class="flex items-center gap-3 text-2xl font-medium text-text transition-colors group-hover:text-accent 2xl:text-4xl"
+										class="text-2xl font-medium text-text transition-colors group-hover:text-accent 2xl:text-4xl"
 									>
-										{#if getJobStatus(job) === 'current'}
-											<span
-												class="inline-block h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_6px_2px_var(--color-accent)] animate-pulse"
-											></span>
-										{:else if getJobStatus(job) === 'future'}
-											<span
-												class="inline-block h-2 w-2 shrink-0 rounded-full bg-accent-light shadow-[0_0_4px_1px_var(--color-accent-light)]"
-											></span>
-										{/if}
 										{job.role}
 									</h4>
 								</div>

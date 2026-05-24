@@ -222,7 +222,7 @@
 								<p
 									class="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
 								>
-									{#each parseDescription(job.description) as part}
+									{#each parseDescription(job.description) as part, i (i)}
 										{#if part.type === 'text'}
 											{part.content}
 										{:else}

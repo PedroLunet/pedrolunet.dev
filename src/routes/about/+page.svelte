@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowUpRight } from '@lucide/svelte';
+	import { asset } from '$app/paths';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
@@ -33,6 +34,19 @@
 		return dateB.getTime() - dateA.getTime();
 	});
 
+	function getJobStatus(job: (typeof experience)[number]): 'current' | 'future' | 'past' {
+		if (job.end === 'Present') return 'current';
+		const startDate = new Date(job.start);
+		const now = new Date();
+		if (
+			startDate.getFullYear() > now.getFullYear() ||
+			(startDate.getFullYear() === now.getFullYear() && startDate.getMonth() > now.getMonth())
+		) {
+			return 'future';
+		}
+		return 'past';
+	}
+
 	let ctx: gsap.Context;
 
 	onMount(() => {
@@ -52,7 +66,7 @@
 				0.5
 			);
 
-			gsap.utils.toArray('.experience-item').forEach((item: any, i) => {
+			(gsap.utils.toArray('.experience-item') as Element[]).forEach((item, i) => {
 				gsap.from(item, {
 					scrollTrigger: {
 						trigger: item,
@@ -180,16 +194,19 @@
 				</h3>
 
 				<div class="flex flex-col gap-0">
-					{#each sortedExperience as job}
+					{#each sortedExperience as job (job.role + job.company)}
 						<div
 							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+							class:border-l-2={getJobStatus(job) === 'current' || getJobStatus(job) === 'future'}
+							class:border-l-accent={getJobStatus(job) === 'current'}
+							class:border-l-accent-light={getJobStatus(job) === 'future'}
+							class:pl-4={getJobStatus(job) === 'current' || getJobStatus(job) === 'future'}
+
 						>
 							<div class="col-span-3">
-								<span
-									class="mb-1 block text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
-									class:opacity-0={job.end !== 'Present'}
-								>
-									{job.end === 'Present' ? 'Current' : ''}
+								<span class="mb-1 block text-xs font-bold text-accent 2xl:text-sm">
+									{getJobStatus(job) === 'current' ? 'Current' : ''}
+									{getJobStatus(job) === 'future' ? 'Upcoming' : ''}
 								</span>
 								<span class="text-sm font-bold text-text 2xl:text-lg">{job.start} — {job.end}</span>
 							</div>
@@ -206,11 +223,12 @@
 								<div
 									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>
-									<a
-										href={job.companyUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="transition-colors hover:text-accent">{job.company}</a
+									<span
+										onclick={() => window.open(job.companyUrl, '_blank')}
+										onkeydown={(e) => e.key === 'Enter' && window.open(job.companyUrl, '_blank')}
+										role="link"
+										tabindex="0"
+										class="cursor-pointer transition-colors hover:text-accent">{job.company}</span
 									>
 									{#if job.location}
 										<span class="opacity-30">•</span>
@@ -221,7 +239,7 @@
 								<p
 									class="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary 2xl:max-w-5xl 2xl:text-xl"
 								>
-									{#each parseDescription(job.description) as part}
+									{#each parseDescription(job.description) as part, i (i)}
 										{#if part.type === 'text'}
 											{part.content}
 										{:else}
@@ -243,7 +261,7 @@
 			class="fade-in-text mt-12 flex translate-y-8 justify-end pb-12 opacity-0 lg:pb-24 2xl:pb-48"
 		>
 			<a
-				href="/cv.pdf"
+				href={asset('/cv.pdf')}
 				download="Pedro_Lunet_CV.pdf"
 				class="group relative border border-text px-10 py-5 text-xs font-bold tracking-widest text-text uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
 			>
@@ -255,3 +273,5 @@
 		</div>
 	</div>
 </div>
+
+

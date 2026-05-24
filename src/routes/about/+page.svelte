@@ -34,6 +34,19 @@
 		return dateB.getTime() - dateA.getTime();
 	});
 
+	function getJobStatus(job: (typeof experience)[number]): 'current' | 'future' | 'past' {
+		if (job.end === 'Present') return 'current';
+		const startDate = new Date(job.start);
+		const now = new Date();
+		if (
+			startDate.getFullYear() > now.getFullYear() ||
+			(startDate.getFullYear() === now.getFullYear() && startDate.getMonth() > now.getMonth())
+		) {
+			return 'future';
+		}
+		return 'past';
+	}
+
 	let ctx: gsap.Context;
 
 	onMount(() => {
@@ -183,14 +196,16 @@
 				<div class="flex flex-col gap-0">
 					{#each sortedExperience as job (job.role + job.company)}
 						<div
-							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-colors hover:border-accent/50 md:grid-cols-12 2xl:py-12"
+							class="experience-item group grid grid-cols-1 gap-4 border-b border-text/10 py-8 transition-all hover:border-accent/50 md:grid-cols-12 2xl:py-12 {getJobStatus(job) === 'current'
+								? 'glow-current'
+								: ''} {getJobStatus(job) === 'future'
+								? 'glow-future'
+								: ''}"
 						>
 							<div class="col-span-3">
-								<span
-									class="mb-1 block text-xs text-accent/80 opacity-0 transition-opacity group-hover:opacity-100 2xl:text-sm"
-									class:opacity-0={job.end !== 'Present'}
-								>
-									{job.end === 'Present' ? 'Current' : ''}
+								<span class="mb-1 block text-xs font-bold text-accent 2xl:text-sm">
+									{getJobStatus(job) === 'current' ? 'Current' : ''}
+									{getJobStatus(job) === 'future' ? 'Upcoming' : ''}
 								</span>
 								<span class="text-sm font-bold text-text 2xl:text-lg">{job.start} — {job.end}</span>
 							</div>
@@ -257,3 +272,32 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.glow-current {
+		box-shadow:
+			inset 0 1px 0 0 var(--color-accent),
+			0 0 12px 0 color-mix(in srgb, var(--color-accent) 30%, transparent);
+		animation: glow-pulse 2.5s ease-in-out infinite;
+	}
+
+	.glow-future {
+		box-shadow:
+			inset 0 1px 0 0 var(--color-accent-light),
+			0 0 8px 0 color-mix(in srgb, var(--color-accent-light) 20%, transparent);
+	}
+
+	@keyframes glow-pulse {
+		0%,
+		100% {
+			box-shadow:
+				inset 0 1px 0 0 var(--color-accent),
+				0 0 12px 0 color-mix(in srgb, var(--color-accent) 30%, transparent);
+		}
+		50% {
+			box-shadow:
+				inset 0 2px 0 0 var(--color-accent-light),
+				0 0 18px 2px color-mix(in srgb, var(--color-accent) 50%, transparent);
+		}
+	}
+</style>

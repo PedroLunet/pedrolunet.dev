@@ -53,7 +53,7 @@
 				0.5
 			);
 
-			gsap.utils.toArray('.experience-item').forEach((item: Element, i) => {
+			(gsap.utils.toArray('.experience-item') as Element[]).forEach((item, i) => {
 				gsap.from(item, {
 					scrollTrigger: {
 						trigger: item,
@@ -207,7 +207,6 @@
 								<div
 									class="flex items-baseline gap-3 text-xs font-bold tracking-widest text-text-secondary uppercase 2xl:text-sm"
 								>
-									<!-- svelte-ignore no-navigation-without-resolve -->
 									<a
 										href={job.companyUrl}
 										target="_blank"

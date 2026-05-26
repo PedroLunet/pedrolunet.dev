@@ -33,6 +33,12 @@ export const actions: Actions = {
 		}
 
 		const formData = await request.formData();
+
+		const honeypot = formData.get('website') as string;
+		if (honeypot) {
+			return fail(400, { error: 'Bot detected' });
+		}
+
 		const author = (formData.get('name') as string)?.trim();
 		const content = (formData.get('message') as string)?.trim();
 
@@ -46,6 +52,17 @@ export const actions: Actions = {
 
 		if (content.length > 500) {
 			return fail(400, { error: 'Message must be 500 characters or less' });
+		}
+
+		const recent = await db
+			.prepare(
+				"SELECT id FROM messages WHERE author = ?1 AND created_at > datetime('now', '-30 seconds')"
+			)
+			.bind(author)
+			.all();
+
+		if (recent.results && recent.results.length > 0) {
+			return fail(429, { error: 'Please wait a moment before posting again' });
 		}
 
 		try {

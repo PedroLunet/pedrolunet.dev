@@ -13,11 +13,11 @@
 	let loading = $state(false);
 	let name = $state('');
 	let message = $state('');
+	let now = $state(Date.now());
 
 	function formatTime(dateStr: string) {
 		const date = new Date(dateStr.replace(' ', 'T') + 'Z');
-		const now = new Date();
-		const diff = now.getTime() - date.getTime();
+		const diff = now - date.getTime();
 		const mins = Math.floor(diff / 60000);
 		const hours = Math.floor(diff / 3600000);
 
@@ -31,9 +31,25 @@
 		return `${day}/${month}/${year}`;
 	}
 
+	function tileRotation(id: number): string {
+		const angle = ((id * 7.538) % 2.4) - 1.2;
+		return `${angle.toFixed(1)}deg`;
+	}
+
+	const formatted = $derived(
+		data.messages.map((msg) => ({
+			id: msg.id,
+			author: msg.author,
+			content: msg.content,
+			time: formatTime(msg.created_at)
+		}))
+	);
+
 	let ctx: gsap.Context;
 
 	onMount(() => {
+		const interval = setInterval(() => (now = Date.now()), 60000);
+
 		ctx = gsap.context(() => {
 			gsap.to('.reveal', {
 				y: 0,
@@ -44,7 +60,10 @@
 			});
 		});
 
-		return () => ctx.revert();
+		return () => {
+			clearInterval(interval);
+			ctx.revert();
+		};
 	});
 </script>
 
@@ -83,6 +102,10 @@
 			}}
 			class="flex flex-col gap-6 border border-text/10 p-6 2xl:gap-8 2xl:p-8"
 		>
+			<div style="display:none" aria-hidden="true">
+				<input type="text" name="website" tabindex="-1" autocomplete="off" />
+			</div>
+
 			<div class="flex flex-col gap-4 md:flex-row md:items-end 2xl:gap-6">
 				<div class="group relative flex-1">
 					<input
@@ -113,6 +136,7 @@
 						id="mural-message"
 						bind:value={message}
 						required
+						maxlength={500}
 						placeholder=" "
 						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 py-0 pt-2 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:text-2xl"
 					/>
@@ -126,6 +150,15 @@
 					>
 						Your message
 					</label>
+					<div class="mt-1 flex justify-end">
+						<span
+							class="text-[10px] transition-colors duration-300 2xl:text-xs {message.length > 450
+								? 'text-accent'
+								: 'text-text-secondary/50'}"
+						>
+							{message.length}/500
+						</span>
+					</div>
 				</div>
 
 				<button
@@ -166,11 +199,11 @@
 			</div>
 		{:else}
 			<div class="mural-grid columns-1 gap-4 md:columns-2 lg:columns-3 2xl:gap-6">
-				{#each data.messages as msg (msg.id)}
+				{#each formatted as msg (msg.id)}
 					<div
 						in:scale={{ duration: 400, start: 0.85, opacity: 0, easing: backOut }}
 						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/70 2xl:mb-6 2xl:p-7"
-						style="transform: rotate({(Math.random() - 0.5) * 2}deg)"
+						style="transform: rotate({tileRotation(msg.id)})"
 					>
 						<div class="flex flex-col gap-3 2xl:gap-4">
 							<p class="text-[15px] leading-relaxed text-text 2xl:text-lg">
@@ -185,7 +218,7 @@
 									{msg.author}
 								</span>
 								<span class="shrink-0 text-[11px] text-text-secondary/50 2xl:text-xs">
-									{formatTime(msg.created_at)}
+									{msg.time}
 								</span>
 							</div>
 						</div>

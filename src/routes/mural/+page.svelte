@@ -75,14 +75,14 @@
 						bind:value={name}
 						required
 						placeholder=" "
-						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 pb-1 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:pb-2 2xl:text-2xl"
+						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 py-0 pt-2 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:text-2xl"
 					/>
 					<label
 						for="mural-name"
 						class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-							peer-valid:-top-4 peer-valid:text-[10px] peer-valid:font-bold
-							peer-focus:-top-4 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
+							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
+							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
 							2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
 					>
 						Name
@@ -97,14 +97,14 @@
 						bind:value={message}
 						required
 						placeholder=" "
-						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 pb-1 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:pb-2 2xl:text-2xl"
+						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 py-0 pt-2 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:text-2xl"
 					/>
 					<label
 						for="mural-message"
 						class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-							peer-valid:-top-4 peer-valid:text-[10px] peer-valid:font-bold
-							peer-focus:-top-4 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
+							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
+							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
 							2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
 					>
 						Your message

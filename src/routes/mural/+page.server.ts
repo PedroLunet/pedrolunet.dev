@@ -1,5 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { fail } from '@sveltejs/kit';
+import { Resend } from 'resend';
+import { env } from '$env/dynamic/private';
 
 interface Message {
 	id: number;
@@ -70,6 +72,23 @@ export const actions: Actions = {
 				.prepare('INSERT INTO messages (author, content) VALUES (?1, ?2)')
 				.bind(author, content)
 				.run();
+
+			if (env.RESEND_API_KEY) {
+				const resend = new Resend(env.RESEND_API_KEY);
+				resend.emails.send({
+					from: 'Mural Notification <mural@pedrolunet.dev>',
+					to: [env.CONTACT_EMAIL || 'hello@pedrolunet.dev'],
+					subject: `[Mural] New message from ${author}`,
+					html: `
+						<div style="font-family: sans-serif; padding: 20px;">
+							<h2>New Mural Message</h2>
+							<p><strong>Author:</strong> ${author}</p>
+							<p><strong>Message:</strong><br/>${content.replace(/\n/g, '<br>')}</p>
+						</div>
+					`
+				});
+			}
+
 			return { success: true };
 		} catch (err) {
 			console.error('D1 insert error:', err);

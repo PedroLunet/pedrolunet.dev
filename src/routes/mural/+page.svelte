@@ -181,23 +181,18 @@
 					/>
 					<label
 						for="mural-message"
-						class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+						class="pointer-events-none absolute top-4 left-0 right-0 flex justify-between text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
 							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
 							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
 							2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
 					>
-						Your message
-					</label>
-					<div class="mt-1 flex justify-end">
+						<span>Your message</span>
 						<span
-							class="text-[10px] transition-colors duration-300 2xl:text-xs {message.length > 450
+							class="text-[10px] normal-case tracking-normal {message.length > 450
 								? 'text-accent'
-								: 'text-text-secondary/50'}"
-						>
-							{message.length}/500
-						</span>
-					</div>
+								: 'text-text-secondary/50'} 2xl:text-xs">{message.length}/500</span>
+					</label>
 				</div>
 
 				<button

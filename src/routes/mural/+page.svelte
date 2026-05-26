@@ -111,7 +111,7 @@
 <div class="flex flex-col gap-16 2xl:gap-24">
 	<div class="reveal translate-y-8 opacity-0">
 		<h1
-			class="text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter text-text uppercase 2xl:text-[clamp(5rem,14cqi,14rem)]"
+			class="-ml-1 text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter text-text uppercase xl:-ml-2.5 2xl:text-[clamp(5rem,14cqi,14rem)]"
 		>
 			Mural
 		</h1>

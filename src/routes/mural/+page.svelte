@@ -2,18 +2,19 @@
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
-	import { scale } from 'svelte/transition';
+	import { scale, fade } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	import { Send, LoaderCircle } from '@lucide/svelte';
+	import { Send, LoaderCircle, X } from '@lucide/svelte';
 	import gsap from 'gsap';
 	import SEO from '$lib/components/seo.svelte';
 
-	let { data } = $props();
+	let { data, form } = $props();
 
 	let loading = $state(false);
 	let name = $state('');
 	let message = $state('');
 	let now = $state(Date.now());
+	let error = $state('');
 
 	function formatTime(dateStr: string) {
 		const date = new Date(dateStr.replace(' ', 'T') + 'Z');
@@ -72,6 +73,41 @@
 	description="Leave a message on the mural wall. A space for thoughts, shoutouts, or whatever you want to share."
 />
 
+{#if error}
+	<div
+		class="fixed inset-0 z-50 flex items-center justify-center p-4"
+		role="dialog"
+		aria-modal="true"
+	>
+		<div
+			class="absolute inset-0 bg-bg/80 backdrop-blur-sm"
+			role="button"
+			tabindex="-1"
+			onclick={() => (error = '')}
+			onkeydown={(e) => e.key === 'Escape' && (error = '')}
+			transition:fade={{ duration: 200 }}
+		></div>
+
+		<div
+			class="relative z-10 w-full max-w-md border border-text/20 bg-bg p-12 text-center shadow-2xl"
+			transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: backOut }}
+		>
+			<h3 class="mb-2 text-2xl font-bold tracking-widest text-text uppercase">Oops</h3>
+			<p class="mb-8 text-sm text-text-secondary">{error}</p>
+
+			<button
+				onclick={() => (error = '')}
+				class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-text"
+			>
+				<span>Close</span>
+				<div class="relative transition-transform duration-300 group-hover:rotate-90">
+					<X size={14} />
+				</div>
+			</button>
+		</div>
+	</div>
+{/if}
+
 <div class="flex flex-col gap-16 2xl:gap-24">
 	<div class="reveal translate-y-8 opacity-0">
 		<h1
@@ -90,6 +126,7 @@
 			method="POST"
 			use:enhance={() => {
 				loading = true;
+				error = '';
 				return async ({ result, update }) => {
 					loading = false;
 					await update();
@@ -97,6 +134,8 @@
 						name = '';
 						message = '';
 						await invalidate('/mural');
+					} else if (result.type === 'failure') {
+						error = result.data?.error || 'Something went wrong';
 					}
 				};
 			}}

@@ -36,7 +36,7 @@ export const actions: Actions = {
 
 		const honeypot = formData.get('website') as string;
 		if (honeypot) {
-			return fail(400, { error: 'Bot detected' });
+			return { success: true };
 		}
 
 		const author = (formData.get('name') as string)?.trim();

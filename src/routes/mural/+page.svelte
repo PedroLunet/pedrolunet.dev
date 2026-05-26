@@ -115,7 +115,7 @@
 		>
 			Mural
 		</h1>
-		<p class="mt-4 max-w-xl text-sm leading-relaxed text-text-secondary 2xl:mt-6 2xl:text-lg">
+		<p class="mt-4 max-w-xl text-base leading-relaxed text-text-secondary 2xl:mt-6 2xl:text-lg">
 			A wall for thoughts, shoutouts, or whatever's on your mind. Leave your mark, say hi, and be
 			part of the mural.
 		</p>

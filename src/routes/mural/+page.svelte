@@ -14,6 +14,23 @@
 	let name = $state('');
 	let message = $state('');
 
+	function formatTime(dateStr: string) {
+		const date = new Date(dateStr.replace(' ', 'T') + 'Z');
+		const now = new Date();
+		const diff = now.getTime() - date.getTime();
+		const mins = Math.floor(diff / 60000);
+		const hours = Math.floor(diff / 3600000);
+
+		if (mins < 1) return 'just now';
+		if (hours < 1) return `${mins}min ago`;
+		if (hours < 24) return `${hours}h ago`;
+
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const year = date.getFullYear();
+		return `${day}/${month}/${year}`;
+	}
+
 	let ctx: gsap.Context;
 
 	onMount(() => {
@@ -168,7 +185,7 @@
 									{msg.author}
 								</span>
 								<span class="shrink-0 text-[10px] text-text-secondary/50 2xl:text-xs">
-									{msg.created_at}
+									{formatTime(msg.created_at)}
 								</span>
 							</div>
 						</div>

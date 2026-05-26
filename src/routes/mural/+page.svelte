@@ -169,7 +169,7 @@
 				{#each data.messages as msg (msg.id)}
 					<div
 						in:scale={{ duration: 400, start: 0.85, opacity: 0, easing: backOut }}
-						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 2xl:mb-6 2xl:p-7"
+						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 2xl:mb-6 2xl:p-7"
 						style="transform: rotate({(Math.random() - 0.5) * 2}deg)"
 					>
 						<div class="flex flex-col gap-3 2xl:gap-4">

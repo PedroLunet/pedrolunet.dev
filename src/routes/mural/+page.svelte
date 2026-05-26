@@ -167,7 +167,7 @@
 			</div>
 		{:else}
 			<div class="mural-grid columns-1 gap-4 md:columns-2 lg:columns-3 2xl:gap-6">
-				{#each data.messages as msg, i}
+				{#each data.messages as msg (msg.id)}
 					<div
 						class="mural-tile mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 2xl:mb-6 2xl:p-7"
 						style="transform: rotate({(Math.random() - 0.5) * 2}deg)"

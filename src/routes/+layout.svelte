@@ -89,12 +89,12 @@
 ></div>
 
 <main
-	class="mx-auto flex min-h-[calc(100vh-var(--header-height-mobile))] w-full flex-col
+	class="flex min-h-[calc(100vh-var(--header-height-mobile))] w-full flex-col
   bg-bg
   px-6
   pt-4
   pb-12
-  3xl:mx-auto 3xl:max-w-[1440px] md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9 lg:pt-12 2xl:min-h-[calc(100vh-var(--header-height-ultrawide))] 2xl:px-24 2xl:pt-20"
+  md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9 lg:pt-12 2xl:min-h-[calc(100vh-var(--header-height-ultrawide))] 2xl:px-24 2xl:pt-20"
 >
 	{@render children()}
 </main>

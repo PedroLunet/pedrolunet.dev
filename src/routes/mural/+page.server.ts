@@ -8,57 +8,55 @@ interface Message {
 	created_at: string;
 }
 
-const demoMessages: Message[] = [
-	{
-		id: 1,
-		author: 'Pedro Lunet',
-		content: "Welcome to the mural! Leave a message and it'll show up here.",
-		created_at: 'just now'
-	},
-	{
-		id: 2,
-		author: 'Visitor',
-		content: 'Love the site! The animations are super smooth.',
-		created_at: '2m ago'
-	},
-	{
-		id: 3,
-		author: 'Design Friend',
-		content: "That orange accent is *chef's kiss*. Great palette choice.",
-		created_at: '5m ago'
-	},
-	{
-		id: 4,
-		author: 'Random Dev',
-		content: 'Inspiring work, Pedro. Keep pushing pixels!',
-		created_at: '12m ago'
+export const load: PageServerLoad = async ({ platform }) => {
+	const db = platform?.env?.mural_db;
+	if (!db) {
+		return { messages: [] };
 	}
-];
 
-export const load: PageServerLoad = async () => {
-	return {
-		messages: demoMessages
-	};
+	try {
+		const result = await db
+			.prepare('SELECT id, author, content, created_at FROM messages ORDER BY created_at DESC')
+			.all<Message>();
+		return { messages: result.results ?? [] };
+	} catch (err) {
+		console.error('D1 load error:', err);
+		return { messages: [] };
+	}
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
-		const formData = await request.formData();
-		const name = formData.get('name') as string;
-		const message = formData.get('message') as string;
+	default: async ({ request, platform }) => {
+		const db = platform?.env?.mural_db;
+		if (!db) {
+			return fail(500, { error: 'Database unavailable' });
+		}
 
-		if (!name || !message) {
+		const formData = await request.formData();
+		const author = (formData.get('name') as string)?.trim();
+		const content = (formData.get('message') as string)?.trim();
+
+		if (!author || !content) {
 			return fail(400, { missing: true, error: 'Both fields are required' });
 		}
 
-		if (name.length > 50) {
+		if (author.length > 50) {
 			return fail(400, { error: 'Name must be 50 characters or less' });
 		}
 
-		if (message.length > 500) {
+		if (content.length > 500) {
 			return fail(400, { error: 'Message must be 500 characters or less' });
 		}
 
-		return { success: true };
+		try {
+			await db
+				.prepare('INSERT INTO messages (author, content) VALUES (?1, ?2)')
+				.bind(author, content)
+				.run();
+			return { success: true };
+		} catch (err) {
+			console.error('D1 insert error:', err);
+			return fail(500, { error: 'Failed to save message' });
+		}
 	}
 };

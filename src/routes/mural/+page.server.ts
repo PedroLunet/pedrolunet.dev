@@ -74,19 +74,23 @@ export const actions: Actions = {
 				.run();
 
 			if (env.RESEND_API_KEY) {
-				const resend = new Resend(env.RESEND_API_KEY);
-				resend.emails.send({
-					from: 'Mural Notification <mural@pedrolunet.dev>',
-					to: [env.CONTACT_EMAIL || 'hello@pedrolunet.dev'],
-					subject: `[Mural] New message from ${author}`,
-					html: `
-						<div style="font-family: sans-serif; padding: 20px;">
-							<h2>New Mural Message</h2>
-							<p><strong>Author:</strong> ${author}</p>
-							<p><strong>Message:</strong><br/>${content.replace(/\n/g, '<br>')}</p>
-						</div>
-					`
-				});
+				try {
+					const resend = new Resend(env.RESEND_API_KEY);
+					await resend.emails.send({
+						from: 'Mural Notification <mural@pedrolunet.dev>',
+						to: [env.CONTACT_EMAIL || 'hello@pedrolunet.dev'],
+						subject: `[Mural] New message from ${author}`,
+						html: `
+							<div style="font-family: sans-serif; padding: 20px;">
+								<h2>New Mural Message</h2>
+								<p><strong>Author:</strong> ${author}</p>
+								<p><strong>Message:</strong><br/>${content.replace(/\n/g, '<br>')}</p>
+							</div>
+						`
+					});
+				} catch (e) {
+					console.error('Mural email notification failed:', e);
+				}
 			}
 
 			return { success: true };

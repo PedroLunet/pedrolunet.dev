@@ -199,11 +199,16 @@
 				<button
 					type="submit"
 					disabled={loading || !name || !message}
-					class="group relative flex w-full shrink-0 items-center justify-center border border-text/20 px-8 py-3 text-xs font-bold tracking-widest text-text uppercase transition-all duration-300 hover:border-accent hover:bg-accent hover:text-bg disabled:opacity-30 md:w-auto 2xl:px-10 2xl:py-4 2xl:text-sm"
+					class="group relative flex w-full shrink-0 items-center justify-center border border-text/20 px-8 py-3 text-xs font-bold tracking-widest text-text uppercase transition-all duration-300 hover:border-accent hover:bg-accent hover:text-bg disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-text/20 disabled:hover:bg-transparent disabled:hover:text-text md:w-auto 2xl:px-10 2xl:py-4 2xl:text-sm"
 				>
 					<span class="inline-flex items-center gap-3 2xl:gap-4" class:invisible={loading}>
 						<span>Post on Wall</span>
-						<Send size={14} class="transition-transform duration-300 group-hover:translate-x-1" />
+						<Send
+							size={14}
+							class="transition-transform duration-300 {!name || !message || loading
+								? ''
+								: 'group-hover:translate-x-1'}"
+						/>
 					</span>
 					{#if loading}
 						<span class="absolute inline-flex items-center gap-3 2xl:gap-4">

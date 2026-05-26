@@ -9,7 +9,7 @@
 >
 	<a
 		href="/work"
-		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-8xl 2xl:text-[clamp(6rem,10vw,10rem)]"
+		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-7xl 2xl:text-[clamp(3rem,4vw,5rem)]"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
@@ -20,7 +20,7 @@
 
 	<a
 		href="/about"
-		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-8xl 2xl:text-[clamp(6rem,10vw,10rem)]"
+		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-7xl 2xl:text-[clamp(3rem,4vw,5rem)]"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
@@ -31,7 +31,7 @@
 
 	<a
 		href="/contact"
-		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-8xl 2xl:text-[clamp(6rem,10vw,10rem)]"
+		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-7xl 2xl:text-[clamp(3rem,4vw,5rem)]"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"
@@ -41,7 +41,7 @@
 	</a>
 	<a
 		href="/mural"
-		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-8xl 2xl:text-[clamp(6rem,10vw,10rem)]"
+		class="menu-item group invisible block text-4xl font-thin tracking-tight text-text md:text-7xl 2xl:text-[clamp(3rem,4vw,5rem)]"
 	>
 		<span
 			class="block origin-right transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-skew-x-12 group-hover:text-accent"

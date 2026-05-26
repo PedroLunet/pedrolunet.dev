@@ -94,7 +94,7 @@
 	<div class="col-span-1 lg:col-span-7">
 		<div class="reveal translate-y-8 opacity-0">
 			<h1
-				class="text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter text-text uppercase 2xl:text-[clamp(5rem,14cqi,14rem)]"
+				class="text-[clamp(3.5rem,14cqi,10rem)] leading-[0.8] font-bold tracking-tighter text-text uppercase 2xl:text-[clamp(4rem,8cqi,9rem)]"
 			>
 				Let's<br />Talk.
 			</h1>

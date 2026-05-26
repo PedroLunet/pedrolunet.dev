@@ -181,7 +181,7 @@
 					/>
 					<label
 						for="mural-message"
-						class="pointer-events-none absolute top-4 left-0 right-0 flex justify-between text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+						class="pointer-events-none absolute top-4 right-0 left-0 flex justify-between text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
 							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
 							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
@@ -189,23 +189,27 @@
 					>
 						<span>Your message</span>
 						<span
-							class="text-[10px] normal-case tracking-normal {message.length > 450
+							class="text-[10px] tracking-normal normal-case {message.length > 450
 								? 'text-accent'
-								: 'text-text-secondary/50'} 2xl:text-xs">{message.length}/500</span>
+								: 'text-text-secondary/50'} 2xl:text-xs">{message.length}/500</span
+						>
 					</label>
 				</div>
 
 				<button
 					type="submit"
 					disabled={loading || !name || !message}
-					class="group flex w-full shrink-0 items-center justify-center gap-3 border border-text/20 px-8 py-3 text-xs font-bold tracking-widest text-text uppercase transition-all duration-300 hover:border-accent hover:bg-accent hover:text-bg disabled:opacity-30 md:w-auto 2xl:gap-4 2xl:px-10 2xl:py-4 2xl:text-sm"
+					class="group relative flex w-full shrink-0 items-center justify-center border border-text/20 px-8 py-3 text-xs font-bold tracking-widest text-text uppercase transition-all duration-300 hover:border-accent hover:bg-accent hover:text-bg disabled:opacity-30 md:w-auto 2xl:px-10 2xl:py-4 2xl:text-sm"
 				>
-					{#if loading}
-						<LoaderCircle size={14} class="animate-spin" />
-						<span>Posting...</span>
-					{:else}
+					<span class="inline-flex items-center gap-3 2xl:gap-4" class:invisible={loading}>
 						<span>Post on Wall</span>
 						<Send size={14} class="transition-transform duration-300 group-hover:translate-x-1" />
+					</span>
+					{#if loading}
+						<span class="absolute inline-flex items-center gap-3 2xl:gap-4">
+							<LoaderCircle size={14} class="animate-spin" />
+							<span>Posting...</span>
+						</span>
 					{/if}
 				</button>
 			</div>

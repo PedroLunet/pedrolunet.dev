@@ -8,7 +8,7 @@
 	import gsap from 'gsap';
 	import SEO from '$lib/components/seo.svelte';
 
-	let { data, form } = $props();
+	let { data } = $props();
 
 	let loading = $state(false);
 	let name = $state('');
@@ -49,7 +49,7 @@
 	let ctx: gsap.Context;
 
 	onMount(() => {
-		const interval = setInterval(() => (now = Date.now()), 60000);
+		const interval = setInterval(() => (now = Date.now()), 30000);
 
 		ctx = gsap.context(() => {
 			gsap.to('.reveal', {

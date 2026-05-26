@@ -169,22 +169,22 @@
 				{#each data.messages as msg (msg.id)}
 					<div
 						in:scale={{ duration: 400, start: 0.85, opacity: 0, easing: backOut }}
-						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 2xl:mb-6 2xl:p-7"
+						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/70 2xl:mb-6 2xl:p-7"
 						style="transform: rotate({(Math.random() - 0.5) * 2}deg)"
 					>
 						<div class="flex flex-col gap-3 2xl:gap-4">
-							<p class="text-sm leading-relaxed text-text 2xl:text-lg">
+							<p class="text-[15px] leading-relaxed text-text 2xl:text-lg">
 								{msg.content}
 							</p>
 							<div
 								class="flex items-center justify-between gap-2 border-t border-text/10 pt-3 2xl:pt-4"
 							>
 								<span
-									class="truncate text-[10px] font-bold tracking-widest text-accent uppercase 2xl:text-xs"
+									class="truncate text-[11px] font-bold tracking-widest text-accent uppercase 2xl:text-xs"
 								>
 									{msg.author}
 								</span>
-								<span class="shrink-0 text-[10px] text-text-secondary/50 2xl:text-xs">
+								<span class="shrink-0 text-[11px] text-text-secondary/50 2xl:text-xs">
 									{formatTime(msg.created_at)}
 								</span>
 							</div>

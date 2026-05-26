@@ -245,7 +245,7 @@
 						style="transform: rotate({tileRotation(msg.id)})"
 					>
 						<div class="flex flex-col gap-3 2xl:gap-4">
-							<p class="text-[15px] leading-relaxed text-text 2xl:text-lg">
+							<p class="text-[15px] leading-relaxed break-words text-text 2xl:text-lg">
 								{msg.content}
 							</p>
 							<div

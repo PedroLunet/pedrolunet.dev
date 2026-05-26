@@ -201,7 +201,6 @@
 							class:border-l-accent={getJobStatus(job) === 'current'}
 							class:border-l-accent-light={getJobStatus(job) === 'future'}
 							class:pl-4={getJobStatus(job) === 'current' || getJobStatus(job) === 'future'}
-
 						>
 							<div class="col-span-3">
 								<span class="mb-1 block text-xs font-bold text-accent 2xl:text-sm">
@@ -273,5 +272,3 @@
 		</div>
 	</div>
 </div>
-
-

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
+	import { invalidate } from '$app/navigation';
+	import { scale } from 'svelte/transition';
+	import { backOut } from 'svelte/easing';
 	import { Send, LoaderCircle } from '@lucide/svelte';
 	import gsap from 'gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import SEO from '$lib/components/seo.svelte';
-
-	gsap.registerPlugin(ScrollTrigger);
 
 	let { data } = $props();
 
@@ -25,23 +25,6 @@
 				stagger: 0.1,
 				ease: 'power3.out'
 			});
-
-			gsap.fromTo(
-				'.mural-tile',
-				{ scale: 0.8, opacity: 0 },
-				{
-					scale: 1,
-					opacity: 1,
-					duration: 0.6,
-					stagger: 0.03,
-					ease: 'backOut(1.4)',
-					scrollTrigger: {
-						trigger: '.mural-grid',
-						start: 'top 90%',
-						toggleActions: 'play none none none'
-					}
-				}
-			);
 		});
 
 		return () => ctx.revert();
@@ -73,12 +56,11 @@
 				loading = true;
 				return async ({ result, update }) => {
 					loading = false;
+					await update();
 					if (result.type === 'success') {
 						name = '';
 						message = '';
-						await update({ reset: true });
-					} else {
-						await update();
+						await invalidate('/mural');
 					}
 				};
 			}}
@@ -169,7 +151,8 @@
 			<div class="mural-grid columns-1 gap-4 md:columns-2 lg:columns-3 2xl:gap-6">
 				{#each data.messages as msg (msg.id)}
 					<div
-						class="mural-tile mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 2xl:mb-6 2xl:p-7"
+						in:scale={{ duration: 400, start: 0.85, opacity: 0, easing: backOut }}
+						class="mb-4 break-inside-avoid border border-text/10 bg-bg p-5 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 2xl:mb-6 2xl:p-7"
 						style="transform: rotate({(Math.random() - 0.5) * 2}deg)"
 					>
 						<div class="flex flex-col gap-3 2xl:gap-4">

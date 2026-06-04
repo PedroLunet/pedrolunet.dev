@@ -9,6 +9,15 @@
 		"description": "Joining the Design Engineering team to enhance the Cloudflare dashboard experience. Focusing on the evolution of the open-source Kumo component library, refining page layouts, and implementing complex data visualizations. My work bridges the gap between design and production, building high-fidelity tools and features that elevate the user journey for millions of developers worldwide."
 	},
 	{
+		"role": "Project Manager",
+		"company": "NIAEFEUP",
+		"companyUrl": "https://ni.fe.up.pt",
+		"location": "FEUP, Porto",
+		"start": "May 2026",
+		"end": "Present",
+		"description": "As the Coordinator for the Time Table Selector (tts.niafeup.pt) web app, I lead the development and continuous improvement of a critical tool designed to streamline the academic scheduling process for university students."
+	},
+	{
 		"role": "Researcher",
 		"company": "INESC TEC",
 		"companyUrl": "https://www.inesctec.pt/pt",
@@ -23,7 +32,7 @@
 		"companyUrl": "https://ni.fe.up.pt",
 		"location": "FEUP, Porto",
 		"start": "Mar 2026",
-		"end": "Present",
+		"end": "May 2026",
 		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
 	},
 	{

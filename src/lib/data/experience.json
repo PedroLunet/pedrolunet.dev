@@ -1,74 +1,74 @@
 [
 	{
-		"role": "Incoming Software Engineering Intern",
+		"role": "Software Engineer Intern, Design Engineering",
 		"company": "Cloudflare",
 		"companyUrl": "https://www.cloudflare.com",
-		"location": "Cloudflare, Lisbon",
+		"location": "Lisbon, Portugal",
 		"start": "Jul 2026",
 		"end": "Sep 2026",
-		"description": "Joining the Design Engineering team to enhance the Cloudflare dashboard experience. Focusing on the evolution of the open-source Kumo component library, refining page layouts, and implementing complex data visualizations. My work bridges the gap between design and production, building high-fidelity tools and features that elevate the user journey for millions of developers worldwide."
+		"description": "Currently working on Cloudflare's Design Engineering team to enhance the dashboard experience and help evolve Kumo, Cloudflare's open-source React component library. My work bridges design and production, building high-fidelity, production-ready tools and interfaces for a dashboard used by millions of users."
 	},
 	{
-		"role": "Project Manager",
+		"role": "Project Manager, Time Table Selector (TTS)",
 		"company": "NIAEFEUP",
 		"companyUrl": "https://ni.fe.up.pt",
-		"location": "FEUP, Porto",
+		"location": "Porto, Portugal",
 		"start": "May 2026",
 		"end": "Present",
-		"description": "As the Coordinator for the [[Time Table Selector|https://tts.niaefeup.pt]] web app, I lead the development and continuous improvement of a critical tool designed to streamline the academic scheduling process for university students."
+		"description": "As Project Manager for [[Time Table Selector|https://tts.niaefeup.pt]] (TTS), I lead the development and continuous improvement of an open-source React application that streamlines academic scheduling for university students. I coordinate contributors and translate student needs into product and engineering priorities."
 	},
 	{
-		"role": "Researcher",
+		"role": "UX Researcher, Research Grant",
 		"company": "INESC TEC",
 		"companyUrl": "https://www.inesctec.pt/pt",
-		"location": "INESC TEC, Porto",
+		"location": "Porto, Portugal",
 		"start": "May 2026",
-		"end": "Present",
-		"description": "Developing a UX report for the VAXPRED platform, a tool designed to predict vaccine efficacy. This project involves analyzing user interactions and feedback to enhance the platform's usability and effectiveness in delivering critical health information."
+		"end": "Jul 2026",
+		"description": "Conducted UX research and data analysis for VAXPRED, a platform designed to predict vaccine efficacy. I analyzed user interactions and feedback and produced a technical UX report focused on the platform's usability and presentation of health information."
 	},
 	{
 		"role": "Member",
 		"company": "NIAEFEUP",
 		"companyUrl": "https://ni.fe.up.pt",
-		"location": "FEUP, Porto",
+		"location": "Porto, Portugal",
 		"start": "Mar 2026",
 		"end": "May 2026",
-		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
+		"description": "Contributed to open-source tools for the student community, including the core website (SvelteKit), the UNI mobile app (Flutter), and the Time Table Selector for University of Porto students (React)."
 	},
 	{
 		"role": "Recruit",
 		"company": "NIAEFEUP",
 		"companyUrl": "https://ni.fe.up.pt",
-		"location": "FEUP, Porto",
+		"location": "Porto, Portugal",
 		"start": "Nov 2025",
 		"end": "Mar 2026",
-		"description": "Developing open-source tools for the student community. Currently contributing to the core website (SvelteKit), the UNI mobile app (Flutter), and a scheduler builder for UP students (React)."
+		"description": "Contributed to open-source tools for the student community, including the core website (SvelteKit), the UNI mobile app (Flutter), and the Time Table Selector for University of Porto students (React)."
 	},
 	{
 		"role": "Junior Software Engineer",
 		"company": "Xarevision",
 		"companyUrl": "https://xarevision.pt",
-		"location": "Porto, PT",
+		"location": "Porto, Portugal",
 		"start": "Nov 2025",
 		"end": "Jan 2026",
-		"description": "Part-time role working on retail software solutions for major clients like SONAE. Engineered robust PHP microservices for backend operations and maintained Android systems for in-store deployments."
+		"description": "Worked part-time on retail software for major clients, including SONAE. I developed PHP microservices for backend operations and maintained Android systems for in-store deployments."
 	},
 	{
 		"role": "Frontend Developer Intern",
 		"company": "Significa",
 		"companyUrl": "https://significa.co",
-		"location": "Porto, PT",
+		"location": "Porto, Portugal",
 		"start": "Jul 2025",
-		"end": "Sep 2025",
-		"description": "Full-time summer internship continuing development on [[Dodia.pt|https://dodia.pt|/work/dodia]] and the agency's own website. Marked my first professional deep dive into Svelte, refining UI interactions and performance."
+		"end": "Aug 2025",
+		"description": "Completed a full-time summer internship, continuing development on [[Dodia.pt|https://dodia.pt|/work/dodia]] and contributing to Significa's website. This was my first professional experience with Svelte, where I refined UI interactions and performance."
 	},
 	{
-		"role": "Full Stack Developer Intern",
+		"role": "Full-Stack Developer Intern",
 		"company": "Significa",
 		"companyUrl": "https://significa.co",
-		"location": "Porto, PT",
+		"location": "Porto, Portugal",
 		"start": "Feb 2025",
 		"end": "Jun 2025",
-		"description": "Curricular internship where I built [[Dodia.pt|https://dodia.pt|/work/dodia]] from the ground up. Architected the full-stack solution using Next.js and Drizzle ORM, delivering my first production-grade application."
+		"description": "During my curricular internship, I built [[Dodia.pt|https://dodia.pt|/work/dodia]] from the ground up. I architected the full-stack application using Next.js and Drizzle ORM, delivering my first production application."
 	}
 ]

@@ -25,7 +25,7 @@
 <h2
 	class="hero-text invisible mt-4 text-2xl font-medium tracking-tight text-text-secondary md:mt-5 md:text-3xl lg:mt-6 lg:text-5xl 2xl:mt-8 2xl:text-5xl"
 >
-	frontend dev
+	design engineer
 </h2>
 
 <h3

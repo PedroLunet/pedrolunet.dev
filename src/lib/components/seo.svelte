@@ -2,8 +2,8 @@
 	import { page } from '$app/state';
 
 	let {
-		title = 'Pedro Lunet - Frontend Developer',
-		description = 'Frontend Developer based in Porto, creating smooth and meaningful digital experiences.',
+		title = 'Pedro Lunet - Design Engineer',
+		description = 'Pedro Lunet is a Design Engineer based in Porto, Portugal.',
 		image = 'https://pedrolunet.dev/og-image.png',
 		type = 'website'
 	} = $props();

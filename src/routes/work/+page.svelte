@@ -10,7 +10,7 @@
 
 <SEO
 	title="Work - Pedro Lunet"
-	description="Selected projects and experiments in frontend development, UI/UX design, and interactive web experiences."
+	description="Selected projects and interactive web experiments by Pedro Lunet, a Design Engineer based in Porto."
 />
 
 <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 2xl:gap-32">

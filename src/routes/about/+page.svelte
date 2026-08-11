@@ -44,6 +44,9 @@
 		) {
 			return 'future';
 		}
+		const endDate = new Date(job.end);
+		endDate.setMonth(endDate.getMonth() + 1, 1);
+		if (now < endDate) return 'current';
 		return 'past';
 	}
 
@@ -92,7 +95,7 @@
 			"@type": "Person",
 			"name": "Pedro Lunet",
 			"url": "https://pedrolunet.dev",
-			"jobTitle": "Frontend Developer",
+			"jobTitle": "Design Engineer",
 			"address": {
 				"@type": "PostalAddress",
 				"addressLocality": "Porto",
@@ -105,7 +108,7 @@
 
 <SEO
 	title="About - Pedro Lunet"
-	description="My journey from engineering to frontend development. Based in Porto."
+	description="Design Engineer and Informatics and Computing Engineering graduate based in Porto, Portugal."
 />
 
 <div
@@ -152,12 +155,11 @@
 							<p
 								class="m-0 text-xl leading-relaxed font-light text-balance text-text md:text-3xl 2xl:text-5xl 2xl:leading-tight"
 							>
-								I’m a developer based in Porto, dedicated to crafting <span
-									class="border-b border-accent/50 font-normal text-text">smooth</span
+								I'm a <span class="border-b border-accent/50 font-normal text-text"
+									>Design Engineer</span
 								>
-								and
-								<span class="border-b border-accent/50 font-normal text-text">meaningful</span> digital
-								experiences.
+								and Informatics and Computing Engineering graduate based in
+								<span class="border-b border-accent/50 font-normal text-text">Porto</span>.
 							</p>
 						</div>
 
@@ -165,19 +167,18 @@
 							class="fade-in-text flex translate-y-8 flex-col gap-6 text-base leading-loose text-pretty text-text-secondary opacity-0 md:text-lg 2xl:gap-10 2xl:text-2xl 2xl:leading-loose"
 						>
 							<p class="m-0">
-								Currently a student and a frontend developer, my work is driven by the belief that
-								the distance between a line of code and a visual emotion should be as small as
-								possible.
+								I earned a BSc in Informatics and Computing Engineering from the University of Porto
+								in July 2026. My work is guided by the belief that code and visual intent should
+								stay closely connected.
 							</p>
 							<p class="m-0">
-								Although my background is rooted in engineering rather than design, I treat
-								aesthetics as a core technical requirement. I believe that in our current digital
-								landscape, the way a project feels is just as critical as how it functions.
+								My engineering background shapes how I approach interfaces: usability, aesthetics,
+								and implementation are all technical concerns. How a product feels matters just as
+								much as how it functions.
 							</p>
 							<p class="m-0">
-								My focus is on bridging that gap. Using technical precision to build interfaces that
-								aren't just usable, but genuinely enjoyable to interact with. The goal is always the
-								same: making the web a more refined and beautiful destination.
+								I focus on translating ideas into clear, polished interfaces that are enjoyable to
+								use.
 							</p>
 						</div>
 					</div>

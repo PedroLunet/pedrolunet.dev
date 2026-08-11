@@ -70,7 +70,7 @@
 
 <SEO
 	title="Mural - Pedro Lunet"
-	description="Leave a message on the mural wall. A space for thoughts, shoutouts, or whatever you want to share."
+	description="Leave a message on the mural: a space for thoughts, shout-outs, and anything you want to share."
 />
 
 {#if error}
@@ -116,8 +116,8 @@
 			Mural
 		</h1>
 		<p class="mt-4 max-w-xl text-base leading-relaxed text-text-secondary 2xl:mt-6 2xl:text-lg">
-			A wall for thoughts, shoutouts, or whatever's on your mind. Leave your mark, say hi, and be
-			part of the mural.
+			A space for thoughts, shout-outs, or whatever is on your mind. Leave a message and be part of
+			the mural.
 		</p>
 	</div>
 
@@ -202,7 +202,7 @@
 					class="group relative flex w-full shrink-0 items-center justify-center border border-text/20 px-8 py-3 text-xs font-bold tracking-widest text-text uppercase transition-all duration-300 hover:border-accent hover:bg-accent hover:text-bg disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-text/20 disabled:hover:bg-transparent disabled:hover:text-text md:w-auto 2xl:px-10 2xl:py-4 2xl:text-sm"
 				>
 					<span class="inline-flex items-center gap-3 2xl:gap-4" class:invisible={loading}>
-						<span>Post on Wall</span>
+						<span>Post to Wall</span>
 						<Send
 							size={14}
 							class="transition-transform duration-300 {!name || !message || loading

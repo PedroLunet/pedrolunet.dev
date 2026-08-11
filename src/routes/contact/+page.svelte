@@ -52,7 +52,7 @@
 
 <SEO
 	title="Contact - Pedro Lunet"
-	description="Get in touch for collaborations, freelance opportunities, or just to say hello. Based in Porto, Portugal."
+	description="Get in touch with Pedro Lunet, a Design Engineer based in Porto, Portugal."
 />
 
 {#if showSuccessPopup}

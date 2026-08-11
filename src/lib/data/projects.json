@@ -5,9 +5,9 @@
 		"title": "PEDROLUNET.DEV",
 		"context": "Personal Project",
 		"year": "2026",
-		"tech": ["Svelte", "TypeScript", "TailwindCSS", "Gsap"],
+		"tech": ["Svelte", "TypeScript", "TailwindCSS", "GSAP"],
 		"image": "/projects/pedrolunetDev/01.png",
-		"description": "An exploration of digital brutalism and Swiss design principles. Built using my favourite web framework, Svelte, and experimenting with motion using GSAP. This site prioritizes raw information density, strict grid adherence, and typographic hierarchy over decorative elements. A performant canvas for my projects and thoughts.\n\nI started this project because my previous portfolio didn't feel authentic to my identity and failed to showcase my work the way I envisioned. I wanted to create a space that felt more personal and reflected my design sensibilities, while pushing Svelte 5 to its limits in terms of performance and interactivity.",
+		"description": "A personal portfolio built with Svelte and GSAP, inspired by digital brutalism and Swiss design principles. It uses a dense grid, clear typographic hierarchy, and motion to present my projects and thoughts.\n\nI started this project because my previous portfolio no longer felt like an authentic reflection of me or my work. I wanted a more personal space that better represented my visual preferences while giving me room to explore Svelte 5 and interactive motion.",
 		"repo": "https://github.com/pedrolunet/pedrolunet.dev",
 		"demo": "https://pedrolunet.dev",
 		"gallery": ["/projects/pedrolunetDev/02.png"]
@@ -20,7 +20,7 @@
 		"year": "2025",
 		"tech": ["Next.js", "TailwindCSS", "TypeScript", "React", "Drizzle"],
 		"image": "/projects/dodia/01.png",
-		"description": "Dodia it's my first professional project, built during my curricular internship at @Significa. It's a web app where local restaurants (tascas) can post their daily menu, allowing user to decide where to eat. It is comunity-driven, with a simple and intuitive interface, where users can post the menu for their favourite restaurants.",
+		"description": "Dodia was my first professional project, built during my curricular internship at Significa. It is a community-driven web app where users can post and browse the daily menus of local restaurants, or tascas, when deciding where to eat.",
 		"demo": "https://dodia.pt",
 		"gallery": ["/projects/dodia/02.png"]
 	},
@@ -32,7 +32,7 @@
 		"year": "2026",
 		"tech": ["Svelte", "TailwindCSS", "TypeScript"],
 		"image": "/projects/dotJournal/01.png",
-		"description": "It's my most recent project, a minimalist journal app, that runs on web and stores everything locally. Built with Svelte as a way to explore Svelte 5's new features and capabilities. The app focuses on simplicity and ease of use, allowing users to quickly jot down their thoughts and ideas without any distractions. It features a clean and intuitive interface, with a focus on typography and whitespace to create a calming writing environment. It also allows users to costumize each day by selecting a color for the dot so it's easier to go back to in the future.",
+		"description": "Dot Journal is a minimalist web journal built with Svelte to explore Svelte 5's features. It stores entries locally and lets users record their thoughts without distractions. Users can also customize each day with a colored dot, making past entries easier to find.",
 		"repo": "https://github.com/pedrolunet/journal",
 		"demo": "https://journal.pedrolunet.dev",
 		"gallery": ["/projects/dotJournal/02.png", "/projects/dotJournal/03.png"]
@@ -45,7 +45,7 @@
 		"year": "2025",
 		"tech": ["Laravel", "PostgreSQL", "TailwindCSS", "Docker"],
 		"image": "/projects/junto/01.png",
-		"description": "Project developed for the LBAW (Database and Web Applications Laboratory) course at FEUP. Junto is a full-featured social media platform designed to bring people together through shared cultural interests. The platform combines traditional social networking features with media discovery, allowing users to connect, share, and discuss their favorite movies, books, and music.",
-		"repo": "https://github.com/PedroLunet/junto."
+		"description": "Junto is a social platform for sharing and discussing movies, books, and music, developed for the LBAW (Database and Web Applications Laboratory) course at FEUP.",
+		"repo": "https://github.com/PedroLunet/junto"
 	}
 ]

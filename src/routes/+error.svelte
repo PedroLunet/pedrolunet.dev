@@ -22,7 +22,7 @@
 			href="/"
 			class="text-lg font-extralight tracking-tight text-text underline decoration-accent underline-offset-4 transition-transform duration-300 hover:scale-110 md:text-xl 2xl:text-2xl"
 		>
-			go back to home page
+			go back to the home page
 		</a>
 	</div>
 

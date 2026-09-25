@@ -2,11 +2,12 @@
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
-	import { scale, fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	import { Send, LoaderCircle, X } from '@lucide/svelte';
+	import { Send, LoaderCircle } from '@lucide/svelte';
 	import gsap from 'gsap';
 	import SEO from '$lib/components/seo.svelte';
+	import Modal from '$lib/components/modal.svelte';
 
 	let { data } = $props();
 
@@ -15,6 +16,7 @@
 	let message = $state('');
 	let now = $state(Date.now());
 	let error = $state('');
+	let messageInput = $state<HTMLInputElement>();
 
 	function formatTime(dateStr: string) {
 		const date = new Date(dateStr.replace(' ', 'T') + 'Z');
@@ -73,40 +75,15 @@
 	description="Leave a message on the mural: a space for thoughts, shout-outs, and anything you want to share."
 />
 
-{#if error}
-	<div
-		class="fixed inset-0 z-50 flex items-center justify-center p-4"
-		role="dialog"
-		aria-modal="true"
-	>
-		<div
-			class="absolute inset-0 bg-bg/80 backdrop-blur-sm"
-			role="button"
-			tabindex="-1"
-			onclick={() => (error = '')}
-			onkeydown={(e) => e.key === 'Escape' && (error = '')}
-			transition:fade={{ duration: 200 }}
-		></div>
-
-		<div
-			class="relative z-10 w-full max-w-md border border-text/20 bg-bg p-12 text-center shadow-2xl"
-			transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: backOut }}
-		>
-			<h3 class="mb-2 text-2xl font-bold tracking-widest text-text uppercase">Oops</h3>
-			<p class="mb-8 text-sm text-text-secondary">{error}</p>
-
-			<button
-				onclick={() => (error = '')}
-				class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-text"
-			>
-				<span>Close</span>
-				<div class="relative transition-transform duration-300 group-hover:rotate-90">
-					<X size={14} />
-				</div>
-			</button>
-		</div>
-	</div>
-{/if}
+<!-- After an error, send focus back to the message field so the visitor can retry. -->
+<Modal
+	open={!!error}
+	title="Oops"
+	description={error}
+	tone="muted"
+	returnFocus={messageInput}
+	onclose={() => (error = '')}
+/>
 
 <div class="flex flex-col gap-16 2xl:gap-24">
 	<div class="reveal translate-y-8 opacity-0">
@@ -153,16 +130,16 @@
 						id="mural-name"
 						bind:value={name}
 						required
+						maxlength={50}
 						placeholder=" "
 						class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 py-0 pt-2 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:text-2xl"
 					/>
 					<label
 						for="mural-name"
-						class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+						class="pointer-events-none absolute -top-2.5 left-0 text-[10px] font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
 							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
-							2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
+							2xl:peer-placeholder-shown:text-xl"
 					>
 						Name
 					</label>
@@ -173,6 +150,7 @@
 						type="text"
 						name="message"
 						id="mural-message"
+						bind:this={messageInput}
 						bind:value={message}
 						required
 						maxlength={500}
@@ -181,11 +159,10 @@
 					/>
 					<label
 						for="mural-message"
-						class="pointer-events-none absolute top-4 right-0 left-0 flex justify-between text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+						class="pointer-events-none absolute -top-2.5 right-0 left-0 flex justify-between text-[10px] font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
 							peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-							peer-valid:-top-2.5 peer-valid:text-[10px] peer-valid:font-bold
 							peer-focus:-top-2.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
-							2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
+							2xl:peer-placeholder-shown:text-xl"
 					>
 						<span>Your message</span>
 						<span

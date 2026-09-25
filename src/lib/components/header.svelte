@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
@@ -14,8 +15,19 @@
 	let triggerRef = $state<HTMLButtonElement>();
 	let ghostRef = $state<HTMLDivElement>();
 	let bgSamplerRef = $state<HTMLDivElement>();
+	let overlayRef = $state<HTMLDivElement>();
+	let closeRef = $state<HTMLButtonElement>();
 
 	let isHomePage = $derived(page.url.pathname === '/');
+
+	// Hairline under the sticky header once the page has scrolled.
+	let scrollY = $state(0);
+	let isScrolled = $derived(scrollY > 4);
+
+	// Return focus to the Menu trigger after the overlay closes. The trigger is
+	// hidden (autoAlpha 0) while the overlay is open, so this has to wait for
+	// the reverse animation to finish.
+	let restoreFocusOnClose = false;
 
 	onMount(() => {
 		ctx = gsap.context(() => {
@@ -52,6 +64,11 @@
 					}
 					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
 					gsap.set('.menu-overlay', { autoAlpha: 0 });
+
+					if (restoreFocusOnClose && currentPath !== '/') {
+						triggerRef?.focus({ preventScroll: true });
+					}
+					restoreFocusOnClose = false;
 				}
 			});
 
@@ -86,6 +103,17 @@
 				0.4
 			);
 
+			// Move focus into the overlay as soon as it's visible, so keyboard and
+			// screen-reader users land inside the menu. Timeline callbacks also fire
+			// when reversing, hence the guard.
+			tl.call(
+				() => {
+					if (!tl.reversed()) closeRef?.focus({ preventScroll: true });
+				},
+				[],
+				0.45
+			);
+
 			tl.fromTo(
 				'.menu-item',
 				{ x: 50, autoAlpha: 0 },
@@ -100,6 +128,7 @@
 	function toggleMenu() {
 		if (!tl) return;
 		if (isMenuOpen) {
+			restoreFocusOnClose = true;
 			tl.timeScale(1.5).reverse();
 			isMenuOpen = false;
 		} else {
@@ -108,8 +137,37 @@
 		}
 	}
 
+	function handleWindowKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && isMenuOpen) {
+			event.preventDefault();
+			toggleMenu();
+		}
+	}
+
+	// Keep Tab inside the overlay while it's open (close button + menu links).
+	function trapFocus(event: KeyboardEvent) {
+		if (event.key !== 'Tab' || !isMenuOpen || !overlayRef) return;
+
+		const focusable = [...overlayRef.querySelectorAll<HTMLElement>('a[href], button')].filter(
+			(el) => el.checkVisibility({ visibilityProperty: true })
+		);
+		if (focusable.length === 0) return;
+
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
+	}
+
 	afterNavigate(() => {
 		isMenuOpen = false;
+		restoreFocusOnClose = false;
 
 		if (tl) {
 			tl.pause();
@@ -136,6 +194,8 @@
 	});
 </script>
 
+<svelte:window bind:scrollY onkeydown={handleWindowKeydown} />
+
 <div bind:this={bgSamplerRef} class="hidden bg-bg"></div>
 
 <div
@@ -155,22 +215,42 @@
 	</div>
 </div>
 
-<div class="menu-overlay pointer-events-none invisible fixed inset-0 z-60 flex opacity-0">
+<!--
+	`data-lenis-prevent` + a contained scroll box stop wheel/touch scrolling on the
+	overlay from moving the page underneath (Lenis kept scrolling it before).
+-->
+<div
+	bind:this={overlayRef}
+	id="site-menu"
+	class="menu-overlay pointer-events-none invisible fixed inset-0 z-60 flex overflow-y-auto overscroll-contain opacity-0"
+	data-lenis-prevent
+	onkeydown={trapFocus}
+	role="dialog"
+	aria-modal="true"
+	aria-label="Site menu"
+	tabindex="-1"
+>
 	<div
 		class="close-strip absolute top-0 left-0 z-60 h-full w-12 border-r border-text/10 lg:w-24 2xl:w-32"
 		style="transform: translateX(-100%);"
 	>
 		<button
+			bind:this={closeRef}
 			onclick={toggleMenu}
-			class="group pointer-events-auto flex h-full w-full flex-col items-center justify-center gap-8 transition-colors hover:bg-accent/5 2xl:gap-16"
+			aria-label="Close menu"
+			class="group pointer-events-auto flex h-full w-full flex-col items-center justify-center gap-8 transition-colors outline-none hover:bg-accent/5 focus-visible:bg-accent/5 active:bg-accent/10 2xl:gap-16"
 		>
-			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
+			<div
+				class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent group-focus-visible:bg-accent"
+			></div>
 			<span
-				class="-rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap text-text uppercase transition-colors group-hover:text-accent 2xl:text-sm"
+				class="-rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap text-text uppercase transition-colors group-hover:text-accent group-focus-visible:text-accent 2xl:text-sm"
 			>
 				Close
 			</span>
-			<div class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent"></div>
+			<div
+				class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent group-focus-visible:bg-accent"
+			></div>
 		</button>
 	</div>
 
@@ -182,21 +262,42 @@
 </div>
 
 <header
-	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-all duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl"
+	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between border-b bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-[border-color,background-color] duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl {isScrolled
+		? 'border-text/10'
+		: 'border-transparent'}"
 >
 	<div class="header-content-wrapper flex items-center gap-4 transition-opacity 2xl:gap-8">
-		<a href="/">pedro lunet</a>
+		<!-- Same vertical text roll as the Menu button, in the accent colour. -->
+		<a
+			href={resolve('/')}
+			class="group relative block overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent focus-visible:outline-solid"
+		>
+			<span
+				class="block transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full"
+			>
+				pedro lunet
+			</span>
+			<span
+				class="absolute inset-0 translate-y-full text-accent transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
+				aria-hidden="true"
+			>
+				pedro lunet
+			</span>
+		</a>
 
 		<button
 			bind:this={triggerRef}
 			onclick={toggleMenu}
-			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 active:scale-90 2xl:h-8 2xl:min-w-16 2xl:px-4"
+			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid active:scale-90 2xl:h-8 2xl:min-w-16 2xl:px-4"
 			class:opacity-0={isHomePage}
 			class:pointer-events-none={isHomePage}
-			aria-label="Open Menu"
+			aria-label="Open menu"
+			aria-expanded={isMenuOpen}
+			aria-controls="site-menu"
 		>
 			<div
-				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2"
+				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2 group-focus-visible:-translate-y-1/2"
+				aria-hidden="true"
 			>
 				<span
 					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"

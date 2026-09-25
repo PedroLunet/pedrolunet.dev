@@ -87,6 +87,13 @@
 		return () => ctx.revert();
 	});
 
+	function handleKeydown(event: KeyboardEvent) {
+		// Escape closes the landing menu; focus stays on (or returns to) the block.
+		if (event.key !== 'Escape' || !isMenuOpen) return;
+		handleClick();
+		document.querySelector<HTMLButtonElement>('.js-block')?.focus({ preventScroll: true });
+	}
+
 	function handleClick() {
 		if (!tlOpen) return;
 
@@ -112,21 +119,23 @@
 	}
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
+
 <div class="relative w-full flex-1 overflow-hidden">
 	<div class="js-ghost-target absolute top-1/2 left-0 h-0 w-0 -translate-y-1/2"></div>
 
 	<div class="absolute inset-0 flex flex-col items-start justify-center">
 		<Hero>
 			{#snippet block()}
-				<div class="cursor-pointer">
-					<Block onclick={handleClick} isOpen={isMenuOpen} />
+				<div>
+					<Block onclick={handleClick} isOpen={isMenuOpen} controls="landing-menu" />
 				</div>
 			{/snippet}
 		</Hero>
 	</div>
 
 	<div class="pointer-events-none absolute inset-0 flex flex-col items-end justify-center">
-		<Menu isOpen={isMenuOpen} />
+		<Menu isOpen={isMenuOpen} id="landing-menu" />
 	</div>
 </div>
 

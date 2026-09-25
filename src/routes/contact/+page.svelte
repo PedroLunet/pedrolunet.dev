@@ -1,37 +1,64 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
-	import { ArrowRight, LoaderCircle, X, Copy, Check } from '@lucide/svelte';
-	import { fade, scale } from 'svelte/transition';
-	import { backOut } from 'svelte/easing';
+	import { ArrowRight, LoaderCircle, Copy, Check } from '@lucide/svelte';
+	import { fly } from 'svelte/transition';
 	import gsap from 'gsap';
 
 	import SEO from '$lib/components/seo.svelte';
+	import Modal from '$lib/components/modal.svelte';
+
+	const EMAIL = 'hello@pedrolunet.dev';
 
 	let { form } = $props();
 
 	let loading = $state(false);
-	let time = $state('');
+	let hours = $state('');
+	let minutes = $state('');
 	let showSuccessPopup = $state(false);
+
+	// Only flag the email once the visitor leaves a non-empty invalid value, and
+	// clear it as soon as they start fixing it.
+	let emailInvalid = $state(false);
+	function validateEmail(event: FocusEvent & { currentTarget: HTMLInputElement }) {
+		const input = event.currentTarget;
+		emailInvalid = input.value !== '' && !input.validity.valid;
+	}
 
 	let emailCopied = $state(false);
 	let isHovered = $state(false);
+	let copiedTimer: ReturnType<typeof setTimeout> | undefined;
 
-	function handleEmailClick() {
-		navigator.clipboard.writeText('hello@pedrolunet.dev');
-		emailCopied = true;
-		setTimeout(() => (emailCopied = false), 2000);
+	async function handleEmailClick() {
+		try {
+			await navigator.clipboard.writeText(EMAIL);
+			emailCopied = true;
+			clearTimeout(copiedTimer);
+			copiedTimer = setTimeout(() => (emailCopied = false), 2000);
+		} catch {
+			// Clipboard can be unavailable (permissions, insecure context). Fall back
+			// to opening the mail client so the click still does something useful.
+			window.location.href = `mailto:${EMAIL}`;
+		}
 	}
 
-	onMount(() => {
-		const interval = setInterval(() => {
-			time = new Date().toLocaleTimeString('en-US', {
+	function updateClock() {
+		const [h, m] = new Date()
+			.toLocaleTimeString('en-GB', {
 				timeZone: 'Europe/Lisbon',
 				hour: '2-digit',
 				minute: '2-digit',
 				hour12: false
-			});
-		}, 1000);
+			})
+			.split(':');
+		hours = h;
+		minutes = m;
+	}
+
+	onMount(() => {
+		// Render immediately instead of showing "--:--" for the first second.
+		updateClock();
+		const interval = setInterval(updateClock, 1000);
 
 		const ctx = gsap.context(() => {
 			gsap.to('.reveal', {
@@ -45,6 +72,7 @@
 
 		return () => {
 			clearInterval(interval);
+			clearTimeout(copiedTimer);
 			ctx.revert();
 		};
 	});
@@ -55,40 +83,12 @@
 	description="Get in touch with Pedro Lunet, a Design Engineer based in Porto, Portugal."
 />
 
-{#if showSuccessPopup}
-	<div
-		class="fixed inset-0 z-50 flex items-center justify-center p-4"
-		role="dialog"
-		aria-modal="true"
-	>
-		<div
-			class="absolute inset-0 bg-bg/80 backdrop-blur-sm"
-			role="button"
-			tabindex="-1"
-			onclick={() => (showSuccessPopup = false)}
-			onkeydown={(e) => e.key === 'Escape' && (showSuccessPopup = false)}
-			transition:fade={{ duration: 200 }}
-		></div>
-
-		<div
-			class="relative z-10 w-full max-w-md border border-accent bg-bg p-12 text-center shadow-2xl"
-			transition:scale={{ duration: 300, start: 0.95, opacity: 0, easing: backOut }}
-		>
-			<h3 class="mb-2 text-2xl font-bold tracking-widest text-text uppercase">Message Sent</h3>
-			<p class="mb-8 text-sm text-text-secondary">Thank you. I'll get back to you shortly.</p>
-
-			<button
-				onclick={() => (showSuccessPopup = false)}
-				class="group mx-auto flex items-center gap-2 text-xs font-bold tracking-widest text-accent uppercase transition-colors hover:text-text"
-			>
-				<span>Close</span>
-				<div class="relative transition-transform duration-300 group-hover:rotate-90">
-					<X size={14} />
-				</div>
-			</button>
-		</div>
-	</div>
-{/if}
+<Modal
+	open={showSuccessPopup}
+	title="Message Sent"
+	description="Thank you. I'll get back to you shortly."
+	onclose={() => (showSuccessPopup = false)}
+/>
 
 <div class="grid grid-cols-1 gap-16 lg:grid-cols-12 2xl:gap-32">
 	<div class="col-span-1 lg:col-span-7">
@@ -104,7 +104,10 @@
 	<div class="col-span-1 flex flex-col gap-12 lg:col-span-5 lg:pt-4 2xl:gap-20 2xl:pt-8">
 		<form
 			method="POST"
-			use:enhance={() => {
+			use:enhance={({ cancel }) => {
+				// Guard double submits here instead of `disabled`, which would drop
+				// keyboard focus from the button mid-request.
+				if (loading) return cancel();
 				loading = true;
 				return async ({ result, update }) => {
 					loading = false;
@@ -118,22 +121,31 @@
 			}}
 			class="reveal flex translate-y-8 flex-col gap-8 opacity-0 2xl:gap-12"
 		>
+			<!--
+				Floating labels
+				- Resting (empty, unfocused): `peer-placeholder-shown:*`
+				- Floated (has a value OR is focused): the base classes + `peer-focus:*`
+				Previously the floated state was keyed off `peer-valid`, so an
+				incomplete email (e.g. "pedro.lunet") dropped the label back on top of
+				the typed text. Validity now only affects colour + an inline hint, via
+				`aria-invalid`, which is set on blur (see `validateEmail`).
+			-->
 			<div class="group relative">
 				<input
 					type="text"
 					name="name"
 					id="name"
 					required
+					autocomplete="name"
 					placeholder=" "
 					class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:pb-2 2xl:text-2xl"
 				/>
 				<label
 					for="name"
-					class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+					class="pointer-events-none absolute -top-4 left-0 text-[10px] font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
           peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-          peer-valid:-top-4 peer-valid:text-[10px] peer-valid:font-bold
           peer-focus:-top-4 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
-          2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
+          2xl:peer-placeholder-shown:text-xl"
 				>
 					Name
 				</label>
@@ -145,19 +157,37 @@
 					name="email"
 					id="email"
 					required
+					autocomplete="email"
 					placeholder=" "
-					class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 2xl:pb-2 2xl:text-2xl"
+					aria-invalid={emailInvalid}
+					aria-describedby={emailInvalid ? 'email-hint' : undefined}
+					onblur={validateEmail}
+					oninput={() => (emailInvalid = false)}
+					class="peer w-full rounded-none border-0 border-b border-text/20 bg-transparent px-0 text-lg font-light text-text placeholder-transparent transition-colors outline-none focus:border-accent focus:ring-0 aria-invalid:border-red-400/70 2xl:pb-2 2xl:text-2xl"
 				/>
 				<label
 					for="email"
-					class="pointer-events-none absolute top-4 left-0 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+					class="pointer-events-none absolute -top-4 left-0 text-[10px] font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
           peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-          peer-valid:-top-4 peer-valid:text-[10px] peer-valid:font-bold
-          peer-focus:-top-4 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
-          2xl:text-sm 2xl:peer-placeholder-shown:text-xl"
+          peer-focus:-top-4
+          peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent peer-aria-invalid:text-red-400
+          2xl:peer-placeholder-shown:text-xl"
 				>
 					Email
 				</label>
+				<!--
+					Inline hint, shown only once the visitor leaves a non-empty invalid
+					email. Absolutely positioned so it doesn't push the form down.
+				-->
+				{#if emailInvalid}
+					<p
+						id="email-hint"
+						transition:fly={{ y: -4, duration: 200 }}
+						class="absolute top-full left-0 mt-2 text-[10px] font-bold tracking-widest text-red-400 uppercase 2xl:text-xs"
+					>
+						That email looks incomplete
+					</p>
+				{/if}
 			</div>
 
 			<div class="group relative mt-4">
@@ -184,25 +214,35 @@
 
 				<label
 					for="message"
-					class="pointer-events-none absolute top-4 left-4 text-xs font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
-          peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
-          peer-valid:-top-2.5 peer-valid:left-3 peer-valid:bg-bg peer-valid:px-1 peer-valid:text-[10px] peer-valid:font-bold
+					class="pointer-events-none absolute -top-2.5 left-3 bg-bg px-1 text-[10px] font-bold tracking-widest text-text-secondary uppercase transition-all duration-300
+          peer-placeholder-shown:top-4 peer-placeholder-shown:left-4 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-text-secondary/50
           peer-focus:-top-2.5 peer-focus:left-3 peer-focus:bg-bg peer-focus:px-1 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-accent
-          2xl:text-sm 2xl:peer-placeholder-shown:top-6 2xl:peer-placeholder-shown:left-6 2xl:peer-placeholder-shown:text-xl"
+          2xl:peer-placeholder-shown:top-6 2xl:peer-placeholder-shown:left-6 2xl:peer-placeholder-shown:text-xl"
 				>
 					Message
 				</label>
 			</div>
 
 			{#if form?.error}
+				<!-- Previously used tw-animate classes that aren't installed, so it never animated. -->
 				<div
-					class="animate-in fade-in slide-in-from-top-1 text-xs font-bold tracking-widest text-red-500 uppercase"
+					role="alert"
+					in:fly={{ y: -4, duration: 250 }}
+					class="text-xs font-bold tracking-widest text-red-500 uppercase"
 				>
 					{form.error}
 				</div>
 			{/if}
 
-			<div class="flex items-center justify-end pt-4 md:justify-between 2xl:pt-8">
+			<div class="flex items-center justify-between pt-4 2xl:pt-8">
+				<!-- Touch / small screens: no hover to reveal the address, so link straight to mail. -->
+				<a
+					href="mailto:{EMAIL}"
+					class="py-2 text-xs font-bold tracking-widest text-text-secondary uppercase transition-colors hover:text-accent active:text-accent md:hidden"
+				>
+					Email me instead
+				</a>
+
 				<button
 					type="button"
 					onclick={handleEmailClick}
@@ -211,7 +251,13 @@
 						isHovered = false;
 						emailCopied = false;
 					}}
-					class="group hidden items-center overflow-hidden text-left md:grid"
+					onfocus={() => (isHovered = true)}
+					onblur={() => {
+						isHovered = false;
+						emailCopied = false;
+					}}
+					aria-label="Copy email address {EMAIL}"
+					class="group hidden cursor-pointer items-center overflow-hidden text-left md:grid"
 				>
 					<span
 						class="col-start-1 row-start-1 block py-2 text-xs font-bold tracking-widest text-text-secondary uppercase transition-transform duration-300 2xl:text-sm"
@@ -230,7 +276,7 @@
 							class:text-emerald-500={emailCopied}
 							class:text-accent={!emailCopied}
 						>
-							{emailCopied ? 'Copied!' : 'hello@pedrolunet.dev'}
+							{emailCopied ? 'Copied!' : EMAIL}
 						</span>
 
 						{#if emailCopied}
@@ -240,20 +286,35 @@
 						{/if}
 					</div>
 				</button>
+				<span class="sr-only" aria-live="polite">
+					{emailCopied ? 'Email address copied to clipboard' : ''}
+				</span>
 
 				<button
 					type="submit"
-					disabled={loading}
-					class="group flex items-center gap-4 text-xs font-bold tracking-widest text-text uppercase transition-colors hover:text-accent disabled:opacity-50 2xl:text-sm"
+					aria-disabled={loading}
+					class="group flex cursor-pointer items-center gap-4 text-xs font-bold tracking-widest text-text uppercase transition-colors hover:text-accent aria-disabled:cursor-wait aria-disabled:opacity-50 2xl:text-sm"
 				>
-					<span>{loading ? 'Sending...' : 'Send Message'}</span>
+					<!--
+						Both labels share one grid cell so the button keeps the width of the
+						longer one and doesn't shift when switching to "Sending...".
+					-->
+					<span class="grid text-right">
+						<span class="col-start-1 row-start-1" class:invisible={loading}>Send Message</span>
+						<span class="col-start-1 row-start-1" class:invisible={!loading} aria-hidden={!loading}>
+							Sending...
+						</span>
+					</span>
 					<div
-						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-text 2xl:h-12 2xl:w-12"
+						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-bg 2xl:h-12 2xl:w-12"
 					>
 						{#if loading}
 							<LoaderCircle size={14} class="animate-spin 2xl:h-6 2xl:w-6" />
 						{:else}
-							<ArrowRight size={14} class="2xl:h-6 2xl:w-6" />
+							<ArrowRight
+								size={14}
+								class="transition-transform duration-300 group-hover:translate-x-0.5 2xl:h-6 2xl:w-6"
+							/>
 						{/if}
 					</div>
 				</button>
@@ -271,12 +332,14 @@
 					<a
 						href="https://linkedin.com/in/PedroLunet"
 						target="_blank"
+						rel="noopener noreferrer"
 						class="text-xs font-bold uppercase transition-colors hover:text-accent 2xl:text-sm"
 						>LinkedIn</a
 					>
 					<a
 						href="https://github.com/PedroLunet"
 						target="_blank"
+						rel="noopener noreferrer"
 						class="text-xs font-bold uppercase transition-colors hover:text-accent 2xl:text-sm"
 						>GitHub</a
 					>
@@ -296,9 +359,35 @@
 						class="text-[10px] font-bold tracking-widest text-text-secondary uppercase opacity-50 2xl:text-xs"
 						>Local Time</span
 					>
-					<span class="text-xs text-text 2xl:text-sm">{time || '--:--'}</span>
+					<!-- Tabular numerals keep the width stable; the colon ticks like a clock. -->
+					<time class="text-xs text-text tabular-nums 2xl:text-sm">
+						{#if hours}
+							<span aria-hidden="true">{hours}<span class="clock-colon">:</span>{minutes}</span>
+							<span class="sr-only">{hours}:{minutes}</span>
+						{:else}
+							--:--
+						{/if}
+					</time>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.clock-colon {
+		animation: clock-tick 1s steps(1, end) infinite;
+	}
+
+	@keyframes clock-tick {
+		50% {
+			opacity: 0.25;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.clock-colon {
+			animation: none;
+		}
+	}
+</style>

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
@@ -56,23 +57,35 @@ body {
 	overflow-x: hidden;
 	width: 100%;
 }
-html.lenis,
-html.lenis body {
-	height: auto;
+/*
+ * Always reserve the scrollbar's space. Without this, pages that don't scroll
+ * (home) and pages that do (work, about) have different content widths, and
+ * locking scroll during the page transition (`overflow: hidden`) made the
+ * whole layout jump sideways by the scrollbar width (15px with classic
+ * scrollbars). No effect with macOS overlay scrollbars.
+ */
+html {
+	scrollbar-gutter: stable;
 }
 
-.lenis.lenis-smooth {
-	scroll-behavior: auto !important;
-}
+/*
+ * Lenis' own rules now come from `lenis/dist/lenis.css` (imported above), so
+ * they stay in sync with the installed version.
+ */
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-	overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-	overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-	pointer-events: none;
+/*
+ * Reduced motion: collapse CSS transitions/animations to (almost) nothing.
+ * GSAP tweens are sped up in +layout.svelte, and Lenis (`respectReducedMotion`)
+ * stops interpolating so wheel scrolling becomes instant.
+ * Durations are 0.01ms rather than 0 so `transitionend`/`animationend` still fire.
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }

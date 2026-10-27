@@ -12,6 +12,7 @@
 	let isMenuOpen = $state(false);
 	let tl: gsap.core.Timeline;
 	let ctx: gsap.Context;
+	let themeTimer: ReturnType<typeof setTimeout> | undefined;
 
 	let triggerRef = $state<HTMLButtonElement>();
 	let ghostRef = $state<HTMLDivElement>();
@@ -142,6 +143,14 @@
 	function toggleTheme() {
 		const root = document.documentElement;
 		const isLight = !root.classList.contains('light');
+
+		// Fade the inherited colour tokens for a moment. The icon keeps its own
+		// rotate/scale transition.
+		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			root.classList.add('theme-transition');
+			clearTimeout(themeTimer);
+			themeTimer = setTimeout(() => root.classList.remove('theme-transition'), 550);
+		}
 
 		root.classList.toggle('light', isLight);
 		try {

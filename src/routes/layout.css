@@ -53,6 +53,42 @@
 }
 
 /*
+ * Registering the theme colours as real <color> properties lets us transition
+ * them on <html>. Every descendant inherits the interpolated value, so the
+ * whole page fades in sync without putting a transition on every element.
+ */
+@property --color-bg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #131313;
+}
+@property --color-text {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #f8f7f4;
+}
+@property --color-accent {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #ff4d00;
+}
+@property --color-accent-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #ff6928;
+}
+@property --color-accent-fg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #131313;
+}
+@property --color-text-secondary {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #848484;
+}
+
+/*
  * Light theme: only the design tokens change. Every `bg-bg`, `text-text`,
  * `border-text/10`, etc. in the app already points at these variables, so the
  * rest of the site follows automatically.
@@ -72,6 +108,20 @@ html.light {
 	--color-accent-light: #a83300;
 	--color-accent-fg: #f8f7f4;
 	--color-text-secondary: #6b6b6b;
+}
+
+/*
+ * Added for ~500ms when the theme toggle is pressed. Only the inherited colour
+ * tokens animate, which keeps text, surfaces and borders perfectly in sync.
+ */
+html.theme-transition {
+	transition:
+		--color-bg 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-text 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent-light 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent-fg 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-text-secondary 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {

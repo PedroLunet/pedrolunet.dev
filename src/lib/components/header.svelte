@@ -4,6 +4,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { Moon, Sun } from '@lucide/svelte';
 
 	import TumblerYear from './tumblerYear.svelte';
 	import Menu from '$lib/components/landing/menu.svelte';
@@ -11,6 +12,7 @@
 	let isMenuOpen = $state(false);
 	let tl: gsap.core.Timeline;
 	let ctx: gsap.Context;
+	let themeTimer: ReturnType<typeof setTimeout> | undefined;
 
 	let triggerRef = $state<HTMLButtonElement>();
 	let ghostRef = $state<HTMLDivElement>();
@@ -41,13 +43,14 @@
 				onStart: () => {
 					if (!triggerRef || !ghostRef || isHomePage) return;
 					const rect = triggerRef.getBoundingClientRect();
+					const accent = window.getComputedStyle(triggerRef).backgroundColor || '#FF4D00';
 					gsap.set(ghostRef, {
 						top: rect.top,
 						left: rect.left,
 						width: rect.width,
 						height: rect.height,
 						scale: 1,
-						backgroundColor: '#FF4D00',
+						backgroundColor: accent,
 						autoAlpha: 1,
 						display: 'block'
 					});
@@ -137,6 +140,26 @@
 		}
 	}
 
+	function toggleTheme() {
+		const root = document.documentElement;
+		const isLight = !root.classList.contains('light');
+
+		// Fade the inherited colour tokens for a moment. The icon keeps its own
+		// rotate/scale transition.
+		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			root.classList.add('theme-transition');
+			clearTimeout(themeTimer);
+			themeTimer = setTimeout(() => root.classList.remove('theme-transition'), 550);
+		}
+
+		root.classList.toggle('light', isLight);
+		try {
+			localStorage.setItem('theme', isLight ? 'light' : 'dark');
+		} catch {
+			// localStorage can be unavailable; the theme still toggles for this session.
+		}
+	}
+
 	function handleWindowKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape' && isMenuOpen) {
 			event.preventDefault();
@@ -205,11 +228,11 @@
 >
 	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
 		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
 			>Menu</span
 		>
 		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
 			>Menu</span
 		>
 	</div>
@@ -262,7 +285,7 @@
 </div>
 
 <header
-	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between border-b bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-[border-color,background-color] duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl {isScrolled
+	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between border-b bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-[border-color] duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl {isScrolled
 		? 'border-text/10'
 		: 'border-transparent'}"
 >
@@ -300,11 +323,11 @@
 				aria-hidden="true"
 			>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
 					>Menu</span
 				>
 				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-bg uppercase 2xl:text-sm"
+					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
 					>Menu</span
 				>
 			</div>
@@ -314,11 +337,35 @@
 	<div
 		class="header-content-wrapper flex flex-row items-center gap-3 transition-opacity md:gap-4 2xl:gap-8"
 	>
+		<button
+			type="button"
+			onclick={toggleTheme}
+			aria-label="Toggle color theme"
+			title="Toggle color theme"
+			class="group flex h-7 w-7 shrink-0 items-center justify-center text-text/50 transition-colors outline-none hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid 2xl:h-9 2xl:w-9"
+		>
+			<span
+				class="relative flex h-4 w-4 items-center justify-center 2xl:h-5 2xl:w-5"
+				aria-hidden="true"
+			>
+				<Sun
+					size={16}
+					strokeWidth={2}
+					class="absolute inset-0 h-full w-full scale-0 -rotate-90 opacity-0 transition-[opacity,rotate,scale] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none light:scale-100 light:rotate-0 light:opacity-100"
+				/>
+				<Moon
+					size={16}
+					strokeWidth={2}
+					class="absolute inset-0 h-full w-full scale-100 rotate-0 opacity-100 transition-[opacity,rotate,scale] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none light:scale-0 light:rotate-90 light:opacity-0"
+				/>
+			</span>
+		</button>
+
 		<a
 			href="https://buymeacoffee.com/pedrolunet"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="group flex flex-row items-center justify-center gap-2 border border-transparent transition-all duration-300 hover:border-accent-light active:scale-90 md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
+			class="group hidden flex-row items-center justify-center gap-2 border border-transparent transition-all duration-300 hover:border-accent-light active:scale-90 sm:flex md:h-7 md:px-3 2xl:h-9 2xl:gap-3 2xl:px-4"
 			aria-label="Buy me a coffee"
 		>
 			<img

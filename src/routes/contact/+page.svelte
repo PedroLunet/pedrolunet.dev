@@ -306,7 +306,7 @@
 						</span>
 					</span>
 					<div
-						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-bg 2xl:h-12 2xl:w-12"
+						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-fg 2xl:h-12 2xl:w-12"
 					>
 						{#if loading}
 							<LoaderCircle size={14} class="animate-spin 2xl:h-6 2xl:w-6" />

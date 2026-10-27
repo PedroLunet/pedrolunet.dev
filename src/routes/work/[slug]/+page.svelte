@@ -200,7 +200,7 @@
 			class="order-2 col-span-1 flex flex-col gap-16 lg:col-span-8 lg:mt-12 2xl:mt-24 2xl:gap-32"
 		>
 			<div
-				class="reveal prose prose-lg max-w-none translate-y-8 leading-relaxed font-light text-text/90 opacity-0 prose-invert 2xl:prose-2xl 2xl:leading-loose"
+				class="reveal prose prose-lg max-w-none translate-y-8 leading-relaxed font-light text-text/90 opacity-0 2xl:prose-2xl 2xl:leading-loose"
 			>
 				{#each paragraphs as paragraph, i (i)}
 					<p>{paragraph}</p>
@@ -244,7 +244,7 @@
 						</div>
 
 						<div
-							class="relative hidden aspect-[3/2] w-40 overflow-hidden bg-neutral-900 sm:block lg:w-56 2xl:w-80"
+							class="relative hidden aspect-[3/2] w-40 overflow-hidden bg-text/5 sm:block lg:w-56 2xl:w-80"
 						>
 							<img
 								src={next.image}
@@ -283,7 +283,7 @@
 					>
 						<span>Back to Top</span>
 						<div
-							class="flex h-8 w-8 items-center justify-center border border-text/20 transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-bg 2xl:h-12 2xl:w-12"
+							class="flex h-8 w-8 items-center justify-center border border-text/20 transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-fg 2xl:h-12 2xl:w-12"
 						>
 							<ArrowUp
 								size={14}

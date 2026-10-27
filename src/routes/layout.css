@@ -2,6 +2,10 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* Lets us write `light:...` utilities for the few places that can't be
+   handled by swapping a colour token (icons, for example). */
+@custom-variant light (&:where(.light, .light *));
+
 @font-face {
 	font-family: 'Switzer';
 	src: url('/fonts/Switzer-Variable.ttf') format('truetype');
@@ -38,6 +42,7 @@
 	--color-text: #f8f7f4;
 	--color-accent: #ff4d00;
 	--color-accent-light: #ff6928;
+	--color-accent-fg: #131313;
 	--color-text-secondary: #848484;
 	--font-sans: 'Switzer', 'Inter', sans-serif;
 	--header-height-mobile: 48px;
@@ -45,6 +50,78 @@
 	--header-height-desktop: 72px;
 	--header-height-ultrawide: 92px;
 	--breakpoint-3xl: 1920px;
+}
+
+/*
+ * Registering the theme colours as real <color> properties lets us transition
+ * them on <html>. Every descendant inherits the interpolated value, so the
+ * whole page fades in sync without putting a transition on every element.
+ */
+@property --color-bg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #131313;
+}
+@property --color-text {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #f8f7f4;
+}
+@property --color-accent {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #ff4d00;
+}
+@property --color-accent-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #ff6928;
+}
+@property --color-accent-fg {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #131313;
+}
+@property --color-text-secondary {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #848484;
+}
+
+/*
+ * Light theme: only the design tokens change. Every `bg-bg`, `text-text`,
+ * `border-text/10`, etc. in the app already points at these variables, so the
+ * rest of the site follows automatically.
+ *
+ * The accent is darkened a little: #ff4d00 on an off-white background only
+ * reaches ~3.1:1, which fails WCAG AA for the small uppercase labels.
+ */
+html {
+	color-scheme: dark;
+}
+
+html.light {
+	color-scheme: light;
+	--color-bg: #f8f7f4;
+	--color-text: #131313;
+	--color-accent: #cc3d00;
+	--color-accent-light: #a83300;
+	--color-accent-fg: #f8f7f4;
+	--color-text-secondary: #6b6b6b;
+}
+
+/*
+ * Added for ~500ms when the theme toggle is pressed. Only the inherited colour
+ * tokens animate, which keeps text, surfaces and borders perfectly in sync.
+ */
+html.theme-transition {
+	transition:
+		--color-bg 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-text 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent-light 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-accent-fg 500ms cubic-bezier(0.4, 0, 0.2, 1),
+		--color-text-secondary 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {

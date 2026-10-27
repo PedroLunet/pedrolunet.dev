@@ -263,7 +263,7 @@
 			<a
 				href={asset('/cv.pdf')}
 				download="Pedro_Lunet_CV.pdf"
-				class="group relative border border-text px-10 py-5 text-xs font-bold tracking-widest text-text uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-bg 2xl:px-14 2xl:py-7 2xl:text-sm"
+				class="group relative border border-text px-10 py-5 text-xs font-bold tracking-widest text-text uppercase transition-all duration-500 hover:border-accent hover:bg-accent hover:text-accent-fg 2xl:px-14 2xl:py-7 2xl:text-sm"
 			>
 				<span class="flex items-center gap-3">
 					Download CV

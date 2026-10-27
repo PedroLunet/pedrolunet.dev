@@ -8,7 +8,9 @@
 	let { data } = $props();
 
 	let project = $derived(data.project);
-	let allImages = $derived([project.image, ...(project.gallery ?? [])]);
+	// The cover is often also listed in the gallery; dedupe because the
+	// carousel keys its slides by src and would throw each_key_duplicate.
+	let allImages = $derived([...new Set([project.image, ...(project.gallery ?? [])])]);
 
 	// Descriptions are plain strings in projects.json; a blank line starts a
 	// new paragraph.

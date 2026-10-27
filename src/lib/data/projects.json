@@ -14,6 +14,19 @@
 	},
 	{
 		"id": "02",
+		"slug": "loadsv",
+		"title": "LOADSV",
+		"context": "Personal Project",
+		"year": "2026",
+		"tech": ["Svelte", "TypeScript"],
+		"image": "/projects/loadsv/01.png",
+		"description": "A lightweight library of beautiful loading indicators for Svelte. Pure CSS, no dependencies.",
+		"repo": "https://github.com/PedroLunet/loadsv",
+		"demo": "https://loadsv.pedrolu.net",
+		"gallery": ["/projects/loadsv/01.png", "/projects/loadsv/02.png", "/projects/loadsv/03.png"]
+	},
+	{
+		"id": "03",
 		"slug": "dodia",
 		"title": "DODIA.PT",
 		"context": "Curricular Internship",
@@ -25,7 +38,7 @@
 		"gallery": ["/projects/dodia/02.png"]
 	},
 	{
-		"id": "03",
+		"id": "04",
 		"slug": "dot-journal",
 		"title": "DOT JOURNAL",
 		"context": "Personal Project",
@@ -38,7 +51,7 @@
 		"gallery": ["/projects/dotJournal/02.png", "/projects/dotJournal/03.png"]
 	},
 	{
-		"id": "04",
+		"id": "05",
 		"slug": "junto",
 		"title": "JUNTO.",
 		"context": "University",

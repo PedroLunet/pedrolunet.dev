@@ -2,6 +2,10 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* Lets us write `light:...` utilities for the few places that can't be
+   handled by swapping a colour token (icons, for example). */
+@custom-variant light (&:where(.light, .light *));
+
 @font-face {
 	font-family: 'Switzer';
 	src: url('/fonts/Switzer-Variable.ttf') format('truetype');
@@ -38,6 +42,7 @@
 	--color-text: #f8f7f4;
 	--color-accent: #ff4d00;
 	--color-accent-light: #ff6928;
+	--color-accent-fg: #131313;
 	--color-text-secondary: #848484;
 	--font-sans: 'Switzer', 'Inter', sans-serif;
 	--header-height-mobile: 48px;
@@ -45,6 +50,28 @@
 	--header-height-desktop: 72px;
 	--header-height-ultrawide: 92px;
 	--breakpoint-3xl: 1920px;
+}
+
+/*
+ * Light theme: only the design tokens change. Every `bg-bg`, `text-text`,
+ * `border-text/10`, etc. in the app already points at these variables, so the
+ * rest of the site follows automatically.
+ *
+ * The accent is darkened a little: #ff4d00 on an off-white background only
+ * reaches ~3.1:1, which fails WCAG AA for the small uppercase labels.
+ */
+html {
+	color-scheme: dark;
+}
+
+html.light {
+	color-scheme: light;
+	--color-bg: #f8f7f4;
+	--color-text: #131313;
+	--color-accent: #cc3d00;
+	--color-accent-light: #a83300;
+	--color-accent-fg: #f8f7f4;
+	--color-text-secondary: #6b6b6b;
 }
 
 body {

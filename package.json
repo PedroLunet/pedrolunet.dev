@@ -45,6 +45,7 @@
 		"@lucide/svelte": "^0.563.1",
 		"@studio-freight/lenis": "^1.0.42",
 		"gsap": "^3.14.2",
+		"loadsv": "^0.1.3",
 		"resend": "^6.9.1"
 	}
 }

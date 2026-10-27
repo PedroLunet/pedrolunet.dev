@@ -4,7 +4,8 @@
 	import { invalidate } from '$app/navigation';
 	import { scale } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	import { Send, LoaderCircle } from '@lucide/svelte';
+	import { Send } from '@lucide/svelte';
+	import { Spark } from 'loadsv';
 	import gsap from 'gsap';
 	import SEO from '$lib/components/seo.svelte';
 	import Modal from '$lib/components/modal.svelte';
@@ -194,7 +195,7 @@
 					</span>
 					{#if loading}
 						<span class="absolute inline-flex items-center gap-3 2xl:gap-4">
-							<LoaderCircle size={14} class="animate-spin" />
+							<Spark size={14} />
 							<span>Posting...</span>
 						</span>
 					{/if}

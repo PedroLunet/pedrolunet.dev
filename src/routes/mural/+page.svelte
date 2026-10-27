@@ -8,6 +8,7 @@
 	import gsap from 'gsap';
 	import SEO from '$lib/components/seo.svelte';
 	import Modal from '$lib/components/modal.svelte';
+	import type { SubmitFunction } from './$types';
 
 	let { data } = $props();
 
@@ -17,6 +18,24 @@
 	let now = $state(Date.now());
 	let error = $state('');
 	let messageInput = $state<HTMLInputElement>();
+
+	const submitMural: SubmitFunction = () => {
+		loading = true;
+		error = '';
+
+		return async ({ result, update }) => {
+			loading = false;
+			await update();
+
+			if (result.type === 'success') {
+				name = '';
+				message = '';
+				await invalidate('/mural');
+			} else if (result.type === 'failure') {
+				error = result.data?.error || 'Something went wrong';
+			}
+		};
+	};
 
 	function formatTime(dateStr: string) {
 		const date = new Date(dateStr.replace(' ', 'T') + 'Z');
@@ -101,21 +120,7 @@
 	<div class="reveal translate-y-8 opacity-0">
 		<form
 			method="POST"
-			use:enhance={() => {
-				loading = true;
-				error = '';
-				return async ({ result, update }) => {
-					loading = false;
-					await update();
-					if (result.type === 'success') {
-						name = '';
-						message = '';
-						await invalidate('/mural');
-					} else if (result.type === 'failure') {
-						error = result.data?.error || 'Something went wrong';
-					}
-				};
-			}}
+			use:enhance={submitMural}
 			class="flex flex-col gap-6 border border-text/10 p-6 2xl:gap-8 2xl:p-8"
 		>
 			<div style="display:none" aria-hidden="true">

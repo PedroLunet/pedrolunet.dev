@@ -61,7 +61,7 @@
 				href={external}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-bg"
+				class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-accent-fg"
 			>
 				<Globe size={12} />
 				<span>Visit Site</span>
@@ -72,7 +72,7 @@
 				<a
 					in:fade={{ delay: 200, duration: 200 }}
 					href={internal}
-					class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-bg"
+					class="flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-widest whitespace-nowrap text-text-secondary uppercase transition-colors duration-300 hover:bg-accent hover:text-accent-fg"
 				>
 					<ArrowRight size={12} />
 					<span>Project Page</span>

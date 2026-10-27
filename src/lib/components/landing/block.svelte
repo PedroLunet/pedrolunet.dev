@@ -63,7 +63,7 @@
 				<span
 					in:scale={{ start: 0.95, duration: 300, easing: cubicOut }}
 					out:fade={{ duration: 150 }}
-					class="absolute bottom-0 flex items-end justify-center text-lg font-medium tracking-widest text-bg lowercase lg:text-3xl 2xl:text-5xl"
+					class="absolute bottom-0 flex items-end justify-center text-lg font-medium tracking-widest text-accent-fg lowercase lg:text-3xl 2xl:text-5xl"
 					aria-hidden="true"
 				>
 					{label}

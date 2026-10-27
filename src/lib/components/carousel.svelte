@@ -73,7 +73,7 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div
-	class="group relative aspect-16/10 w-full cursor-none overflow-hidden border border-text/10 bg-neutral-900 shadow-2xl shadow-bg/20 select-none"
+	class="group relative aspect-16/10 w-full cursor-none overflow-hidden border border-text/10 bg-text/5 shadow-2xl shadow-black/20 select-none"
 	role="button"
 	tabindex="0"
 	aria-label="Project Gallery"
@@ -107,14 +107,19 @@
 				}
 			}
 			.animate-shimmer {
-				background: linear-gradient(90deg, #171717 25%, #262626 50%, #171717 75%);
+				background: linear-gradient(
+					90deg,
+					color-mix(in srgb, var(--color-text) 5%, var(--color-bg)) 25%,
+					color-mix(in srgb, var(--color-text) 10%, var(--color-bg)) 50%,
+					color-mix(in srgb, var(--color-text) 5%, var(--color-bg)) 75%
+				);
 				background-size: 200% 100%;
 				animation: shimmer 2s infinite linear;
 			}
 		</style>
 
 		{#each images as src, i (src)}
-			<div class="relative h-full w-full shrink-0 snap-center bg-neutral-900">
+			<div class="relative h-full w-full shrink-0 snap-center bg-text/5">
 				{#if !loaded[i]}
 					<div class="animate-shimmer absolute inset-0 z-10 h-full w-full"></div>
 				{/if}
@@ -137,7 +142,7 @@
 
 	{#if showCursor && cursorSide}
 		<div
-			class="pointer-events-none absolute z-50 hidden text-text mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
+			class="pointer-events-none absolute z-50 hidden text-white mix-blend-difference drop-shadow-md transition-transform duration-75 ease-out md:block"
 			style="left: {cursorX}px; top: {cursorY}px; transform: translate(-50%, -50%);"
 		>
 			{#if cursorSide === 'left'}
@@ -153,9 +158,9 @@
 	></div>
 
 	<div
-		class="pointer-events-none absolute right-10 bottom-7 flex gap-2 text-[9px] tracking-widest text-text/50 uppercase 2xl:right-12 2xl:bottom-9"
+		class="pointer-events-none absolute right-10 bottom-7 flex gap-2 text-[9px] tracking-widest text-white/50 uppercase mix-blend-difference 2xl:right-12 2xl:bottom-9"
 	>
-		<span class="text-text">Fig. {String(currentIndex + 1).padStart(2, '0')}</span>
+		<span class="text-white">Fig. {String(currentIndex + 1).padStart(2, '0')}</span>
 		<span class="opacity-50">/</span>
 		<span class="opacity-50">{String(images.length).padStart(2, '0')}</span>
 	</div>

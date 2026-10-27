@@ -167,9 +167,9 @@
 	</div>
 
 	<div class="sticky top-32 col-span-6 hidden h-fit lg:block 2xl:top-48" aria-hidden="true">
-		<!-- Dark base so nothing bright ever shows through between images. -->
+		<!-- Neutral base so nothing bright ever shows through between images. -->
 		<div
-			class="relative aspect-16/10 w-full overflow-hidden border border-text/5 bg-neutral-900 shadow-2xl shadow-bg/5"
+			class="relative aspect-16/10 w-full overflow-hidden border border-text/5 bg-text/5 shadow-2xl shadow-black/5"
 		>
 			{#each projects as project, i (project.slug)}
 				<img

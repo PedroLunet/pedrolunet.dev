@@ -153,7 +153,7 @@
 						href={link.href}
 						aria-current={active ? 'page' : undefined}
 						onclick={() => (open = false)}
-						class="relative isolate flex h-full min-h-36 flex-col justify-end overflow-hidden rounded-md p-3 transition-colors duration-150 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent sm:min-h-40 sm:p-3.5 {active
+						class="relative isolate flex h-full min-h-36 flex-col justify-end overflow-hidden rounded-md p-3 transition-colors duration-150 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent active:bg-white/[0.05] sm:min-h-40 sm:p-3.5 {active
 							? 'bg-white/[0.06]'
 							: 'bg-white/[0.025]'}"
 					>
@@ -180,7 +180,7 @@
 					href="https://github.com/PedroLunet"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="py-1.5 transition-colors duration-150 outline-none hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent"
+					class="py-2.5 transition-colors duration-150 outline-none hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent active:text-panel-fg"
 				>
 					GitHub
 				</a>
@@ -188,7 +188,7 @@
 					href="https://linkedin.com/in/PedroLunet"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="py-1.5 transition-colors duration-150 outline-none hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent"
+					class="py-2.5 transition-colors duration-150 outline-none hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent active:text-panel-fg"
 				>
 					LinkedIn
 				</a>
@@ -196,7 +196,7 @@
 
 			<a
 				href="mailto:{EMAIL}"
-				class="flex items-center gap-1.5 rounded-md bg-white/[0.07] px-2.5 py-1.5 text-[11px] font-medium text-panel-fg/80 transition-colors duration-150 outline-none hover:bg-white/[0.12] hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent sm:text-xs"
+				class="flex items-center gap-1.5 rounded-md bg-white/[0.07] px-2.5 py-2 text-[11px] font-medium text-panel-fg/80 transition-colors duration-150 outline-none hover:bg-white/[0.12] hover:text-panel-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-panel-accent active:bg-white/[0.16] sm:text-xs"
 			>
 				<Mail size={12} class="text-panel-accent" />
 				{EMAIL}

@@ -49,7 +49,7 @@
 	<div class="flex items-center gap-4 2xl:gap-8">
 		<a
 			href={resolve('/')}
-			class="group relative block overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent focus-visible:outline-solid"
+			class="group relative block overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent focus-visible:outline-solid active:opacity-60"
 		>
 			<span
 				class="block transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full"
@@ -73,7 +73,7 @@
 			onclick={toggleTheme}
 			aria-label="Toggle color theme"
 			title="Toggle color theme"
-			class="theme-toggle group flex h-7 w-7 shrink-0 items-center justify-center text-text/50 transition-colors outline-none hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid 2xl:h-9 2xl:w-9"
+			class="theme-toggle group flex h-10 w-10 shrink-0 items-center justify-center text-text/50 transition-[color,transform] duration-150 ease-out outline-none hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid active:scale-90 motion-reduce:transition-none"
 		>
 			<span
 				class="relative flex h-4 w-4 items-center justify-center 2xl:h-5 2xl:w-5"

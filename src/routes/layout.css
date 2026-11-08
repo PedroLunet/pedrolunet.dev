@@ -44,6 +44,13 @@
 	--color-accent-light: #ff6928;
 	--color-accent-fg: #131313;
 	--color-text-secondary: #848484;
+	/*
+	 * The nav pill is a small floating dock. It stays dark in both themes, so
+	 * these tokens are intentionally not overridden by `.light`.
+	 */
+	--color-panel: #0a0a0a;
+	--color-panel-fg: #f8f7f4;
+	--color-panel-accent: #ff5a14;
 	--font-sans: 'Switzer', 'Inter', sans-serif;
 	--header-height-mobile: 48px;
 	--header-height-tablet: 56px;

@@ -4,6 +4,12 @@
 
 	export let year = new Date().getFullYear().toString();
 
+	const digits = [...Array(10).keys()];
+
+	function columnIndexes(length: number) {
+		return [...Array(length).keys()];
+	}
+
 	let container: HTMLElement;
 
 	onMount(() => {
@@ -30,11 +36,15 @@
 	class="relative flex h-[1em] overflow-hidden leading-none"
 	aria-label={year}
 >
-	{#each year as digit}
-		<div class="digit-col flex flex-col text-text-secondary">
-			{#each Array(10) as _, i}
+	{#each columnIndexes(year.length) as column (column)}
+		<div
+			class="digit-col flex flex-col text-text-secondary"
+			data-column={column}
+			style="transform: translateY(-{year[column]}em)"
+		>
+			{#each digits as digit (digit)}
 				<span class="flex h-[1em] items-center justify-center">
-					{i}
+					{digit}
 				</span>
 			{/each}
 		</div>

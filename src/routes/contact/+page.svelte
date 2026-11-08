@@ -294,7 +294,7 @@
 				<button
 					type="submit"
 					aria-disabled={loading}
-					class="group flex cursor-pointer items-center gap-4 text-xs font-bold tracking-widest text-text uppercase transition-colors hover:text-accent aria-disabled:cursor-wait aria-disabled:opacity-50 2xl:text-sm"
+					class="group flex cursor-pointer items-center gap-4 text-xs font-bold tracking-widest text-text uppercase transition-colors hover:text-accent active:text-accent aria-disabled:cursor-wait aria-disabled:opacity-50 2xl:text-sm"
 				>
 					<!--
 						Both labels share one grid cell so the button keeps the width of the
@@ -307,7 +307,7 @@
 						</span>
 					</span>
 					<div
-						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-fg 2xl:h-12 2xl:w-12"
+						class="flex h-8 w-8 items-center justify-center border border-text/20 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-fg group-active:border-accent group-active:bg-accent group-active:text-accent-fg 2xl:h-12 2xl:w-12"
 					>
 						{#if loading}
 							<Spark size={14} class="2xl:scale-150" />

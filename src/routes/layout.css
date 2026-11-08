@@ -105,6 +105,22 @@
  */
 html {
 	color-scheme: dark;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-text-size-adjust: 100%;
+}
+
+/*
+ * Touch baseline: fire taps immediately (no double-tap zoom delay) and stop
+ * long-presses from selecting control labels or opening the iOS callout.
+ * Content text stays selectable.
+ */
+button,
+a,
+[role='button'] {
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
 }
 
 html.light {
@@ -136,6 +152,7 @@ body {
 	color: var(--color-text);
 	font-family: var(--font-sans);
 	min-height: 100vh;
+	min-height: 100dvh;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 	width: 100%;

@@ -84,17 +84,17 @@
 
 <div
 	bind:this={curtain}
-	class="pointer-events-none fixed inset-0 z-99999 h-screen w-screen bg-bg"
+	class="pointer-events-none fixed inset-0 z-99999 h-dvh w-screen bg-bg"
 	style="display: none;"
 ></div>
 
 <main
-	class="flex min-h-[calc(100vh-var(--header-height-mobile))] w-full flex-col
+	class="flex min-h-[calc(100dvh-var(--header-height-mobile))] w-full flex-col
   bg-bg
   px-6
   pt-4
   pb-12
-  md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))] lg:px-9 lg:pt-12 2xl:min-h-[calc(100vh-var(--header-height-ultrawide))] 2xl:px-24 2xl:pt-20"
+  md:min-h-[calc(100dvh-var(--header-height-tablet))] lg:min-h-[calc(100dvh-var(--header-height-desktop))] lg:px-9 lg:pt-12 2xl:min-h-[calc(100dvh-var(--header-height-ultrawide))] 2xl:px-24 2xl:pt-20"
 >
 	{@render children()}
 </main>

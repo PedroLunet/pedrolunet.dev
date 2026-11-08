@@ -152,6 +152,7 @@ body {
 	color: var(--color-text);
 	font-family: var(--font-sans);
 	min-height: 100vh;
+	min-height: 100dvh;
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 	width: 100%;

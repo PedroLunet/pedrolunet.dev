@@ -112,7 +112,7 @@
 />
 
 <div
-	class="min-h-[calc(100vh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100vh-var(--header-height-tablet))] lg:min-h-[calc(100vh-var(--header-height-desktop))]"
+	class="min-h-[calc(100dvh-var(--header-height-mobile))] w-full bg-bg md:min-h-[calc(100dvh-var(--header-height-tablet))] lg:min-h-[calc(100dvh-var(--header-height-desktop))]"
 >
 	<div class="mx-auto flex max-w-500 flex-col">
 		<div class="flex flex-col gap-16 lg:flex-row lg:gap-12 2xl:gap-24">

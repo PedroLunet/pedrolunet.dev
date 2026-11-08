@@ -1,144 +1,16 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
 	import { Moon, Sun } from '@lucide/svelte';
 
 	import TumblerYear from './tumblerYear.svelte';
-	import Menu from '$lib/components/landing/menu.svelte';
-
-	let isMenuOpen = $state(false);
-	let tl: gsap.core.Timeline;
-	let ctx: gsap.Context;
-	let themeTimer: ReturnType<typeof setTimeout> | undefined;
-
-	let triggerRef = $state<HTMLButtonElement>();
-	let ghostRef = $state<HTMLDivElement>();
-	let bgSamplerRef = $state<HTMLDivElement>();
-	let overlayRef = $state<HTMLDivElement>();
-	let closeRef = $state<HTMLButtonElement>();
-
-	let isHomePage = $derived(page.url.pathname === '/');
+	import NavDock from './navDock.svelte';
 
 	// Hairline under the sticky header once the page has scrolled.
 	let scrollY = $state(0);
 	let isScrolled = $derived(scrollY > 4);
 
-	// Return focus to the Menu trigger after the overlay closes. The trigger is
-	// hidden (autoAlpha 0) while the overlay is open, so this has to wait for
-	// the reverse animation to finish.
-	let restoreFocusOnClose = false;
-
-	onMount(() => {
-		ctx = gsap.context(() => {
-			if (!triggerRef || !ghostRef || !bgSamplerRef) return;
-
-			const targetColor = window.getComputedStyle(bgSamplerRef).backgroundColor || '#0a0a0a';
-
-			// 1. Setup Timeline
-			tl = gsap.timeline({
-				paused: true,
-				onStart: () => {
-					if (!triggerRef || !ghostRef || isHomePage) return;
-					const rect = triggerRef.getBoundingClientRect();
-					const accent = window.getComputedStyle(triggerRef).backgroundColor || '#FF4D00';
-					gsap.set(ghostRef, {
-						top: rect.top,
-						left: rect.left,
-						width: rect.width,
-						height: rect.height,
-						scale: 1,
-						backgroundColor: accent,
-						autoAlpha: 1,
-						display: 'block'
-					});
-					gsap.set(triggerRef, { autoAlpha: 0 });
-				},
-				onReverseComplete: () => {
-					// Reset trigger visibility based on where we are
-					const currentPath = window.location.pathname;
-					if (triggerRef) {
-						gsap.set(triggerRef, {
-							autoAlpha: currentPath === '/' ? 0 : 1,
-							pointerEvents: currentPath === '/' ? 'none' : 'auto'
-						});
-					}
-					if (ghostRef) gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
-					gsap.set('.menu-overlay', { autoAlpha: 0 });
-
-					if (restoreFocusOnClose && currentPath !== '/') {
-						triggerRef?.focus({ preventScroll: true });
-					}
-					restoreFocusOnClose = false;
-				}
-			});
-
-			// 2. Animation Sequence
-			tl.to(ghostRef, { scale: 0.95, duration: 0.2, ease: 'power2.inOut' }, 0);
-
-			tl.to(
-				ghostRef,
-				{
-					top: 0,
-					left: 0,
-					width: '100vw',
-					height: '100vh',
-					backgroundColor: targetColor,
-					duration: 0.8,
-					ease: 'expo.inOut'
-				},
-				0.1
-			);
-
-			// We use autoAlpha to handle visibility: hidden automatically
-			tl.to('.menu-overlay', { autoAlpha: 1, duration: 0.01 }, 0.2);
-			tl.to('.header-content-wrapper', { autoAlpha: 0, duration: 0.3 }, 0.2);
-
-			tl.to(
-				'.close-strip',
-				{
-					x: '0%',
-					duration: 1.1,
-					ease: 'expo.out'
-				},
-				0.4
-			);
-
-			// Move focus into the overlay as soon as it's visible, so keyboard and
-			// screen-reader users land inside the menu. Timeline callbacks also fire
-			// when reversing, hence the guard.
-			tl.call(
-				() => {
-					if (!tl.reversed()) closeRef?.focus({ preventScroll: true });
-				},
-				[],
-				0.45
-			);
-
-			tl.fromTo(
-				'.menu-item',
-				{ x: 50, autoAlpha: 0 },
-				{ x: 0, autoAlpha: 1, stagger: 0.08, duration: 0.8, ease: 'power3.out' },
-				0.5
-			);
-		});
-
-		return () => ctx.revert();
-	});
-
-	function toggleMenu() {
-		if (!tl) return;
-		if (isMenuOpen) {
-			restoreFocusOnClose = true;
-			tl.timeScale(1.5).reverse();
-			isMenuOpen = false;
-		} else {
-			tl.timeScale(1).play();
-			isMenuOpen = true;
-		}
-	}
+	let themeTimer: ReturnType<typeof setTimeout> | undefined;
 
 	function toggleTheme() {
 		const root = document.documentElement;
@@ -160,137 +32,17 @@
 		}
 	}
 
-	function handleWindowKeydown(event: KeyboardEvent) {
-		if (event.key === 'Escape' && isMenuOpen) {
-			event.preventDefault();
-			toggleMenu();
-		}
-	}
-
-	// Keep Tab inside the overlay while it's open (close button + menu links).
-	function trapFocus(event: KeyboardEvent) {
-		if (event.key !== 'Tab' || !isMenuOpen || !overlayRef) return;
-
-		const focusable = [...overlayRef.querySelectorAll<HTMLElement>('a[href], button')].filter(
-			(el) => el.checkVisibility({ visibilityProperty: true })
-		);
-		if (focusable.length === 0) return;
-
-		const first = focusable[0];
-		const last = focusable[focusable.length - 1];
-
-		if (event.shiftKey && document.activeElement === first) {
-			event.preventDefault();
-			last.focus();
-		} else if (!event.shiftKey && document.activeElement === last) {
-			event.preventDefault();
-			first.focus();
-		}
-	}
-
-	afterNavigate(() => {
-		isMenuOpen = false;
-		restoreFocusOnClose = false;
-
-		if (tl) {
-			tl.pause();
-			tl.progress(0);
-		}
-
-		gsap.set('.menu-overlay', { autoAlpha: 0 });
-		gsap.set('.close-strip', { x: '-100%' });
-
-		gsap.set('.header-content-wrapper', { autoAlpha: 1 });
-
-		const onHome = page.url.pathname === '/';
-
-		if (triggerRef) {
-			gsap.set(triggerRef, {
-				autoAlpha: onHome ? 0 : 1,
-				pointerEvents: onHome ? 'none' : 'auto'
-			});
-		}
-
-		if (ghostRef) {
-			gsap.set(ghostRef, { autoAlpha: 0, display: 'none' });
-		}
-	});
+	onMount(() => () => clearTimeout(themeTimer));
 </script>
 
-<svelte:window bind:scrollY onkeydown={handleWindowKeydown} />
-
-<div bind:this={bgSamplerRef} class="hidden bg-bg"></div>
-
-<div
-	bind:this={ghostRef}
-	class="pointer-events-none invisible fixed z-55 overflow-hidden bg-accent px-2 will-change-transform"
-	class:hidden={isHomePage}
->
-	<div class="ghost-text-wrapper absolute inset-0 flex h-[200%] w-full flex-col">
-		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
-			>Menu</span
-		>
-		<span
-			class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
-			>Menu</span
-		>
-	</div>
-</div>
-
-<!--
-	`data-lenis-prevent` + a contained scroll box stop wheel/touch scrolling on the
-	overlay from moving the page underneath (Lenis kept scrolling it before).
--->
-<div
-	bind:this={overlayRef}
-	id="site-menu"
-	class="menu-overlay pointer-events-none invisible fixed inset-0 z-60 flex overflow-y-auto overscroll-contain opacity-0"
-	data-lenis-prevent
-	onkeydown={trapFocus}
-	role="dialog"
-	aria-modal="true"
-	aria-label="Site menu"
-	tabindex="-1"
->
-	<div
-		class="close-strip absolute top-0 left-0 z-60 h-full w-12 border-r border-text/10 lg:w-24 2xl:w-32"
-		style="transform: translateX(-100%);"
-	>
-		<button
-			bind:this={closeRef}
-			onclick={toggleMenu}
-			aria-label="Close menu"
-			class="group pointer-events-auto flex h-full w-full flex-col items-center justify-center gap-8 transition-colors outline-none hover:bg-accent/5 focus-visible:bg-accent/5 active:bg-accent/10 2xl:gap-16"
-		>
-			<div
-				class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent group-focus-visible:bg-accent"
-			></div>
-			<span
-				class="-rotate-90 text-xs font-bold tracking-[0.2em] whitespace-nowrap text-text uppercase transition-colors group-hover:text-accent group-focus-visible:text-accent 2xl:text-sm"
-			>
-				Close
-			</span>
-			<div
-				class="h-full w-px bg-text-secondary/20 transition-colors group-hover:bg-accent group-focus-visible:bg-accent"
-			></div>
-		</button>
-	</div>
-
-	<div
-		class="pointer-events-auto flex h-full w-full flex-col items-end justify-center bg-bg px-6 pl-12 lg:px-9 lg:pl-24 2xl:px-24 2xl:pl-48"
-	>
-		<Menu isOpen={isMenuOpen} />
-	</div>
-</div>
+<svelte:window bind:scrollY />
 
 <header
 	class="sticky top-0 z-50 flex h-(--header-height-mobile) w-full flex-row items-center justify-between border-b bg-bg/90 px-6 text-base font-semibold tracking-tight backdrop-blur-sm transition-[border-color] duration-300 md:h-(--header-height-tablet) lg:h-(--header-height-desktop) lg:px-9 lg:text-xl 2xl:h-(--header-height-ultrawide) 2xl:px-24 2xl:text-3xl {isScrolled
 		? 'border-text/10'
 		: 'border-transparent'}"
 >
-	<div class="header-content-wrapper flex items-center gap-4 transition-opacity 2xl:gap-8">
-		<!-- Same vertical text roll as the Menu button, in the accent colour. -->
+	<div class="flex items-center gap-4 2xl:gap-8">
 		<a
 			href={resolve('/')}
 			class="group relative block overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent focus-visible:outline-solid"
@@ -307,42 +59,17 @@
 				pedro lunet
 			</span>
 		</a>
-
-		<button
-			bind:this={triggerRef}
-			onclick={toggleMenu}
-			class="group relative h-4.5 w-auto min-w-9 overflow-hidden bg-accent px-2 transition-transform duration-100 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid active:scale-90 2xl:h-8 2xl:min-w-16 2xl:px-4"
-			class:opacity-0={isHomePage}
-			class:pointer-events-none={isHomePage}
-			aria-label="Open menu"
-			aria-expanded={isMenuOpen}
-			aria-controls="site-menu"
-		>
-			<div
-				class="absolute inset-0 flex h-[200%] w-full flex-col transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2 group-focus-visible:-translate-y-1/2"
-				aria-hidden="true"
-			>
-				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
-					>Menu</span
-				>
-				<span
-					class="flex h-1/2 w-full items-end justify-center text-xs font-semibold text-accent-fg uppercase 2xl:text-sm"
-					>Menu</span
-				>
-			</div>
-		</button>
 	</div>
 
-	<div
-		class="header-content-wrapper flex flex-row items-center gap-3 transition-opacity md:gap-4 2xl:gap-8"
-	>
+	<NavDock />
+
+	<div class="flex flex-row items-center gap-3 md:gap-4 2xl:gap-8">
 		<button
 			type="button"
 			onclick={toggleTheme}
 			aria-label="Toggle color theme"
 			title="Toggle color theme"
-			class="group flex h-7 w-7 shrink-0 items-center justify-center text-text/50 transition-colors outline-none hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid 2xl:h-9 2xl:w-9"
+			class="theme-toggle group flex h-7 w-7 shrink-0 items-center justify-center text-text/50 transition-colors outline-none hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text focus-visible:outline-solid 2xl:h-9 2xl:w-9"
 		>
 			<span
 				class="relative flex h-4 w-4 items-center justify-center 2xl:h-5 2xl:w-5"
@@ -380,8 +107,20 @@
 			</span>
 		</a>
 
-		<div class="flex flex-row items-center">
-			<span>portfolio </span><TumblerYear />
+		<div class="flex flex-row items-center gap-1.5">
+			<span class="hidden sm:inline">portfolio</span><TumblerYear />
 		</div>
 	</div>
 </header>
+
+<noscript>
+	<nav
+		aria-label="Site"
+		class="flex flex-wrap gap-x-6 gap-y-2 border-b border-text/10 bg-bg px-6 py-3 text-[11px] font-bold tracking-[0.18em] text-text-secondary uppercase lg:px-9 2xl:px-24"
+	>
+		<a href={resolve('/work')} class="transition-colors hover:text-accent">Work</a>
+		<a href={resolve('/about')} class="transition-colors hover:text-accent">About</a>
+		<a href={resolve('/contact')} class="transition-colors hover:text-accent">Contact</a>
+		<a href={resolve('/mural')} class="transition-colors hover:text-accent">Mural</a>
+	</nav>
+</noscript>

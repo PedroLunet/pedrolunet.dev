@@ -25,6 +25,10 @@
 		}
 
 		root.classList.toggle('light', isLight);
+		document
+			.querySelector('meta[name="theme-color"]')
+			?.setAttribute('content', isLight ? '#f8f7f4' : '#131313');
+
 		try {
 			localStorage.setItem('theme', isLight ? 'light' : 'dark');
 		} catch {

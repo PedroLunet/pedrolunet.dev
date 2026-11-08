@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#FF4D00" />
+		<meta name="theme-color" content="#131313" />
 
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="manifest" href="/manifest.json" />
@@ -32,6 +32,11 @@
 						: window.matchMedia('(prefers-color-scheme: light)').matches;
 
 					if (light) document.documentElement.classList.add('light');
+
+					// Match the browser chrome to the top of the page.
+					document
+						.querySelector('meta[name="theme-color"]')
+						?.setAttribute('content', light ? '#f8f7f4' : '#131313');
 				} catch {
 					// localStorage can be unavailable (private mode, etc.).
 				}

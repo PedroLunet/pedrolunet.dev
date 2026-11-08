@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
 	// Fallback to 404 just in case, then convert to a string like "404" or "500"
@@ -19,7 +20,7 @@
 		</h1>
 
 		<a
-			href="/"
+			href={resolve('/')}
 			class="text-lg font-extralight tracking-tight text-text underline decoration-accent underline-offset-4 transition-transform duration-300 hover:scale-110 md:text-xl 2xl:text-2xl"
 		>
 			go back to the home page

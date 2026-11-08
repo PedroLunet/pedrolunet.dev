@@ -44,8 +44,8 @@
 		) {
 			return 'future';
 		}
-		const endDate = new Date(job.end);
-		endDate.setMonth(endDate.getMonth() + 1, 1);
+		const end = new Date(job.end);
+		const endDate = new Date(end.getFullYear(), end.getMonth() + 1, 1);
 		if (now < endDate) return 'current';
 		return 'past';
 	}
